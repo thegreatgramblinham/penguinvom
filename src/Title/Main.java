@@ -1,18 +1,19 @@
 package Title;
 
+import MainGame.GameManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private GameManager _gm;
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Title.fxml"));
-        primaryStage.setTitle("PenguinVom");
-        primaryStage.setScene(new Scene(root, 800, 600));
+    public void start(Stage primaryStage) throws Exception
+    {
+        _gm = new GameManager(primaryStage);
+        _gm.Start();
+
         primaryStage.show();
     }
 
