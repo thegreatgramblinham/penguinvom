@@ -18,10 +18,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import jdk.internal.util.xml.impl.Input;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.util.Iterator;
 
 @SuppressWarnings("Convert2Lambda")
@@ -36,6 +34,7 @@ public class GameManager
     //Private Variables - Engine
     private GameEngine _engine;
     private PlayerObject _player;
+    private double _lastPlayerDirection;
 
     //Constructor
     public GameManager(Stage displayStage)
@@ -100,18 +99,19 @@ public class GameManager
                 switch (event.getCode())
                 {
                     case UP:
-                        _player.AccelerateBy(new VelocityVector((3*Math.PI)/2, .1));
+                        _lastPlayerDirection = (3*Math.PI)/2;
                         break;
                     case DOWN:
-                        _player.AccelerateBy(new VelocityVector(Math.PI/2, .1));
+                        _lastPlayerDirection = Math.PI/2;
                         break;
                     case LEFT:
-                        _player.AccelerateBy(new VelocityVector(Math.PI, .1));
+                        _lastPlayerDirection = Math.PI;
                         break;
                     case RIGHT:
-                        _player.AccelerateBy(new VelocityVector(0, .1));
+                        _lastPlayerDirection = 0;
                         break;
                 }
+                _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
             }
         });
 
@@ -127,7 +127,9 @@ public class GameManager
                             case DOWN:
                             case LEFT:
                             case RIGHT:
-                                _player.StopAcceleration();
+                                VelocityVector accel = _player.GetAcceleration();
+                                if(accel != null && accel.GetRadianRotation() == _lastPlayerDirection)
+                                    _player.StopAcceleration();
                                 break;
                         }
                     }
