@@ -69,7 +69,7 @@ public class GameManager
         _gc = canvas.getGraphicsContext2D();
 
         _currentSector
-                = _engine.CreateSector(800, 600, 30, 0.2F, GravityApplication.Area);
+                = _engine.CreateSector(800, 600, 30, 0.5F, GravityApplication.Area);
     }
 
     private void InitRenderLoop()
@@ -89,6 +89,8 @@ public class GameManager
     {
         _player = new PlayerObject(new Rectangle(100, 400, 20, 20), 0.1F);
 
+        _currentSector.AddObject(_player);
+
         _primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
         {
@@ -98,16 +100,16 @@ public class GameManager
                 switch (event.getCode())
                 {
                     case UP:
-                        _player.AccelerateBy(new VelocityVector((3*Math.PI)/2, .5));
+                        _player.AccelerateBy(new VelocityVector((3*Math.PI)/2, .1));
                         break;
                     case DOWN:
-                        _player.AccelerateBy(new VelocityVector(Math.PI/2, .5));
+                        _player.AccelerateBy(new VelocityVector(Math.PI/2, .1));
                         break;
                     case LEFT:
-                        _player.AccelerateBy(new VelocityVector(Math.PI, .5));
+                        _player.AccelerateBy(new VelocityVector(Math.PI, .1));
                         break;
                     case RIGHT:
-                        _player.AccelerateBy(new VelocityVector(0, .5));
+                        _player.AccelerateBy(new VelocityVector(0, .1));
                         break;
                 }
             }
@@ -125,7 +127,7 @@ public class GameManager
                             case DOWN:
                             case LEFT:
                             case RIGHT:
-                                //toggle accel off
+                                _player.StopAcceleration();
                                 break;
                         }
                     }
@@ -145,6 +147,9 @@ public class GameManager
                 {
                     public void handle(ActionEvent ae)
                     {
+                        gc.clearRect(0, 0, 800, 600);
+                        _engine.CycleEngine();
+
                         Iterator<GameWorldObject> iter
                                 = _currentSector.GetObjectsInSector();
 
@@ -156,6 +161,9 @@ public class GameManager
                                           gObj.y,
                                           gObj.width,
                                           gObj.height);
+
+                            if(_player.GetIsAccelerating())
+                                _player.AccelerateBy(_player.GetAcceleration());
                         }
                     }
                 });
