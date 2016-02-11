@@ -7,8 +7,8 @@ import java.awt.*;
 public class PlayerObject extends GameWorldObject
 {
 
-    public PlayerObject(Rectangle size, boolean isImmobile, float mass)
+    public PlayerObject(Rectangle size, float mass)
     {
-        super(size, isImmobile, mass);
+        super(size, false, mass);
     }
 }
