@@ -3,6 +3,8 @@ package MainGame;
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Environmental.Backdrop;
+import GameObjects.Player.PlayerObject;
+import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
 import javafx.animation.KeyFrame;
@@ -13,10 +15,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import jdk.internal.util.xml.impl.Input;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.util.Iterator;
 
 @SuppressWarnings("Convert2Lambda")
@@ -30,6 +35,7 @@ public class GameManager
 
     //Private Variables - Engine
     private GameEngine _engine;
+    private PlayerObject _player;
 
     //Constructor
     public GameManager(Stage displayStage)
@@ -40,6 +46,7 @@ public class GameManager
         InitStage();
         InitRenderLoop();
         InitEnvironment();
+        InitPlayerHandlers();
         InitSprites();
     }
 
@@ -76,6 +83,53 @@ public class GameManager
     private void InitEnvironment()
     {
         _currentSector.AddObject(new Backdrop(new Rectangle(0,0,800,275)));
+    }
+
+    private void InitPlayerHandlers()
+    {
+        _player = new PlayerObject(new Rectangle(100, 400, 20, 20), 0.1F);
+
+        _primaryStage.getScene().setOnKeyPressed(
+                new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent event)
+            {
+                switch (event.getCode())
+                {
+                    case UP:
+                        _player.AccelerateBy(new VelocityVector((3*Math.PI)/2, .5));
+                        break;
+                    case DOWN:
+                        _player.AccelerateBy(new VelocityVector(Math.PI/2, .5));
+                        break;
+                    case LEFT:
+                        _player.AccelerateBy(new VelocityVector(Math.PI, .5));
+                        break;
+                    case RIGHT:
+                        _player.AccelerateBy(new VelocityVector(0, .5));
+                        break;
+                }
+            }
+        });
+
+        _primaryStage.getScene().setOnKeyReleased(
+                new EventHandler<KeyEvent>()
+                {
+                    @Override
+                    public void handle(KeyEvent event)
+                    {
+                        switch (event.getCode())
+                        {
+                            case UP:
+                            case DOWN:
+                            case LEFT:
+                            case RIGHT:
+                                //toggle accel off
+                                break;
+                        }
+                    }
+                });
     }
 
     private void InitSprites()
