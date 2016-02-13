@@ -81,12 +81,12 @@ public class GameManager
 
     private void InitEnvironment()
     {
-        _currentSector.AddObject(new Backdrop(new Rectangle(0,0,800,275)));
+        _currentSector.AddObject(new Backdrop(new Rectangle(0,0,800,280)));
     }
 
     private void InitPlayerHandlers()
     {
-        _player = new PlayerObject(new Rectangle(100, 400, 20, 20), 0.1F);
+        _player = new PlayerObject(new Rectangle(100, 400, 64, 64), 0.1F);
 
         _currentSector.AddObject(_player);
 
