@@ -15,11 +15,14 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Iterator;
 
 @SuppressWarnings("Convert2Lambda")
@@ -81,7 +84,10 @@ public class GameManager
 
     private void InitEnvironment()
     {
-        _currentSector.AddObject(new Backdrop(new Rectangle(0,0,800,280)));
+        Backdrop bg = new Backdrop(new Rectangle(0,0,800,280));
+        bg.SetSprite(new Image(new File("src/ImageAssets/penguinbg10000.png")
+                .toURI().toString()));
+        _currentSector.AddObject(bg);
     }
 
     private void InitPlayerHandlers()
@@ -163,6 +169,12 @@ public class GameManager
                                           gObj.y,
                                           gObj.width,
                                           gObj.height);
+
+                            if(gObj.GetSprite() != null)
+                            {
+                                gc.drawImage(gObj.GetSprite(), gObj.getX(), gObj.getY(),
+                                        gObj.GetSprite().getWidth(), gObj.GetSprite().getHeight());
+                            }
 
                             if(_player.GetIsAccelerating())
                                 _player.AccelerateBy(_player.GetAcceleration());
