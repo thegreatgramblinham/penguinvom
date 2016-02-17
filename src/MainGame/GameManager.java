@@ -84,10 +84,17 @@ public class GameManager
 
     private void InitEnvironment()
     {
-        Backdrop bg = new Backdrop(new Rectangle(0,0,800,280));
+        Backdrop bg = new Backdrop(new Rectangle(0,0,800,280), true);
         bg.SetSprite(new Image(new File("src/ImageAssets/penguinbg10000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg);
+
+        Backdrop floor = new Backdrop(new Rectangle(0,280,800,320), false);
+        floor.SetSprite(new Image(new File("src/ImageAssets/woodfloor0000.png")
+                .toURI().toString()));
+        _currentSector.AddObject(floor);
+
+
     }
 
     private void InitPlayerHandlers()
