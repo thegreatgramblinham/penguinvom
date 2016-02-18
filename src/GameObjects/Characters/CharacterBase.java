@@ -31,5 +31,9 @@ public class CharacterBase extends GameWorldObject
     }
 
     //Public Methods
-
+    @Override
+    public void OnCollide(GameWorldObject e)
+    {
+        System.out.println("On Collision Event Here");
+    }
 }
