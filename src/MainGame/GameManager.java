@@ -3,7 +3,7 @@ package MainGame;
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Environmental.Backdrop;
-import GameObjects.Player.PlayerObject;
+import GameObjects.Characters.Player.PlayerObject;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
@@ -15,7 +15,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -93,8 +92,6 @@ public class GameManager
         floor.SetSprite(new Image(new File("src/ImageAssets/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor);
-
-
     }
 
     private void InitPlayerHandlers()
