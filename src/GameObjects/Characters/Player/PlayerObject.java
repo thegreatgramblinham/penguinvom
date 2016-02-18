@@ -8,8 +8,8 @@ import java.awt.*;
 public class PlayerObject extends CharacterBase
 {
 
-    public PlayerObject(Rectangle size, float mass)
+    public PlayerObject(Rectangle size, float mass, int health)
     {
-        super(size, false, mass);
+        super(size, false, mass, health);
     }
 }
