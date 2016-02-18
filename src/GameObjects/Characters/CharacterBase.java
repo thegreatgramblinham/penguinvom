@@ -7,14 +7,15 @@ import java.awt.*;
 public class CharacterBase extends GameWorldObject
 {
     //todo Projectile hitbox?
-    
+
     //Properties
     private int _health;
 
     //Constructor
-    public CharacterBase(Rectangle size, boolean isImmobile, float mass)
+    public CharacterBase(Rectangle size, boolean isImmobile, float mass, int health)
     {
         super(size, isImmobile, mass);
+        this.SetHealth(health);
     }
 
     //Set Methods

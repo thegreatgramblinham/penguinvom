@@ -96,7 +96,7 @@ public class GameManager
 
     private void InitPlayerHandlers()
     {
-        _player = new PlayerObject(new Rectangle(100, 400, 64, 64), 0.1F);
+        _player = new PlayerObject(new Rectangle(100, 400, 64, 64), 0.1F, 20);
 
         _currentSector.AddObject(_player);
 
