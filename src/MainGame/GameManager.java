@@ -23,6 +23,7 @@ import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Iterator;
 
 @SuppressWarnings("Convert2Lambda")
@@ -87,19 +88,19 @@ public class GameManager
         Backdrop bg = new Backdrop(new Rectangle(0,0,800,280), true);
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
-        _currentSector.AddObject(bg);
+        _currentSector.AddObject(bg,1);
 
         Backdrop floor = new Backdrop(new Rectangle(0,280,800,320), false);
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
-        _currentSector.AddObject(floor);
+        _currentSector.AddObject(floor,1);
     }
 
     private void InitPlayerHandlers()
     {
         _player = new PlayerObject(new Rectangle(100, 400, 64, 64), 0.1F, 20);
 
-        _currentSector.AddObject(_player);
+        _currentSector.AddObject(_player,3);
 
         _primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
@@ -166,31 +167,39 @@ public class GameManager
                         Iterator<GameWorldObject> iter
                                 = _currentSector.GetObjectsInSector();
 
-                        while(iter.hasNext())
+                        for (int i = 0;
+                             i < _currentSector.GetRenderGroupCount();
+                             i++)
                         {
-                            GameWorldObject gObj = iter.next();
+                            HashSet<GameWorldObject> renderGroup
+                                    = _currentSector.GetRenderGroup(i);
 
-                            CharacterBase charObj = null;
-                            if(gObj instanceof CharacterBase)
-                                charObj = (CharacterBase)gObj;
+                            if(renderGroup == null) continue;
 
-                            gc.strokeRect(gObj.x,
-                                          gObj.y,
-                                          gObj.width,
-                                          gObj.height);
-
-                            if(charObj != null)
+                            for( GameWorldObject gObj : renderGroup)
                             {
-                                charObj.DrawWalkAnimation(gc);
-                            }
-                            else if(gObj.GetSprite() != null)
-                            {
-                                gc.drawImage(gObj.GetSprite(), gObj.getX(), gObj.getY(),
-                                        gObj.GetSprite().getWidth(), gObj.GetSprite().getHeight());
-                            }
+                                CharacterBase charObj = null;
+                                if(gObj instanceof CharacterBase)
+                                    charObj = (CharacterBase)gObj;
 
-                            if(_player.GetIsAccelerating())
-                                _player.AccelerateBy(_player.GetAcceleration());
+                                gc.strokeRect(gObj.x,
+                                        gObj.y,
+                                        gObj.width,
+                                        gObj.height);
+
+                                if(charObj != null)
+                                {
+                                    charObj.DrawWalkAnimation(gc);
+                                }
+                                else if(gObj.GetSprite() != null)
+                                {
+                                    gc.drawImage(gObj.GetSprite(), gObj.getX(), gObj.getY(),
+                                            gObj.GetSprite().getWidth(), gObj.GetSprite().getHeight());
+                                }
+
+                                if(_player.GetIsAccelerating())
+                                    _player.AccelerateBy(_player.GetAcceleration());
+                            }
                         }
                     }
                 });
