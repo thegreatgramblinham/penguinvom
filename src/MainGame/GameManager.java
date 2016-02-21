@@ -2,6 +2,7 @@ package MainGame;
 
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
+import GameObjects.Characters.CharacterBase;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import PhysicsBase.Vectors.VelocityVector;
@@ -84,12 +85,12 @@ public class GameManager
     private void InitEnvironment()
     {
         Backdrop bg = new Backdrop(new Rectangle(0,0,800,280), true);
-        bg.SetSprite(new Image(new File("src/ImageAssets/penguinbg10000.png")
+        bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg);
 
         Backdrop floor = new Backdrop(new Rectangle(0,280,800,320), false);
-        floor.SetSprite(new Image(new File("src/ImageAssets/woodfloor0000.png")
+        floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor);
     }
@@ -169,12 +170,20 @@ public class GameManager
                         {
                             GameWorldObject gObj = iter.next();
 
+                            CharacterBase charObj = null;
+                            if(gObj instanceof CharacterBase)
+                                charObj = (CharacterBase)gObj;
+
                             gc.strokeRect(gObj.x,
                                           gObj.y,
                                           gObj.width,
                                           gObj.height);
 
-                            if(gObj.GetSprite() != null)
+                            if(charObj != null)
+                            {
+                                charObj.DrawWalkAnimation(gc);
+                            }
+                            else if(gObj.GetSprite() != null)
                             {
                                 gc.drawImage(gObj.GetSprite(), gObj.getX(), gObj.getY(),
                                         gObj.GetSprite().getWidth(), gObj.GetSprite().getHeight());
