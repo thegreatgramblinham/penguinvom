@@ -70,6 +70,6 @@ public class CharacterBase extends GameWorldObject
             }
 
         else
-            _walkCycle.DrawFrameAtIndex(gc, this.getLocation(), 0, AnimationOrientation.Default);
+            _walkCycle.DrawFrameAtIndex(gc, this.getLocation(), 0, _lastRenderedDirection);
     }
 }
