@@ -3,6 +3,7 @@ package MainGame;
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
+import GameObjects.Characters.Enemies.Slime;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import PhysicsBase.Vectors.VelocityVector;
@@ -94,6 +95,9 @@ public class GameManager
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor,1);
+
+        Slime slim = new Slime(new Rectangle(600,400,64,64), 0.2F, 10);
+        _currentSector.AddObject(slim, 2);
     }
 
     private void InitPlayerHandlers()
@@ -179,6 +183,7 @@ public class GameManager
                             for( GameWorldObject gObj : renderGroup)
                             {
                                 CharacterBase charObj = null;
+
                                 if(gObj instanceof CharacterBase)
                                     charObj = (CharacterBase)gObj;
 
