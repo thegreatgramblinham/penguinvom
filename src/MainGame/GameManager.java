@@ -6,6 +6,7 @@ import GameObjects.Characters.CharacterBase;
 import GameObjects.Characters.Enemies.Slime;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
+import GameObjects.Projectiles.Bullet;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
@@ -105,29 +106,52 @@ public class GameManager
         _player = new PlayerObject(new Rectangle(100, 400, 64, 64), 0.1F, 20);
 
         _currentSector.AddObject(_player,3);
-
         _primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
         {
             @Override
             public void handle(KeyEvent event)
             {
+                //Flags
+                boolean isMovementKey = false;
+                boolean isAttackKey = false;
+
                 switch (event.getCode())
                 {
+                    //Movement
                     case UP:
+                    case W:
                         _lastPlayerDirection = (3*Math.PI)/2;
+                        isMovementKey = true;
                         break;
                     case DOWN:
+                    case S:
                         _lastPlayerDirection = Math.PI/2;
+                        isMovementKey = true;
                         break;
                     case LEFT:
+                    case A:
                         _lastPlayerDirection = Math.PI;
+                        isMovementKey = true;
                         break;
                     case RIGHT:
+                    case D:
                         _lastPlayerDirection = 0;
+                        isMovementKey = true;
+                        break;
+
+                    //Attacks
+                    case SPACE:
+                        Bullet b = new Bullet(new Point(_player.GetRight() + 1,
+                                _player.GetCenterPoint().y));
+                        b.SetVelocity(new VelocityVector(0, 7));
+                        _currentSector.AddObject(b, 3);
+                        isAttackKey = true;
                         break;
                 }
-                _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
+
+                if(isMovementKey)
+                    _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
             }
         });
 
