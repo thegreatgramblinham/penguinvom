@@ -1,6 +1,5 @@
 package GameObjects.Environmental;
 
-import GameObjectBase.GameWorldObject;
 import GameObjects.Base.GameObject;
 
 import java.awt.*;

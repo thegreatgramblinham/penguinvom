@@ -5,7 +5,7 @@ import GameObjects.Characters.CharacterBase;
 
 import java.awt.*;
 
-public class Slime extends CharacterBase
+public class Slime extends EnemyBase
 {
     //Constructor
     public Slime(Rectangle size, float mass, int health)
