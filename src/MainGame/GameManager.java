@@ -87,6 +87,7 @@ public class GameManager
 
     private void InitEnvironment()
     {
+        //Rendered Backdrops
         Backdrop bg = new Backdrop(new Rectangle(0,0,800,280), true);
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
@@ -97,6 +98,20 @@ public class GameManager
                 .toURI().toString()));
         _currentSector.AddObject(floor,1);
 
+        //Non-rendered Game Bounds
+        Backdrop topBound = new Backdrop(new Rectangle(1,1,799,1), true);
+        _currentSector.AddObject(topBound, 1);
+
+        Backdrop botBound = new Backdrop(new Rectangle(1,599,799,1), true);
+        _currentSector.AddObject(botBound, 1);
+
+        Backdrop leftBound = new Backdrop(new Rectangle(1,1,1,599), true);
+        _currentSector.AddObject(leftBound, 1);
+
+        Backdrop rightBound = new Backdrop(new Rectangle(799,1,1,599), true);
+        _currentSector.AddObject(rightBound, 1);
+
+        //Temp Enemy Renderer
         Slime slim = new Slime(new Rectangle(600,400,64,64), 0.2F, 10);
         _currentSector.AddObject(slim, 2);
     }
@@ -192,9 +207,6 @@ public class GameManager
                         gc.clearRect(0, 0, 800, 600);
                         _engine.CycleEngine();
 
-                        Iterator<GameWorldObject> iter
-                                = _currentSector.GetObjectsInSector();
-
                         for (int i = 0;
                              i < _currentSector.GetRenderGroupCount();
                              i++)
@@ -228,6 +240,8 @@ public class GameManager
 
                                 if(_player.GetIsAccelerating())
                                     _player.AccelerateBy(_player.GetAcceleration());
+
+                                _engine.CycleCollision();
                             }
                         }
                     }
