@@ -14,6 +14,8 @@ public class PlayerObject extends CharacterBase
         super(size, false, mass, health,
                 new SpriteAnimation("src/ImageAssets/player/shuf64png.png", 64, 64, 5, 60, true),
                 null);
+
+        this.SetAlias("PlayerObject");
     }
 
     @Override
