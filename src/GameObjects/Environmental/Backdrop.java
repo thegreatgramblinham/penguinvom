@@ -1,10 +1,11 @@
 package GameObjects.Environmental;
 
 import GameObjectBase.GameWorldObject;
+import GameObjects.Base.GameObject;
 
 import java.awt.*;
 
-public class Backdrop extends GameWorldObject
+public class Backdrop extends GameObject
 {
 
     public Backdrop(Rectangle size, boolean canCollide)

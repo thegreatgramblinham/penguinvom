@@ -3,12 +3,13 @@ package GameObjects.Characters;
 import Animation.SpriteAnimation;
 import Animation.enums.AnimationOrientation;
 import GameObjectBase.GameWorldObject;
+import GameObjects.Base.GameObject;
 import GeneralHelpers.ConversionHelper;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class CharacterBase extends GameWorldObject
+public class CharacterBase extends GameObject
 {
     //todo Projectile hitbox?
     //Private Variables
