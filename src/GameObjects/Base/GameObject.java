@@ -10,5 +10,4 @@ public class GameObject extends GameWorldObject
     {
         super(size, isImmobile, mass);
     }
-
 }

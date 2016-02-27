@@ -158,7 +158,7 @@ public class GameManager
                     //Attacks
                     case SPACE:
                         Bullet b = new Bullet(new Point(_player.GetRight() + 1,
-                                _player.GetCenterPoint().y));
+                                _player.GetCenterPoint().y), _player);
                         b.SetVelocity(new VelocityVector(0, 7));
                         _currentSector.AddObject(b, 3);
                         isAttackKey = true;

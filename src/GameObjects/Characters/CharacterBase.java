@@ -35,6 +35,9 @@ public class CharacterBase extends GameObject
     public void SetHealth(int health)
     {
         _health = health;
+
+        if(_health <= 0)
+            this.SetNeedsDeletion(true);
     }
 
     //Get Methods
