@@ -1,10 +1,11 @@
 package GameObjects.Projectiles;
 
 import GameObjectBase.GameWorldObject;
+import GameObjects.Base.GameObject;
 
 import java.awt.*;
 
-public class ProjectileBase extends GameWorldObject
+public class ProjectileBase extends GameObject
 {
     //Properties
     private int _damage;

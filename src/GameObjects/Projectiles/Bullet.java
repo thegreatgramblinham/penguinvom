@@ -1,5 +1,6 @@
 package GameObjects.Projectiles;
 
+import GameObjectBase.GameWorldObject;
 import javafx.scene.image.Image;
 
 import java.awt.*;
@@ -14,5 +15,12 @@ public class Bullet extends ProjectileBase
         this.SetSprite(new Image(
                 new File("src/ImageAssets/projectiles/bullet10000.png")
                         .toURI().toString()));
+    }
+
+    @Override
+    public void OnCollide(GameWorldObject other)
+    {
+        this.SetNeedsDeletion(true);
+        super.OnCollide(other);
     }
 }
