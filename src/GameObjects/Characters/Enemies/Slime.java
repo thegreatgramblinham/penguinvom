@@ -13,5 +13,6 @@ public class Slime extends EnemyBase
         super(size, false, mass, health,
                 new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png", 64, 64, 10, 60, true),
                 new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png", 64, 64, 2, 60, true));
+        this.SetAlias("BigSlime");
     }
 }

@@ -7,6 +7,7 @@ import GameObjects.Characters.Enemies.Slime;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Projectiles.Bullet;
+import GameObjects.Projectiles.enums.ProjectileDirection;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
@@ -40,7 +41,8 @@ public class GameManager
     //Private Variables - Engine
     private GameEngine _engine;
     private PlayerObject _player;
-    private double _lastPlayerDirection;
+    private double _lastPlayerDirection = 0;
+    private ProjectileDirection _projectileDirection = ProjectileDirection.Right;
 
     //Constructor
     public GameManager(Stage displayStage)
@@ -88,27 +90,27 @@ public class GameManager
     private void InitEnvironment()
     {
         //Rendered Backdrops
-        Backdrop bg = new Backdrop(new Rectangle(0,0,800,280), true);
+        Backdrop bg = new Backdrop(new Rectangle(0,0,800,280), true, "BackWall");
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg,1);
 
-        Backdrop floor = new Backdrop(new Rectangle(0,280,800,320), false);
+        Backdrop floor = new Backdrop(new Rectangle(0,280,800,320), false, "Floor");
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor,1);
 
         //Non-rendered Game Bounds
-        Backdrop topBound = new Backdrop(new Rectangle(1,1,799,1), true);
+        Backdrop topBound = new Backdrop(new Rectangle(1,1,799,1), true, "TopBounds");
         _currentSector.AddObject(topBound, 1);
 
-        Backdrop botBound = new Backdrop(new Rectangle(1,599,799,1), true);
+        Backdrop botBound = new Backdrop(new Rectangle(1,599,799,1), true, "BottomBounds");
         _currentSector.AddObject(botBound, 1);
 
-        Backdrop leftBound = new Backdrop(new Rectangle(1,1,1,599), true);
+        Backdrop leftBound = new Backdrop(new Rectangle(1,1,1,599), true, "LeftBounds");
         _currentSector.AddObject(leftBound, 1);
 
-        Backdrop rightBound = new Backdrop(new Rectangle(799,1,1,599), true);
+        Backdrop rightBound = new Backdrop(new Rectangle(799,1,1,599), true, "RightBounds");
         _currentSector.AddObject(rightBound, 1);
 
         //Temp Enemy Renderer
@@ -147,20 +149,36 @@ public class GameManager
                     case LEFT:
                     case A:
                         _lastPlayerDirection = Math.PI;
+                        _projectileDirection = ProjectileDirection.Left;
                         isMovementKey = true;
                         break;
                     case RIGHT:
                     case D:
                         _lastPlayerDirection = 0;
+                        _projectileDirection = ProjectileDirection.Right;
                         isMovementKey = true;
                         break;
 
                     //Attacks
                     case SPACE:
-                        Bullet b = new Bullet(new Point(_player.GetRight() + 1,
-                                _player.GetCenterPoint().y), _player);
-                        b.SetVelocity(new VelocityVector(0, 7));
-                        _currentSector.AddObject(b, 3);
+                        Bullet b = null;
+                        switch(_projectileDirection)
+                        {
+                            case Left:
+                                b = new Bullet(new Point(_player.GetLeft() - Bullet.WIDTH - 1 ,
+                                        _player.GetCenterPoint().y), _player);
+                                b.SetVelocity(new VelocityVector(Math.PI, 7));
+                                break;
+                            case Right:
+                                b = new Bullet(new Point(_player.GetRight() + 1,
+                                        _player.GetCenterPoint().y), _player);
+                                b.SetVelocity(new VelocityVector(0, 7));
+                                break;
+                        }
+
+                        if(b != null)
+                            _currentSector.AddObject(b, 3);
+
                         isAttackKey = true;
                         break;
                 }
