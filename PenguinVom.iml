@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../engine/out/production/S.Studio2.Engine" />
+          <root url="file://$MODULE_DIR$/../S.Studio2.Engine/out/production/S.Studio2.Engine" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
