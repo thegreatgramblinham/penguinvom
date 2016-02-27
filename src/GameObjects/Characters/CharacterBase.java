@@ -17,14 +17,16 @@ public class CharacterBase extends GameWorldObject
     //Properties
     private int _health;
     protected SpriteAnimation _walkCycle;
+    protected SpriteAnimation _restCycle;
 
     //Constructor
     public CharacterBase(Rectangle size, boolean isImmobile, float mass, int health,
-                         SpriteAnimation walkCycle)
+                         SpriteAnimation walkCycle, SpriteAnimation restCycle)
     {
         super(size, isImmobile, mass);
         this.SetHealth(health);
         _walkCycle = walkCycle;
+        _restCycle = restCycle;
         _lastRenderedDirection = AnimationOrientation.Default;
     }
 
@@ -68,7 +70,10 @@ public class CharacterBase extends GameWorldObject
                             _lastRenderedDirection);
                     break;
             }
-
+        else if(_restCycle != null)
+        {
+            _restCycle.DrawSpriteFrame(gc, this.getLocation(), _lastRenderedDirection);
+        }
         else
             _walkCycle.DrawFrameAtIndex(gc, this.getLocation(), 0, _lastRenderedDirection);
     }
