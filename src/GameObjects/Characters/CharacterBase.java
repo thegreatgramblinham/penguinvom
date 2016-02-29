@@ -4,6 +4,7 @@ import Animation.SpriteAnimation;
 import Animation.enums.AnimationOrientation;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Base.GameObject;
+import GameObjects.Projectiles.ProjectileBase;
 import GeneralHelpers.ConversionHelper;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -48,9 +49,17 @@ public class CharacterBase extends GameObject
 
     //Public Methods
     @Override
-    public void OnCollide(GameWorldObject e)
+    public void OnCollide(GameWorldObject other)
     {
-        System.out.println("On Collision Event Here");
+        if(other instanceof ProjectileBase)
+        {
+            ProjectileBase projectile = (ProjectileBase) other;
+
+            if(projectile.GetOwner() != this)
+                this.SetHealth(
+                        this.GetHealth() - projectile.GetDamage());
+
+        }
     }
 
     public void DrawWalkAnimation(GraphicsContext gc)
