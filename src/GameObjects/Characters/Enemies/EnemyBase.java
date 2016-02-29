@@ -38,15 +38,7 @@ public class EnemyBase extends CharacterBase
     @Override
     public void OnCollide(GameWorldObject other)
     {
-        if(other instanceof ProjectileBase)
-        {
-            ProjectileBase projectile = (ProjectileBase) other;
-
-            if(projectile.GetOwner() != this)
-                this.SetHealth(
-                        this.GetHealth() - projectile.GetDamage());
-
-        }
+        super.OnCollide(other);
     }
 
     //Private Methods
