@@ -1,7 +1,9 @@
 package GameObjects.Characters.Player;
 
 import Animation.SpriteAnimation;
+import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
+import GameObjects.Characters.Enemies.EnemyBase;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -33,5 +35,19 @@ public class PlayerObject extends CharacterBase
         }
 
         super.DrawWalkAnimation(gc);
+    }
+
+    @Override
+    public void OnCollide(GameWorldObject other)
+    {
+        if(other instanceof EnemyBase)
+            this.SetHealth(GetHealth() -
+                    ((EnemyBase)other).GetTouchDamage());
+    }
+
+    @Override
+    public void OnRemoval()
+    {
+        System.out.println("Game over man!");
     }
 }

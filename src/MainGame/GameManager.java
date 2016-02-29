@@ -53,6 +53,7 @@ public class GameManager
         InitStage();
         InitRenderLoop();
         InitEnvironment();
+        InitEnemySpawner();
         InitPlayerHandlers();
         InitSprites();
     }
@@ -112,8 +113,11 @@ public class GameManager
 
         Backdrop rightBound = new Backdrop(new Rectangle(799,1,1,599), true, "RightBounds");
         _currentSector.AddObject(rightBound, 1);
+    }
 
-        //Temp Enemy Renderer
+    private void InitEnemySpawner()
+    {
+        //Temp Enemy Render
         Slime slim = new Slime(new Rectangle(600,400,64,64), 0.2F, 10);
         _currentSector.AddObject(slim, 2);
     }
