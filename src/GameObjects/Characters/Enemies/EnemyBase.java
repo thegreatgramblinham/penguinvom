@@ -3,6 +3,7 @@ package GameObjects.Characters.Enemies;
 import Animation.SpriteAnimation;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
+import GameObjects.Characters.Enemies.AI.EnemyAIBase;
 import GameObjects.Projectiles.ProjectileBase;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ public class EnemyBase extends CharacterBase
 {
     //Properties
     private int _touchDamage;
+    protected EnemyAIBase _ai;
 
     //Constructor
     public EnemyBase(Rectangle size, boolean isImmobile,
