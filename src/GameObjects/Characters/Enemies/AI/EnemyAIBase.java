@@ -1,10 +1,32 @@
 package GameObjects.Characters.Enemies.AI;
 
 import GameObjects.Characters.Enemies.AI.enums.AIAction;
+import GameObjects.Characters.Enemies.EnemyBase;
+import PhysicsBase.Vectors.VelocityVector;
 
-public abstract class EnemyAIBase
+public abstract class EnemyAiBase
 {
-    //Todo create simple enemy ai that advances toward the player.
+    //Properties
+    private EnemyBase _body;
+
+    //Constructor
+    protected EnemyAiBase(EnemyBase body)
+    {
+        //todo potentially hold on to player obj for location data
+        this.SetBody(body);
+    }
+
+    //Get Methods
+    public EnemyBase GetBody()
+    {
+        return _body;
+    }
+
+    //Set Methods
+    public void SetBody(EnemyBase body)
+    {
+        this._body = body;
+    }
 
     //Abstract Methods
     public abstract void Advance();
@@ -16,4 +38,16 @@ public abstract class EnemyAIBase
     public abstract void Stand();
 
     public abstract AIAction QueryAction();
+
+    //Protected Methods
+    protected void AdvanceTowardPlayer()
+    {
+
+    }
+
+    protected void AdvanceForward()
+    {
+        _body.SetVelocity(new VelocityVector(0,1));
+    }
+
 }

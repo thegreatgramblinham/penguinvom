@@ -3,8 +3,7 @@ package GameObjects.Characters.Enemies;
 import Animation.SpriteAnimation;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
-import GameObjects.Characters.Enemies.AI.EnemyAIBase;
-import GameObjects.Projectiles.ProjectileBase;
+import GameObjects.Characters.Enemies.AI.EnemyAiBase;
 
 import java.awt.*;
 
@@ -12,7 +11,7 @@ public class EnemyBase extends CharacterBase
 {
     //Properties
     private int _touchDamage;
-    protected EnemyAIBase _ai;
+    private EnemyAiBase _ai;
 
     //Constructor
     public EnemyBase(Rectangle size, boolean isImmobile,
@@ -36,12 +35,19 @@ public class EnemyBase extends CharacterBase
         this._touchDamage = _touchDamage;
     }
 
+    public void SetAI(EnemyAiBase _ai)
+    {
+        this._ai = _ai;
+    }
+
     //Public Methods
     @Override
     public void OnCollide(GameWorldObject other)
     {
         super.OnCollide(other);
     }
+
+
 
     //Private Methods
     private void Init()
