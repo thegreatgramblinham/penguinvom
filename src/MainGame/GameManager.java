@@ -3,7 +3,7 @@ package MainGame;
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
-import GameObjects.Characters.Enemies.Slime;
+import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Projectiles.Bullet;
@@ -27,7 +27,6 @@ import javafx.util.Duration;
 import java.awt.*;
 import java.io.File;
 import java.util.HashSet;
-import java.util.Iterator;
 
 @SuppressWarnings("Convert2Lambda")
 public class GameManager
@@ -118,7 +117,7 @@ public class GameManager
     private void InitEnemySpawner()
     {
         //Temp Enemy Render
-        Slime slim = new Slime(new Rectangle(600,400,64,64), 0.2F, 10);
+        Slim slim = new Slim(new Rectangle(600,400,64,64), 0.2F, 10);
         _currentSector.AddObject(slim, 2);
     }
 

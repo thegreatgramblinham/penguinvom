@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class Dagron extends EnemyBase
 {
-
     public Dagron(Rectangle size, float mass, int health)
     {
         super(size, false, mass, health,
