@@ -6,13 +6,15 @@ import PhysicsBase.Vectors.VelocityVector;
 
 public abstract class EnemyAiBase
 {
+    //Protected Variables
+    protected int _queryCounter;
+
     //Properties
     private EnemyBase _body;
 
     //Constructor
     protected EnemyAiBase(EnemyBase body)
     {
-        //todo potentially hold on to player obj for location data
         this.SetBody(body);
     }
 
@@ -37,9 +39,15 @@ public abstract class EnemyAiBase
 
     public abstract void Stand();
 
-    public abstract AiAction QueryAction();
+    protected abstract AiAction DetermineAction();
 
     //Protected Methods
+    public AiAction QueryAction()
+    {
+        _queryCounter++;
+        return DetermineAction();
+    }
+
     protected void AdvanceTowardPlayer()
     {
 

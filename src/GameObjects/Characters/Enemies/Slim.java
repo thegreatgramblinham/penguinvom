@@ -50,4 +50,10 @@ public class Slim extends EnemyBase
         this.DrawWalkAnimation(gc);
         _ai.Advance();
     }
+
+    @Override
+    public void Attack(GraphicsContext gc)
+    {
+
+    }
 }

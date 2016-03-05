@@ -31,6 +31,7 @@ public class Dagron extends EnemyBase
                 this.Advance(gc);
                 break;
             case Attack:
+                this.Attack(gc);
                 break;
             case Retreat:
                 break;
@@ -47,5 +48,13 @@ public class Dagron extends EnemyBase
         //Animation
         this.DrawWalkAnimation(gc);
         _ai.Advance();
+    }
+
+    @Override
+    public void Attack(GraphicsContext gc)
+    {
+        //Draw attack animation.
+        this.DrawWalkAnimation(gc);
+        _ai.Attack();
     }
 }
