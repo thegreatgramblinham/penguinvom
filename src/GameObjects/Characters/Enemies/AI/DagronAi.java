@@ -13,7 +13,7 @@ public class DagronAi extends EnemyAiBase
     //Constructor
     public DagronAi(EnemyBase body)
     {
-        super(body);
+        super(body, 40);
     }
 
     //Public Methods
@@ -60,7 +60,7 @@ public class DagronAi extends EnemyAiBase
     @Override
     public AiAction DetermineAction()
     {
-        if(_queryCounter%10 == 0)
+        if(_queryCounter == 0)
             return AiAction.Attack;
 
         return AiAction.Advance;

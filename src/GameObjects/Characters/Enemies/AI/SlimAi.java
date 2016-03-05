@@ -9,7 +9,7 @@ public class SlimAi extends EnemyAiBase
     //Constructor
     public SlimAi(EnemyBase body)
     {
-        super(body);
+        super(body, 10);
     }
 
     //Public Methods
