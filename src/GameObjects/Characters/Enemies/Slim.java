@@ -37,6 +37,7 @@ public class Slim extends EnemyBase
             case Retreat:
                 break;
             case Stand:
+                this.Stand(gc);
                 break;
         }
 
@@ -55,5 +56,18 @@ public class Slim extends EnemyBase
     public void Attack(GraphicsContext gc)
     {
 
+    }
+
+    @Override
+    public void Retreat(GraphicsContext gc)
+    {
+
+    }
+
+    @Override
+    public void Stand(GraphicsContext gc)
+    {
+        this.DrawWalkAnimation(gc); //Needs to be draw resting animation
+        _ai.Stand();
     }
 }

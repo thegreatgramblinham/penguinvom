@@ -9,4 +9,8 @@ public interface IAiController
     void Advance(GraphicsContext gc);
 
     void Attack(GraphicsContext gc);
+
+    void Retreat(GraphicsContext gc);
+
+    void Stand(GraphicsContext gc);
 }
