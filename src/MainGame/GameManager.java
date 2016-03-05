@@ -4,6 +4,7 @@ import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
+import GameObjects.Characters.Enemies.Dagron;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
@@ -56,7 +57,6 @@ public class GameManager
         InitEnvironment();
         InitEnemySpawner();
         InitPlayerHandlers();
-        InitSprites();
     }
 
     //Public Methods
@@ -121,6 +121,9 @@ public class GameManager
         //Temp Enemy Render
         Slim slim = new Slim(new Rectangle(600,400,64,64), 0.2F, 10);
         _currentSector.AddObject(slim, 2);
+
+        Dagron dagron = new Dagron(new Rectangle(600,300,64,64), 0.5F, 10);
+        _currentSector.AddObject(dagron, 2);
     }
 
     private void InitPlayerHandlers()
@@ -214,11 +217,6 @@ public class GameManager
                 });
     }
 
-    private void InitSprites()
-    {
-        //todo sprite import
-    }
-
     public KeyFrame Render(final GraphicsContext gc)
     {
         return new KeyFrame(
@@ -241,11 +239,6 @@ public class GameManager
 
                             for( GameWorldObject gObj : renderGroup)
                             {
-//                                CharacterBase charObj = null;
-//
-//                                if(gObj instanceof CharacterBase)
-//                                    charObj = (CharacterBase)gObj;
-
                                 gc.strokeRect(gObj.x,
                                         gObj.y,
                                         gObj.width,
@@ -253,11 +246,11 @@ public class GameManager
 
                                 if(HandlePlayerAction(gObj, gc))
                                 {
-
+                                    //Player action handled.
                                 }
-                                else if(HandleEnemyAction(gObj,gc))
+                                else if(HandleEnemyAction(gObj, gc))
                                 {
-
+                                    //Ai controlled action handled.
                                 }
                                 else if(gObj.GetSprite() != null)
                                 {
@@ -274,7 +267,7 @@ public class GameManager
 
     private boolean HandlePlayerAction(GameWorldObject gObj, GraphicsContext gc)
     {
-        PlayerObject playObj = null;
+        PlayerObject playObj;
 
         if(gObj instanceof PlayerObject)
             playObj = (PlayerObject)gObj;
@@ -291,7 +284,7 @@ public class GameManager
 
     private boolean HandleEnemyAction(GameWorldObject gObj, GraphicsContext gc)
     {
-        IAiController aiObj = null;
+        IAiController aiObj;
 
         if(gObj instanceof IAiController)
             aiObj = (IAiController)gObj;
