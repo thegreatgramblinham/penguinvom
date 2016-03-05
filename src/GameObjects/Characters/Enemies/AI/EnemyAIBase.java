@@ -9,13 +9,17 @@ public abstract class EnemyAiBase
     //Protected Variables
     protected int _queryCounter;
 
+    //Private Variables
+    private int _counterReset;
+
     //Properties
     private EnemyBase _body;
 
     //Constructor
-    protected EnemyAiBase(EnemyBase body)
+    protected EnemyAiBase(EnemyBase body, int counterReset)
     {
         this.SetBody(body);
+        _counterReset = counterReset;
     }
 
     //Get Methods
@@ -44,7 +48,11 @@ public abstract class EnemyAiBase
     //Protected Methods
     public AiAction QueryAction()
     {
-        _queryCounter++;
+        if(_queryCounter < _counterReset)
+            _queryCounter++;
+        else
+            _queryCounter = 0;
+
         return DetermineAction();
     }
 
