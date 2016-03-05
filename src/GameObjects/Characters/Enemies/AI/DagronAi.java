@@ -3,6 +3,7 @@ package GameObjects.Characters.Enemies.AI;
 import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Projectiles.Bullet;
+import GameObjects.Projectiles.EnemyBullet;
 import MainGame.GameManager;
 import PhysicsBase.Vectors.VelocityVector;
 
@@ -26,16 +27,16 @@ public class DagronAi extends EnemyAiBase
     @Override
     public void Attack()
     {
-        Bullet b = null;
+        EnemyBullet b = null;
         switch(GetBody().GetProjectileDirection())
         {
             case Left:
-                b = new Bullet(new Point(GetBody().GetLeft() - Bullet.WIDTH - 1 ,
+                b = new EnemyBullet(new Point(GetBody().GetLeft() - Bullet.WIDTH - 1 ,
                         GetBody().GetCenterPoint().y), GetBody());
                 b.SetVelocity(new VelocityVector(Math.PI, 7));
                 break;
             case Right:
-                b = new Bullet(new Point(GetBody().GetRight() + 1,
+                b = new EnemyBullet(new Point(GetBody().GetRight() + 1,
                         GetBody().GetCenterPoint().y), GetBody());
                 b.SetVelocity(new VelocityVector(0, 7));
                 break;

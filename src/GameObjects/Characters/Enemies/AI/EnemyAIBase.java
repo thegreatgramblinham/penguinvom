@@ -63,7 +63,7 @@ public abstract class EnemyAiBase
 
     protected void AdvanceForward()
     {
-        _body.SetVelocity(new VelocityVector(Math.PI,1));
+        _body.SetVelocity(new VelocityVector(Math.PI, 0.5));
     }
 
 }
