@@ -5,6 +5,7 @@ import Animation.enums.AnimationOrientation;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Base.GameObject;
 import GameObjects.Projectiles.ProjectileBase;
+import GameObjects.Projectiles.enums.ProjectileDirection;
 import GeneralHelpers.ConversionHelper;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -15,6 +16,7 @@ public class CharacterBase extends GameObject
     //todo Projectile hitbox?
     //Private Variables
     private AnimationOrientation _lastRenderedDirection;
+    private ProjectileDirection _projectileDirection = ProjectileDirection.Right;
 
     //Properties
     private int _health;
@@ -47,6 +49,11 @@ public class CharacterBase extends GameObject
         return _health;
     }
 
+    public ProjectileDirection GetProjectileDirection()
+    {
+        return _projectileDirection;
+    }
+
     //Public Methods
     @Override
     public void OnCollide(GameWorldObject other)
@@ -71,11 +78,13 @@ public class CharacterBase extends GameObject
                     _walkCycle.DrawSpriteFrame(gc, this.getLocation(),
                             AnimationOrientation.MirrorXAxis);
                     _lastRenderedDirection = AnimationOrientation.MirrorXAxis;
+                    _projectileDirection = ProjectileDirection.Left;
                     break;
                 case Right:
                     _walkCycle.DrawSpriteFrame(gc, this.getLocation(),
                             AnimationOrientation.Default);
                     _lastRenderedDirection = AnimationOrientation.Default;
+                    _projectileDirection = ProjectileDirection.Right;
                     break;
                 case Up:
                 case Down:

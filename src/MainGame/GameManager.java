@@ -44,7 +44,6 @@ public class GameManager
     private GameEngine _engine;
     private PlayerObject _player;
     private double _lastPlayerDirection = 0;
-    private ProjectileDirection _projectileDirection = ProjectileDirection.Right;
 
     //Constructor
     public GameManager(Stage displayStage)
@@ -157,20 +156,18 @@ public class GameManager
                     case LEFT:
                     case A:
                         _lastPlayerDirection = Math.PI;
-                        _projectileDirection = ProjectileDirection.Left;
                         isMovementKey = true;
                         break;
                     case RIGHT:
                     case D:
                         _lastPlayerDirection = 0;
-                        _projectileDirection = ProjectileDirection.Right;
                         isMovementKey = true;
                         break;
 
                     //Attacks
                     case SPACE:
                         Bullet b = null;
-                        switch(_projectileDirection)
+                        switch(_player.GetProjectileDirection())
                         {
                             case Left:
                                 b = new Bullet(new Point(_player.GetLeft() - Bullet.WIDTH - 1 ,
