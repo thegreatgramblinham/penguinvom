@@ -7,4 +7,6 @@ public interface IAiController
     boolean PerformAndDrawAction(GraphicsContext gc);
 
     void Advance(GraphicsContext gc);
+
+    void Attack(GraphicsContext gc);
 }

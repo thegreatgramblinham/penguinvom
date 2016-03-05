@@ -34,6 +34,9 @@ import java.util.HashSet;
 @SuppressWarnings("Convert2Lambda")
 public class GameManager
 {
+    //Public Static Fields
+    public static GameEngine engineInstance;
+
     //Private Variables - UI
     private Stage _primaryStage;
     private GraphicsContext _gc;
@@ -41,7 +44,6 @@ public class GameManager
     private Sector _currentSector;
 
     //Private Variables - Engine
-    private GameEngine _engine;
     private PlayerObject _player;
     private double _lastPlayerDirection = 0;
 
@@ -49,7 +51,7 @@ public class GameManager
     public GameManager(Stage displayStage)
     {
         _primaryStage = displayStage;
-        _engine = new GameEngine();
+        engineInstance = new GameEngine();
 
         InitStage();
         InitRenderLoop();
@@ -61,7 +63,7 @@ public class GameManager
     //Public Methods
     public void Start() throws Exception
     {
-        _engine.Start();
+        engineInstance.Start();
         _gameLoop.play();
     }
 
@@ -77,7 +79,7 @@ public class GameManager
         _gc = canvas.getGraphicsContext2D();
 
         _currentSector
-                = _engine.CreateSector(800, 600, 30, 0.5F, GravityApplication.Area);
+                = engineInstance.CreateSector(800, 600, 30, 0.5F, GravityApplication.Area);
     }
 
     private void InitRenderLoop()
@@ -223,7 +225,7 @@ public class GameManager
                     public void handle(ActionEvent ae)
                     {
                         gc.clearRect(0, 0, 800, 600);
-                        _engine.CycleEngine();
+                        engineInstance.CycleEngine();
 
                         for (int i = 0;
                              i < _currentSector.GetRenderGroupCount();
@@ -255,7 +257,7 @@ public class GameManager
                                             gObj.GetSprite().getWidth(), gObj.GetSprite().getHeight());
                                 }
 
-                                _engine.CycleCollision();
+                                engineInstance.CycleCollision();
                             }
                         }
                     }

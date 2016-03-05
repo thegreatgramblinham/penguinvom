@@ -4,9 +4,7 @@ import Animation.SpriteAnimation;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
 import GameObjects.Characters.Enemies.AI.EnemyAiBase;
-import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
-import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 

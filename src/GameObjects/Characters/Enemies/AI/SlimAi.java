@@ -38,7 +38,7 @@ public class SlimAi extends EnemyAiBase
     }
 
     @Override
-    public AiAction QueryAction()
+    public AiAction DetermineAction()
     {
         return AiAction.Advance;
     }
