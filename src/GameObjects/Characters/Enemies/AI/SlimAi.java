@@ -9,7 +9,7 @@ public class SlimAi extends EnemyAiBase
     //Constructor
     public SlimAi(EnemyBase body)
     {
-        super(body, 10);
+        super(body, 50);
     }
 
     //Public Methods
@@ -34,12 +34,15 @@ public class SlimAi extends EnemyAiBase
     @Override
     public void Stand()
     {
-
+        //No Movement
     }
 
     @Override
     public AiAction DetermineAction()
     {
+        if(_queryCounter < (GetCounterReset()/2))
+            return AiAction.Stand;
+
         return AiAction.Advance;
     }
 }

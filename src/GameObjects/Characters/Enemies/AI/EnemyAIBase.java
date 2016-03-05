@@ -28,6 +28,11 @@ public abstract class EnemyAiBase
         return _body;
     }
 
+    public int GetCounterReset()
+    {
+        return _counterReset;
+    }
+
     //Set Methods
     public void SetBody(EnemyBase body)
     {
