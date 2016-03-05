@@ -1,6 +1,6 @@
 package GameObjects.Characters.Enemies.AI;
 
-import GameObjects.Characters.Enemies.AI.enums.AIAction;
+import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import GameObjects.Characters.Enemies.EnemyBase;
 
 public class SlimAi extends EnemyAiBase
@@ -38,8 +38,8 @@ public class SlimAi extends EnemyAiBase
     }
 
     @Override
-    public AIAction QueryAction()
+    public AiAction QueryAction()
     {
-        return AIAction.Advance;
+        return AiAction.Advance;
     }
 }

@@ -1,6 +1,6 @@
 package GameObjects.Characters.Enemies.AI.enums;
 
-public enum AIAction
+public enum AiAction
 {
     Advance,
     Attack,
