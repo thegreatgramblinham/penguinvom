@@ -4,14 +4,17 @@ import Animation.SpriteAnimation;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
 import GameObjects.Characters.Enemies.AI.EnemyAiBase;
+import GameObjects.Characters.Enemies.AI.enums.AiAction;
+import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class EnemyBase extends CharacterBase
+public abstract class EnemyBase extends CharacterBase implements IAiController
 {
     //Properties
     private int _touchDamage;
-    private EnemyAiBase _ai;
+    protected EnemyAiBase _ai;
 
     //Constructor
     public EnemyBase(Rectangle size, boolean isImmobile,
@@ -35,7 +38,7 @@ public class EnemyBase extends CharacterBase
         this._touchDamage = _touchDamage;
     }
 
-    public void SetAI(EnemyAiBase _ai)
+    public void SetAi(EnemyAiBase _ai)
     {
         this._ai = _ai;
     }
@@ -47,11 +50,11 @@ public class EnemyBase extends CharacterBase
         super.OnCollide(other);
     }
 
-
-
     //Private Methods
     private void Init()
     {
         _touchDamage = 5;
     }
+
+
 }

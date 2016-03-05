@@ -3,6 +3,8 @@ package MainGame;
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjects.Characters.CharacterBase;
+import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
+import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
@@ -239,19 +241,23 @@ public class GameManager
 
                             for( GameWorldObject gObj : renderGroup)
                             {
-                                CharacterBase charObj = null;
-
-                                if(gObj instanceof CharacterBase)
-                                    charObj = (CharacterBase)gObj;
+//                                CharacterBase charObj = null;
+//
+//                                if(gObj instanceof CharacterBase)
+//                                    charObj = (CharacterBase)gObj;
 
                                 gc.strokeRect(gObj.x,
                                         gObj.y,
                                         gObj.width,
                                         gObj.height);
 
-                                if(charObj != null)
+                                if(HandlePlayerAction(gObj, gc))
                                 {
-                                    charObj.DrawWalkAnimation(gc);
+
+                                }
+                                else if(HandleEnemyAction(gObj,gc))
+                                {
+
                                 }
                                 else if(gObj.GetSprite() != null)
                                 {
@@ -259,14 +265,42 @@ public class GameManager
                                             gObj.GetSprite().getWidth(), gObj.GetSprite().getHeight());
                                 }
 
-                                if(_player.GetIsAccelerating())
-                                    _player.AccelerateBy(_player.GetAcceleration());
-
                                 _engine.CycleCollision();
                             }
                         }
                     }
                 });
+    }
+
+    private boolean HandlePlayerAction(GameWorldObject gObj, GraphicsContext gc)
+    {
+        PlayerObject playObj = null;
+
+        if(gObj instanceof PlayerObject)
+            playObj = (PlayerObject)gObj;
+        else
+            return false;
+
+        playObj.DrawWalkAnimation(gc);
+
+//        if(_player.GetIsAccelerating())
+//            _player.AccelerateBy(_player.GetAcceleration());
+
+        return true;
+    }
+
+    private boolean HandleEnemyAction(GameWorldObject gObj, GraphicsContext gc)
+    {
+        IAiController aiObj = null;
+
+        if(gObj instanceof IAiController)
+            aiObj = (IAiController)gObj;
+        else
+            return false;
+
+        aiObj.PerformAndDrawAction(gc);
+
+        return true;
     }
 
 }

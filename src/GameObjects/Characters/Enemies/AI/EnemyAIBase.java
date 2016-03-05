@@ -1,6 +1,6 @@
 package GameObjects.Characters.Enemies.AI;
 
-import GameObjects.Characters.Enemies.AI.enums.AIAction;
+import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import GameObjects.Characters.Enemies.EnemyBase;
 import PhysicsBase.Vectors.VelocityVector;
 
@@ -37,7 +37,7 @@ public abstract class EnemyAiBase
 
     public abstract void Stand();
 
-    public abstract AIAction QueryAction();
+    public abstract AiAction QueryAction();
 
     //Protected Methods
     protected void AdvanceTowardPlayer()
