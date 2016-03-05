@@ -2,6 +2,6 @@ package GameObjects.Projectiles.enums;
 
 public enum ProjectileDirection
 {
-    Left,
-    Right
+    Right, //Right first, as all sprites face right
+    Left
 }
