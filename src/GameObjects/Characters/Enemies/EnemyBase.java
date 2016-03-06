@@ -8,7 +8,7 @@ import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
 
 import java.awt.*;
 
-public abstract class EnemyBase extends CharacterBase implements IAiController
+public abstract class EnemyBase extends CharacterBase implements IAiController, Cloneable
 {
     //Properties
     private int _touchDamage;
