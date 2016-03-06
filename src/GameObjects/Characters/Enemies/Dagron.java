@@ -71,4 +71,10 @@ public class Dagron extends EnemyBase
         this.DrawWalkAnimation(gc); //Needs to be draw resting animation
         _ai.Stand();
     }
+
+    @Override
+    public Object clone()
+    {
+        return new Dagron(GetBounds(),GetMass(), GetHealth());
+    }
 }

@@ -45,6 +45,7 @@ public class GameManager
 
     //Private Variables - Engine
     private PlayerObject _player;
+    private EnemySpawner _enemySpawner;
     private double _lastPlayerDirection = 0;
 
     //Constructor
@@ -125,6 +126,11 @@ public class GameManager
 
         Dagron dagron = new Dagron(new Rectangle(600,300,64,64), 0.5F, 10);
         _currentSector.AddObject(dagron, 2);
+
+//        EnemyBase[] enemies = {slim, dagron};
+//
+//        _enemySpawner = new EnemySpawner(_currentSector, enemies,
+//                new Rectangle(0,280,800,320), 180);
     }
 
     private void InitPlayerHandlers()
@@ -226,6 +232,9 @@ public class GameManager
                     {
                         gc.clearRect(0, 0, 800, 600);
                         engineInstance.CycleEngine();
+
+//                        if(_enemySpawner.ShouldSpawn())
+//                            _enemySpawner.SpawnRandom();
 
                         for (int i = 0;
                              i < _currentSector.GetRenderGroupCount();
