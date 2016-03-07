@@ -78,7 +78,7 @@ public class GameManager
         Scene scene = new Scene( root );
         _primaryStage.setScene( scene );
 
-        Canvas canvas = new Canvas( 864, 664 );
+        Canvas canvas = new Canvas( 928, 728 );
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
