@@ -34,6 +34,9 @@ import java.util.HashSet;
 @SuppressWarnings("Convert2Lambda")
 public class GameManager
 {
+    //Private Constants
+    private static final Point _originPoint = new Point(64,64);
+
     //Public Static Fields
     public static GameEngine engineInstance;
 
@@ -75,12 +78,15 @@ public class GameManager
         Scene scene = new Scene( root );
         _primaryStage.setScene( scene );
 
-        Canvas canvas = new Canvas( 800, 600 );
+        Canvas canvas = new Canvas( 864, 664 );
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
         _currentSector
-                = engineInstance.CreateSector(800, 600, 30, 0.5F, GravityApplication.Area);
+                = engineInstance.CreateSector(
+                    928,
+                    728,
+                    30, 0.5F, GravityApplication.Area);
     }
 
     private void InitRenderLoop()
@@ -94,37 +100,45 @@ public class GameManager
     private void InitEnvironment()
     {
         //Rendered Backdrops
-        Backdrop bg = new Backdrop(new Rectangle(0,0,800,280), true, "BackWall");
+        Backdrop bg = new Backdrop(new Rectangle(
+                DrawLocX(0),DrawLocY(0),800,280), true, "BackWall");
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg,1);
 
-        Backdrop floor = new Backdrop(new Rectangle(0,280,800,320), false, "Floor");
+        Backdrop floor = new Backdrop(new Rectangle(
+                DrawLocX(0),DrawLocY(280),800,320), false, "Floor");
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor,1);
 
         //Non-rendered Game Bounds
-        Backdrop topBound = new Backdrop(new Rectangle(1,1,799,1), true, "TopBounds");
+        Backdrop topBound = new Backdrop(new Rectangle(
+                DrawLocX(1),DrawLocY(1),799,1), true, "TopBounds");
         _currentSector.AddObject(topBound, 1);
 
-        Backdrop botBound = new Backdrop(new Rectangle(1,599,799,1), true, "BottomBounds");
+        Backdrop botBound = new Backdrop(new Rectangle(
+                DrawLocX(1),DrawLocY(599),799,1), true, "BottomBounds");
         _currentSector.AddObject(botBound, 1);
 
-        Backdrop leftBound = new Backdrop(new Rectangle(1,1,1,599), true, "LeftBounds");
+        Backdrop leftBound = new Backdrop(new Rectangle(
+                DrawLocX(1),DrawLocY(1),1,599), true, "LeftBounds");
         _currentSector.AddObject(leftBound, 1);
 
-        Backdrop rightBound = new Backdrop(new Rectangle(799,1,1,599), true, "RightBounds");
+        Backdrop rightBound = new Backdrop(new Rectangle(
+                DrawLocX(799),DrawLocY(1),1,599), true, "RightBounds");
         _currentSector.AddObject(rightBound, 1);
     }
 
     private void InitEnemySpawner()
     {
         //Temp Enemy Render
-        Slim slim = new Slim(new Rectangle(600,400,64,64), 0.2F, 10);
+        Slim slim = new Slim(new Rectangle(
+                DrawLocX(600),DrawLocY(400),64,64), 0.2F, 10);
         _currentSector.AddObject(slim, 2);
 
-        Dagron dagron = new Dagron(new Rectangle(600,300,64,64), 0.5F, 10);
+        Dagron dagron = new Dagron(new Rectangle(
+                DrawLocX(600),DrawLocY(300),64,64), 0.5F, 10);
         _currentSector.AddObject(dagron, 2);
 
 //        EnemyBase[] enemies = {slim, dagron};
@@ -135,7 +149,8 @@ public class GameManager
 
     private void InitPlayerHandlers()
     {
-        _player = new PlayerObject(new Rectangle(100, 400, 64, 64), 0.1F, 20);
+        _player = new PlayerObject(
+                new Rectangle(DrawLocX(100), DrawLocX(400), 64, 64), 0.1F, 20);
 
         _currentSector.AddObject(_player,3);
         _primaryStage.getScene().setOnKeyPressed(
@@ -302,6 +317,16 @@ public class GameManager
         aiObj.PerformAndDrawAction(gc);
 
         return true;
+    }
+
+    private static int DrawLocX(int offset)
+    {
+        return _originPoint.x + offset;
+    }
+
+    private static int DrawLocY(int offset)
+    {
+        return _originPoint.y + offset;
     }
 
 }
