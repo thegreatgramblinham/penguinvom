@@ -58,7 +58,7 @@ class EnemySpawner
     {
         //Randomly select zone
         //Rectangle zone = _spawnZones[r.nextInt(_spawnZones.length)];
-        Rectangle zone = _spawnZones[1];
+        Rectangle zone = _spawnZones[1]; //currently only spawning from the right
 
         //Randomly select enemy
         EnemyBase enemy = _spawnableEnemies[r.nextInt(_spawnableEnemies.length)];

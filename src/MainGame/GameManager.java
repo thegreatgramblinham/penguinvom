@@ -248,7 +248,7 @@ public class GameManager
                 {
                     public void handle(ActionEvent ae)
                     {
-                        gc.clearRect(0, 0, 800, 600);
+                        gc.clearRect(0, 0, X_RES, Y_RES);
                         engineInstance.CycleEngine();
 
                         if(_enemySpawner.ShouldSpawn())
