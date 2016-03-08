@@ -2,15 +2,13 @@ package MainGame;
 
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
-import GameObjects.Characters.CharacterBase;
+import GameObjects.Base.GameObject;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
 import GameObjects.Characters.Enemies.Dagron;
-import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Projectiles.Bullet;
-import GameObjects.Projectiles.enums.ProjectileDirection;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
@@ -36,6 +34,7 @@ public class GameManager
 {
     //Private Constants
     private static final Point _originPoint = new Point(64,64);
+    private static final Point _drawPoint = new Point(-64,-64); //set to 0,0 to see full sector
 
     //Public Static Fields
     public static GameEngine engineInstance;
@@ -101,32 +100,32 @@ public class GameManager
     {
         //Rendered Backdrops
         Backdrop bg = new Backdrop(new Rectangle(
-                DrawLocX(0),DrawLocY(0),800,280), true, "BackWall");
+                SecLocX(0), SecLocY(0),800,280), true, "BackWall");
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg,1);
 
         Backdrop floor = new Backdrop(new Rectangle(
-                DrawLocX(0),DrawLocY(280),800,320), false, "Floor");
+                SecLocX(0), SecLocY(280),800,320), false, "Floor");
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor,1);
 
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
-                DrawLocX(1),DrawLocY(1),799,1), true, "TopBounds");
+                SecLocX(1), SecLocY(1),799,1), true, "TopBounds");
         _currentSector.AddObject(topBound, 1);
 
         Backdrop botBound = new Backdrop(new Rectangle(
-                DrawLocX(1),DrawLocY(599),799,1), true, "BottomBounds");
+                SecLocX(1), SecLocY(599),799,1), true, "BottomBounds");
         _currentSector.AddObject(botBound, 1);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
-                DrawLocX(1),DrawLocY(1),1,599), true, "LeftBounds");
+                SecLocX(1), SecLocY(1),1,599), true, "LeftBounds");
         _currentSector.AddObject(leftBound, 1);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
-                DrawLocX(799),DrawLocY(1),1,599), true, "RightBounds");
+                SecLocX(799), SecLocY(1),1,599), true, "RightBounds");
         _currentSector.AddObject(rightBound, 1);
     }
 
@@ -134,11 +133,11 @@ public class GameManager
     {
         //Temp Enemy Render
         Slim slim = new Slim(new Rectangle(
-                DrawLocX(600),DrawLocY(400),64,64), 0.2F, 10);
+                SecLocX(600), SecLocY(400),64,64), 0.2F, 10);
         _currentSector.AddObject(slim, 2);
 
         Dagron dagron = new Dagron(new Rectangle(
-                DrawLocX(600),DrawLocY(300),64,64), 0.5F, 10);
+                SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
         _currentSector.AddObject(dagron, 2);
 
 //        EnemyBase[] enemies = {slim, dagron};
@@ -150,7 +149,7 @@ public class GameManager
     private void InitPlayerHandlers()
     {
         _player = new PlayerObject(
-                new Rectangle(DrawLocX(100), DrawLocX(400), 64, 64), 0.1F, 20);
+                new Rectangle(SecLocX(100), SecLocX(400), 64, 64), 0.1F, 20);
 
         _currentSector.AddObject(_player,3);
         _primaryStage.getScene().setOnKeyPressed(
@@ -260,10 +259,12 @@ public class GameManager
 
                             if(renderGroup == null) continue;
 
-                            for( GameWorldObject gObj : renderGroup)
+                            for( GameWorldObject gameEngObj : renderGroup)
                             {
-                                gc.strokeRect(gObj.x,
-                                        gObj.y,
+                                GameObject gObj = (GameObject)gameEngObj;
+
+                                gc.strokeRect(gObj.GetGameDrawPoint().x,
+                                        gObj.GetGameDrawPoint().y,
                                         gObj.width,
                                         gObj.height);
 
@@ -277,8 +278,11 @@ public class GameManager
                                 }
                                 else if(gObj.GetSprite() != null)
                                 {
-                                    gc.drawImage(gObj.GetSprite(), gObj.getX(), gObj.getY(),
-                                            gObj.GetSprite().getWidth(), gObj.GetSprite().getHeight());
+                                    gc.drawImage(gObj.GetSprite(),
+                                            gObj.GetGameDrawPoint().x,
+                                            gObj.GetGameDrawPoint().y,
+                                            gObj.GetSprite().getWidth(),
+                                            gObj.GetSprite().getHeight());
                                 }
 
                                 engineInstance.CycleCollision();
@@ -319,14 +323,24 @@ public class GameManager
         return true;
     }
 
-    private static int DrawLocX(int offset)
+    private static int SecLocX(int offset)
     {
         return _originPoint.x + offset;
     }
 
-    private static int DrawLocY(int offset)
+    private static int SecLocY(int offset)
     {
         return _originPoint.y + offset;
+    }
+
+    public static int DrawLocX(int offset)
+    {
+        return  _drawPoint.x + offset;
+    }
+
+    public static int DrawLocY(int offset)
+    {
+        return  _drawPoint.y + offset;
     }
 
 }

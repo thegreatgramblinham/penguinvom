@@ -7,6 +7,7 @@ import GameObjects.Base.GameObject;
 import GameObjects.Projectiles.ProjectileBase;
 import GameObjects.Projectiles.enums.ProjectileDirection;
 import GeneralHelpers.ConversionHelper;
+import MainGame.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -75,28 +76,28 @@ public class CharacterBase extends GameObject
             switch(ConversionHelper.RadianToDirection(this.GetVelocity().GetRadianRotation()))
             {
                 case Left:
-                    _walkCycle.DrawSpriteFrame(gc, this.getLocation(),
+                    _walkCycle.DrawSpriteFrame(gc, this.GetGameDrawPoint(),
                             AnimationOrientation.MirrorXAxis);
                     _lastRenderedDirection = AnimationOrientation.MirrorXAxis;
                     _projectileDirection = ProjectileDirection.Left;
                     break;
                 case Right:
-                    _walkCycle.DrawSpriteFrame(gc, this.getLocation(),
+                    _walkCycle.DrawSpriteFrame(gc, this.GetGameDrawPoint(),
                             AnimationOrientation.Default);
                     _lastRenderedDirection = AnimationOrientation.Default;
                     _projectileDirection = ProjectileDirection.Right;
                     break;
                 case Up:
                 case Down:
-                    _walkCycle.DrawSpriteFrame(gc, this.getLocation(),
+                    _walkCycle.DrawSpriteFrame(gc, this.GetGameDrawPoint(),
                             _lastRenderedDirection);
                     break;
             }
         else if(_restCycle != null)
         {
-            _restCycle.DrawSpriteFrame(gc, this.getLocation(), _lastRenderedDirection);
+            _restCycle.DrawSpriteFrame(gc, this.GetGameDrawPoint(), _lastRenderedDirection);
         }
         else
-            _walkCycle.DrawFrameAtIndex(gc, this.getLocation(), 0, _lastRenderedDirection);
+            _walkCycle.DrawFrameAtIndex(gc, this.GetGameDrawPoint(), 0, _lastRenderedDirection);
     }
 }
