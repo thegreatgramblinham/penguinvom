@@ -5,6 +5,7 @@ import GameObjectBase.GameWorldObject;
 import GameObjects.Base.GameObject;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
 import GameObjects.Characters.Enemies.Dagron;
+import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
@@ -34,7 +35,10 @@ public class GameManager
 {
     //Private Constants
     private static final Point _originPoint = new Point(64,64);
-    private static final Point _drawPoint = new Point(-64,-64); //set to 0,0 to see full sector
+    private static final Point _drawPoint = new Point(-0,-0); //set to 0,0 to see full sector
+    private static final int X_RES = 928;
+    private static final int Y_RES = 728;
+
 
     //Public Static Fields
     public static GameEngine engineInstance;
@@ -77,14 +81,14 @@ public class GameManager
         Scene scene = new Scene( root );
         _primaryStage.setScene( scene );
 
-        Canvas canvas = new Canvas( 928, 728 );
+        Canvas canvas = new Canvas( X_RES, Y_RES );
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
         _currentSector
                 = engineInstance.CreateSector(
-                    928,
-                    728,
+                    X_RES,
+                    Y_RES,
                     30, 0.5F, GravityApplication.Area);
     }
 
@@ -113,19 +117,19 @@ public class GameManager
 
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
-                SecLocX(1), SecLocY(1),799,1), true, "TopBounds");
+                1, 1, X_RES - 1,1), true, "TopBounds");
         _currentSector.AddObject(topBound, 1);
 
         Backdrop botBound = new Backdrop(new Rectangle(
-                SecLocX(1), SecLocY(599),799,1), true, "BottomBounds");
+                1, Y_RES - 1,X_RES - 1,1), true, "BottomBounds");
         _currentSector.AddObject(botBound, 1);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
-                SecLocX(1), SecLocY(1),1,599), true, "LeftBounds");
+                1,1,1, Y_RES - 1), true, "LeftBounds");
         _currentSector.AddObject(leftBound, 1);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
-                SecLocX(799), SecLocY(1),1,599), true, "RightBounds");
+                X_RES - 1 , 1 ,1, Y_RES - 1), true, "RightBounds");
         _currentSector.AddObject(rightBound, 1);
     }
 
@@ -134,16 +138,16 @@ public class GameManager
         //Temp Enemy Render
         Slim slim = new Slim(new Rectangle(
                 SecLocX(600), SecLocY(400),64,64), 0.2F, 10);
-        _currentSector.AddObject(slim, 2);
+        //_currentSector.AddObject(slim, 2);
 
         Dagron dagron = new Dagron(new Rectangle(
                 SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
-        _currentSector.AddObject(dagron, 2);
+        //_currentSector.AddObject(dagron, 2);
 
-//        EnemyBase[] enemies = {slim, dagron};
-//
-//        _enemySpawner = new EnemySpawner(_currentSector, enemies,
-//                new Rectangle(0,280,800,320), 180);
+        EnemyBase[] enemies = {slim, dagron};
+
+        _enemySpawner = new EnemySpawner(_currentSector, enemies,
+                new Rectangle(SecLocX(0),SecLocY(280),800,320), 180);
     }
 
     private void InitPlayerHandlers()
@@ -247,8 +251,8 @@ public class GameManager
                         gc.clearRect(0, 0, 800, 600);
                         engineInstance.CycleEngine();
 
-//                        if(_enemySpawner.ShouldSpawn())
-//                            _enemySpawner.SpawnRandom();
+                        if(_enemySpawner.ShouldSpawn())
+                            _enemySpawner.SpawnRandom();
 
                         for (int i = 0;
                              i < _currentSector.GetRenderGroupCount();

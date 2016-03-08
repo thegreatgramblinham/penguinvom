@@ -57,7 +57,8 @@ class EnemySpawner
     public void SpawnRandom()
     {
         //Randomly select zone
-        Rectangle zone = _spawnZones[r.nextInt(_spawnZones.length)];
+        //Rectangle zone = _spawnZones[r.nextInt(_spawnZones.length)];
+        Rectangle zone = _spawnZones[1];
 
         //Randomly select enemy
         EnemyBase enemy = _spawnableEnemies[r.nextInt(_spawnableEnemies.length)];
