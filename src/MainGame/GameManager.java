@@ -34,10 +34,10 @@ import java.util.HashSet;
 public class GameManager
 {
     //Private Constants
-    private static final Point _originPoint = new Point(64,64);
+    private static final Point _originPoint = new Point(128,128);
     private static final Point _drawPoint = new Point(-0,-0); //set to 0,0 to see full sector
-    private static final int X_RES = 928;
-    private static final int Y_RES = 728;
+    private static final int X_RES = 1056;
+    private static final int Y_RES = 856;
 
 
     //Public Static Fields
@@ -248,7 +248,10 @@ public class GameManager
                 {
                     public void handle(ActionEvent ae)
                     {
+
                         gc.clearRect(0, 0, X_RES, Y_RES);
+
+                        gc.strokeRect(X_RES - 64,0,1,Y_RES);
                         engineInstance.CycleEngine();
 
                         if(_enemySpawner.ShouldSpawn())

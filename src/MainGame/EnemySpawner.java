@@ -63,11 +63,11 @@ class EnemySpawner
         //Randomly select enemy
         EnemyBase enemy = _spawnableEnemies[r.nextInt(_spawnableEnemies.length)];
 
-        int xLoc = zone.x + r.nextInt(15);
-        int yLoc = r.nextInt(zone.y, enemy.height);
+        int xLoc = zone.x;
+        int yLoc = r.nextInt(zone.y, zone.y + zone.height - enemy.height);
 
         EnemyBase clonedEnemy = (EnemyBase)enemy.clone();
-        clonedEnemy.NSetLocation(new Point(xLoc, yLoc));
+        clonedEnemy.NSetLocation(new Point(xLoc,yLoc));
 
         _spawnSector.AddObject(clonedEnemy, 2);
     }

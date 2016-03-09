@@ -12,7 +12,7 @@ public class Randomizer extends Random
     //Public Methods
     public int nextInt(int min, int max)
     {
-        int r1 = this.nextInt(min - max);
+        int r1 = this.nextInt(max - min);
         return min + r1;
     }
 
