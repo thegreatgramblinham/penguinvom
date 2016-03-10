@@ -6,6 +6,7 @@ import GameObjects.Base.GameObject;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
 import GameObjects.Characters.Enemies.Dagron;
 import GameObjects.Characters.Enemies.EnemyBase;
+import GameObjects.Characters.Enemies.Skilleatin;
 import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
@@ -144,7 +145,10 @@ public class GameManager
                 SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
         //_currentSector.AddObject(dagron, 2);
 
-        EnemyBase[] enemies = {slim, dagron};
+        Skilleatin skilleatin = new Skilleatin(new Rectangle(
+                SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
+
+        EnemyBase[] enemies = {slim, dagron, skilleatin};
 
         _enemySpawner = new EnemySpawner(_currentSector, enemies,
                 new Rectangle(SecLocX(0),SecLocY(280),800,320), 180);
