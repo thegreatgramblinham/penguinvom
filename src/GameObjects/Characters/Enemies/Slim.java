@@ -60,8 +60,8 @@ public class Slim extends EnemyBase
         MiniSlim s1 = new MiniSlim(
                 new Rectangle(x, y + (int)this.GetHalfHeight(), 32, 32), 0.5F, 5);
         MiniSlim s2 = new MiniSlim(
-                new Rectangle(x + (int)this.GetHalfWidth(),
-                        y + (int)this.GetHalfHeight(), 32, 32), 0.5F, 5);
+                new Rectangle(x + (int)this.GetHalfWidth() + 1,
+                        y + (int)this.GetHalfHeight() + 10, 32, 32), 0.5F, 5);
 
         GameManager.engineInstance.GetActiveSector()
                 .AddObject(s1, 3); //todo better way
