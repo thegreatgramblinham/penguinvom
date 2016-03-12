@@ -21,36 +21,7 @@ public class Skilleatin extends EnemyBase
         this.SetAi(new DagronAi(this));
     }
 
-    //Get Methods
-
-    //Set Methods
-
     //Public Methods
-    @Override
-    public boolean PerformAndDrawAction(GraphicsContext gc)
-    {
-        if(_ai == null) return false;
-
-        AiAction act = _ai.QueryAction();
-
-        switch(act)
-        {
-            case Advance:
-                this.Advance(gc);
-                break;
-            case Attack:
-                this.Attack(gc);
-                break;
-            case Retreat:
-                break;
-            case Stand:
-                this.Stand(gc);
-                break;
-        }
-
-        return true;
-    }
-
     @Override
     public void Advance(GraphicsContext gc)
     {

@@ -1,22 +1,25 @@
 package GameObjects.Characters.Enemies;
 
 import Animation.SpriteAnimation;
-import GameObjects.Characters.Enemies.AI.DagronAi;
+import GameObjects.Characters.Enemies.AI.SlimAi;
 import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class Dagron extends EnemyBase
+public class MiniSlim extends EnemyBase
 {
+
+    //Variables
+
     //Constructor
-    public Dagron(Rectangle size, float mass, int health)
+    public MiniSlim(Rectangle size, float mass, int health)
     {
         super(size, false, mass, health,
-                new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png", 64, 64, 7, 60, true),
-                new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png", 64, 64, 2, 60, true));
-        this.SetAlias("Dagron");
-        this.SetAi(new DagronAi(this));
+                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png", 32, 32, 10, 60, true),
+                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png", 32, 32, 2, 60, true));
+        this.SetAlias("MiniSlim");
+        this.SetAi(new SlimAi(this));
     }
 
     //Public Methods
@@ -31,9 +34,7 @@ public class Dagron extends EnemyBase
     @Override
     public void Attack(GraphicsContext gc)
     {
-        //Draw attack animation.
-        this.DrawWalkAnimation(gc);
-        _ai.Attack();
+
     }
 
     @Override
@@ -49,9 +50,6 @@ public class Dagron extends EnemyBase
         _ai.Stand();
     }
 
-    @Override
-    public Object clone()
-    {
-        return new Dagron(GetBounds(),GetMass(), GetHealth());
-    }
+    //Private Methods
+
 }

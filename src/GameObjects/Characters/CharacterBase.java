@@ -41,7 +41,8 @@ public class CharacterBase extends GameObject
         _health = health;
 
         if(_health <= 0)
-            this.SetNeedsDeletion(true);
+            OnDeath();
+
     }
 
     //Get Methods
@@ -100,4 +101,10 @@ public class CharacterBase extends GameObject
         else
             _walkCycle.DrawFrameAtIndex(gc, this.GetGameDrawPoint(), 0, _lastRenderedDirection);
     }
+
+    public void OnDeath()
+    {
+        this.SetNeedsDeletion(true);
+    }
+
 }
