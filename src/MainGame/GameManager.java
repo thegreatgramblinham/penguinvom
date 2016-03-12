@@ -52,6 +52,7 @@ public class GameManager
 
     //Private Variables - Engine
     private PlayerObject _player;
+    private Backdrop _skybg;
     private EnemySpawner _enemySpawner;
     private double _lastPlayerDirection = 0;
 
@@ -105,32 +106,38 @@ public class GameManager
     {
         //Rendered Backdrops
         Backdrop bg = new Backdrop(new Rectangle(
-                SecLocX(0), SecLocY(0),800,280), true, "BackWall");
+                SecLocX(0), SecLocY(0),800,280), true, true, "BackWall");
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg,1);
 
+        _skybg = new Backdrop(new Rectangle(
+                SecLocX(0), SecLocY(50),800,280), false, false, "BackSky");
+        _skybg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/skybg0000.png")
+                .toURI().toString()));
+        _currentSector.AddObject(_skybg,0);
+
         Backdrop floor = new Backdrop(new Rectangle(
-                SecLocX(0), SecLocY(280),800,320), false, "Floor");
+                SecLocX(0), SecLocY(280),800,320), true, false, "Floor");
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor,1);
 
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
-                1, 1, X_RES - 1,1), true, "TopBounds");
+                1, 1, X_RES - 1,1), true, true, "TopBounds");
         _currentSector.AddObject(topBound, 1);
 
         Backdrop botBound = new Backdrop(new Rectangle(
-                1, Y_RES - 1,X_RES - 1,1), true, "BottomBounds");
+                1, Y_RES - 1,X_RES - 1,1), true, true, "BottomBounds");
         _currentSector.AddObject(botBound, 1);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
-                1,1,1, Y_RES - 1), true, "LeftBounds");
+                1,1,1, Y_RES - 1), true, true, "LeftBounds");
         _currentSector.AddObject(leftBound, 1);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
-                X_RES - 1 , 1 ,1, Y_RES - 1), true, "RightBounds");
+                X_RES - 1 , 1 ,1, Y_RES - 1), true, true, "RightBounds");
         _currentSector.AddObject(rightBound, 1);
     }
 
@@ -282,6 +289,8 @@ public class GameManager
                                 if(HandlePlayerAction(gObj, gc))
                                 {
                                     //Player action handled.
+                                    Point p = _skybg.getLocation();
+                                    _skybg.NSetLocation(new Point(SecLocX(0), SecLocY((_player.y - _skybg.height)/20)+30));
                                 }
                                 else if(HandleEnemyAction(gObj, gc))
                                 {
