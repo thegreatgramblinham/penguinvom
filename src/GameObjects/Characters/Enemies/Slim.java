@@ -3,6 +3,7 @@ package GameObjects.Characters.Enemies;
 import Animation.SpriteAnimation;
 import GameObjects.Characters.Enemies.AI.SlimAi;
 import GameObjects.Characters.Enemies.AI.enums.AiAction;
+import MainGame.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -20,30 +21,6 @@ public class Slim extends EnemyBase
     }
 
     //Public Methods
-    @Override
-    public boolean PerformAndDrawAction(GraphicsContext gc)
-    {
-        if(_ai == null) return false;
-
-        AiAction act = _ai.QueryAction();
-
-        switch(act)
-        {
-            case Advance:
-                this.Advance(gc);
-                break;
-            case Attack:
-                break;
-            case Retreat:
-                break;
-            case Stand:
-                this.Stand(gc);
-                break;
-        }
-
-        return true;
-    }
-
     @Override
     public void Advance(GraphicsContext gc)
     {
@@ -75,5 +52,22 @@ public class Slim extends EnemyBase
     public Object clone()
     {
         return new Slim(GetBounds(),GetMass(), GetHealth());
+    }
+
+    @Override
+    public void OnDeath()
+    {
+        MiniSlim s1 = new MiniSlim(
+                new Rectangle(x, y + (int)this.GetHalfHeight(), 32, 32), 0.5F, 5);
+        MiniSlim s2 = new MiniSlim(
+                new Rectangle(x + (int)this.GetHalfWidth(),
+                        y + (int)this.GetHalfHeight(), 32, 32), 0.5F, 5);
+
+        GameManager.engineInstance.GetActiveSector()
+                .AddObject(s1, 3); //todo better way
+        GameManager.engineInstance.GetActiveSector()
+                .AddObject(s2, 3); //todo better way
+
+        super.OnDeath();
     }
 }
