@@ -289,8 +289,9 @@ public class GameManager
                                 if(HandlePlayerAction(gObj, gc))
                                 {
                                     //Player action handled.
-                                    Point p = _skybg.getLocation();
-                                    _skybg.NSetLocation(new Point(SecLocX(0), SecLocY((_player.y - _skybg.height)/20)+30));
+                                    _skybg.NSetLocation(new Point(
+                                            SecLocX((_player.x - _skybg.width)/20+30),
+                                            SecLocY((_player.y - _skybg.height)/20)+30));
                                 }
                                 else if(HandleEnemyAction(gObj, gc))
                                 {
