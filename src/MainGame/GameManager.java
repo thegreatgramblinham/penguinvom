@@ -112,8 +112,8 @@ public class GameManager
         _currentSector.AddObject(bg,1);
 
         _skybg = new Backdrop(new Rectangle(
-                SecLocX(0), SecLocY(50),800,280), false, false, "BackSky");
-        _skybg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/skybg0000.png")
+                SecLocX(0), SecLocY(110),800,280), false, false, "BackSky");
+        _skybg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/skybg20000.png")
                 .toURI().toString()));
         _currentSector.AddObject(_skybg,0);
 
