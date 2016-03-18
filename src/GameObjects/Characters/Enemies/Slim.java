@@ -63,10 +63,8 @@ public class Slim extends EnemyBase
                 new Rectangle(x + (int)this.GetHalfWidth() + 1,
                         y + (int)this.GetHalfHeight() + 10, 32, 32), 0.5F, 5);
 
-        GameManager.engineInstance.GetActiveSector()
-                .AddObject(s1, 3); //todo better way
-        GameManager.engineInstance.GetActiveSector()
-                .AddObject(s2, 3); //todo better way
+        GameManager.QueueObjectForAddition(s1, 3);
+        GameManager.QueueObjectForAddition(s2, 3);
 
         super.OnDeath();
     }
