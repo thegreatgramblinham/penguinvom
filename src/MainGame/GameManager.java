@@ -29,6 +29,7 @@ import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
 
 @SuppressWarnings("Convert2Lambda")
@@ -40,9 +41,9 @@ public class GameManager
     private static final int X_RES = 1056;
     private static final int Y_RES = 856;
 
-
-    //Public Static Fields
-    public static GameEngine engineInstance;
+    //Private Static Fields
+    private static HashMap<GameWorldObject,Integer> _objectAdditionQueue = new HashMap<>();
+    private static GameEngine _engineInstance;
 
     //Private Variables - UI
     private Stage _primaryStage;
@@ -60,7 +61,7 @@ public class GameManager
     public GameManager(Stage displayStage)
     {
         _primaryStage = displayStage;
-        engineInstance = new GameEngine();
+        _engineInstance = new GameEngine();
 
         InitStage();
         InitRenderLoop();
@@ -72,7 +73,7 @@ public class GameManager
     //Public Methods
     public void Start() throws Exception
     {
-        engineInstance.Start();
+        _engineInstance.Start();
         _gameLoop.play();
     }
 
@@ -88,7 +89,7 @@ public class GameManager
         _gc = canvas.getGraphicsContext2D();
 
         _currentSector
-                = engineInstance.CreateSector(
+                = _engineInstance.CreateSector(
                     X_RES,
                     Y_RES,
                     30, 0.5F, GravityApplication.Area);
@@ -259,11 +260,13 @@ public class GameManager
                 {
                     public void handle(ActionEvent ae)
                     {
-
                         gc.clearRect(0, 0, X_RES, Y_RES);
 
+                        AddQueuedObjects();
+
                         gc.strokeRect(X_RES - 64,0,1,Y_RES);
-                        engineInstance.CycleEngine();
+
+                        _engineInstance.CycleEngine();
 
                         if(_enemySpawner.ShouldSpawn())
                             _enemySpawner.SpawnRandom();
@@ -306,7 +309,7 @@ public class GameManager
                                             gObj.GetSprite().getHeight());
                                 }
 
-                                engineInstance.CycleCollision();
+                                _engineInstance.CycleCollision();
                             }
                         }
                     }
@@ -344,6 +347,18 @@ public class GameManager
         return true;
     }
 
+    private void AddQueuedObjects()
+    {
+        for( GameWorldObject gObj : _objectAdditionQueue.keySet())
+        {
+            _currentSector.AddObject(gObj, _objectAdditionQueue.get(gObj));
+        }
+
+        _objectAdditionQueue.clear();
+    }
+
+
+    //Static Methods
     private static int SecLocX(int offset)
     {
         return _originPoint.x + offset;
@@ -362,6 +377,11 @@ public class GameManager
     public static int DrawLocY(int offset)
     {
         return  _drawPoint.y + offset;
+    }
+
+    public static void QueueObjectForAddition(GameWorldObject obj, int renderGroup)
+    {
+        _objectAdditionQueue.put(obj, renderGroup);
     }
 
 }

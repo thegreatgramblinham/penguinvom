@@ -42,8 +42,7 @@ public class DagronAi extends EnemyAiBase
                 break;
         }
 
-        GameManager.engineInstance.GetActiveSector()
-                .AddObject(b, 3); //todo better way
+        GameManager.QueueObjectForAddition(b, 3);
     }
 
     @Override
