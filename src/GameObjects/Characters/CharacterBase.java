@@ -19,6 +19,9 @@ public class CharacterBase extends GameObject
     private AnimationOrientation _lastRenderedDirection;
     private ProjectileDirection _projectileDirection = ProjectileDirection.Right;
 
+    //Private Fields
+    private boolean _isDying = false;
+
     //Properties
     private int _health;
     protected SpriteAnimation _walkCycle;
@@ -40,8 +43,11 @@ public class CharacterBase extends GameObject
     {
         _health = health;
 
-        if(_health <= 0)
+        if(_health <= 0 && !_isDying)
+        {
             OnDeath();
+            _isDying = true;
+        }
 
     }
 
