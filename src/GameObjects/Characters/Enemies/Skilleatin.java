@@ -1,8 +1,7 @@
 package GameObjects.Characters.Enemies;
 
 import Animation.SpriteAnimation;
-import GameObjects.Characters.Enemies.AI.DagronAi;
-import GameObjects.Characters.Enemies.AI.enums.AiAction;
+import GameObjects.Characters.Enemies.AI.SkilleatinAi;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -18,7 +17,7 @@ public class Skilleatin extends EnemyBase
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png", 64, 64, 5, 60, true),
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png", 64, 64, 2, 60, true));
         this.SetAlias("Skilleatin");
-        this.SetAi(new DagronAi(this));
+        this.SetAi(new SkilleatinAi(this));
     }
 
     //Public Methods
