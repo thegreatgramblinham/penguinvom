@@ -56,10 +56,10 @@ public class SkilleatinAi extends EnemyAiBase
                 GetBody().GetBottom() + 1), GetBody());
         b4.SetVelocity(new VelocityVector((Math.PI/2), BULLET_SPEED));
 
-        GameManager.QueueObjectForAddition(b1, 3);
-        GameManager.QueueObjectForAddition(b2, 3);
-        GameManager.QueueObjectForAddition(b3, 3);
-        GameManager.QueueObjectForAddition(b4, 3);
+        GameManager.QueueObjectForAddition(b1, 3, GameManager.ENEMY_PROJECTILE_GROUP);
+        GameManager.QueueObjectForAddition(b2, 3, GameManager.ENEMY_PROJECTILE_GROUP);
+        GameManager.QueueObjectForAddition(b3, 3, GameManager.ENEMY_PROJECTILE_GROUP);
+        GameManager.QueueObjectForAddition(b4, 3, GameManager.ENEMY_PROJECTILE_GROUP);
     }
 
     @Override

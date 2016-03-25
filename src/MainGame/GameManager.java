@@ -35,6 +35,14 @@ import java.util.HashSet;
 @SuppressWarnings("Convert2Lambda")
 public class GameManager
 {
+    //Public Constants
+    public static final String PLAYER_GROUP = "PlayerGroup";
+    public static final String PLAYER_PROJECTILE_GROUP = "PlayerProjectileGroup";
+    public static final String ENEMY_GROUP = "EnemyGroup";
+    public static final String ENEMY_PROJECTILE_GROUP = "EnemyProjectileGroup";
+    public static final String BACKGROUND_GROUP = "BackgroundGroup";
+    public static final String PLAYER_GAMEBOUNDS_GROUP = "PlayerGameBoundsGroup";
+
     //Private Constants
     private static final Point _originPoint = new Point(128,128);
     private static final Point _drawPoint = new Point(-0,-0); //set to 0,0 to see full sector
@@ -42,7 +50,8 @@ public class GameManager
     private static final int Y_RES = 856;
 
     //Private Static Fields
-    private static HashMap<GameWorldObject,Integer> _objectAdditionQueue = new HashMap<>();
+    private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
+    private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
     private static GameEngine _engineInstance;
 
     //Private Variables - UI
@@ -110,36 +119,36 @@ public class GameManager
                 SecLocX(0), SecLocY(0),800,280), true, true, "BackWall");
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
-        _currentSector.AddObject(bg,1);
+        _currentSector.AddObject(bg,1, BACKGROUND_GROUP);
 
         _skybg = new Backdrop(new Rectangle(
                 SecLocX(0), SecLocY(110),800,280), false, false, "BackSky");
         _skybg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/skybg20000.png")
                 .toURI().toString()));
-        _currentSector.AddObject(_skybg,0);
+        _currentSector.AddObject(_skybg,0, BACKGROUND_GROUP);
 
         Backdrop floor = new Backdrop(new Rectangle(
                 SecLocX(0), SecLocY(280),800,320), true, false, "Floor");
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
-        _currentSector.AddObject(floor,1);
+        _currentSector.AddObject(floor, 1, BACKGROUND_GROUP);
 
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
                 1, 1, X_RES - 1,1), true, true, "TopBounds");
-        _currentSector.AddObject(topBound, 1);
+        _currentSector.AddObject(topBound, 1, PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop botBound = new Backdrop(new Rectangle(
                 1, Y_RES - 1,X_RES - 1,1), true, true, "BottomBounds");
-        _currentSector.AddObject(botBound, 1);
+        _currentSector.AddObject(botBound, 1, PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
                 1,1,1, Y_RES - 1), true, true, "LeftBounds");
-        _currentSector.AddObject(leftBound, 1);
+        _currentSector.AddObject(leftBound, 1, PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
                 X_RES - 1 , 1 ,1, Y_RES - 1), true, true, "RightBounds");
-        _currentSector.AddObject(rightBound, 1);
+        _currentSector.AddObject(rightBound, 1, PLAYER_GAMEBOUNDS_GROUP);
     }
 
     private void InitEnemySpawner()
@@ -167,7 +176,7 @@ public class GameManager
         _player = new PlayerObject(
                 new Rectangle(SecLocX(100), SecLocX(400), 64, 64), 0.1F, 20);
 
-        _currentSector.AddObject(_player,3);
+        _currentSector.AddObject(_player, 3, PLAYER_GROUP);
         _primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
         {
@@ -220,7 +229,7 @@ public class GameManager
                         }
 
                         if(b != null)
-                            _currentSector.AddObject(b, 3);
+                            _currentSector.AddObject(b, 3, PLAYER_PROJECTILE_GROUP);
 
                         isAttackKey = true;
                         break;
@@ -349,12 +358,15 @@ public class GameManager
 
     private void AddQueuedObjects()
     {
-        for( GameWorldObject gObj : _objectAdditionQueue.keySet())
+        for( GameWorldObject gObj : _objectAdditionRenderGroupQueue.keySet())
         {
-            _currentSector.AddObject(gObj, _objectAdditionQueue.get(gObj));
+            _currentSector.AddObject(gObj,
+                    _objectAdditionRenderGroupQueue.get(gObj),
+                    _objectAdditionCollisionGroupQueue.get(gObj));
         }
 
-        _objectAdditionQueue.clear();
+        _objectAdditionRenderGroupQueue.clear();
+        _objectAdditionCollisionGroupQueue.clear();
     }
 
 
@@ -379,9 +391,10 @@ public class GameManager
         return  _drawPoint.y + offset;
     }
 
-    public static void QueueObjectForAddition(GameWorldObject obj, int renderGroup)
+    public static void QueueObjectForAddition(GameWorldObject obj, int renderGroup, String groupName)
     {
-        _objectAdditionQueue.put(obj, renderGroup);
+        _objectAdditionRenderGroupQueue.put(obj, renderGroup);
+        _objectAdditionCollisionGroupQueue.put(obj, groupName);
     }
 
 }
