@@ -11,6 +11,9 @@ import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Projectiles.Bullet;
+import PhysicsBase.CollisionRules.CollisionGroupNamePair;
+import PhysicsBase.CollisionRules.CollisionGroupPair;
+import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
@@ -72,6 +75,7 @@ public class GameManager
         _primaryStage = displayStage;
         _engineInstance = new GameEngine();
 
+        InitCollisionRules();
         InitStage();
         InitRenderLoop();
         InitEnvironment();
@@ -87,6 +91,23 @@ public class GameManager
     }
 
     //Private Methods
+    private void InitCollisionRules()
+    {
+        //Player projectiles can't collide with other player projectiles.
+        _engineInstance.AddCollisionRule(
+                new CollisionGroupNamePair(
+                        PLAYER_PROJECTILE_GROUP,
+                        PLAYER_PROJECTILE_GROUP),
+                CollisionRule.CannotCollideWith);
+
+        //Enemy projectiles can't hit other enemies.
+        _engineInstance.AddCollisionRule(
+                new CollisionGroupNamePair(
+                        ENEMY_GROUP,
+                        ENEMY_PROJECTILE_GROUP),
+                CollisionRule.CannotCollideWith);
+    }
+
     private void InitStage()
     {
         Group root = new Group();
