@@ -42,7 +42,7 @@ public class DagronAi extends EnemyAiBase
                 break;
         }
 
-        GameManager.QueueObjectForAddition(b, 3);
+        GameManager.QueueObjectForAddition(b, 3, GameManager.ENEMY_PROJECTILE_GROUP);
     }
 
     @Override

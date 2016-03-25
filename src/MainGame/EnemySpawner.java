@@ -69,7 +69,7 @@ class EnemySpawner
         EnemyBase clonedEnemy = (EnemyBase)enemy.clone();
         clonedEnemy.NSetLocation(new Point(xLoc,yLoc));
 
-        _spawnSector.AddObject(clonedEnemy, 2);
+        _spawnSector.AddObject(clonedEnemy, 2, GameManager.ENEMY_GROUP);
     }
 
     //Private Methods
