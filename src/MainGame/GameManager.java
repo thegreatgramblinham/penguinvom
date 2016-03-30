@@ -106,6 +106,13 @@ public class GameManager
                         ENEMY_GROUP,
                         ENEMY_PROJECTILE_GROUP),
                 CollisionRule.CannotCollideWith);
+
+        //Enemy projectiles can't hit other enemy projectiles.
+        _engineInstance.AddCollisionRule(
+                new CollisionGroupNamePair(
+                        ENEMY_PROJECTILE_GROUP,
+                        ENEMY_PROJECTILE_GROUP),
+                CollisionRule.CannotCollideWith);
     }
 
     private void InitStage()
