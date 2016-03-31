@@ -4,6 +4,7 @@ import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Projectiles.Bullet;
 import GameObjects.Projectiles.EnemyBullet;
+import MainGame.GameConstants;
 import MainGame.GameManager;
 import PhysicsBase.Vectors.VelocityVector;
 
@@ -42,7 +43,7 @@ public class DagronAi extends EnemyAiBase
                 break;
         }
 
-        GameManager.QueueObjectForAddition(b, 3, GameManager.ENEMY_PROJECTILE_GROUP);
+        GameManager.QueueObjectForAddition(b, 3, GameConstants.ENEMY_PROJECTILE_GROUP);
     }
 
     @Override
