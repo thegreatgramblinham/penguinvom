@@ -1,7 +1,5 @@
 package MainGame;
 
-import GameObjects.Characters.Player.PlayerObject;
-
 import java.awt.*;
 
 public class ViewPort
