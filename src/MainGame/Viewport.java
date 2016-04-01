@@ -6,6 +6,11 @@ import java.awt.*;
 
 public class ViewPort
 {
+    //Private Constants
+    private static final int SCROLL_SPEED = 2;
+    private static final double LEFTHAND_SCROLL_PARTITION = (1.0/5.0);
+    private static final double RIGHTHAND_SCROLL_PARTITION = (4.0/5.0);
+    
     //Public Static Fields
     public static final int X_RES = 800; //1056;
     public static final int Y_RES = 600; //856;
@@ -40,27 +45,29 @@ public class ViewPort
     public void ScrollIntoView(Point p)
     {
         int xPos = GetViewRelativeX(p.x);
-        if( xPos < (_xRes * (1.0/5.0)))
+        if( xPos < (_xRes * LEFTHAND_SCROLL_PARTITION))
         {
             //scroll left
-            ScrollLeft(1);
+            ScrollLeft();
         }
-        if( xPos > (_xRes * (4.0/5.0)))
+        if( xPos > (_xRes * RIGHTHAND_SCROLL_PARTITION))
         {
             //scroll right
-            ScrollRight(1);
+            ScrollRight();
         }
     }
 
     //Private Methods
-    private void ScrollLeft(int units)
+    private void ScrollLeft()
     {
-        _location = new Point(_location.x-1, _location.y);
+        _location = new Point(_location.x - SCROLL_SPEED,
+                _location.y);
     }
 
-    private void ScrollRight(int units)
+    private void ScrollRight()
     {
-        _location = new Point(_location.x+1, _location.y);
+        _location = new Point(_location.x + SCROLL_SPEED,
+                _location.y);
     }
 
     //Private Static Methods

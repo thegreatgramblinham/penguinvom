@@ -268,8 +268,8 @@ public class GameManager
                         HandlePlayerAttack();
                         HandlePlayerMovement();
 
-                        //if(_enemySpawner.ShouldSpawn())
-                        //    _enemySpawner.SpawnRandom();
+                        if(_enemySpawner.ShouldSpawn())
+                            _enemySpawner.SpawnRandom();
 
                         for (int i = 0;
                              i < _currentSector.GetRenderGroupCount();
