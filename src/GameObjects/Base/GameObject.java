@@ -2,6 +2,7 @@ package GameObjects.Base;
 
 import GameObjectBase.GameWorldObject;
 import MainGame.GameManager;
+import MainGame.ViewPort;
 
 import java.awt.*;
 
@@ -16,6 +17,6 @@ public class GameObject extends GameWorldObject
     {
         Point p = this.getLocation();
 
-        return new Point(GameManager.DrawLocX(p.x), GameManager.DrawLocY(p.y));
+        return new Point(ViewPort.DrawLocX(p.x), ViewPort.DrawLocY(p.y));
     }
 }

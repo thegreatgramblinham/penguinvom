@@ -12,7 +12,6 @@ import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Projectiles.Bullet;
 import PhysicsBase.CollisionRules.CollisionGroupNamePair;
-import PhysicsBase.CollisionRules.CollisionGroupPair;
 import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
@@ -40,9 +39,7 @@ import java.util.HashSet;
 public class GameManager
 {
     //Private Constants
-    private static final Point _originPoint = new Point(128,128);
-    private static final Point _drawPoint = new Point(-128,-128); //set to 0,0 to see full sector
-
+    private static Point _gameStartingPoint = new Point(128,128);
 
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
@@ -54,7 +51,7 @@ public class GameManager
     private GraphicsContext _gc;
     private Timeline _gameLoop;
     private Sector _currentSector;
-    private Viewport _viewPort;
+    private ViewPort _viewPort;
 
     //Private Variables - Engine
     private PlayerObject _player;
@@ -121,17 +118,17 @@ public class GameManager
         Scene scene = new Scene( root );
         _primaryStage.setScene( scene );
 
-        _viewPort = new Viewport( Viewport.X_RES,
-                Viewport.Y_RES, _originPoint);
+        _viewPort = new ViewPort( ViewPort.X_RES,
+                ViewPort.Y_RES, _gameStartingPoint);
 
-        Canvas canvas = new Canvas( Viewport.X_RES, Viewport.Y_RES );
+        Canvas canvas = new Canvas( ViewPort.X_RES, ViewPort.Y_RES );
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
         _currentSector
                 = _engineInstance.CreateSector(
-                    Viewport.X_RES + (_originPoint.x * 2),
-                    Viewport.Y_RES + (_originPoint.y * 2),
+                    ViewPort.X_RES + (_gameStartingPoint.x * 2),
+                    ViewPort.Y_RES + (_gameStartingPoint.y * 2),
                     30, 0.5F, GravityApplication.Area);
     }
 
@@ -147,7 +144,8 @@ public class GameManager
     {
         //Sky Texture
         _skybg = new Backdrop(new Rectangle(
-                SecLocX(0), SecLocY(110),800,280), false, false, "BackSky");
+                ViewPort.SecLocX(0),
+                ViewPort.SecLocY(110),800,280), false, false, "BackSky");
         _skybg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/skybg20000.png")
                 .toURI().toString()));
         _currentSector.AddObject(_skybg, GameConstants.SKY_RENDER_GROUP,
@@ -155,14 +153,16 @@ public class GameManager
 
         //Rendered Backdrops
         Backdrop bg = new Backdrop(new Rectangle(
-                SecLocX(0), SecLocY(0),800,280), true, true, "BackWall");
+                ViewPort.SecLocX(0),
+                ViewPort.SecLocY(0),800,280), true, true, "BackWall");
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg, GameConstants.ROOM_RENDER_GROUP,
                 GameConstants.BACKGROUND_GROUP);
 
         Backdrop floor = new Backdrop(new Rectangle(
-                SecLocX(0), SecLocY(280),800,320), true, false, "Floor");
+                ViewPort.SecLocX(0),
+                ViewPort.SecLocY(280),800,320), true, false, "Floor");
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
@@ -170,25 +170,29 @@ public class GameManager
 
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
-                SecLocX(1), SecLocY(1), Viewport.X_RES - 1,1), true, true,
+                ViewPort.SecLocX(1),
+                ViewPort.SecLocY(1), ViewPort.X_RES - 1,1), true, true,
                 "TopBounds");
         _currentSector.AddObject(topBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop botBound = new Backdrop(new Rectangle(
-                SecLocX(1), SecLocY(Viewport.Y_RES - 1),Viewport.X_RES - 1,1),
+                ViewPort.SecLocX(1),
+                ViewPort.SecLocY(ViewPort.Y_RES - 1), ViewPort.X_RES - 1,1),
                 true, true, "BottomBounds");
         _currentSector.AddObject(botBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
-                SecLocX(1), SecLocY(1),1, Viewport.Y_RES - 1), true, true,
+                ViewPort.SecLocX(1),
+                ViewPort.SecLocY(1),1, ViewPort.Y_RES - 1), true, true,
                 "LeftBounds");
         _currentSector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
-                SecLocX(Viewport.X_RES - 1), SecLocY(1), 1, Viewport.Y_RES - 1),
+                ViewPort.SecLocX(ViewPort.X_RES - 1),
+                ViewPort.SecLocY(1), 1, ViewPort.Y_RES - 1),
                 true, true, "RightBounds");
         _currentSector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
@@ -198,24 +202,29 @@ public class GameManager
     {
         //Temp Enemy Render
         Slim slim = new Slim(new Rectangle(
-                SecLocX(600), SecLocY(400),64,64), 0.2F, 10);
+                ViewPort.SecLocX(600),
+                ViewPort.SecLocY(400),64,64), 0.2F, 10);
 
         Dagron dagron = new Dagron(new Rectangle(
-                SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
+                ViewPort.SecLocX(600),
+                ViewPort.SecLocY(300),64,64), 0.5F, 10);
 
         Skilleatin skilleatin = new Skilleatin(new Rectangle(
-                SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
+                ViewPort.SecLocX(600),
+                ViewPort.SecLocY(300),64,64), 0.5F, 10);
 
         EnemyBase[] enemies = {slim, dagron, skilleatin};
 
         _enemySpawner = new EnemySpawner(_currentSector, enemies,
-                new Rectangle(SecLocX(0),SecLocY(280),800,320), 180);
+                new Rectangle(ViewPort.SecLocX(0),
+                        ViewPort.SecLocY(280),800,320), 180);
     }
 
     private void InitPlayerHandlers()
     {
         _player = new PlayerObject(
-                new Rectangle(SecLocX(100), SecLocX(400), 64, 64), 0.1F, 20);
+                new Rectangle(ViewPort.SecLocX(100),
+                        ViewPort.SecLocX(400), 64, 64), 0.1F, 20);
 
         _currentSector.AddObject(_player, GameConstants.PLAYER_RENDER_GROUP
                 , GameConstants.PLAYER_GROUP);
@@ -248,19 +257,19 @@ public class GameManager
                 {
                     public void handle(ActionEvent ae)
                     {
-                        gc.clearRect(0, 0, Viewport.X_RES, Viewport.Y_RES);
+                        gc.clearRect(0, 0, ViewPort.X_RES, ViewPort.Y_RES);
 
                         AddQueuedObjects();
 
-                        gc.strokeRect(Viewport.X_RES - 64,0,1, Viewport.Y_RES);
+                        gc.strokeRect(ViewPort.X_RES - 64,0,1, ViewPort.Y_RES);
 
                         _engineInstance.CycleEngine();
 
                         HandlePlayerAttack();
                         HandlePlayerMovement();
 
-                        if(_enemySpawner.ShouldSpawn())
-                            _enemySpawner.SpawnRandom();
+                        //if(_enemySpawner.ShouldSpawn())
+                        //    _enemySpawner.SpawnRandom();
 
                         for (int i = 0;
                              i < _currentSector.GetRenderGroupCount();
@@ -284,8 +293,8 @@ public class GameManager
                                 {
                                     //Player action handled.
                                     _skybg.NSetLocation(new Point(
-                                            SecLocX((_player.x - _skybg.width)/20+30),
-                                            SecLocY((_player.y - _skybg.height)/20)+30));
+                                            ViewPort.SecLocX((_player.x - _skybg.width)/20+30),
+                                            ViewPort.SecLocY((_player.y - _skybg.height)/20)+30));
                                 }
                                 else if(HandleEnemyAction(gObj, gc))
                                 {
@@ -337,7 +346,12 @@ public class GameManager
         }
 
         if(isKeyPressed)
+        {
             _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
+//            _player.NSetLocation(new Point(_player.NGetLocation().x+1, _player.NGetLocation().y));
+//            _originPoint.x += 1;
+//            _drawPoint.x += -1;
+        }
     }
 
     private void HandlePlayerAttack()
@@ -406,26 +420,6 @@ public class GameManager
     }
 
     //Static Methods
-    private static int SecLocX(int offset)
-    {
-        return _originPoint.x + offset;
-    }
-
-    private static int SecLocY(int offset)
-    {
-        return _originPoint.y + offset;
-    }
-
-    public static int DrawLocX(int offset)
-    {
-        return  _drawPoint.x + offset;
-    }
-
-    public static int DrawLocY(int offset)
-    {
-        return  _drawPoint.y + offset;
-    }
-
     public static void QueueObjectForAddition(GameWorldObject obj, int renderGroup, String groupName)
     {
         _objectAdditionRenderGroupQueue.put(obj, renderGroup);
