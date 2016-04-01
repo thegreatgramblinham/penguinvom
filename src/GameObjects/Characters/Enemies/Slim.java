@@ -2,7 +2,6 @@ package GameObjects.Characters.Enemies;
 
 import Animation.SpriteAnimation;
 import GameObjects.Characters.Enemies.AI.SlimAi;
-import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import MainGame.GameConstants;
 import MainGame.GameManager;
 import javafx.scene.canvas.GraphicsContext;

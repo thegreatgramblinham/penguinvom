@@ -41,9 +41,8 @@ public class GameManager
 {
     //Private Constants
     private static final Point _originPoint = new Point(128,128);
-    private static final Point _drawPoint = new Point(-0,-0); //set to 0,0 to see full sector
-    private static final int X_RES = 1056;
-    private static final int Y_RES = 856;
+    private static final Point _drawPoint = new Point(-128,-128); //set to 0,0 to see full sector
+
 
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
@@ -55,6 +54,7 @@ public class GameManager
     private GraphicsContext _gc;
     private Timeline _gameLoop;
     private Sector _currentSector;
+    private Viewport _viewPort;
 
     //Private Variables - Engine
     private PlayerObject _player;
@@ -106,6 +106,13 @@ public class GameManager
                         GameConstants.ENEMY_PROJECTILE_GROUP,
                         GameConstants.ENEMY_PROJECTILE_GROUP),
                 CollisionRule.CannotCollideWith);
+
+        //Enemies are not restricted by the same bounds as the player
+        _engineInstance.AddCollisionRule(
+                new CollisionGroupNamePair(
+                        GameConstants.ENEMY_GROUP,
+                        GameConstants.PLAYER_GAMEBOUNDS_GROUP),
+                CollisionRule.CannotCollideWith);
     }
 
     private void InitStage()
@@ -114,14 +121,17 @@ public class GameManager
         Scene scene = new Scene( root );
         _primaryStage.setScene( scene );
 
-        Canvas canvas = new Canvas( X_RES, Y_RES );
+        _viewPort = new Viewport( Viewport.X_RES,
+                Viewport.Y_RES, _originPoint);
+
+        Canvas canvas = new Canvas( Viewport.X_RES, Viewport.Y_RES );
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
         _currentSector
                 = _engineInstance.CreateSector(
-                    X_RES,
-                    Y_RES,
+                    Viewport.X_RES + (_originPoint.x * 2),
+                    Viewport.Y_RES + (_originPoint.y * 2),
                     30, 0.5F, GravityApplication.Area);
     }
 
@@ -160,22 +170,26 @@ public class GameManager
 
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
-                1, 1, X_RES - 1,1), true, true, "TopBounds");
+                SecLocX(1), SecLocY(1), Viewport.X_RES - 1,1), true, true,
+                "TopBounds");
         _currentSector.AddObject(topBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop botBound = new Backdrop(new Rectangle(
-                1, Y_RES - 1,X_RES - 1,1), true, true, "BottomBounds");
+                SecLocX(1), SecLocY(Viewport.Y_RES - 1),Viewport.X_RES - 1,1),
+                true, true, "BottomBounds");
         _currentSector.AddObject(botBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
-                1,1,1, Y_RES - 1), true, true, "LeftBounds");
+                SecLocX(1), SecLocY(1),1, Viewport.Y_RES - 1), true, true,
+                "LeftBounds");
         _currentSector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
-                X_RES - 1 , 1 ,1, Y_RES - 1), true, true, "RightBounds");
+                SecLocX(Viewport.X_RES - 1), SecLocY(1), 1, Viewport.Y_RES - 1),
+                true, true, "RightBounds");
         _currentSector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
     }
@@ -234,11 +248,11 @@ public class GameManager
                 {
                     public void handle(ActionEvent ae)
                     {
-                        gc.clearRect(0, 0, X_RES, Y_RES);
+                        gc.clearRect(0, 0, Viewport.X_RES, Viewport.Y_RES);
 
                         AddQueuedObjects();
 
-                        gc.strokeRect(X_RES - 64,0,1,Y_RES);
+                        gc.strokeRect(Viewport.X_RES - 64,0,1, Viewport.Y_RES);
 
                         _engineInstance.CycleEngine();
 
@@ -390,7 +404,6 @@ public class GameManager
         _objectAdditionRenderGroupQueue.clear();
         _objectAdditionCollisionGroupQueue.clear();
     }
-
 
     //Static Methods
     private static int SecLocX(int offset)
