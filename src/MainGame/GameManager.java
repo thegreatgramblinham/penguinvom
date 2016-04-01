@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -176,11 +177,9 @@ public class GameManager
         //Temp Enemy Render
         Slim slim = new Slim(new Rectangle(
                 SecLocX(600), SecLocY(400),64,64), 0.2F, 10);
-        //_currentSector.AddObject(slim, 2);
 
         Dagron dagron = new Dagron(new Rectangle(
                 SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
-        //_currentSector.AddObject(dagron, 2);
 
         Skilleatin skilleatin = new Skilleatin(new Rectangle(
                 SecLocX(600), SecLocY(300),64,64), 0.5F, 10);
@@ -203,60 +202,7 @@ public class GameManager
             @Override
             public void handle(KeyEvent event)
             {
-                //Flags
-                boolean isMovementKey = false;
-                boolean isAttackKey = false;
-
-                switch (event.getCode())
-                {
-                    //Movement
-                    case UP:
-                    case W:
-                        _lastPlayerDirection = (3*Math.PI)/2;
-                        isMovementKey = true;
-                        break;
-                    case DOWN:
-                    case S:
-                        _lastPlayerDirection = Math.PI/2;
-                        isMovementKey = true;
-                        break;
-                    case LEFT:
-                    case A:
-                        _lastPlayerDirection = Math.PI;
-                        isMovementKey = true;
-                        break;
-                    case RIGHT:
-                    case D:
-                        _lastPlayerDirection = 0;
-                        isMovementKey = true;
-                        break;
-
-                    //Attacks
-                    case SPACE:
-                        Bullet b = null;
-                        switch(_player.GetProjectileDirection())
-                        {
-                            case Left:
-                                b = new Bullet(new Point(_player.GetLeft() - Bullet.WIDTH - 1 ,
-                                        _player.GetCenterPoint().y), _player);
-                                b.SetVelocity(new VelocityVector(Math.PI, 7));
-                                break;
-                            case Right:
-                                b = new Bullet(new Point(_player.GetRight() + 1,
-                                        _player.GetCenterPoint().y), _player);
-                                b.SetVelocity(new VelocityVector(0, 7));
-                                break;
-                        }
-
-                        if(b != null)
-                            _currentSector.AddObject(b, 3, GameConstants.PLAYER_PROJECTILE_GROUP);
-
-                        isAttackKey = true;
-                        break;
-                }
-
-                if(isMovementKey)
-                    _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
+                GameConstants.SetKeyPressed(event.getCode());
             }
         });
 
@@ -266,17 +212,7 @@ public class GameManager
                     @Override
                     public void handle(KeyEvent event)
                     {
-                        switch (event.getCode())
-                        {
-                            case UP:
-                            case DOWN:
-                            case LEFT:
-                            case RIGHT:
-                                VelocityVector accel = _player.GetAcceleration();
-                                if(accel != null && accel.GetRadianRotation() == _lastPlayerDirection)
-                                    _player.StopAcceleration();
-                                break;
-                        }
+                        GameConstants.SetKeyReleased(event.getCode());
                     }
                 });
     }
@@ -296,6 +232,9 @@ public class GameManager
                         gc.strokeRect(X_RES - 64,0,1,Y_RES);
 
                         _engineInstance.CycleEngine();
+
+                        HandlePlayerAttack();
+                        HandlePlayerMovement();
 
                         if(_enemySpawner.ShouldSpawn())
                             _enemySpawner.SpawnRandom();
@@ -345,6 +284,61 @@ public class GameManager
                 });
     }
 
+    private void HandlePlayerMovement()
+    {
+        boolean isKeyPressed = false;
+
+        if(GameConstants.IsKeyPressed(KeyCode.W)
+                || GameConstants.IsKeyPressed(KeyCode.UP))
+        {
+            _lastPlayerDirection = (3*Math.PI)/2;
+            isKeyPressed = true;
+        }
+        else if (GameConstants.IsKeyPressed(KeyCode.S)
+                || GameConstants.IsKeyPressed(KeyCode.DOWN))
+        {
+            _lastPlayerDirection = Math.PI/2;
+            isKeyPressed = true;
+        }
+        else if (GameConstants.IsKeyPressed(KeyCode.A)
+                || GameConstants.IsKeyPressed(KeyCode.LEFT))
+        {
+            _lastPlayerDirection = Math.PI;
+            isKeyPressed = true;
+        }
+        else if (GameConstants.IsKeyPressed(KeyCode.D)
+                || GameConstants.IsKeyPressed(KeyCode.RIGHT))
+        {
+            _lastPlayerDirection = 0;
+            isKeyPressed = true;
+        }
+
+        if(isKeyPressed)
+            _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
+    }
+
+    private void HandlePlayerAttack()
+    {
+        if(!GameConstants.IsKeyPressed(KeyCode.SPACE)) return;
+
+        Bullet b = null;
+        switch(_player.GetProjectileDirection())
+        {
+            case Left:
+                b = new Bullet(new Point(_player.GetLeft() - Bullet.WIDTH - 1 ,
+                        _player.GetCenterPoint().y), _player);
+                b.SetVelocity(new VelocityVector(Math.PI, 7));
+                break;
+            case Right:
+                b = new Bullet(new Point(_player.GetRight() + 1,
+                        _player.GetCenterPoint().y), _player);
+                b.SetVelocity(new VelocityVector(0, 7));
+                break;
+        }
+
+        _currentSector.AddObject(b, 3, GameConstants.PLAYER_PROJECTILE_GROUP);
+    }
+
     private boolean HandlePlayerAction(GameWorldObject gObj, GraphicsContext gc)
     {
         PlayerObject playObj;
@@ -355,9 +349,6 @@ public class GameManager
             return false;
 
         playObj.DrawWalkAnimation(gc);
-
-//        if(_player.GetIsAccelerating())
-//            _player.AccelerateBy(_player.GetAcceleration());
 
         return true;
     }
