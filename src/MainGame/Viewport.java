@@ -1,5 +1,7 @@
 package MainGame;
 
+import GameObjects.Characters.Player.PlayerObject;
+
 import java.awt.*;
 
 public class ViewPort
@@ -31,6 +33,45 @@ public class ViewPort
     public int GetHeight()
     {
         return _yRes;
+    }
+
+
+    //Public Methods
+    public void ScrollIntoView(Point p)
+    {
+        int xPos = GetViewRelativeX(p.x);
+        if( xPos < (_xRes * (1.0/5.0)))
+        {
+            //scroll left
+            ScrollLeft(1);
+        }
+        if( xPos > (_xRes * (4.0/5.0)))
+        {
+            //scroll right
+            ScrollRight(1);
+        }
+    }
+
+    //Private Methods
+    private void ScrollLeft(int units)
+    {
+        _location = new Point(_location.x-1, _location.y);
+    }
+
+    private void ScrollRight(int units)
+    {
+        _location = new Point(_location.x+1, _location.y);
+    }
+
+    //Private Static Methods
+    private static int GetViewRelativeX(int x)
+    {
+        return x -_location.x;
+    }
+
+    private static int GetViewRelativeY(int y)
+    {
+        return y -_location.y;
     }
 
     //Public Static Methods

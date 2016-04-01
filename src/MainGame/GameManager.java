@@ -39,7 +39,7 @@ import java.util.HashSet;
 public class GameManager
 {
     //Private Constants
-    private static Point _gameStartingPoint = new Point(128,128);
+    private static final Point _gameStartingPoint = new Point(128,128);
 
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
@@ -257,7 +257,7 @@ public class GameManager
                 {
                     public void handle(ActionEvent ae)
                     {
-                        gc.clearRect(0, 0, ViewPort.X_RES, ViewPort.Y_RES);
+                        gc.clearRect(0, 0, _viewPort.GetWidth(), _viewPort.GetHeight());
 
                         AddQueuedObjects();
 
@@ -295,6 +295,8 @@ public class GameManager
                                     _skybg.NSetLocation(new Point(
                                             ViewPort.SecLocX((_player.x - _skybg.width)/20+30),
                                             ViewPort.SecLocY((_player.y - _skybg.height)/20)+30));
+
+                                    _viewPort.ScrollIntoView(_player.GetCenterPoint());
                                 }
                                 else if(HandleEnemyAction(gObj, gc))
                                 {
@@ -425,5 +427,7 @@ public class GameManager
         _objectAdditionRenderGroupQueue.put(obj, renderGroup);
         _objectAdditionCollisionGroupQueue.put(obj, groupName);
     }
+
+
 
 }

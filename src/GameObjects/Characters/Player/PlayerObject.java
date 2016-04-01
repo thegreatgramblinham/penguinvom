@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class PlayerObject extends CharacterBase
 {
+    //Constructor
     public PlayerObject(Rectangle size, float mass, int health)
     {
         super(size, false, mass, health,
@@ -19,6 +20,7 @@ public class PlayerObject extends CharacterBase
         this.SetAlias("PlayerObject");
     }
 
+    //Public Methods
     @Override
     public void DrawWalkAnimation(GraphicsContext gc)
     {
