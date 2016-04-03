@@ -6,8 +6,8 @@ public class ViewPort
 {
     //Private Constants
     private static final int SCROLL_SPEED = 2;
-    private static final double LEFTHAND_SCROLL_PARTITION = (1.0/5.0);
-    private static final double RIGHTHAND_SCROLL_PARTITION = (4.0/5.0);
+    private static final double LOWER_SCROLL_PARTITION = (1.0/5.0);
+    private static final double HIGHER_SCROLL_PARTITION = (4.0/5.0);
     
     //Public Static Fields
     public static final int X_RES = 800; //1056;
@@ -43,15 +43,24 @@ public class ViewPort
     public void ScrollIntoView(Point p)
     {
         int xPos = GetViewRelativeX(p.x);
-        if( xPos < (_xRes * LEFTHAND_SCROLL_PARTITION))
+        int yPos = GetViewRelativeY(p.y);
+        if( xPos < (_xRes * LOWER_SCROLL_PARTITION))
         {
             //scroll left
             ScrollLeft();
         }
-        if( xPos > (_xRes * RIGHTHAND_SCROLL_PARTITION))
+        if( xPos > (_xRes * HIGHER_SCROLL_PARTITION))
         {
             //scroll right
             ScrollRight();
+        }
+        if(yPos < (_yRes * LOWER_SCROLL_PARTITION))
+        {
+            ScrollUp();
+        }
+        if(yPos > (_yRes * HIGHER_SCROLL_PARTITION))
+        {
+            ScrollDown();
         }
     }
 
@@ -66,6 +75,18 @@ public class ViewPort
     {
         _location = new Point(_location.x + SCROLL_SPEED,
                 _location.y);
+    }
+
+    private void ScrollUp()
+    {
+        _location = new Point(_location.x,
+                _location.y - SCROLL_SPEED);
+    }
+
+    private void ScrollDown()
+    {
+        _location = new Point(_location.x,
+                _location.y + SCROLL_SPEED);
     }
 
     //Private Static Methods

@@ -40,6 +40,8 @@ public class GameManager
 {
     //Private Constants
     private static final Point _gameStartingPoint = new Point(128,128);
+    private static final int _stageWidth = 3500;
+    private static final int _stageHeight = 900;
 
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
@@ -127,9 +129,9 @@ public class GameManager
 
         _currentSector
                 = _engineInstance.CreateSector(
-                    ViewPort.X_RES + (_gameStartingPoint.x * 2),
-                    ViewPort.Y_RES + (_gameStartingPoint.y * 2),
-                    30, 0.5F, GravityApplication.Area);
+                    _stageWidth,
+                   _stageHeight,
+                   30, 0.5F, GravityApplication.Area);
     }
 
     private void InitRenderLoop()
