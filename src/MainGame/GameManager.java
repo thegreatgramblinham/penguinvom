@@ -11,6 +11,7 @@ import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Projectiles.Bullet;
+import MainGame.Debugging.DebugHelper;
 import PhysicsBase.CollisionRules.CollisionGroupNamePair;
 import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
@@ -27,6 +28,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.*;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -49,6 +51,7 @@ public class GameManager
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
     private static GameEngine _engineInstance;
     private static boolean _isFullscreen = false;
+    private static boolean _showPropertyDebugMode = false;
 
     //Private Variables - UI
     private Stage _primaryStage;
@@ -297,6 +300,15 @@ public class GameManager
                             for( GameWorldObject gameEngObj : renderGroup)
                             {
                                 GameObject gObj = (GameObject)gameEngObj;
+
+                                if(_showPropertyDebugMode)
+                                {
+                                    gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
+                                    gc.fillText(
+                                            DebugHelper.BuildFormattedPropertyString(gObj),
+                                            ViewPort.DrawLocX(gObj.GetRight()),
+                                            ViewPort.DrawLocY(gObj.GetBottom()));
+                                }
 
                                 gc.strokeRect(gObj.GetGameDrawPoint().x,
                                         gObj.GetGameDrawPoint().y,
