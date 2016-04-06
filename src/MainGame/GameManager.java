@@ -127,7 +127,7 @@ public class GameManager
         if(_isFullscreen)
         {
             _primaryStage.setFullScreen(true);
-            Scale scale = new Scale(2, 2);
+            Scale scale = new Scale(1.5, 1.5);
             scale.setPivotX(0);
             scale.setPivotY(0);
             scene.getRoot().getTransforms().setAll(scale);
@@ -170,9 +170,9 @@ public class GameManager
 
         //Rendered Backdrops
         Backdrop bg = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
+                ViewPort.SecLocX(418),
                 ViewPort.SecLocY(0),800,280), true, true, "BackWall");
-        bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/penguinbg10000.png")
+        bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWallSector0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg, GameConstants.ROOM_RENDER_GROUP,
                 GameConstants.BACKGROUND_GROUP);
@@ -180,7 +180,7 @@ public class GameManager
         Backdrop floor = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(0),
                 ViewPort.SecLocY(280),800,320), true, false, "Floor");
-        floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/woodfloor0000.png")
+        floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWoodSector0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
                 GameConstants.BACKGROUND_GROUP);
@@ -207,12 +207,12 @@ public class GameManager
         _currentSector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
-        Backdrop rightBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(ViewPort.X_RES - 1),
-                ViewPort.SecLocY(1), 1, ViewPort.Y_RES - 1),
-                true, true, "RightBounds");
-        _currentSector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+//        Backdrop rightBound = new Backdrop(new Rectangle(
+//                ViewPort.SecLocX(ViewPort.X_RES - 1),
+//                ViewPort.SecLocY(1), 1, ViewPort.Y_RES - 1),
+//                true, true, "RightBounds");
+//        _currentSector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
+//                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
     }
 
     private void InitEnemySpawner()
@@ -240,8 +240,8 @@ public class GameManager
     private void InitPlayerHandlers()
     {
         _player = new PlayerObject(
-                new Rectangle(ViewPort.SecLocX(100),
-                        ViewPort.SecLocX(400), 64, 64), 0.1F, 20);
+                new Rectangle(ViewPort.SecLocX(625),
+                        ViewPort.SecLocX(425), 64, 64), 0.1F, 20);
 
         _currentSector.AddObject(_player, GameConstants.PLAYER_RENDER_GROUP
                 , GameConstants.PLAYER_GROUP);
@@ -285,8 +285,8 @@ public class GameManager
                         HandlePlayerAttack();
                         HandlePlayerMovement();
 
-                        if(_enemySpawner.ShouldSpawn())
-                            _enemySpawner.SpawnRandom();
+//                        if(_enemySpawner.ShouldSpawn())
+//                            _enemySpawner.SpawnRandom();
 
                         for (int i = 0;
                              i < _currentSector.GetRenderGroupCount();
