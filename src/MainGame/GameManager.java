@@ -27,6 +27,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -47,6 +48,7 @@ public class GameManager
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
     private static GameEngine _engineInstance;
+    private static boolean _isFullscreen = false;
 
     //Private Variables - UI
     private Stage _primaryStage;
@@ -118,6 +120,16 @@ public class GameManager
     {
         Group root = new Group();
         Scene scene = new Scene( root );
+
+        if(_isFullscreen)
+        {
+            _primaryStage.setFullScreen(true);
+            Scale scale = new Scale(2, 2);
+            scale.setPivotX(0);
+            scale.setPivotY(0);
+            scene.getRoot().getTransforms().setAll(scale);
+        }
+
         _primaryStage.setScene( scene );
 
         _viewPort = new ViewPort( ViewPort.X_RES,
