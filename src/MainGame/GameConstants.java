@@ -24,6 +24,9 @@ public class GameConstants
     //Private Static Fields
     private static HashMap<KeyCode, Boolean> keyPressed = new HashMap<>();
 
+    //Private Constructor
+    private GameConstants(){}
+
     //Public Static Methods
     public static boolean IsKeyPressed(KeyCode key)
     {
