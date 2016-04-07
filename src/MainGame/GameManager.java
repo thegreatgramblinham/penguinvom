@@ -136,7 +136,12 @@ public class GameManager
         _primaryStage.setScene( scene );
 
         _viewPort = new ViewPort( ViewPort.X_RES,
-                ViewPort.Y_RES, _gameStartingPoint);
+                ViewPort.Y_RES, _gameStartingPoint,
+                0,
+                _gameStartingPoint.y,
+                _stageWidth,
+                _stageHeight
+                );
 
         Canvas canvas = new Canvas( ViewPort.X_RES, ViewPort.Y_RES );
         root.getChildren().add( canvas );
@@ -301,7 +306,7 @@ public class GameManager
                             {
                                 GameObject gObj = (GameObject)gameEngObj;
 
-                                if(_showPropertyDebugMode)
+                                if(_showPropertyDebugMode && !gObj.GetIsImmobile())
                                 {
                                     gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
                                     gc.fillText(

@@ -19,12 +19,22 @@ public class ViewPort
     private int _xRes;
     private int _yRes;
 
+    private int _minLeft;
+    private int _minTop;
+    private int _maxRight;
+    private int _maxBottom;
+
     //Constructor
-    public ViewPort(int width, int height, Point location)
+    public ViewPort(int width, int height, Point location,
+                    int minLeft, int minTop, int maxRight, int maxBottom)
     {
         _location = location;
         _xRes = width;
         _yRes = height;
+        _minLeft = minLeft;
+        _minTop = minTop;
+        _maxRight = maxRight;
+        _maxBottom = maxBottom;
     }
 
     //Get Methods
@@ -46,21 +56,23 @@ public class ViewPort
         int yPos = GetViewRelativeY(p.y);
         if( xPos < (_xRes * LOWER_SCROLL_PARTITION))
         {
-            //scroll left
-            ScrollLeft();
+            if(_location.x > _minLeft)
+                ScrollLeft();
         }
         if( xPos > (_xRes * HIGHER_SCROLL_PARTITION))
         {
-            //scroll right
-            ScrollRight();
+            if(_location.x < _maxRight)
+                ScrollRight();
         }
         if(yPos < (_yRes * LOWER_SCROLL_PARTITION))
         {
-            ScrollUp();
+            if(_location.y > _minTop)
+                ScrollUp();
         }
         if(yPos > (_yRes * HIGHER_SCROLL_PARTITION))
         {
-            ScrollDown();
+            if(_location.y < _maxBottom)
+                ScrollDown();
         }
     }
 
