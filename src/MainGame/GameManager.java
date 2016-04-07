@@ -28,7 +28,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.*;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -127,7 +126,7 @@ public class GameManager
         if(_isFullscreen)
         {
             _primaryStage.setFullScreen(true);
-            Scale scale = new Scale(1.5, 1.5);
+            Scale scale = new Scale(1.8, 1.8);
             scale.setPivotX(0);
             scale.setPivotY(0);
             scene.getRoot().getTransforms().setAll(scale);
@@ -257,6 +256,13 @@ public class GameManager
             public void handle(KeyEvent event)
             {
                 GameConstants.SetKeyPressed(event.getCode());
+
+                if(event.getCode() == KeyCode.X
+                        && event.isShiftDown()
+                        && event.isControlDown())
+                {
+                    _showPropertyDebugMode = !_showPropertyDebugMode;
+                }
             }
         });
 
@@ -306,19 +312,22 @@ public class GameManager
                             {
                                 GameObject gObj = (GameObject)gameEngObj;
 
-                                if(_showPropertyDebugMode && !gObj.GetIsImmobile())
+                                if(_showPropertyDebugMode)
                                 {
-                                    gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
-                                    gc.fillText(
-                                            DebugHelper.BuildFormattedPropertyString(gObj),
-                                            ViewPort.DrawLocX(gObj.GetRight()),
-                                            ViewPort.DrawLocY(gObj.GetBottom()));
-                                }
+                                    gc.strokeRect(gObj.GetGameDrawPoint().x,
+                                            gObj.GetGameDrawPoint().y,
+                                            gObj.width,
+                                            gObj.height);
 
-                                gc.strokeRect(gObj.GetGameDrawPoint().x,
-                                        gObj.GetGameDrawPoint().y,
-                                        gObj.width,
-                                        gObj.height);
+                                    if(!gObj.GetIsImmobile())
+                                    {
+                                        gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
+                                        gc.fillText(
+                                                DebugHelper.BuildFormattedPropertyString(gObj),
+                                                ViewPort.DrawLocX(gObj.GetRight()),
+                                                ViewPort.DrawLocY(gObj.GetBottom()));
+                                    }
+                                }
 
                                 if(HandlePlayerAction(gObj, gc))
                                 {

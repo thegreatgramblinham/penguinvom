@@ -10,8 +10,8 @@ public class ViewPort
     private static final double HIGHER_SCROLL_PARTITION = (1.5/2.5);
     
     //Public Static Fields
-    public static final int X_RES = 1024; //1024;
-    public static final int Y_RES = 768; //768;
+    public static final int X_RES = 1067; //1024;
+    public static final int Y_RES = 600; //768;
 
     //Private Fields
     private static Point _location;
