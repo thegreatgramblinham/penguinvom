@@ -6,8 +6,10 @@ public class ViewPort
 {
     //Private Constants
     private static final int SCROLL_SPEED = 2;
-    private static final double LOWER_SCROLL_PARTITION = (1.0/2.5);
-    private static final double HIGHER_SCROLL_PARTITION = (1.5/2.5);
+    private static final double LEFT_SCROLL_PARTITION = (1.0/2.5);
+    private static final double RIGHT_SCROLL_PARTITION = (1.5/2.5);
+    private static final double TOP_SCROLL_PARTITION = (3.5/5.0);
+    private static final double BOTTOM_SCROLL_PARTITION = (4.0/5.0);
     
     //Public Static Fields
     public static final int X_RES = 1067; //1024;
@@ -54,22 +56,22 @@ public class ViewPort
     {
         int xPos = GetViewRelativeX(p.x);
         int yPos = GetViewRelativeY(p.y);
-        if( xPos < (_xRes * LOWER_SCROLL_PARTITION))
+        if( xPos < (_xRes * LEFT_SCROLL_PARTITION))
         {
             if(_location.x > _minLeft)
                 ScrollLeft();
         }
-        if( xPos > (_xRes * HIGHER_SCROLL_PARTITION))
+        if( xPos > (_xRes * RIGHT_SCROLL_PARTITION))
         {
             if(_location.x < _maxRight)
                 ScrollRight();
         }
-        if(yPos < (_yRes * LOWER_SCROLL_PARTITION))
+        if(yPos < (_yRes * TOP_SCROLL_PARTITION))
         {
             if(_location.y > _minTop)
                 ScrollUp();
         }
-        if(yPos > (_yRes * HIGHER_SCROLL_PARTITION))
+        if(yPos > (_yRes * BOTTOM_SCROLL_PARTITION))
         {
             if(_location.y < _maxBottom)
                 ScrollDown();
