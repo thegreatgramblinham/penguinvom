@@ -176,7 +176,7 @@ public class GameManager
         //Rendered Backdrops
         Backdrop bg = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(418),
-                ViewPort.SecLocY(0),800,280), true, true, "BackWall");
+                ViewPort.SecLocY(0),2364,280), true, true, "BackWall");
         bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWallSector0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(bg, GameConstants.ROOM_RENDER_GROUP,
@@ -184,7 +184,7 @@ public class GameManager
 
         Backdrop floor = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(0),
-                ViewPort.SecLocY(280),800,320), true, false, "Floor");
+                ViewPort.SecLocY(280),3200,320), true, false, "Floor");
         floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWoodSector0000.png")
                 .toURI().toString()));
         _currentSector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,

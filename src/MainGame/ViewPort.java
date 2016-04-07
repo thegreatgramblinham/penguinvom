@@ -6,8 +6,8 @@ public class ViewPort
 {
     //Private Constants
     private static final int SCROLL_SPEED = 2;
-    private static final double LOWER_SCROLL_PARTITION = (1.0/5.0);
-    private static final double HIGHER_SCROLL_PARTITION = (4.0/5.0);
+    private static final double LOWER_SCROLL_PARTITION = (1.0/2.5);
+    private static final double HIGHER_SCROLL_PARTITION = (1.5/2.5);
     
     //Public Static Fields
     public static final int X_RES = 1024; //1024;
