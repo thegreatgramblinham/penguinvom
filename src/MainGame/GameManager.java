@@ -17,6 +17,7 @@ import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
+import Stages.MainCastleRoom;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -56,18 +57,18 @@ public class GameManager
     private Stage _primaryStage;
     private GraphicsContext _gc;
     private Timeline _gameLoop;
-    private Sector _currentSector;
+    //private Sector _currentSector;
     private ViewPort _viewPort;
 
     //Private Variables - Engine
     private PlayerObject _player;
-    private Backdrop _skybg;
+    //private Backdrop _skybg;
     private EnemySpawner _enemySpawner;
     private double _lastPlayerDirection = 0;
 
     //Constructor
-    public GameManager(Stage displayStage)
-    {
+    public GameManager(Stage displayStage) throws Exception {
+
         _primaryStage = displayStage;
         _engineInstance = new GameEngine();
 
@@ -146,8 +147,8 @@ public class GameManager
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
-        _currentSector
-                = _engineInstance.CreateSector(
+        //_currentSector =
+        _engineInstance.CreateSector(
                     _stageWidth,
                    _stageHeight,
                    30, 0.5F, GravityApplication.Area);
@@ -161,62 +162,9 @@ public class GameManager
         _gameLoop.getKeyFrames().add( kf );
     }
 
-    private void InitEnvironment()
+    private void InitEnvironment() throws Exception
     {
-        //Sky Texture
-        _skybg = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
-                ViewPort.SecLocY(110),800,280), false, false, "BackSky");
-        _skybg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/skybg20000.png")
-                .toURI().toString()));
-        _currentSector.AddObject(_skybg, GameConstants.SKY_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
-
-        //Rendered Backdrops
-        Backdrop bg = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(418),
-                ViewPort.SecLocY(0),2364,280), true, true, "BackWall");
-        bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWallSector0000.png")
-                .toURI().toString()));
-        _currentSector.AddObject(bg, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
-
-        Backdrop floor = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
-                ViewPort.SecLocY(280),3200,320), true, false, "Floor");
-        floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWoodSector0000.png")
-                .toURI().toString()));
-        _currentSector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
-
-        //Non-rendered Game Bounds
-        Backdrop topBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(1),
-                ViewPort.SecLocY(1), ViewPort.X_RES - 1,1), true, true,
-                "TopBounds");
-        _currentSector.AddObject(topBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
-
-        Backdrop botBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(1),
-                ViewPort.SecLocY(ViewPort.Y_RES - 1), ViewPort.X_RES - 1,1),
-                true, true, "BottomBounds");
-        _currentSector.AddObject(botBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
-
-        Backdrop leftBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(1),
-                ViewPort.SecLocY(1),1, ViewPort.Y_RES - 1), true, true,
-                "LeftBounds");
-        _currentSector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
-
-//        Backdrop rightBound = new Backdrop(new Rectangle(
-//                ViewPort.SecLocX(ViewPort.X_RES - 1),
-//                ViewPort.SecLocY(1), 1, ViewPort.Y_RES - 1),
-//                true, true, "RightBounds");
-//        _currentSector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
-//                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+        MainCastleRoom r = new MainCastleRoom(_engineInstance.GetActiveSector());
     }
 
     private void InitEnemySpawner()
@@ -236,9 +184,9 @@ public class GameManager
 
         EnemyBase[] enemies = {slim, dagron, skilleatin};
 
-        _enemySpawner = new EnemySpawner(_currentSector, enemies,
-                new Rectangle(ViewPort.SecLocX(0),
-                        ViewPort.SecLocY(280),800,320), 180);
+        _enemySpawner = new EnemySpawner(_engineInstance.GetActiveSector(),
+                enemies, new Rectangle(ViewPort.SecLocX(0),
+                ViewPort.SecLocY(280),800,320), 180);
     }
 
     private void InitPlayerHandlers()
@@ -247,8 +195,10 @@ public class GameManager
                 new Rectangle(ViewPort.SecLocX(625),
                         ViewPort.SecLocX(425), 64, 64), 0.1F, 20);
 
-        _currentSector.AddObject(_player, GameConstants.PLAYER_RENDER_GROUP
-                , GameConstants.PLAYER_GROUP);
+        _engineInstance.GetActiveSector().AddObject(_player,
+                GameConstants.PLAYER_RENDER_GROUP,
+                GameConstants.PLAYER_GROUP);
+
         _primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
         {
@@ -292,8 +242,6 @@ public class GameManager
 
                         AddQueuedObjects();
 
-                        gc.strokeRect(ViewPort.X_RES - 64,0,1, ViewPort.Y_RES);
-
                         _engineInstance.CycleEngine();
 
                         HandlePlayerAttack();
@@ -303,11 +251,11 @@ public class GameManager
 //                            _enemySpawner.SpawnRandom();
 
                         for (int i = 0;
-                             i < _currentSector.GetRenderGroupCount();
+                             i < _engineInstance.GetActiveSector().GetRenderGroupCount();
                              i++)
                         {
                             HashSet<GameWorldObject> renderGroup
-                                    = _currentSector.GetRenderGroup(i);
+                                    = _engineInstance.GetActiveSector().GetRenderGroup(i);
 
                             if(renderGroup == null) continue;
 
@@ -335,9 +283,9 @@ public class GameManager
                                 if(HandlePlayerAction(gObj, gc))
                                 {
                                     //Player action handled.
-                                    _skybg.NSetLocation(new Point(
-                                            ViewPort.SecLocX((_player.x - _skybg.width)/20+30),
-                                            ViewPort.SecLocY((_player.y - _skybg.height)/20)+30));
+//                                    _skybg.NSetLocation(new Point(
+//                                            ViewPort.SecLocX((_player.x - _skybg.width)/20+30),
+//                                            ViewPort.SecLocY((_player.y - _skybg.height)/20)+30));
 
                                     _viewPort.ScrollIntoView(_player.GetCenterPoint());
                                 }
@@ -393,9 +341,6 @@ public class GameManager
         if(isKeyPressed)
         {
             _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
-//            _player.NSetLocation(new Point(_player.NGetLocation().x+1, _player.NGetLocation().y));
-//            _originPoint.x += 1;
-//            _drawPoint.x += -1;
         }
     }
 
@@ -418,7 +363,7 @@ public class GameManager
                 break;
         }
 
-        _currentSector.AddObject(b,
+        _engineInstance.GetActiveSector().AddObject(b,
                 GameConstants.PLAYER_PROJECTILE_RENDER_GROUP,
                 GameConstants.PLAYER_PROJECTILE_GROUP);
     }
