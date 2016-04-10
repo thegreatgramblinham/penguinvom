@@ -49,7 +49,7 @@ public class GameManager
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
     private static GameEngine _engineInstance;
-    private static boolean _isFullscreen = false;
+    private static boolean _isFullscreen = true;
     private static boolean _showPropertyDebugMode = false;
 
     //Private Variables - UI
@@ -257,6 +257,7 @@ public class GameManager
             {
                 GameConstants.SetKeyPressed(event.getCode());
 
+                //Shift + Ctrl + X enters debug mode.
                 if(event.getCode() == KeyCode.X
                         && event.isShiftDown()
                         && event.isControlDown())
@@ -286,6 +287,8 @@ public class GameManager
                     public void handle(ActionEvent ae)
                     {
                         gc.clearRect(0, 0, _viewPort.GetWidth(), _viewPort.GetHeight());
+
+                        //todo - allow for change of sector if necessary
 
                         AddQueuedObjects();
 
@@ -452,7 +455,7 @@ public class GameManager
     {
         for( GameWorldObject gObj : _objectAdditionRenderGroupQueue.keySet())
         {
-            _currentSector.AddObject(gObj,
+            _engineInstance.GetActiveSector().AddObject(gObj,
                     _objectAdditionRenderGroupQueue.get(gObj),
                     _objectAdditionCollisionGroupQueue.get(gObj));
         }
