@@ -24,12 +24,12 @@ public class MainCastleRoom extends RoomBase
     //Private Variables
 
     //Constructor
-    public MainCastleRoom(Sector sector) throws Exception {
+    public MainCastleRoom(Sector sector) throws Exception
+    {
+        super(sector);
 
         if(sector.width < _sectorRequiredWidth || sector.height < _sectorRequiredHeight)
             throw new InvalidObjectException("Provided sector not large enough.");
-
-        _sector = sector;
 
         Init();
     }
@@ -55,14 +55,8 @@ public class MainCastleRoom extends RoomBase
     }
 
     //Private Methods
-    private void Init()
-    {
-        InitBackdrop();
-        InitStageBounds();
-        InitExits();
-    }
-
-    private void InitBackdrop()
+    @Override
+    protected void InitBackdrop()
     {
         //Sky Texture
         Backdrop skybg = new Backdrop(new Rectangle(
@@ -91,7 +85,8 @@ public class MainCastleRoom extends RoomBase
                 GameConstants.BACKGROUND_GROUP);
     }
 
-    private void InitStageBounds()
+    @Override
+    protected void InitStageBounds()
     {
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
@@ -124,7 +119,8 @@ public class MainCastleRoom extends RoomBase
 
     }
 
-    private void InitExits()
+    @Override
+    protected void InitExits()
     {
 
     }
