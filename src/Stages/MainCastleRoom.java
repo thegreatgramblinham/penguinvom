@@ -1,5 +1,6 @@
 package Stages;
 
+import GameObjectBase.enums.Side;
 import GameObjects.Environmental.Backdrop;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
@@ -11,7 +12,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.InvalidObjectException;
 
-public class MainCastleRoom
+public class MainCastleRoom extends RoomBase
 {
     //Private Constants
     private static final int _sectorRequiredWidth = 3500;
@@ -21,7 +22,6 @@ public class MainCastleRoom
     private static final int _stageHeight = 620;
 
     //Private Variables
-    private Sector _sector;
 
     //Constructor
     public MainCastleRoom(Sector sector) throws Exception {
@@ -39,9 +39,19 @@ public class MainCastleRoom
     //Set Methods
 
     //Public Methods
-    public Sector GetSector()
+    @Override
+    public Point GetPlayerStartingLocation(Side s)
     {
-        return _sector;
+        switch(s)
+        {
+            case Top:
+            case Bottom:
+            case Left:
+            case Right:
+                return new Point(372, 372);
+        }
+
+        return null;
     }
 
     //Private Methods
@@ -49,6 +59,7 @@ public class MainCastleRoom
     {
         InitBackdrop();
         InitStageBounds();
+        InitExits();
     }
 
     private void InitBackdrop()
@@ -112,5 +123,11 @@ public class MainCastleRoom
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
     }
+
+    private void InitExits()
+    {
+
+    }
+
 
 }

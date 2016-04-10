@@ -2,22 +2,22 @@ package MainGame;
 
 import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
+import GameObjectBase.enums.Side;
 import GameObjects.Base.GameObject;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
 import GameObjects.Characters.Enemies.Dagron;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Characters.Enemies.Skilleatin;
 import GameObjects.Characters.Enemies.Slim;
-import GameObjects.Environmental.Backdrop;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Projectiles.Bullet;
 import MainGame.Debugging.DebugHelper;
 import PhysicsBase.CollisionRules.CollisionGroupNamePair;
 import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
-import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
 import Stages.MainCastleRoom;
+import Stages.RoomBase;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -26,7 +26,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.transform.Scale;
@@ -34,7 +33,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
-import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -57,13 +55,12 @@ public class GameManager
     private Stage _primaryStage;
     private GraphicsContext _gc;
     private Timeline _gameLoop;
-    //private Sector _currentSector;
     private ViewPort _viewPort;
 
     //Private Variables - Engine
     private PlayerObject _player;
-    //private Backdrop _skybg;
     private EnemySpawner _enemySpawner;
+    private RoomBase _currentRoom;
     private double _lastPlayerDirection = 0;
 
     //Constructor
@@ -77,7 +74,8 @@ public class GameManager
         InitRenderLoop();
         InitEnvironment();
         InitEnemySpawner();
-        InitPlayerHandlers();
+        InitPlayer();
+        InitKeyHandlers();
     }
 
     //Public Methods
@@ -147,7 +145,6 @@ public class GameManager
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
-        //_currentSector =
         _engineInstance.CreateSector(
                     _stageWidth,
                    _stageHeight,
@@ -164,7 +161,7 @@ public class GameManager
 
     private void InitEnvironment() throws Exception
     {
-        MainCastleRoom r = new MainCastleRoom(_engineInstance.GetActiveSector());
+        _currentRoom = new MainCastleRoom(_engineInstance.GetActiveSector());
     }
 
     private void InitEnemySpawner()
@@ -189,43 +186,48 @@ public class GameManager
                 ViewPort.SecLocY(280),800,320), 180);
     }
 
-    private void InitPlayerHandlers()
+    private void InitPlayer()
     {
         _player = new PlayerObject(
-                new Rectangle(ViewPort.SecLocX(625),
-                        ViewPort.SecLocX(425), 64, 64), 0.1F, 20);
+                new Rectangle(
+                        ViewPort.SecLocX(_currentRoom.GetPlayerStartingLocation(Side.Left).x),
+                        ViewPort.SecLocY(_currentRoom.GetPlayerStartingLocation(Side.Left).y),
+                        64, 64), 0.1F, 20);
 
         _engineInstance.GetActiveSector().AddObject(_player,
                 GameConstants.PLAYER_RENDER_GROUP,
                 GameConstants.PLAYER_GROUP);
+    }
 
+    private void InitKeyHandlers()
+    {
         _primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
-        {
-            @Override
-            public void handle(KeyEvent event)
-            {
-                GameConstants.SetKeyPressed(event.getCode());
-
-                //Shift + Ctrl + X enters debug mode.
-                if(event.getCode() == KeyCode.X
-                        && event.isShiftDown()
-                        && event.isControlDown())
                 {
-                    _showPropertyDebugMode = !_showPropertyDebugMode;
-                }
-            }
-        });
+                    @Override
+                    public void handle(KeyEvent event)
+                    {
+                        GameConstants.SetKeyPressed(event.getCode());
+
+                        //Shift + Ctrl + X enters debug mode.
+                        if(event.getCode() == KeyCode.X
+                                && event.isShiftDown()
+                                && event.isControlDown())
+                        {
+                            _showPropertyDebugMode = !_showPropertyDebugMode;
+                        }
+                    }
+                });
 
         _primaryStage.getScene().setOnKeyReleased(
                 new EventHandler<KeyEvent>()
-        {
-            @Override
-            public void handle(KeyEvent event)
-            {
-                GameConstants.SetKeyReleased(event.getCode());
-            }
-        });
+                {
+                    @Override
+                    public void handle(KeyEvent event)
+                    {
+                        GameConstants.SetKeyReleased(event.getCode());
+                    }
+                });
     }
 
     public KeyFrame Render(final GraphicsContext gc)
