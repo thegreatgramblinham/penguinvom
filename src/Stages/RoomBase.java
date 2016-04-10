@@ -11,6 +11,10 @@ public abstract class RoomBase
     protected Sector _sector;
 
     //Constructor
+    public RoomBase(Sector sector)
+    {
+        _sector = sector;
+    }
 
     //Get Methods
     public Sector GetSector()
@@ -24,5 +28,17 @@ public abstract class RoomBase
     public abstract Point GetPlayerStartingLocation(Side s);
 
     //Private Methods
+    protected void Init()
+    {
+        InitBackdrop();
+        InitStageBounds();
+        InitExits();
+    }
+
+    protected abstract void InitBackdrop();
+
+    protected abstract void InitStageBounds();
+
+    protected abstract void InitExits();
 
 }
