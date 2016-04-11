@@ -10,6 +10,9 @@ import java.io.File;
 public class CastleGarden extends RoomBase
 {
     //Private Constants
+    private static final int STAGE_WIDTH = 1400;
+    private static final int STAGE_HEIGHT = 620;
+
     private final static Image SKY_TEXTURE = new Image(
             new File("src/ImageAssets/backgrounds/skybg20000.png").toURI().toString());
     private final static Image WALL_TEXTURE = new Image(
@@ -20,9 +23,10 @@ public class CastleGarden extends RoomBase
     //Variables
 
     //Constructor
-    public CastleGarden(Sector sector)
+    public CastleGarden(Sector sector) throws Exception
     {
-        super(sector, SKY_TEXTURE, WALL_TEXTURE, FLOOR_TEXTURE);
+        super(sector, SKY_TEXTURE, WALL_TEXTURE,
+                FLOOR_TEXTURE, STAGE_WIDTH, STAGE_HEIGHT);
     }
 
     //Get Methods
@@ -46,12 +50,6 @@ public class CastleGarden extends RoomBase
     }
 
     //Private Methods
-    @Override
-    protected void InitStageBounds()
-    {
-
-    }
-
     @Override
     protected void InitExits()
     {
