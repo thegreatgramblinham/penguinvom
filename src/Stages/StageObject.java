@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import java.awt.*;
 import java.io.InvalidObjectException;
 
-public abstract class RoomBase
+public abstract class StageObject
 {
     //Private Constants
     private static final int _sectorRequiredWidth = 3500;
@@ -28,8 +28,8 @@ public abstract class RoomBase
     private int _stageHeight;
 
     //Constructor
-    public RoomBase(Sector sector, Image skyTexture, Image wallTexture,
-                    Image floorTexture, int stageWidth, int stageHeight) throws Exception
+    public StageObject(Sector sector, Image skyTexture, Image wallTexture,
+                       Image floorTexture, int stageWidth, int stageHeight) throws Exception
     {
         if(sector.width < _sectorRequiredWidth || sector.height < _sectorRequiredHeight)
             throw new InvalidObjectException("Provided sector not large enough.");
