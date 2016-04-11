@@ -8,24 +8,38 @@ import SectorBase.Sector;
 import javafx.scene.image.Image;
 
 import java.awt.*;
+import java.io.InvalidObjectException;
 
 public abstract class RoomBase
 {
-    //Variables
+    //Private Constants
+    private static final int _sectorRequiredWidth = 3500;
+    private static final int _sectorRequiredHeight = 900;
+
+    //Protected Variables
     protected Sector _sector;
 
+    //Private Variables
     private Image _skyTexture;
     private Image _wallTexture;
     private Image _floorTexture;
 
+    private int _stageWidth;
+    private int _stageHeight;
+
     //Constructor
     public RoomBase(Sector sector, Image skyTexture, Image wallTexture,
-                    Image floorTexture)
+                    Image floorTexture, int stageWidth, int stageHeight) throws Exception
     {
+        if(sector.width < _sectorRequiredWidth || sector.height < _sectorRequiredHeight)
+            throw new InvalidObjectException("Provided sector not large enough.");
+
         _sector = sector;
         _skyTexture = skyTexture;
         _wallTexture = wallTexture;
         _floorTexture = floorTexture;
+        _stageWidth = stageWidth;
+        _stageHeight = stageHeight;
 
         Init();
     }
@@ -84,7 +98,37 @@ public abstract class RoomBase
                 GameConstants.BACKGROUND_GROUP);
     }
 
-    protected abstract void InitStageBounds();
+    private void InitStageBounds()
+    {
+        //Non-rendered Game Bounds
+        Backdrop topBound = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(1),
+                ViewPort.SecLocY(1), _stageWidth,1), true, true,
+                "TopBounds");
+        _sector.AddObject(topBound, GameConstants.ROOM_RENDER_GROUP
+                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+
+        Backdrop botBound = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(1),
+                ViewPort.SecLocY(_stageHeight), _stageWidth,1),
+                true, true, "BottomBounds");
+        _sector.AddObject(botBound, GameConstants.ROOM_RENDER_GROUP
+                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+
+        Backdrop leftBound = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(1),
+                ViewPort.SecLocY(1),1, _stageHeight), true, true,
+                "LeftBounds");
+        _sector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
+                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+
+        Backdrop rightBound = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(_stageWidth),
+                ViewPort.SecLocY(1), 1, _stageHeight),
+                true, true, "RightBounds");
+        _sector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
+                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+    }
 
     protected abstract void InitExits();
 
