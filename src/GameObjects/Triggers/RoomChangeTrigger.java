@@ -2,14 +2,14 @@ package GameObjects.Triggers;
 
 import GameObjectBase.GameWorldObject;
 import GameObjects.Base.GameObject;
-import Stages.RoomBase;
+import Stages.StageObject;
 
 import java.awt.*;
 
 public class RoomChangeTrigger extends GameObject
 {
     //Variables
-    private RoomBase _changeTo;
+    private StageObject _changeTo;
 
     //Constructor
     public RoomChangeTrigger(Rectangle size)
