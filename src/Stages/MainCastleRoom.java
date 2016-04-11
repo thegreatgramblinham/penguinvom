@@ -21,17 +21,23 @@ public class MainCastleRoom extends RoomBase
     private static final int _stageWidth = 3200;
     private static final int _stageHeight = 620;
 
+    private final static Image SKY_TEXTURE = new Image(
+            new File("src/ImageAssets/backgrounds/skybg20000.png").toURI().toString());
+    private final static Image WALL_TEXTURE = new Image(
+            new File("src/ImageAssets/backgrounds/largeWallSector0000.png").toURI().toString());
+    private final static Image FLOOR_TEXTURE = new Image(
+            new File("src/ImageAssets/backgrounds/largeWoodSector0000.png").toURI().toString());
+
+
     //Private Variables
 
     //Constructor
     public MainCastleRoom(Sector sector) throws Exception
     {
-        super(sector);
+        super(sector, SKY_TEXTURE, WALL_TEXTURE, FLOOR_TEXTURE);
 
         if(sector.width < _sectorRequiredWidth || sector.height < _sectorRequiredHeight)
             throw new InvalidObjectException("Provided sector not large enough.");
-
-        Init();
     }
 
     //Get Methods
@@ -55,35 +61,6 @@ public class MainCastleRoom extends RoomBase
     }
 
     //Private Methods
-    @Override
-    protected void InitBackdrop()
-    {
-        //Sky Texture
-        Backdrop skybg = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
-                ViewPort.SecLocY(110),800,280), false, false, "BackSky");
-        skybg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/skybg20000.png")
-                .toURI().toString()));
-        _sector.AddObject(skybg, GameConstants.SKY_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
-
-        //Rendered Walls
-        Backdrop bg = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(418),
-                ViewPort.SecLocY(0),2364,280), true, true, "BackWall");
-        bg.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWallSector0000.png")
-                .toURI().toString()));
-        _sector.AddObject(bg, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
-
-        Backdrop floor = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
-                ViewPort.SecLocY(280),3200,320), true, false, "Floor");
-        floor.SetSprite(new Image(new File("src/ImageAssets/backgrounds/largeWoodSector0000.png")
-                .toURI().toString()));
-        _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
-    }
 
     @Override
     protected void InitStageBounds()

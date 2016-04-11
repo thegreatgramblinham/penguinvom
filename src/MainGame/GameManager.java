@@ -16,6 +16,7 @@ import PhysicsBase.CollisionRules.CollisionGroupNamePair;
 import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.enums.GravityApplication;
+import Stages.CastleGarden;
 import Stages.MainCastleRoom;
 import Stages.RoomBase;
 import javafx.animation.KeyFrame;
@@ -161,7 +162,8 @@ public class GameManager
 
     private void InitEnvironment() throws Exception
     {
-        _currentRoom = new MainCastleRoom(_engineInstance.GetActiveSector());
+        _currentRoom = new CastleGarden(_engineInstance.GetActiveSector());
+        _engineInstance.SetActiveSector(_currentRoom.GetSector());
     }
 
     private void InitEnemySpawner()
