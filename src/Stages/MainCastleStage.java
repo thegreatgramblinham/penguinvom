@@ -10,30 +10,47 @@ import java.io.File;
 
 public class MainCastleStage extends StageObject
 {
-    //Private Constants
-    private static final int STAGE_WIDTH = 3200;
-    private static final int STAGE_HEIGHT = 620;
-
-    private final static Image SKY_TEXTURE = new Image(
-            new File("src/ImageAssets/backgrounds/skybg20000.png").toURI().toString());
-    private final static Image WALL_TEXTURE = new Image(
-            new File("src/ImageAssets/backgrounds/largeWallSector0000.png").toURI().toString());
-    private final static Image FLOOR_TEXTURE = new Image(
-            new File("src/ImageAssets/backgrounds/largeWoodSector0000.png").toURI().toString());
-
-
     //Private Variables
 
     //Constructor
     public MainCastleStage(Sector sector) throws Exception
     {
-        super(sector, SKY_TEXTURE, WALL_TEXTURE,
-                FLOOR_TEXTURE, STAGE_WIDTH, STAGE_HEIGHT);
+        super(sector);
     }
 
     //Get Methods
+    @Override
+    protected Image GetSkyTexture()
+    {
+        return new Image(new File(
+                "src/ImageAssets/backgrounds/skybg20000.png").toURI().toString());
+    }
 
-    //Set Methods
+    @Override
+    protected Image GetWallTexture()
+    {
+        return new Image(new File(
+                "src/ImageAssets/backgrounds/largeWallSector0000.png").toURI().toString());
+    }
+
+    @Override
+    protected Image GetFloorTexture()
+    {
+        return new Image(new File(
+                "src/ImageAssets/backgrounds/largeWoodSector0000.png").toURI().toString());
+    }
+
+    @Override
+    protected int GetStageHeight()
+    {
+        return 3200;
+    }
+
+    @Override
+    protected int GetStageWidth()
+    {
+        return 620;
+    }
 
     //Public Methods
     @Override
@@ -52,6 +69,12 @@ public class MainCastleStage extends StageObject
     }
 
     //Private Methods
+    @Override
+    protected void InitProps()
+    {
+
+    }
+
     @Override
     protected void InitExits()
     {

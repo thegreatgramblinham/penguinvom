@@ -21,6 +21,8 @@ public class GameConstants
     public static final int ENEMY_RENDER_GROUP = 3;
     public static final int ENEMY_PROJECTILE_RENDER_GROUP = 3;
 
+    public static final int ENGINE_FPS = 60;
+
     //Private Static Fields
     private static HashMap<KeyCode, Boolean> keyPressed = new HashMap<>();
 
