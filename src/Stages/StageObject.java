@@ -20,26 +20,14 @@ public abstract class StageObject
     protected Sector _sector;
 
     //Private Variables
-    private Image _skyTexture;
-    private Image _wallTexture;
-    private Image _floorTexture;
-
-    private int _stageWidth;
-    private int _stageHeight;
 
     //Constructor
-    public StageObject(Sector sector, Image skyTexture, Image wallTexture,
-                       Image floorTexture, int stageWidth, int stageHeight) throws Exception
+    public StageObject(Sector sector) throws Exception
     {
         if(sector.width < _sectorRequiredWidth || sector.height < _sectorRequiredHeight)
             throw new InvalidObjectException("Provided sector not large enough.");
 
         _sector = sector;
-        _skyTexture = skyTexture;
-        _wallTexture = wallTexture;
-        _floorTexture = floorTexture;
-        _stageWidth = stageWidth;
-        _stageHeight = stageHeight;
 
         Init();
     }
@@ -55,11 +43,21 @@ public abstract class StageObject
     //Public Methods
     public abstract Point GetPlayerStartingLocation(Side s);
 
+    //Abstract Methods
+    protected abstract void InitExits();
+    protected abstract void InitProps();
+    protected abstract Image GetSkyTexture();
+    protected abstract Image GetWallTexture();
+    protected abstract Image GetFloorTexture();
+    protected abstract int GetStageHeight();
+    protected abstract int GetStageWidth();
+
     //Private Methods
     protected void Init()
     {
         InitBackdrop();
         InitStageBounds();
+        InitProps();
         InitExits();
     }
 
@@ -69,10 +67,10 @@ public abstract class StageObject
         Backdrop skybg = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(0),
                 ViewPort.SecLocY(110),
-                (int)_skyTexture.getWidth(),
-                (int)_skyTexture.getHeight()),
+                (int)GetSkyTexture().getWidth(),
+                (int)GetSkyTexture().getHeight()),
                 false, false, "BackSky");
-        skybg.SetSprite(_skyTexture);
+        skybg.SetSprite(GetSkyTexture());
         _sector.AddObject(skybg, GameConstants.SKY_RENDER_GROUP,
                 GameConstants.BACKGROUND_GROUP);
 
@@ -80,20 +78,20 @@ public abstract class StageObject
         Backdrop wall = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(418),
                 ViewPort.SecLocY(0),
-                (int)_wallTexture.getWidth(),
-                (int)_wallTexture.getHeight()),
+                (int)GetWallTexture().getWidth(),
+                (int)GetWallTexture().getHeight()),
                 true, true, "BackWall");
-        wall.SetSprite(_wallTexture);
+        wall.SetSprite(GetWallTexture());
         _sector.AddObject(wall, GameConstants.ROOM_RENDER_GROUP,
                 GameConstants.BACKGROUND_GROUP);
 
         Backdrop floor = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(0),
                 ViewPort.SecLocY(280),
-                (int)_floorTexture.getWidth(),
-                (int)_floorTexture.getHeight()),
+                (int)GetFloorTexture().getWidth(),
+                (int)GetFloorTexture().getHeight()),
                 true, false, "Floor");
-        floor.SetSprite(_floorTexture);
+        floor.SetSprite(GetFloorTexture());
         _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
                 GameConstants.BACKGROUND_GROUP);
     }
@@ -103,33 +101,32 @@ public abstract class StageObject
         //Non-rendered Game Bounds
         Backdrop topBound = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(1),
-                ViewPort.SecLocY(1), _stageWidth,1), true, true,
+                ViewPort.SecLocY(1), GetStageWidth(),1), true, true,
                 "TopBounds");
         _sector.AddObject(topBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop botBound = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(1),
-                ViewPort.SecLocY(_stageHeight), _stageWidth,1),
+                ViewPort.SecLocY(GetStageHeight()), GetStageWidth(),1),
                 true, true, "BottomBounds");
         _sector.AddObject(botBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(1),
-                ViewPort.SecLocY(1),1, _stageHeight), true, true,
+                ViewPort.SecLocY(1),1, GetStageHeight()), true, true,
                 "LeftBounds");
         _sector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(_stageWidth),
-                ViewPort.SecLocY(1), 1, _stageHeight),
+                ViewPort.SecLocX(GetStageWidth()),
+                ViewPort.SecLocY(1), 1, GetStageHeight()),
                 true, true, "RightBounds");
         _sector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
                 , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
     }
 
-    protected abstract void InitExits();
 
 }

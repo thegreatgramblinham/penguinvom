@@ -3,6 +3,7 @@ package GameObjects.Characters.Enemies;
 import Animation.SpriteAnimation;
 import GameObjects.Characters.Enemies.AI.DagronAi;
 import GameObjects.Characters.Enemies.AI.enums.AiAction;
+import MainGame.GameConstants;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -13,8 +14,10 @@ public class Dagron extends EnemyBase
     public Dagron(Rectangle size, float mass, int health)
     {
         super(size, false, mass, health,
-                new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png", 64, 64, 7, 60, true),
-                new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png", 64, 64, 2, 60, true));
+                new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png",
+                        64, 64, 7, GameConstants.ENGINE_FPS, true),
+                new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png",
+                        64, 64, 2, GameConstants.ENGINE_FPS, true));
         this.SetAlias("Dagron");
         this.SetAi(new DagronAi(this));
     }

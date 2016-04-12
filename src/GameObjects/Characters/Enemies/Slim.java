@@ -14,8 +14,10 @@ public class Slim extends EnemyBase
     public Slim(Rectangle size, float mass, int health)
     {
         super(size, false, mass, health,
-                new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png", 64, 64, 10, 60, true),
-                new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png", 64, 64, 2, 60, true));
+                new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png",
+                        64, 64, 10, GameConstants.ENGINE_FPS, true),
+                new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png",
+                        64, 64, 2, GameConstants.ENGINE_FPS, true));
         this.SetAlias("BigSlim");
         this.SetAi(new SlimAi(this));
     }

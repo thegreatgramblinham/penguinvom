@@ -3,6 +3,7 @@ package GameObjects.Characters.Enemies;
 import Animation.SpriteAnimation;
 import GameObjects.Characters.Enemies.AI.SlimAi;
 import GameObjects.Characters.Enemies.AI.enums.AiAction;
+import MainGame.GameConstants;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -16,8 +17,10 @@ public class MiniSlim extends EnemyBase
     public MiniSlim(Rectangle size, float mass, int health)
     {
         super(size, false, mass, health,
-                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png", 32, 32, 10, 60, true),
-                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png", 32, 32, 2, 60, true));
+                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",
+                        32, 32, 10, GameConstants.ENGINE_FPS, true),
+                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",
+                        32, 32, 2, GameConstants.ENGINE_FPS, true));
         this.SetAlias("MiniSlim");
         this.SetAi(new SlimAi(this));
     }
