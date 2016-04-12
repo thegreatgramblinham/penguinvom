@@ -17,7 +17,7 @@ public class Fountain extends PropBase
     public Fountain(Point location)
     {
         super(new Rectangle(location.x, location.y, WIDTH, HEIGHT), true, 1.0F,
-                new SpriteAnimation("src/ImageAssets/props/fountain0000.png", WIDTH, HEIGHT, 7,
+                new SpriteAnimation("src/ImageAssets/props/fountain0000.png", WIDTH, HEIGHT, 5,
                         GameConstants.ENGINE_FPS, true));
     }
 
