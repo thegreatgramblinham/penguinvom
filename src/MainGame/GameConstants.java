@@ -13,6 +13,7 @@ public class GameConstants
     public static final String ENEMY_PROJECTILE_GROUP = "EnemyProjectileGroup";
     public static final String BACKGROUND_GROUP = "BackgroundGroup";
     public static final String PLAYER_GAMEBOUNDS_GROUP = "PlayerGameBoundsGroup";
+    public static final String PROP_GROUP = "PropGroup";
 
     public static final int SKY_RENDER_GROUP = 0;
     public static final int ROOM_RENDER_GROUP = 1;
@@ -20,6 +21,7 @@ public class GameConstants
     public static final int PLAYER_PROJECTILE_RENDER_GROUP = 3;
     public static final int ENEMY_RENDER_GROUP = 3;
     public static final int ENEMY_PROJECTILE_RENDER_GROUP = 3;
+    public static final int PROP_RENDER_GROUP = 2;
 
     public static final int ENGINE_FPS = 60;
 

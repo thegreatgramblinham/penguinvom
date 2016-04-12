@@ -1,6 +1,8 @@
 package Stages;
 
 import GameObjectBase.enums.Side;
+import GameObjects.Environmental.Props.Fountain;
+import MainGame.GameConstants;
 import SectorBase.Sector;
 import javafx.scene.image.Image;
 
@@ -40,13 +42,13 @@ public class CastleGardenStage extends StageObject
     }
 
     @Override
-    protected int GetStageHeight()
+    protected int GetStageWidth()
     {
         return 1400;
     }
 
     @Override
-    protected int GetStageWidth()
+    protected int GetStageHeight()
     {
         return 620;
     }
@@ -71,7 +73,9 @@ public class CastleGardenStage extends StageObject
     @Override
     protected void InitProps()
     {
-
+        Fountain f = new Fountain(new Point(580, 450));
+        _sector.AddObject(f, GameConstants.PROP_RENDER_GROUP,
+                GameConstants.PROP_GROUP);
     }
 
     @Override

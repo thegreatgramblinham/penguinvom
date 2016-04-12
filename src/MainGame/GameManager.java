@@ -10,6 +10,7 @@ import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Characters.Enemies.Skilleatin;
 import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Characters.Player.PlayerObject;
+import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Projectiles.Bullet;
 import MainGame.Debugging.DebugHelper;
 import PhysicsBase.CollisionRules.CollisionGroupNamePair;
@@ -296,6 +297,10 @@ public class GameManager
                                 {
                                     //Ai controlled action handled.
                                 }
+                                else if(HandlePropAction(gObj, gc))
+                                {
+
+                                }
                                 else if(gObj.GetSprite() != null)
                                 {
                                     gc.drawImage(gObj.GetSprite(),
@@ -395,6 +400,20 @@ public class GameManager
             return false;
 
         aiObj.PerformAndDrawAction(gc);
+
+        return true;
+    }
+
+    private boolean HandlePropAction(GameWorldObject gObj, GraphicsContext gc)
+    {
+        PropBase propObj;
+
+        if(gObj instanceof PropBase)
+            propObj = (PropBase)gObj;
+        else
+            return false;
+
+        propObj.DrawAnimation(gc);
 
         return true;
     }

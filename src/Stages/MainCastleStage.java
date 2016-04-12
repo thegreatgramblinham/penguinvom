@@ -41,13 +41,13 @@ public class MainCastleStage extends StageObject
     }
 
     @Override
-    protected int GetStageHeight()
+    protected int GetStageWidth()
     {
         return 3200;
     }
 
     @Override
-    protected int GetStageWidth()
+    protected int GetStageHeight()
     {
         return 620;
     }

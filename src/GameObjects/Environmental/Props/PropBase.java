@@ -29,7 +29,7 @@ public class PropBase extends GameObject
     public void DrawAnimation(GraphicsContext gc)
     {
         _restingAnimation.DrawSpriteFrame(gc,
-                this.getLocation(), AnimationOrientation.Default);
+                this.GetGameDrawPoint(), AnimationOrientation.Default);
     }
 
     //Private Methods
