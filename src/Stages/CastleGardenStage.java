@@ -1,6 +1,7 @@
 package Stages;
 
 import GameObjectBase.enums.Side;
+import GameObjects.Environmental.Props.Bush;
 import GameObjects.Environmental.Props.Fountain;
 import MainGame.GameConstants;
 import SectorBase.Sector;
@@ -73,9 +74,16 @@ public class CastleGardenStage extends StageObject
     @Override
     protected void InitProps()
     {
-        Fountain f = new Fountain(new Point(580, 450));
+        Fountain f = new Fountain(new Point(575, 450));
         _sector.AddObject(f, GameConstants.PROP_RENDER_GROUP,
                 GameConstants.PROP_GROUP);
+
+        for(int i = 0; i < 7; i++)
+        {
+            Bush b = new Bush(new Point(318+(i*Bush.WIDTH), 320));
+            _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP,
+                    GameConstants.PROP_GROUP);
+        }
     }
 
     @Override
