@@ -27,7 +27,7 @@ public class Bullet extends ProjectileBase
         this.SetSprite(new Image(
                 new File("src/ImageAssets/projectiles/bullet10000.png")
                         .toURI().toString()));
-        
+
         this.SetAlias("PlayerBullet");
     }
 

@@ -19,4 +19,11 @@ public class GameObject extends GameWorldObject
 
         return new Point(ViewPort.DrawLocX(p.x), ViewPort.DrawLocY(p.y));
     }
+
+    public Point GetGameHitBoxDrawPoint()
+    {
+        Point p = new Point(this.GetHitBox().x, this.GetHitBox().y);
+
+        return new Point(ViewPort.DrawLocX(p.x), ViewPort.DrawLocY(p.y));
+    }
 }
