@@ -10,17 +10,25 @@ import java.awt.*;
 
 public class MiniSlim extends EnemyBase
 {
-
-    //Variables
+    //Private Constants
+    private final static int WIDTH = 32;
+    private final static int HEIGHT = 32;
 
     //Constructor
-    public MiniSlim(Rectangle size, float mass, int health)
+    public MiniSlim(Point location, float mass, int health)
     {
-        super(size, false, mass, health,
+        super(
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x, location.y, WIDTH-20, HEIGHT-20),
+                false,
+                mass,
+                health,
                 new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",
-                        32, 32, 10, GameConstants.ENGINE_FPS, true),
+                        WIDTH, HEIGHT, 10, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",
-                        32, 32, 2, GameConstants.ENGINE_FPS, true));
+                        WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
+        );
+
         this.SetAlias("MiniSlim");
         this.SetAi(new SlimAi(this));
     }

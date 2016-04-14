@@ -15,10 +15,18 @@ public class EnemyBullet extends ProjectileBase
     //Constructor
     public EnemyBullet(Point p, GameObject owner)
     {
-        super(new Rectangle(p.x, p.y, HEIGHT, WIDTH), 0.0F, owner, 5);
+        super(
+                new Rectangle(p.x, p.y, HEIGHT, WIDTH),
+                new Rectangle(p.x, p.y, HEIGHT, WIDTH),
+                0.0F,
+                owner,
+                5
+        );
+
         this.SetSprite(new javafx.scene.image.Image(
                 new File("src/ImageAssets/projectiles/enemyBullet0000.png")
                         .toURI().toString()));
+
         this.SetAlias("EnemyBullet");
     }
 

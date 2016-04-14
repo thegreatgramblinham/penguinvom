@@ -8,9 +8,9 @@ import java.awt.*;
 
 public class GameObject extends GameWorldObject
 {
-    public GameObject(Rectangle size, boolean isImmobile, float mass)
+    public GameObject(Rectangle size, Rectangle hitBox, boolean isImmobile, float mass)
     {
-        super(size, isImmobile, mass);
+        super(size, hitBox, isImmobile, mass);
     }
 
     public Point GetGameDrawPoint()

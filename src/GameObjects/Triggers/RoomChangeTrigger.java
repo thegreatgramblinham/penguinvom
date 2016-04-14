@@ -14,7 +14,7 @@ public class RoomChangeTrigger extends GameObject
     //Constructor
     public RoomChangeTrigger(Rectangle size)
     {
-        super(size, true, 0.0F);
+        super(size, size, true, 0.0F);
     }
 
     //Get Methods

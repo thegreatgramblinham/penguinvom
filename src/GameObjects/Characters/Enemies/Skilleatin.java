@@ -9,16 +9,25 @@ import java.awt.*;
 
 public class Skilleatin extends EnemyBase
 {
-    //Variables
+    //Private Constants
+    private final static int WIDTH = 64;
+    private final static int HEIGHT = 64;
 
     //Constructor
-    public Skilleatin(Rectangle size, float mass, int health)
+    public Skilleatin(Point location, float mass, int health)
     {
-        super(size, false, mass, health,
+        super(
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x, location.y, WIDTH-20, HEIGHT-20),
+                false,
+                mass,
+                health,
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png",
-                        64, 64, 5, GameConstants.ENGINE_FPS, true),
+                        WIDTH, HEIGHT, 5, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png",
-                        64, 64, 2, GameConstants.ENGINE_FPS, true));
+                        WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
+        );
+
         this.SetAlias("Skilleatin");
         this.SetAi(new SkilleatinAi(this));
     }
@@ -55,7 +64,7 @@ public class Skilleatin extends EnemyBase
     @Override
     public Object clone()
     {
-        return new Skilleatin(GetBounds(),GetMass(), GetHealth());
+        return new Skilleatin(NGetLocation(),GetMass(), GetHealth());
     }
 
     //Private Methods

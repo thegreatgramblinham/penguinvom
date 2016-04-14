@@ -17,12 +17,12 @@ public abstract class EnemyBase extends CharacterBase implements IAiController, 
     protected EnemyAiBase _ai;
 
     //Constructor
-    public EnemyBase(Rectangle size, boolean isImmobile,
+    public EnemyBase(Rectangle size, Rectangle hitBox, boolean isImmobile,
                      float mass, int health,
                      SpriteAnimation walkCycle,
                      SpriteAnimation restCycle)
     {
-        super(size, isImmobile, mass, health, walkCycle, restCycle);
+        super(size, hitBox, isImmobile, mass, health, walkCycle, restCycle);
         Init();
     }
 

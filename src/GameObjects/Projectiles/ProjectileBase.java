@@ -12,10 +12,10 @@ public class ProjectileBase extends GameObject
     private GameObject _owner;
 
     //Constructor
-    public ProjectileBase(Rectangle size, float mass, GameObject owner,
+    public ProjectileBase(Rectangle size, Rectangle hitBox, float mass, GameObject owner,
                           int damage)
     {
-        super(size, false, mass);
+        super(size, hitBox, false, mass);
         _damage = damage;
         _owner = owner;
     }

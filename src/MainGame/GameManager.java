@@ -169,17 +169,17 @@ public class GameManager
     private void InitEnemySpawner()
     {
         //Temp Enemy Render
-        Slim slim = new Slim(new Rectangle(
+        Slim slim = new Slim(new Point(
                 ViewPort.SecLocX(600),
-                ViewPort.SecLocY(400),64,64), 0.2F, 10);
+                ViewPort.SecLocY(400)), 0.2F, 10);
 
-        Dagron dagron = new Dagron(new Rectangle(
+        Dagron dagron = new Dagron(new Point(
                 ViewPort.SecLocX(600),
-                ViewPort.SecLocY(300),64,64), 0.5F, 10);
+                ViewPort.SecLocY(300)), 0.5F, 10);
 
-        Skilleatin skilleatin = new Skilleatin(new Rectangle(
+        Skilleatin skilleatin = new Skilleatin(new Point(
                 ViewPort.SecLocX(600),
-                ViewPort.SecLocY(300),64,64), 0.5F, 10);
+                ViewPort.SecLocY(300)), 0.5F, 10);
 
         EnemyBase[] enemies = {slim, dagron, skilleatin};
 
@@ -191,10 +191,9 @@ public class GameManager
     private void InitPlayer()
     {
         _player = new PlayerObject(
-                new Rectangle(
+                new Point(
                         ViewPort.SecLocX(_currentRoom.GetPlayerStartingLocation(Side.Left).x),
-                        ViewPort.SecLocY(_currentRoom.GetPlayerStartingLocation(Side.Left).y),
-                        64, 64), 0.1F, 20);
+                        ViewPort.SecLocY(_currentRoom.GetPlayerStartingLocation(Side.Left).y)), 0.1F, 20);
 
         _engineInstance.GetActiveSector().AddObject(_player,
                 GameConstants.PLAYER_RENDER_GROUP,
