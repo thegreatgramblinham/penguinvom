@@ -49,7 +49,7 @@ public class GameManager
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
     private static GameEngine _engineInstance;
-    private static boolean _isFullscreen = true;
+    private static boolean _isFullscreen = false;
     private static boolean _showPropertyDebugMode = false;
 
     //Private Variables - UI
@@ -268,10 +268,10 @@ public class GameManager
 
                                 if(_showPropertyDebugMode)
                                 {
-                                    gc.strokeRect(gObj.GetGameDrawPoint().x,
-                                            gObj.GetGameDrawPoint().y,
-                                            gObj.width,
-                                            gObj.height);
+                                    gc.strokeRect(gObj.GetGameHitBoxDrawPoint().x,
+                                            gObj.GetGameHitBoxDrawPoint().y,
+                                            gObj.GetHitBox().width,
+                                            gObj.GetHitBox().height);
 
                                     if(!gObj.GetIsImmobile())
                                     {
