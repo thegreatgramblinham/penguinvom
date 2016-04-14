@@ -74,7 +74,7 @@ public class CastleGardenStage extends StageObject
     @Override
     protected void InitProps()
     {
-        Fountain f = new Fountain(new Point(575, 450));
+        Fountain f = new Fountain(new Point(570, 450));
         _sector.AddObject(f, GameConstants.PROP_RENDER_GROUP_BACK,
                 GameConstants.PROP_GROUP);
 
