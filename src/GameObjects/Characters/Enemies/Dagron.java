@@ -10,14 +10,25 @@ import java.awt.*;
 
 public class Dagron extends EnemyBase
 {
+    //Private Constants
+    private final static int WIDTH = 64;
+    private final static int HEIGHT = 64;
+
     //Constructor
-    public Dagron(Rectangle size, float mass, int health)
+    public Dagron(Point location, float mass, int health)
     {
-        super(size, false, mass, health,
+        super(
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x, location.y, WIDTH-20, HEIGHT-20),
+                false,
+                mass,
+                health,
                 new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png",
-                        64, 64, 7, GameConstants.ENGINE_FPS, true),
+                        WIDTH, HEIGHT, 7, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png",
-                        64, 64, 2, GameConstants.ENGINE_FPS, true));
+                        WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
+        );
+
         this.SetAlias("Dagron");
         this.SetAi(new DagronAi(this));
     }
@@ -55,6 +66,6 @@ public class Dagron extends EnemyBase
     @Override
     public Object clone()
     {
-        return new Dagron(GetBounds(),GetMass(), GetHealth());
+        return new Dagron(NGetLocation(),GetMass(), GetHealth());
     }
 }

@@ -10,12 +10,22 @@ import java.awt.*;
 
 public class PlayerObject extends CharacterBase
 {
+    //Private Constants
+    private final static int WIDTH = 64;
+    private final static int HEIGHT = 64;
+
     //Constructor
-    public PlayerObject(Rectangle size, float mass, int health)
+    public PlayerObject(Point location, float mass, int health)
     {
-        super(size, false, mass, health,
+        super(
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x, location.y, WIDTH-20, HEIGHT-20),
+                false,
+                mass,
+                health,
                 new SpriteAnimation("src/ImageAssets/player/shuf64png.png", 64, 64, 5, 60, true),
-                null);
+                null
+        );
 
         this.SetAlias("PlayerObject");
     }

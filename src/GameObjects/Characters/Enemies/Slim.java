@@ -10,14 +10,25 @@ import java.awt.*;
 
 public class Slim extends EnemyBase
 {
+    //Private Constants
+    private final static int WIDTH = 64;
+    private final static int HEIGHT = 64;
+
     //Constructor
-    public Slim(Rectangle size, float mass, int health)
+    public Slim(Point location, float mass, int health)
     {
-        super(size, false, mass, health,
+        super(
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x, location.y, WIDTH-20, HEIGHT-20),
+                false,
+                mass,
+                health,
                 new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png",
-                        64, 64, 10, GameConstants.ENGINE_FPS, true),
+                        WIDTH, HEIGHT, 10, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png",
-                        64, 64, 2, GameConstants.ENGINE_FPS, true));
+                        WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
+        );
+
         this.SetAlias("BigSlim");
         this.SetAi(new SlimAi(this));
     }
@@ -53,17 +64,15 @@ public class Slim extends EnemyBase
     @Override
     public Object clone()
     {
-        return new Slim(GetBounds(),GetMass(), GetHealth());
+        return new Slim(NGetLocation(),GetMass(), GetHealth());
     }
 
     @Override
     public void OnDeath()
     {
-        MiniSlim s1 = new MiniSlim(
-                new Rectangle(x, y + (int)this.GetHalfHeight(), 32, 32), 0.5F, 5);
+        MiniSlim s1 = new MiniSlim(new Point(x, y + (int)this.GetHalfHeight()), 0.5F, 5);
         MiniSlim s2 = new MiniSlim(
-                new Rectangle(x + (int)this.GetHalfWidth() + 1,
-                        y + (int)this.GetHalfHeight() + 10, 32, 32), 0.5F, 5);
+                new Point(x + (int)this.GetHalfWidth() + 1, y + (int)this.GetHalfHeight() + 10), 0.5F, 5);
 
         GameManager.QueueObjectForAddition(s1, GameConstants.ENEMY_RENDER_GROUP,
                 GameConstants.ENEMY_GROUP);

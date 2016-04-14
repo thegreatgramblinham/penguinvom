@@ -16,10 +16,18 @@ public class Bullet extends ProjectileBase
     //Constructor
     public Bullet(Point p, GameObject owner)
     {
-        super(new Rectangle(p.x, p.y, HEIGHT, WIDTH), 0.01F, owner, 5);
+        super(
+                new Rectangle(p.x, p.y, HEIGHT, WIDTH),
+                new Rectangle(p.x, p.y, HEIGHT, WIDTH),
+                0.01F,
+                owner,
+                5
+        );
+
         this.SetSprite(new Image(
                 new File("src/ImageAssets/projectiles/bullet10000.png")
                         .toURI().toString()));
+        
         this.SetAlias("PlayerBullet");
     }
 

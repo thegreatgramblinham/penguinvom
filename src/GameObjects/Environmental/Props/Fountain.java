@@ -16,9 +16,14 @@ public class Fountain extends PropBase
     //Constructor
     public Fountain(Point location)
     {
-        super(new Rectangle(location.x, location.y, WIDTH, HEIGHT), true, 1.0F,
+        super(
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT-70),
+                true,
+                1.0F,
                 new SpriteAnimation("src/ImageAssets/props/fountain0000.png", WIDTH, HEIGHT, 5,
-                        GameConstants.ENGINE_FPS, true));
+                        GameConstants.ENGINE_FPS, true)
+        );
     }
 
     //Get Methods

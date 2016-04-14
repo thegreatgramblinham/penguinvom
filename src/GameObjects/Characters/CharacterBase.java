@@ -28,10 +28,10 @@ public class CharacterBase extends GameObject
     protected SpriteAnimation _restCycle;
 
     //Constructor
-    public CharacterBase(Rectangle size, boolean isImmobile, float mass, int health,
+    public CharacterBase(Rectangle size, Rectangle hitBox, boolean isImmobile, float mass, int health,
                          SpriteAnimation walkCycle, SpriteAnimation restCycle)
     {
-        super(size, isImmobile, mass);
+        super(size, hitBox, isImmobile, mass);
         this.SetHealth(health);
         _walkCycle = walkCycle;
         _restCycle = restCycle;

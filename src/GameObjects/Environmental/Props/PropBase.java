@@ -13,10 +13,10 @@ public class PropBase extends GameObject
     private SpriteAnimation _restingAnimation;
 
     //Constructor
-    public PropBase(Rectangle size, boolean isImmobile, float mass,
+    public PropBase(Rectangle size, Rectangle hitbox, boolean isImmobile, float mass,
                     SpriteAnimation restingAnimation)
     {
-        super(size, isImmobile, mass);
+        super(size, hitbox, isImmobile, mass);
 
         _restingAnimation = restingAnimation;
     }

@@ -9,7 +9,7 @@ public class Backdrop extends GameObject
 
     public Backdrop(Rectangle size, boolean isImmobile, boolean canCollide, String alias)
     {
-        super(size, isImmobile, 1.0F);
+        super(size, size, isImmobile, 1.0F);
 
         this.SetCanCollide(canCollide);
         this.SetAlias(alias);
