@@ -1,9 +1,12 @@
 package Stages;
 
 import GameObjectBase.enums.Side;
+import GameObjects.Triggers.RoomChangeTrigger;
+import MainGame.GameConstants;
 import MainGame.ViewPort;
 import SectorBase.Sector;
 
+import SectorBase.enums.Direction;
 import javafx.scene.image.Image;
 
 import java.awt.*;
@@ -64,7 +67,7 @@ public class MainCastleStage extends StageObject
             case Left:
             case Right:
                 return new Point(
-                        ViewPort.SecLocX(272),
+                        ViewPort.SecLocX(280),
                         ViewPort.SecLocX(372));
         }
 
@@ -81,7 +84,19 @@ public class MainCastleStage extends StageObject
     @Override
     protected void InitExits()
     {
-
+        RoomChangeTrigger leftExit = new RoomChangeTrigger
+                (
+                        new Rectangle(
+                                ViewPort.SecLocX(200),
+                                ViewPort.SecLocY(345),
+                                60,
+                                120),
+                        MainCastleStage.class,
+                        Direction.Left,
+                        Side.Right
+                );
+        _sector.AddObject(leftExit, GameConstants.PROP_RENDER_GROUP_FORWARD,
+                GameConstants.TRIGGER_COLLISION_GROUP);
     }
 
 

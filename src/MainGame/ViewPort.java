@@ -15,7 +15,7 @@ public class ViewPort
     private static final double RIGHT_SCROLL_PARTITION = (1.5/2.5);
     private static final double TOP_SCROLL_PARTITION = (3.5/5.0);
     private static final double BOTTOM_SCROLL_PARTITION = (4.0/5.0);
-    
+
     //Public Static Fields
     public static final int X_RES = 1067; //1024;
     public static final int Y_RES = 600; //768;
