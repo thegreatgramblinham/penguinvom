@@ -210,7 +210,9 @@ public class GameManager
 
     private void InitPlayer()
     {
-        _player = new PlayerObject(_currentRoom.GetPlayerStartingLocation(Side.Left), 0.1F, 20);
+        _player = new PlayerObject(
+                _currentRoom.GetPlayerStartingLocation(Side.Left),
+                0.1F, 20);
 
         _engineInstance.GetActiveSector().AddObject(_player,
                 GameConstants.PLAYER_RENDER_GROUP,

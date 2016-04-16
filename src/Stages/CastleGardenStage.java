@@ -6,6 +6,7 @@ import GameObjects.Environmental.Props.Fountain;
 import GameObjects.Triggers.RoomChangeTrigger;
 import MainGame.GameConstants;
 import MainGame.Mapping.StageMap;
+import MainGame.ViewPort;
 import SectorBase.Sector;
 import SectorBase.enums.Direction;
 import javafx.scene.image.Image;
@@ -68,7 +69,9 @@ public class CastleGardenStage extends StageObject
             case Bottom:
             case Left:
             case Right:
-                return new Point(500, 500);
+                return new Point(
+                        ViewPort.SecLocX(272),
+                        ViewPort.SecLocY(372));
         }
 
         return null;
@@ -78,13 +81,18 @@ public class CastleGardenStage extends StageObject
     @Override
     protected void InitProps()
     {
-        Fountain f = new Fountain(new Point(570, 450));
+        Fountain f = new Fountain(
+                new Point(
+                        ViewPort.SecLocX(442),
+                        ViewPort.SecLocY(322)));
         _sector.AddObject(f, GameConstants.PROP_RENDER_GROUP_BACK,
                 GameConstants.PROP_COLLISION_GROUP);
 
         for(int i = 0; i < 7; i++)
         {
-            Bush b = new Bush(new Point(318+(i*Bush.WIDTH), 320));
+            Bush b = new Bush(new Point(
+                    ViewPort.SecLocX(190+(i*Bush.WIDTH)),
+                    ViewPort.SecLocY(192)));
             _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP_BACK,
                     GameConstants.PROP_COLLISION_GROUP);
         }
@@ -92,7 +100,9 @@ public class CastleGardenStage extends StageObject
 
         for(int i = 0; i < 9; i++)
         {
-            Bush b = new Bush(new Point(190+(i*Bush.WIDTH), 620));
+            Bush b = new Bush(new Point(
+                    ViewPort.SecLocX(62+(i*Bush.WIDTH)),
+                    ViewPort.SecLocY(490)));
             b.SetCanCollide(false);
             _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP_FORWARD,
                     GameConstants.PROP_COLLISION_GROUP);
@@ -104,7 +114,11 @@ public class CastleGardenStage extends StageObject
     {
         RoomChangeTrigger rightExit = new RoomChangeTrigger
                 (
-                    new Rectangle(1000, 500, 60, 60),
+                    new Rectangle(
+                            ViewPort.SecLocX(1282),
+                            ViewPort.SecLocY(332),
+                            60,
+                            120),
                     CastleGardenStage.class,
                     Direction.Right,
                     Side.Left
