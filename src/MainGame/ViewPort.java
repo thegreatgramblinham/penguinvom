@@ -4,6 +4,11 @@ import java.awt.*;
 
 public class ViewPort
 {
+    /*
+        Controls the 'window' that the player is able to see.
+        **NOTE: This class has static dependencies, only one instance is allowed.**
+    */
+
     //Private Constants
     private static final int SCROLL_SPEED = 2;
     private static final double LEFT_SCROLL_PARTITION = (1.0/2.5);
