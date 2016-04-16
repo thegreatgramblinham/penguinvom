@@ -3,12 +3,16 @@ package Stages;
 import GameObjectBase.enums.Side;
 import GameObjects.Environmental.Props.Bush;
 import GameObjects.Environmental.Props.Fountain;
+import GameObjects.Triggers.RoomChangeTrigger;
 import MainGame.GameConstants;
+import MainGame.Mapping.StageMap;
 import SectorBase.Sector;
+import SectorBase.enums.Direction;
 import javafx.scene.image.Image;
 
 import java.awt.*;
 import java.io.File;
+import java.lang.reflect.Type;
 
 public class CastleGardenStage extends StageObject
 {
@@ -98,7 +102,15 @@ public class CastleGardenStage extends StageObject
     @Override
     protected void InitExits()
     {
+        RoomChangeTrigger rightExit = new RoomChangeTrigger
+                (
+                    new Rectangle(1000, 500, 60, 60),
+                    StageMap.Query(CastleGardenStage.class, Direction.Right),
+                    Side.Left
+                );
 
+        _sector.AddObject(rightExit, GameConstants.PROP_RENDER_GROUP_FORWARD,
+                GameConstants.TRIGGER_COLLISION_GROUP);
     }
 
 

@@ -14,9 +14,11 @@ import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Projectiles.Bullet;
 import Global.Tuple;
 import MainGame.Debugging.DebugHelper;
+import MainGame.Mapping.StageMap;
 import PhysicsBase.CollisionRules.CollisionGroupNamePair;
 import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
+import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
 import Stages.CastleGardenStage;
 import Stages.StageObject;
@@ -68,6 +70,7 @@ public class GameManager
     //Private Variables - Engine
     private PlayerObject _player;
     private EnemySpawner _enemySpawner;
+    private StageMap _stageMap;
     private StageObject _currentRoom;
     private double _lastPlayerDirection = 0;
 
@@ -153,10 +156,6 @@ public class GameManager
         root.getChildren().add( canvas );
         _gc = canvas.getGraphicsContext2D();
 
-        _engineInstance.CreateSector(
-                    _stageWidth,
-                   _stageHeight,
-                   30, 0.5F, GravityApplication.Area);
     }
 
     private void InitRenderLoop()
@@ -169,7 +168,21 @@ public class GameManager
 
     private void InitEnvironment() throws Exception
     {
-        _currentRoom = new CastleGardenStage(_engineInstance.GetActiveSector());
+
+        Sector s1 = _engineInstance.CreateSector(
+                _stageWidth,
+                _stageHeight,
+                30, 0.5F, GravityApplication.Area);
+        Sector s2 = _engineInstance.CreateSector(
+                _stageWidth,
+                _stageHeight,
+                30, 0.5F, GravityApplication.Area);
+
+        _stageMap = new StageMap(s1, s2);
+
+
+        _currentRoom =  StageMap.Query(CastleGardenStage.class);
+
         _engineInstance.SetActiveSector(_currentRoom.GetSector());
     }
 

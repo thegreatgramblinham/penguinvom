@@ -14,6 +14,7 @@ public class GameConstants
     public static final String BACKGROUND_COLLISION_GROUP = "BackgroundGroup";
     public static final String PLAYER_GAMEBOUNDS_COLLISION_GROUP = "PlayerGameBoundsGroup";
     public static final String PROP_COLLISION_GROUP = "PropGroup";
+    public static final String TRIGGER_COLLISION_GROUP = "TriggerGroup";
 
     public static final int SKY_RENDER_GROUP = 0;
     public static final int ROOM_RENDER_GROUP = 1;
