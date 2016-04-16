@@ -2,6 +2,7 @@ package MainGame;
 
 import javafx.scene.input.KeyCode;
 
+import java.awt.*;
 import java.util.HashMap;
 
 public class GameConstants
@@ -26,6 +27,8 @@ public class GameConstants
     public static final int PROP_RENDER_GROUP_FORWARD = 4;
 
     public static final int ENGINE_FPS = 60;
+
+    public static final Point GAME_STARTING_POINT = new Point(128,128);
 
     //Private Static Fields
     private static HashMap<KeyCode, Boolean> keyPressed = new HashMap<>();

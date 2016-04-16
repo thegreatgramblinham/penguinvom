@@ -115,7 +115,7 @@ public class CastleGardenStage extends StageObject
         RoomChangeTrigger rightExit = new RoomChangeTrigger
                 (
                     new Rectangle(
-                            ViewPort.SecLocX(1282),
+                            ViewPort.SecLocX(1270),
                             ViewPort.SecLocY(332),
                             60,
                             120),
