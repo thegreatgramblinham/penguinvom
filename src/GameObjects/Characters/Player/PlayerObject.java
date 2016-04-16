@@ -19,11 +19,11 @@ public class PlayerObject extends CharacterBase
     {
         super(
                 new Rectangle(location.x, location.y, WIDTH, HEIGHT),
-                new Rectangle(location.x, location.y, WIDTH-20, HEIGHT-20),
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
                 false,
                 mass,
                 health,
-                new SpriteAnimation("src/ImageAssets/player/shuf64png.png", 64, 64, 5, 60, true),
+                new SpriteAnimation("src/ImageAssets/player/shuf0000.png", 64, 64, 5, 60, true),
                 null
         );
 
