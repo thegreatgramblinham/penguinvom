@@ -76,13 +76,13 @@ public class CastleGardenStage extends StageObject
     {
         Fountain f = new Fountain(new Point(570, 450));
         _sector.AddObject(f, GameConstants.PROP_RENDER_GROUP_BACK,
-                GameConstants.PROP_GROUP);
+                GameConstants.PROP_COLLISION_GROUP);
 
         for(int i = 0; i < 7; i++)
         {
             Bush b = new Bush(new Point(318+(i*Bush.WIDTH), 320));
             _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP_BACK,
-                    GameConstants.PROP_GROUP);
+                    GameConstants.PROP_COLLISION_GROUP);
         }
 
 
@@ -91,7 +91,7 @@ public class CastleGardenStage extends StageObject
             Bush b = new Bush(new Point(190+(i*Bush.WIDTH), 620));
             b.SetCanCollide(false);
             _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP_FORWARD,
-                    GameConstants.PROP_GROUP);
+                    GameConstants.PROP_COLLISION_GROUP);
         }
     }
 
