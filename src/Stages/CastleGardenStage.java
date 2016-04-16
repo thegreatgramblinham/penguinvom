@@ -68,10 +68,14 @@ public class CastleGardenStage extends StageObject
             case Top:
             case Bottom:
             case Left:
+                return new Point(
+                        ViewPort.SecLocX(280),
+                        ViewPort.SecLocY(372));
             case Right:
                 return new Point(
-                        ViewPort.SecLocX(272),
+                        ViewPort.SecLocX(1172),
                         ViewPort.SecLocY(372));
+
         }
 
         return null;
@@ -115,8 +119,8 @@ public class CastleGardenStage extends StageObject
         RoomChangeTrigger rightExit = new RoomChangeTrigger
                 (
                     new Rectangle(
-                            ViewPort.SecLocX(1270),
-                            ViewPort.SecLocY(332),
+                            ViewPort.SecLocX(1250),
+                            ViewPort.SecLocY(345),
                             60,
                             120),
                     CastleGardenStage.class,
