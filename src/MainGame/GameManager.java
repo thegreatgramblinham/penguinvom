@@ -48,10 +48,6 @@ public class GameManager
        **NOTE: This class has static dependencies, only one instance is allowed.**
     */
 
-    //Private Constants
-    private static final int _stageWidth = 3500;
-    private static final int _stageHeight = 900;
-
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
@@ -143,12 +139,13 @@ public class GameManager
 
         _primaryStage.setScene( scene );
 
-        _viewPort = new ViewPort( ViewPort.X_RES,
+        _viewPort = new ViewPort(
+                ViewPort.X_RES,
                 ViewPort.Y_RES,
                 0,
                 GameConstants.GAME_STARTING_POINT.y,
-                _stageWidth,
-                _stageHeight
+                GameConstants.DEFAULT_SECTOR_WIDTH,
+                GameConstants.DEFAULT_SECTOR_HEIGHT
                 );
 
         Canvas canvas = new Canvas( ViewPort.X_RES, ViewPort.Y_RES );
@@ -167,20 +164,9 @@ public class GameManager
 
     private void InitEnvironment() throws Exception
     {
+        _stageMap = new StageMap();
 
-        Sector s1 = _engineInstance.CreateSector(
-                _stageWidth,
-                _stageHeight,
-                30, 0.5F, GravityApplication.Area);
-        Sector s2 = _engineInstance.CreateSector(
-                _stageWidth,
-                _stageHeight,
-                30, 0.5F, GravityApplication.Area);
-
-        _stageMap = new StageMap(s1, s2);
-
-
-        _currentRoom =  StageMap.Query(CastleGardenStage.class);
+        _currentRoom = StageMap.Query(CastleGardenStage.class);
 
         _engineInstance.SetActiveSector(_currentRoom.GetSector());
     }
@@ -259,7 +245,6 @@ public class GameManager
                     {
                         gc.clearRect(0, 0, _viewPort.GetWidth(), _viewPort.GetHeight());
 
-                        //todo - allow for change of sector if necessary
                         HandleSectorChange();
 
                         AddQueuedObjects();
@@ -483,6 +468,16 @@ public class GameManager
     {
         if(_sectorTransitionQueue == null)
             _sectorTransitionQueue = new Tuple<>(changeTo, enteringFrom);
+    }
+
+    public static Sector CreateNewEngineSector()
+    {
+        return _engineInstance.CreateSector(
+                GameConstants.DEFAULT_SECTOR_WIDTH,
+                GameConstants.DEFAULT_SECTOR_HEIGHT,
+                GameConstants.DEFAULT_SECTOR_GRID_UNIT_SIZE,
+                GameConstants.GRAVITY,
+                GravityApplication.Area);
     }
 
 }
