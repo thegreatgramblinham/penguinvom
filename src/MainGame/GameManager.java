@@ -49,7 +49,6 @@ public class GameManager
     */
 
     //Private Constants
-    private static final Point _gameStartingPoint = new Point(128,128);
     private static final int _stageWidth = 3500;
     private static final int _stageHeight = 900;
 
@@ -145,9 +144,9 @@ public class GameManager
         _primaryStage.setScene( scene );
 
         _viewPort = new ViewPort( ViewPort.X_RES,
-                ViewPort.Y_RES, _gameStartingPoint,
+                ViewPort.Y_RES,
                 0,
-                _gameStartingPoint.y,
+                GameConstants.GAME_STARTING_POINT.y,
                 _stageWidth,
                 _stageHeight
                 );

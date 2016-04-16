@@ -32,10 +32,12 @@ public class ViewPort
     private int _maxBottom;
 
     //Constructor
-    public ViewPort(int width, int height, Point location,
+    public ViewPort(int width, int height,
                     int minLeft, int minTop, int maxRight, int maxBottom)
     {
-        _location = location;
+        _location = new Point(
+                GameConstants.GAME_STARTING_POINT.x,
+                GameConstants.GAME_STARTING_POINT.y);
         _xRes = width;
         _yRes = height;
         _minLeft = minLeft;
@@ -122,12 +124,12 @@ public class ViewPort
     //Public Static Methods
     public static int SecLocX(int offset)
     {
-        return _location.x + offset;
+        return GameConstants.GAME_STARTING_POINT.x + offset;
     }
 
     public static int SecLocY(int offset)
     {
-        return _location.y + offset;
+        return GameConstants.GAME_STARTING_POINT.y + offset;
     }
 
     public static int DrawLocX(int offset)

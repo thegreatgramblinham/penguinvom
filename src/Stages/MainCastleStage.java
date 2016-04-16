@@ -65,7 +65,7 @@ public class MainCastleStage extends StageObject
             case Right:
                 return new Point(
                         ViewPort.SecLocX(272),
-                        ViewPort.SecLocY(372));
+                        ViewPort.SecLocX(372));
         }
 
         return null;
