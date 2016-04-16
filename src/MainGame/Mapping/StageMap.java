@@ -1,6 +1,6 @@
 package MainGame.Mapping;
 
-import SectorBase.Sector;
+import MainGame.GameManager;
 import SectorBase.enums.Direction;
 import Stages.CastleGardenStage;
 import Stages.MainCastleStage;
@@ -8,7 +8,6 @@ import Stages.StageObject;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class StageMap
 {
@@ -18,22 +17,21 @@ public class StageMap
     */
 
     //Private Variables
-    private static HashMap<Type, MapNode> _nodeLookup;
-
+    private static HashMap<Type, MapNode> _loadedStageGroup;
 
     //Constructor
-    public StageMap(Sector s1, Sector s2) throws Exception
+    public StageMap() throws Exception
     {
-        _nodeLookup = new HashMap<>();
-        InitStageGroup1(s1, s2);
+        _loadedStageGroup = new HashMap<>();
+        LoadStageGroup1();
     }
 
     //Public Static Methods
     public static StageObject Query(Type t, Direction d)
     {
-        if(!_nodeLookup.containsKey(t)) return null;
+        if(!_loadedStageGroup.containsKey(t)) return null;
 
-        MapNode n = _nodeLookup.get(t).GetLink(d);
+        MapNode n = _loadedStageGroup.get(t).GetLink(d);
 
         return n != null
                 ? n.GetStage()
@@ -42,24 +40,24 @@ public class StageMap
 
     public static StageObject Query(Type t)
     {
-        if(!_nodeLookup.containsKey(t)) return null;
+        if(!_loadedStageGroup.containsKey(t)) return null;
 
-        return _nodeLookup.get(t).GetStage();
+        return _loadedStageGroup.get(t).GetStage();
     }
 
     //Private Methods
-    private void InitStageGroup1(Sector s1, Sector s2) throws Exception
+    private void LoadStageGroup1() throws Exception
     {
-        HashSet<MapNode> nodeSet = new HashSet<>();
-
-        MapNode garden = new MapNode(new CastleGardenStage(s1));
-        MapNode castle = new MapNode(new MainCastleStage(s2));
+        MapNode garden = new MapNode(
+                new CastleGardenStage(GameManager.CreateNewEngineSector()));
+        MapNode castle = new MapNode(
+                new MainCastleStage(GameManager.CreateNewEngineSector()));
 
         garden.LinkDirection(castle, Direction.Right);
         castle.LinkDirection(garden, Direction.Left);
 
-        _nodeLookup.put(CastleGardenStage.class, garden);
-        _nodeLookup.put(MainCastleStage.class, castle);
+        _loadedStageGroup.put(CastleGardenStage.class, garden);
+        _loadedStageGroup.put(MainCastleStage.class, castle);
 ;    }
 
 }

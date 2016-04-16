@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class GameConstants
 {
-    //Public Constants
+    //Collision Group Constants
     public static final String PLAYER_COLLISION_GROUP = "PlayerGroup";
     public static final String PLAYER_PROJECTILE_COLLISION_GROUP = "PlayerProjectileGroup";
     public static final String ENEMY_COLLISION_GROUP = "EnemyGroup";
@@ -17,6 +17,7 @@ public class GameConstants
     public static final String PROP_COLLISION_GROUP = "PropGroup";
     public static final String TRIGGER_COLLISION_GROUP = "TriggerGroup";
 
+    //Render Group Constants
     public static final int SKY_RENDER_GROUP = 0;
     public static final int ROOM_RENDER_GROUP = 1;
     public static final int PLAYER_RENDER_GROUP = 3;
@@ -26,9 +27,15 @@ public class GameConstants
     public static final int PROP_RENDER_GROUP_BACK = 2;
     public static final int PROP_RENDER_GROUP_FORWARD = 4;
 
+    //Engine Run Constants
     public static final int ENGINE_FPS = 60;
-
     public static final Point GAME_STARTING_POINT = new Point(128,128);
+
+    //Sector Constants
+    public static final int DEFAULT_SECTOR_WIDTH = 3500;
+    public static final int DEFAULT_SECTOR_HEIGHT = 900;
+    public static final int DEFAULT_SECTOR_GRID_UNIT_SIZE = 30;
+    public static final float GRAVITY = 0.5F;
 
     //Private Static Fields
     private static HashMap<KeyCode, Boolean> keyPressed = new HashMap<>();

@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private GameManager _gm;
+    private static GameManager _gm;
 
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -16,7 +16,6 @@ public class Main extends Application {
 
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);
