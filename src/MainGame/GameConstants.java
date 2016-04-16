@@ -7,13 +7,13 @@ import java.util.HashMap;
 public class GameConstants
 {
     //Public Constants
-    public static final String PLAYER_GROUP = "PlayerGroup";
-    public static final String PLAYER_PROJECTILE_GROUP = "PlayerProjectileGroup";
-    public static final String ENEMY_GROUP = "EnemyGroup";
-    public static final String ENEMY_PROJECTILE_GROUP = "EnemyProjectileGroup";
-    public static final String BACKGROUND_GROUP = "BackgroundGroup";
-    public static final String PLAYER_GAMEBOUNDS_GROUP = "PlayerGameBoundsGroup";
-    public static final String PROP_GROUP = "PropGroup";
+    public static final String PLAYER_COLLISION_GROUP = "PlayerGroup";
+    public static final String PLAYER_PROJECTILE_COLLISION_GROUP = "PlayerProjectileGroup";
+    public static final String ENEMY_COLLISION_GROUP = "EnemyGroup";
+    public static final String ENEMY_PROJECTILE_COLLISION_GROUP = "EnemyProjectileGroup";
+    public static final String BACKGROUND_COLLISION_GROUP = "BackgroundGroup";
+    public static final String PLAYER_GAMEBOUNDS_COLLISION_GROUP = "PlayerGameBoundsGroup";
+    public static final String PROP_COLLISION_GROUP = "PropGroup";
 
     public static final int SKY_RENDER_GROUP = 0;
     public static final int ROOM_RENDER_GROUP = 1;

@@ -72,7 +72,7 @@ public abstract class StageObject
                 false, false, "BackSky");
         skybg.SetSprite(GetSkyTexture());
         _sector.AddObject(skybg, GameConstants.SKY_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
+                GameConstants.BACKGROUND_COLLISION_GROUP);
 
         //Rendered Walls
         Backdrop wall = new Backdrop(new Rectangle(
@@ -83,7 +83,7 @@ public abstract class StageObject
                 true, true, "BackWall");
         wall.SetSprite(GetWallTexture());
         _sector.AddObject(wall, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
+                GameConstants.BACKGROUND_COLLISION_GROUP);
 
         Backdrop floor = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(0),
@@ -93,7 +93,7 @@ public abstract class StageObject
                 true, false, "Floor");
         floor.SetSprite(GetFloorTexture());
         _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_GROUP);
+                GameConstants.BACKGROUND_COLLISION_GROUP);
     }
 
     private void InitStageBounds()
@@ -104,28 +104,28 @@ public abstract class StageObject
                 ViewPort.SecLocY(1), GetStageWidth(),1), true, true,
                 "TopBounds");
         _sector.AddObject(topBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
 
         Backdrop botBound = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(1),
                 ViewPort.SecLocY(GetStageHeight()), GetStageWidth(),1),
                 true, true, "BottomBounds");
         _sector.AddObject(botBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
 
         Backdrop leftBound = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(1),
                 ViewPort.SecLocY(1),1, GetStageHeight()), true, true,
                 "LeftBounds");
         _sector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
 
         Backdrop rightBound = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(GetStageWidth()),
                 ViewPort.SecLocY(1), 1, GetStageHeight()),
                 true, true, "RightBounds");
         _sector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_GROUP);
+                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
     }
 
 

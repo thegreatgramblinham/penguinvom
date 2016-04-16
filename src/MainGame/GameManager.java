@@ -99,29 +99,29 @@ public class GameManager
         //Player projectiles can't collide with other player projectiles.
         _engineInstance.AddCollisionRule(
                 new CollisionGroupNamePair(
-                        GameConstants.PLAYER_PROJECTILE_GROUP,
-                        GameConstants.PLAYER_PROJECTILE_GROUP),
+                        GameConstants.PLAYER_PROJECTILE_COLLISION_GROUP,
+                        GameConstants.PLAYER_PROJECTILE_COLLISION_GROUP),
                 CollisionRule.CannotCollideWith);
 
         //Enemy projectiles can't hit other enemies.
         _engineInstance.AddCollisionRule(
                 new CollisionGroupNamePair(
-                        GameConstants.ENEMY_GROUP,
-                        GameConstants.ENEMY_PROJECTILE_GROUP),
+                        GameConstants.ENEMY_COLLISION_GROUP,
+                        GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP),
                 CollisionRule.CannotCollideWith);
 
         //Enemy projectiles can't hit other enemy projectiles.
         _engineInstance.AddCollisionRule(
                 new CollisionGroupNamePair(
-                        GameConstants.ENEMY_PROJECTILE_GROUP,
-                        GameConstants.ENEMY_PROJECTILE_GROUP),
+                        GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP,
+                        GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP),
                 CollisionRule.CannotCollideWith);
 
         //Enemies are not restricted by the same bounds as the player
         _engineInstance.AddCollisionRule(
                 new CollisionGroupNamePair(
-                        GameConstants.ENEMY_GROUP,
-                        GameConstants.PLAYER_GAMEBOUNDS_GROUP),
+                        GameConstants.ENEMY_COLLISION_GROUP,
+                        GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP),
                 CollisionRule.CannotCollideWith);
     }
 
@@ -204,7 +204,7 @@ public class GameManager
 
         _engineInstance.GetActiveSector().AddObject(_player,
                 GameConstants.PLAYER_RENDER_GROUP,
-                GameConstants.PLAYER_GROUP);
+                GameConstants.PLAYER_COLLISION_GROUP);
     }
 
     private void InitKeyHandlers()
@@ -380,7 +380,7 @@ public class GameManager
 
         _engineInstance.GetActiveSector().AddObject(b,
                 GameConstants.PLAYER_PROJECTILE_RENDER_GROUP,
-                GameConstants.PLAYER_PROJECTILE_GROUP);
+                GameConstants.PLAYER_PROJECTILE_COLLISION_GROUP);
     }
 
     private boolean HandlePlayerAction(GameWorldObject gObj, GraphicsContext gc)
@@ -455,7 +455,7 @@ public class GameManager
 
             _player.NSetLocation(p);
             _engineInstance.GetActiveSector().AddObject(_player,
-                    GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_GROUP);
+                    GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_COLLISION_GROUP);
 
             _sectorTransitionQueue = null;
         }

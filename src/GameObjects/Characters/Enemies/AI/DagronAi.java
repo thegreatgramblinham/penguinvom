@@ -45,7 +45,7 @@ public class DagronAi extends EnemyAiBase
 
         GameManager.QueueObjectForAddition(b,
                 GameConstants.ENEMY_PROJECTILE_RENDER_GROUP,
-                GameConstants.ENEMY_PROJECTILE_GROUP);
+                GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP);
     }
 
     @Override

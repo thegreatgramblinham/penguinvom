@@ -59,16 +59,16 @@ public class SkilleatinAi extends EnemyAiBase
 
         GameManager.QueueObjectForAddition(b1,
                 GameConstants.ENEMY_PROJECTILE_RENDER_GROUP,
-                GameConstants.ENEMY_PROJECTILE_GROUP);
+                GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP);
         GameManager.QueueObjectForAddition(b2,
                 GameConstants.ENEMY_PROJECTILE_RENDER_GROUP,
-                GameConstants.ENEMY_PROJECTILE_GROUP);
+                GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP);
         GameManager.QueueObjectForAddition(b3,
                 GameConstants.ENEMY_PROJECTILE_RENDER_GROUP,
-                GameConstants.ENEMY_PROJECTILE_GROUP);
+                GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP);
         GameManager.QueueObjectForAddition(b4,
                 GameConstants.ENEMY_PROJECTILE_RENDER_GROUP,
-                GameConstants.ENEMY_PROJECTILE_GROUP);
+                GameConstants.ENEMY_PROJECTILE_COLLISION_GROUP);
     }
 
     @Override
