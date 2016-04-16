@@ -1,6 +1,7 @@
 package Stages;
 
 import GameObjectBase.enums.Side;
+import MainGame.ViewPort;
 import SectorBase.Sector;
 
 import javafx.scene.image.Image;
@@ -62,7 +63,9 @@ public class MainCastleStage extends StageObject
             case Bottom:
             case Left:
             case Right:
-                return new Point(500, 500);
+                return new Point(
+                        ViewPort.SecLocX(272),
+                        ViewPort.SecLocY(372));
         }
 
         return null;
