@@ -62,7 +62,7 @@ public class MainCastleStage extends StageObject
             case Bottom:
             case Left:
             case Right:
-                return new Point(372, 372);
+                return new Point(500, 500);
         }
 
         return null;

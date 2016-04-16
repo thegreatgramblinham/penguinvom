@@ -68,7 +68,7 @@ public class CastleGardenStage extends StageObject
             case Bottom:
             case Left:
             case Right:
-                return new Point(372, 372);
+                return new Point(500, 500);
         }
 
         return null;
@@ -105,7 +105,8 @@ public class CastleGardenStage extends StageObject
         RoomChangeTrigger rightExit = new RoomChangeTrigger
                 (
                     new Rectangle(1000, 500, 60, 60),
-                    StageMap.Query(CastleGardenStage.class, Direction.Right),
+                    CastleGardenStage.class,
+                    Direction.Right,
                     Side.Left
                 );
 

@@ -5,22 +5,32 @@ import GameObjectBase.enums.Side;
 import GameObjects.Base.GameObject;
 import GameObjects.Characters.Player.PlayerObject;
 import MainGame.GameManager;
+import MainGame.Mapping.StageMap;
+import SectorBase.enums.Direction;
+import Stages.CastleGardenStage;
 import Stages.StageObject;
 
 import java.awt.*;
+import java.lang.reflect.Type;
 
 public class RoomChangeTrigger extends GameObject
 {
     //Variables
-    private StageObject _changeTo;
+    private Type _roomType;
     private Side _enteringFrom;
+    private Direction _mapLinkDirection;
 
     //Constructor
-    public RoomChangeTrigger(Rectangle size, StageObject changeTo,
+    public RoomChangeTrigger(Rectangle size, //StageObject changeTo,
+                             Type roomType,
+                             Direction mapLinkDirection,
                              Side enteringFrom)
     {
         super(size, size, true, 0.0F);
-        _changeTo = changeTo;
+        this.SetAlias("Room Change Trigger");
+
+        _roomType = roomType;
+        _mapLinkDirection = mapLinkDirection;
         _enteringFrom = enteringFrom;
     }
 
@@ -33,7 +43,9 @@ public class RoomChangeTrigger extends GameObject
     public void OnCollide(GameWorldObject obj)
     {
         if(obj instanceof PlayerObject)
-            GameManager.QueueSectorTransition(_changeTo, _enteringFrom);
+            GameManager.QueueSectorTransition(
+                    StageMap.Query(_roomType, _mapLinkDirection),
+                    _enteringFrom);
     }
 
     //Private Methods

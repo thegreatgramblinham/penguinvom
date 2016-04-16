@@ -210,10 +210,7 @@ public class GameManager
 
     private void InitPlayer()
     {
-        _player = new PlayerObject(
-                new Point(
-                        ViewPort.SecLocX(_currentRoom.GetPlayerStartingLocation(Side.Left).x),
-                        ViewPort.SecLocY(_currentRoom.GetPlayerStartingLocation(Side.Left).y)), 0.1F, 20);
+        _player = new PlayerObject(_currentRoom.GetPlayerStartingLocation(Side.Left), 0.1F, 20);
 
         _engineInstance.GetActiveSector().AddObject(_player,
                 GameConstants.PLAYER_RENDER_GROUP,
@@ -483,7 +480,7 @@ public class GameManager
 
     public static void QueueSectorTransition(StageObject changeTo, Side enteringFrom)
     {
-        if(_sectorTransitionQueue != null)
+        if(_sectorTransitionQueue == null)
             _sectorTransitionQueue = new Tuple<>(changeTo, enteringFrom);
     }
 
