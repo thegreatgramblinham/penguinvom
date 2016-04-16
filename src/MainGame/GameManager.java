@@ -12,6 +12,7 @@ import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Projectiles.Bullet;
+import Global.Tuple;
 import MainGame.Debugging.DebugHelper;
 import PhysicsBase.CollisionRules.CollisionGroupNamePair;
 import PhysicsBase.CollisionRules.enums.CollisionRule;
@@ -40,6 +41,11 @@ import java.util.HashSet;
 @SuppressWarnings("Convert2Lambda")
 public class GameManager
 {
+    /*
+       Main game class.
+       **NOTE: This class has static dependencies, only one instance is allowed.**
+    */
+
     //Private Constants
     private static final Point _gameStartingPoint = new Point(128,128);
     private static final int _stageWidth = 3500;
@@ -48,6 +54,7 @@ public class GameManager
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
+    private static Tuple<StageObject, Side> _sectorTransitionQueue = null;
     private static GameEngine _engineInstance;
     private static boolean _isFullscreen = false;
     private static boolean _showPropertyDebugMode = false;
@@ -242,6 +249,7 @@ public class GameManager
                         gc.clearRect(0, 0, _viewPort.GetWidth(), _viewPort.GetHeight());
 
                         //todo - allow for change of sector if necessary
+                        HandleSectorChange();
 
                         AddQueuedObjects();
 
@@ -430,6 +438,29 @@ public class GameManager
         _objectAdditionCollisionGroupQueue.clear();
     }
 
+    private void HandleSectorChange()
+    {
+        if(_sectorTransitionQueue != null)
+        {
+            //Remove player from current sector.
+            _engineInstance.GetActiveSector().RemoveObject(_player);
+
+            //Change sector.
+            _currentRoom = _sectorTransitionQueue.GetItem1();
+            _engineInstance.SetActiveSector(_currentRoom.GetSector());
+
+            //Add player to new sector.
+            Point p = _currentRoom.GetPlayerStartingLocation(
+                    _sectorTransitionQueue.GetItem2());
+
+            _player.NSetLocation(p);
+            _engineInstance.GetActiveSector().AddObject(_player,
+                    GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_GROUP);
+
+            _sectorTransitionQueue = null;
+        }
+    }
+
     //Static Methods
     public static void QueueObjectForAddition(GameWorldObject obj, int renderGroup, String groupName)
     {
@@ -437,6 +468,10 @@ public class GameManager
         _objectAdditionCollisionGroupQueue.put(obj, groupName);
     }
 
-
+    public static void QueueSectorTransition(StageObject changeTo, Side enteringFrom)
+    {
+        if(_sectorTransitionQueue != null)
+            _sectorTransitionQueue = new Tuple<>(changeTo, enteringFrom);
+    }
 
 }
