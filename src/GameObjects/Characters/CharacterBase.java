@@ -12,7 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class CharacterBase extends GameObject
+public abstract class CharacterBase extends GameObject
 {
     //todo Projectile hitbox?
     //Private Variables

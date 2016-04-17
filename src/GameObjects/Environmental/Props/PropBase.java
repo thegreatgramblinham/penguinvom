@@ -7,7 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class PropBase extends GameObject
+public abstract class PropBase extends GameObject
 {
     //Variables
     private SpriteAnimation _restingAnimation;
