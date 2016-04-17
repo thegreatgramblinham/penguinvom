@@ -6,7 +6,7 @@ import MainGame.ViewPort;
 
 import java.awt.*;
 
-public class GameObject extends GameWorldObject
+public abstract class GameObject extends GameWorldObject
 {
     public GameObject(Rectangle size, Rectangle hitBox, boolean isImmobile, float mass)
     {
