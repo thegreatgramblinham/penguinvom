@@ -13,7 +13,7 @@ public class ViewPort
     private static final int SCROLL_SPEED = 2;
     private static final double LEFT_SCROLL_PARTITION = (1.0/2.5);
     private static final double RIGHT_SCROLL_PARTITION = (1.5/2.5);
-    private static final double TOP_SCROLL_PARTITION = (3.5/5.0);
+    private static final double TOP_SCROLL_PARTITION = (3.0/5.0);
     private static final double BOTTOM_SCROLL_PARTITION = (4.0/5.0);
 
     //Public Static Fields
@@ -70,7 +70,7 @@ public class ViewPort
         }
         if( xPos > (_xRes * RIGHT_SCROLL_PARTITION))
         {
-            if(_location.x < _maxRight)
+            if(_location.x < _maxRight - X_RES)
                 ScrollRight();
         }
         if(yPos < (_yRes * TOP_SCROLL_PARTITION))
@@ -80,9 +80,27 @@ public class ViewPort
         }
         if(yPos > (_yRes * BOTTOM_SCROLL_PARTITION))
         {
-            if(_location.y < _maxBottom)
+            if(_location.y < _maxBottom - Y_RES)
                 ScrollDown();
         }
+    }
+
+    public void JumpToPoint(Point p)
+    {
+        int xPos = p.x - (int)(X_RES/2.0);
+        int yPos = p.y - (int)(Y_RES/2.0);
+
+        if(xPos > _maxRight - X_RES)
+            xPos = _maxRight - X_RES;
+        else if(xPos < _minLeft)
+            xPos = _minLeft;
+
+        if(yPos > _maxBottom - Y_RES)
+            yPos = _maxBottom - Y_RES;
+        else if(yPos < _minTop)
+            yPos = _minTop;
+
+        _location = new Point(xPos, yPos);
     }
 
     //Private Methods

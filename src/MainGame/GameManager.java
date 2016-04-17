@@ -453,6 +453,8 @@ public class GameManager
             _engineInstance.GetActiveSector().AddObject(_player,
                     GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_COLLISION_GROUP);
 
+            _viewPort.JumpToPoint(_player.GetCenterPoint());
+
             _sectorTransitionQueue = null;
         }
     }
