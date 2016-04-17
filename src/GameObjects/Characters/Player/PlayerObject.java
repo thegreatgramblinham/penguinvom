@@ -19,7 +19,7 @@ public class PlayerObject extends CharacterBase
     {
         super(
                 new Rectangle(location.x, location.y, WIDTH, HEIGHT),
-                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x+10, location.y+10, WIDTH-20, HEIGHT-20),
                 false,
                 mass,
                 health,

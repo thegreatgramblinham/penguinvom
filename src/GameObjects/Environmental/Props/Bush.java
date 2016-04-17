@@ -16,12 +16,14 @@ public class Bush extends PropBase
     {
         super(
                 new Rectangle(location.x, location.y, WIDTH, HEIGHT),
-                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new Rectangle(location.x + 25, location.y + 30, WIDTH - 50, HEIGHT - 45),
                 true,
                 1.0F,
                 new SpriteAnimation("src/ImageAssets/props/bush0000.png", WIDTH, HEIGHT, 1,
                         GameConstants.ENGINE_FPS, true)
         );
+
+        this.SetAlias("Bush");
     }
 
 

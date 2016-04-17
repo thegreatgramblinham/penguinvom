@@ -89,7 +89,7 @@ public class CastleGardenStage extends StageObject
                 new Point(
                         ViewPort.SecLocX(442),
                         ViewPort.SecLocY(322)));
-        _sector.AddObject(f, GameConstants.PROP_RENDER_GROUP_BACK,
+        _sector.AddObject(f, GameConstants.PROP_RENDER_GROUP_FORWARD,
                 GameConstants.PROP_COLLISION_GROUP);
 
         for(int i = 0; i < 7; i++)

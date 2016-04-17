@@ -18,12 +18,14 @@ public class Fountain extends PropBase
     {
         super(
                 new Rectangle(location.x, location.y, WIDTH, HEIGHT),
-                new Rectangle(location.x, location.y, WIDTH, HEIGHT-70),
+                new Rectangle(location.x+30, location.y+50, WIDTH-60, HEIGHT-50),
                 true,
                 1.0F,
                 new SpriteAnimation("src/ImageAssets/props/fountain0000.png", WIDTH, HEIGHT, 5,
                         GameConstants.ENGINE_FPS, true)
         );
+
+        this.SetAlias("Fountain");
     }
 
     //Get Methods
