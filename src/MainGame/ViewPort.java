@@ -87,8 +87,8 @@ public class ViewPort
 
     public void JumpToPoint(Point p)
     {
-        int xPos = p.x - (int)(X_RES/2.0);
-        int yPos = p.y - (int)(Y_RES/2.0);
+        int xPos = p.x - (int)(X_RES * LEFT_SCROLL_PARTITION);
+        int yPos = p.y - (int)(Y_RES * TOP_SCROLL_PARTITION);
 
         if(xPos > _maxRight - X_RES)
             xPos = _maxRight - X_RES;
