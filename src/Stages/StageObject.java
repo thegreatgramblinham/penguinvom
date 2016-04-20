@@ -64,36 +64,48 @@ public abstract class StageObject
     private void InitBackdrop()
     {
         //Sky Texture
-        Backdrop skybg = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
-                ViewPort.SecLocY(110),
-                (int)GetSkyTexture().getWidth(),
-                (int)GetSkyTexture().getHeight()),
-                false, false, "BackSky");
-        skybg.SetSprite(GetSkyTexture());
-        _sector.AddObject(skybg, GameConstants.SKY_RENDER_GROUP,
-                GameConstants.BACKGROUND_COLLISION_GROUP);
+        Image skyImage = GetSkyTexture();
+        if(skyImage != null)
+        {
+            Backdrop skybg = new Backdrop(new Rectangle(
+                    ViewPort.SecLocX(0),
+                    ViewPort.SecLocY(-18),
+                    (int) GetSkyTexture().getWidth(),
+                    (int) GetSkyTexture().getHeight()),
+                    false, false, "BackSky");
+            skybg.SetSprite(skyImage);
+            _sector.AddObject(skybg, GameConstants.SKY_RENDER_GROUP,
+                    GameConstants.BACKGROUND_COLLISION_GROUP);
+        }
 
         //Rendered Walls
-        Backdrop wall = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(418),
-                ViewPort.SecLocY(0),
-                (int)GetWallTexture().getWidth(),
-                (int)GetWallTexture().getHeight()),
-                true, true, "BackWall");
-        wall.SetSprite(GetWallTexture());
-        _sector.AddObject(wall, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_COLLISION_GROUP);
+        Image wallImage = GetWallTexture();
+        if(wallImage != null)
+        {
+            Backdrop wall = new Backdrop(new Rectangle(
+                    ViewPort.SecLocX(418),
+                    ViewPort.SecLocY(0),
+                    (int) GetWallTexture().getWidth(),
+                    (int) GetWallTexture().getHeight()),
+                    true, true, "BackWall");
+            wall.SetSprite(wallImage);
+            _sector.AddObject(wall, GameConstants.ROOM_RENDER_GROUP,
+                    GameConstants.BACKGROUND_COLLISION_GROUP);
+        }
 
-        Backdrop floor = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
-                ViewPort.SecLocY(280),
-                (int)GetFloorTexture().getWidth(),
-                (int)GetFloorTexture().getHeight()),
-                true, false, "Floor");
-        floor.SetSprite(GetFloorTexture());
-        _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
-                GameConstants.BACKGROUND_COLLISION_GROUP);
+        Image floorImage = GetFloorTexture();
+        if(floorImage != null)
+        {
+            Backdrop floor = new Backdrop(new Rectangle(
+                    ViewPort.SecLocX(0),
+                    ViewPort.SecLocY(280),
+                    (int) GetFloorTexture().getWidth(),
+                    (int) GetFloorTexture().getHeight()),
+                    true, false, "Floor");
+            floor.SetSprite(floorImage);
+            _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
+                    GameConstants.BACKGROUND_COLLISION_GROUP);
+        }
     }
 
     private void InitStageBounds()

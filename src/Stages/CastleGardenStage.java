@@ -30,14 +30,15 @@ public class CastleGardenStage extends StageObject
     protected Image GetSkyTexture()
     {
         return new Image(new File(
-                "src/ImageAssets/backgrounds/skybg20000.png").toURI().toString());
+                "src/ImageAssets/backgrounds/brightSky0000.png").toURI().toString());
     }
 
     @Override
     protected Image GetWallTexture()
     {
-        return new Image(new File(
-                "src/ImageAssets/backgrounds/largeWallSector0000.png").toURI().toString());
+//        return new Image(new File(
+//                "src/ImageAssets/backgrounds/largeWallSector0000.png").toURI().toString());
+        return null;
     }
 
     @Override

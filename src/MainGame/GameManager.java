@@ -53,7 +53,7 @@ public class GameManager
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
     private static Tuple<StageObject, Side> _sectorTransitionQueue = null;
     private static GameEngine _engineInstance;
-    private static boolean _isFullscreen = false;
+    private static boolean _isFullscreen = true;
     private static boolean _showPropertyDebugMode = false;
 
     //Private Variables - UI
@@ -142,7 +142,7 @@ public class GameManager
         _viewPort = new ViewPort(
                 ViewPort.X_RES,
                 ViewPort.Y_RES,
-                0,
+                GameConstants.GAME_STARTING_POINT.x,
                 GameConstants.GAME_STARTING_POINT.y,
                 GameConstants.DEFAULT_SECTOR_WIDTH,
                 GameConstants.DEFAULT_SECTOR_HEIGHT
