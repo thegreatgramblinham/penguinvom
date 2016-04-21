@@ -1,6 +1,7 @@
 package MainGame.Mapping;
 
 import SectorBase.enums.Direction;
+import Stages.OverworldStage;
 import Stages.StageObject;
 
 import java.util.UUID;
@@ -8,7 +9,7 @@ import java.util.UUID;
 public class MapNode
 {
     //Private Variables
-    private StageObject _stage;
+    private OverworldStage _stage;
     private UUID _id;
 
     private MapNode _up;
@@ -19,14 +20,14 @@ public class MapNode
 
 
     //Constructor
-    public MapNode(StageObject s)
+    public MapNode(OverworldStage s)
     {
         _stage = s;
         _id = UUID.randomUUID();
     }
 
     //Get Methods
-    public StageObject GetStage()
+    public OverworldStage GetStage()
     {
         return _stage;
     }

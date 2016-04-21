@@ -15,7 +15,7 @@ import java.awt.*;
 import java.io.File;
 import java.lang.reflect.Type;
 
-public class CastleGardenStage extends StageObject
+public class CastleGardenStage extends OverworldStage
 {
     //Variables
 

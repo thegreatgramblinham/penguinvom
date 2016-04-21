@@ -4,7 +4,7 @@ import MainGame.GameManager;
 import SectorBase.enums.Direction;
 import Stages.CastleGardenStage;
 import Stages.MainCastleStage;
-import Stages.StageObject;
+import Stages.OverworldStage;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class StageMap
     }
 
     //Public Static Methods
-    public static StageObject Query(Type t, Direction d)
+    public static OverworldStage Query(Type t, Direction d)
     {
         if(!_loadedStageGroup.containsKey(t)) return null;
 
@@ -38,7 +38,7 @@ public class StageMap
                 : null;
     }
 
-    public static StageObject Query(Type t)
+    public static OverworldStage Query(Type t)
     {
         if(!_loadedStageGroup.containsKey(t)) return null;
 

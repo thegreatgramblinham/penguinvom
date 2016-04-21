@@ -22,6 +22,7 @@ import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
 import Stages.CastleGardenStage;
+import Stages.OverworldStage;
 import Stages.StageObject;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -54,7 +55,7 @@ public class GameManager
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
     private static Tuple<StageObject, Side> _sectorTransitionQueue = null;
     private static GameEngine _engineInstance;
-    private static boolean _isFullscreen = true;
+    private static boolean _isFullscreen = false;
     private static boolean _showPropertyDebugMode = false;
 
     //Private Variables - UI
