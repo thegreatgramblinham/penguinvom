@@ -10,6 +10,7 @@ import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Characters.Enemies.Skilleatin;
 import GameObjects.Characters.Enemies.Slim;
 import GameObjects.Characters.Player.PlayerObject;
+import GameObjects.Environmental.Backdrop;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Projectiles.Bullet;
 import Global.Tuple;
@@ -290,11 +291,12 @@ public class GameManager
                                 if(HandlePlayerAction(gObj, gc))
                                 {
                                     //Player action handled.
-//                                    _skybg.NSetLocation(new Point(
-//                                            ViewPort.SecLocX((_player.x - _skybg.width)/20+30),
-//                                            ViewPort.SecLocY((_player.y - _skybg.height)/20)+30));
-
                                     _viewPort.ScrollIntoView(_player.GetCenterPoint());
+
+                                    Backdrop sky = _currentRoom.GetSkyBox();
+                                    sky.NSetLocation(new Point(
+                                            _viewPort.GetLocation().x,
+                                            sky.y));
                                 }
                                 else if(HandleEnemyAction(gObj, gc))
                                 {
