@@ -47,6 +47,11 @@ public class ViewPort
     }
 
     //Get Methods
+    public Point GetLocation()
+    {
+        return _location;
+    }
+
     public int GetWidth()
     {
         return _xRes;

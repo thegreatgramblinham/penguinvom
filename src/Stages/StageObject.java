@@ -18,6 +18,7 @@ public abstract class StageObject
 
     //Protected Variables
     protected Sector _sector;
+    protected Backdrop _skyBox;
 
     //Private Variables
 
@@ -37,6 +38,8 @@ public abstract class StageObject
     {
         return _sector;
     }
+
+    public Backdrop GetSkyBox() { return _skyBox; }
 
     //Set Methods
 
@@ -67,14 +70,14 @@ public abstract class StageObject
         Image skyImage = GetSkyTexture();
         if(skyImage != null)
         {
-            Backdrop skybg = new Backdrop(new Rectangle(
+            _skyBox = new Backdrop(new Rectangle(
                     ViewPort.SecLocX(0),
                     ViewPort.SecLocY(-18),
                     (int) GetSkyTexture().getWidth(),
                     (int) GetSkyTexture().getHeight()),
                     false, false, "BackSky");
-            skybg.SetSprite(skyImage);
-            _sector.AddObject(skybg, GameConstants.SKY_RENDER_GROUP,
+            _skyBox.SetSprite(skyImage);
+            _sector.AddObject(_skyBox, GameConstants.SKY_RENDER_GROUP,
                     GameConstants.BACKGROUND_COLLISION_GROUP);
         }
 
