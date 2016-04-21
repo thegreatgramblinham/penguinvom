@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import java.awt.*;
 import java.io.File;
 
-public class MainCastleStage extends StageObject
+public class MainCastleStage extends OverworldStage
 {
     //Private Variables
 

@@ -47,7 +47,6 @@ public abstract class StageObject
     public abstract Point GetPlayerStartingLocation(Side s);
 
     //Abstract Methods
-    protected abstract void InitExits();
     protected abstract void InitProps();
     protected abstract Image GetSkyTexture();
     protected abstract Image GetWallTexture();
@@ -59,9 +58,7 @@ public abstract class StageObject
     protected void Init()
     {
         InitBackdrop();
-        InitStageBounds();
         InitProps();
-        InitExits();
     }
 
     private void InitBackdrop()
@@ -109,38 +106,6 @@ public abstract class StageObject
             _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
                     GameConstants.BACKGROUND_COLLISION_GROUP);
         }
-    }
-
-    private void InitStageBounds()
-    {
-        //Non-rendered Game Bounds
-        Backdrop topBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(1),
-                ViewPort.SecLocY(1), GetStageWidth(),1), true, true,
-                "TopBounds");
-        _sector.AddObject(topBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
-
-        Backdrop botBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(1),
-                ViewPort.SecLocY(GetStageHeight()), GetStageWidth(),1),
-                true, true, "BottomBounds");
-        _sector.AddObject(botBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
-
-        Backdrop leftBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(1),
-                ViewPort.SecLocY(1),1, GetStageHeight()), true, true,
-                "LeftBounds");
-        _sector.AddObject(leftBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
-
-        Backdrop rightBound = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(GetStageWidth()),
-                ViewPort.SecLocY(1), 1, GetStageHeight()),
-                true, true, "RightBounds");
-        _sector.AddObject(rightBound, GameConstants.ROOM_RENDER_GROUP
-                , GameConstants.PLAYER_GAMEBOUNDS_COLLISION_GROUP);
     }
 
 
