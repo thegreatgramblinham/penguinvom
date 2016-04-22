@@ -55,7 +55,7 @@ public abstract class StageObject
     protected abstract int GetStageWidth();
 
     //Private Methods
-    protected void Init()
+    private void Init()
     {
         InitBackdrop();
         InitProps();
