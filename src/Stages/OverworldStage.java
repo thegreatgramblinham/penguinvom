@@ -18,9 +18,6 @@ public abstract class OverworldStage extends StageObject
         Init();
     }
 
-    //Public Methods
-    public abstract Point GetPlayerStartingLocation(Side s);
-
     //Abstract Methods
     protected abstract void InitExits();
 

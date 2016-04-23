@@ -21,6 +21,8 @@ import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
+import Stages.Battle.BattleStage;
+import Stages.Battle.GardenBattleStage;
 import Stages.CastleGardenStage;
 import Stages.OverworldStage;
 import Stages.StageObject;
@@ -69,7 +71,9 @@ public class GameManager
     private EnemySpawner _enemySpawner;
     private StageMap _stageMap;
     private StageObject _currentRoom;
+    private BattleStage _currentBattleStage;
     private double _lastPlayerDirection = 0;
+    private boolean _isBattleMode = false;
 
     //Constructor
     public GameManager(Stage displayStage) throws Exception {
