@@ -43,9 +43,6 @@ public abstract class StageObject
 
     //Set Methods
 
-    //Public Methods
-    public abstract Point GetPlayerStartingLocation(Side s);
-
     //Abstract Methods
     protected abstract void InitProps();
     protected abstract Image GetSkyTexture();
