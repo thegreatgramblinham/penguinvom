@@ -7,8 +7,6 @@ import GameObjects.Characters.Player.PlayerObject;
 import MainGame.GameManager;
 import MainGame.Mapping.StageMap;
 import SectorBase.enums.Direction;
-import Stages.CastleGardenStage;
-import Stages.StageObject;
 
 import java.awt.*;
 import java.lang.reflect.Type;
@@ -43,7 +41,7 @@ public class RoomChangeTrigger extends GameObject
     public void OnCollide(GameWorldObject obj)
     {
         if(obj instanceof PlayerObject)
-            GameManager.QueueSectorTransition(
+            GameManager.QueueStageTransition(
                     StageMap.Query(_roomType, _mapLinkDirection),
                     _enteringFrom);
     }
