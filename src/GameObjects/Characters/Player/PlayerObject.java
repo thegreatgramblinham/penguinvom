@@ -2,8 +2,11 @@ package GameObjects.Characters.Player;
 
 import Animation.SpriteAnimation;
 import GameObjectBase.GameWorldObject;
+import GameObjects.BattleCharacters.BattleCharacterGroup;
+import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.Characters.CharacterBase;
 import GameObjects.Characters.Enemies.EnemyBase;
+import MainGame.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -52,8 +55,7 @@ public class PlayerObject extends CharacterBase
     public void OnCollide(GameWorldObject other)
     {
         if(other instanceof EnemyBase)
-            this.SetHealth(GetHealth() -
-                    ((EnemyBase)other).GetTouchDamage());
+            GameManager.QueueBattleTransition(new BattleCharacterGroup<>());
     }
 
     @Override
