@@ -14,7 +14,6 @@ import java.awt.*;
 
 public abstract class CharacterBase extends GameObject
 {
-    //todo Projectile hitbox?
     //Private Variables
     private AnimationOrientation _lastRenderedDirection;
     private ProjectileDirection _projectileDirection = ProjectileDirection.Right;

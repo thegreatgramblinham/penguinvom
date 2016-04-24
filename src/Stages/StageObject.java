@@ -1,6 +1,5 @@
 package Stages;
 
-import GameObjectBase.enums.Side;
 import GameObjects.Environmental.Backdrop;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
@@ -42,9 +41,6 @@ public abstract class StageObject
     public Backdrop GetSkyBox() { return _skyBox; }
 
     //Set Methods
-
-    //Public Methods
-    public abstract Point GetPlayerStartingLocation(Side s);
 
     //Abstract Methods
     protected abstract void InitProps();

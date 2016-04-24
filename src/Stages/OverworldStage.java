@@ -1,5 +1,6 @@
 package Stages;
 
+import GameObjectBase.enums.Side;
 import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.BattleCharacters.PlayerBattleCharacter;
@@ -23,6 +24,7 @@ public abstract class OverworldStage extends StageObject
 
     //Abstract Methods
     protected abstract void InitExits();
+    public abstract Point GetPlayerStartingLocation(Side s);
     public abstract BattleStage CreateBattleStage(
             PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception;

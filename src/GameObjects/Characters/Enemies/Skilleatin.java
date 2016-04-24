@@ -25,7 +25,7 @@ public class Skilleatin extends EnemyBase
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png",
                         WIDTH, HEIGHT, 5, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png",
-                        WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
+                        WIDTH, HEIGHT, 1, GameConstants.ENGINE_FPS, true)
         );
 
         this.SetAlias("Skilleatin");
