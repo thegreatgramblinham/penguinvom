@@ -33,7 +33,7 @@ public class GameConstants
 
     //Sector Constants
     public static final int DEFAULT_SECTOR_WIDTH = 3500;
-    public static final int DEFAULT_SECTOR_HEIGHT = 900;
+    public static final int DEFAULT_SECTOR_HEIGHT = 1050;
     public static final int DEFAULT_SECTOR_GRID_UNIT_SIZE = 30;
     public static final float GRAVITY = 0.5F;
 
