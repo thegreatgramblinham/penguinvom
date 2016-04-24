@@ -233,6 +233,12 @@ public class GameManager
                         {
                             _showPropertyDebugMode = !_showPropertyDebugMode;
                         }
+                        else if(event.getCode() == KeyCode.ESCAPE && _isBattleMode)
+                        {
+                            _isBattleMode = false;
+                            _viewPort.Unlock();
+                            QueueStageTransition(_currentRoom, Side.Bottom);
+                        }
                     }
                 });
 
@@ -535,7 +541,6 @@ public class GameManager
 
             _engineInstance.SetActiveSector(_currentBattleStage.GetSector());
 
-            //todo adjust and lock viewport
             _viewPort.SetLocation(_currentBattleStage.GetViewLocation());
             _viewPort.Lock();
 
@@ -545,24 +550,34 @@ public class GameManager
         }
         else if(_sectorTransitionQueue != null)
         {
-            //Remove player from current sector.
-            _engineInstance.GetActiveSector().RemoveObject(_player);
 
-            //Change sector.
-            _currentRoom = _sectorTransitionQueue.GetItem1();
-            _engineInstance.SetActiveSector(_currentRoom.GetSector());
+            if(_sectorTransitionQueue.GetItem1() == _currentRoom)
+            {
+                _engineInstance.SetActiveSector(_currentRoom.GetSector());
+                _viewPort.JumpToPoint(_player.GetCenterPoint());
+                _sectorTransitionQueue = null;
+            }
+            else
+            {
+                //Remove player from current sector.
+                _engineInstance.GetActiveSector().RemoveObject(_player);
 
-            //Add player to new sector.
-            Point p = _currentRoom.GetPlayerStartingLocation(
-                    _sectorTransitionQueue.GetItem2());
+                //Change sector.
+                _currentRoom = _sectorTransitionQueue.GetItem1();
+                _engineInstance.SetActiveSector(_currentRoom.GetSector());
 
-            _player.NSetLocation(p);
-            _engineInstance.GetActiveSector().AddObject(_player,
-                    GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_COLLISION_GROUP);
+                //Add player to new sector.
+                Point p = _currentRoom.GetPlayerStartingLocation(
+                        _sectorTransitionQueue.GetItem2());
 
-            _viewPort.JumpToPoint(_player.GetCenterPoint());
+                _player.NSetLocation(p);
+                _engineInstance.GetActiveSector().AddObject(_player,
+                        GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_COLLISION_GROUP);
 
-            _sectorTransitionQueue = null;
+                _viewPort.JumpToPoint(_player.GetCenterPoint());
+
+                _sectorTransitionQueue = null;
+            }
         }
     }
     //endregion

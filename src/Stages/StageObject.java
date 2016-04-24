@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 
 import java.awt.*;
 import java.io.InvalidObjectException;
+import java.util.UUID;
 
 public abstract class StageObject
 {
@@ -20,6 +21,7 @@ public abstract class StageObject
     protected Backdrop _skyBox;
 
     //Private Variables
+    private UUID _id;
 
     //Constructor
     public StageObject(Sector sector) throws Exception
@@ -28,6 +30,8 @@ public abstract class StageObject
             throw new InvalidObjectException("Provided sector not large enough.");
 
         _sector = sector;
+
+        _id = UUID.randomUUID();
 
         Init();
     }
@@ -40,6 +44,11 @@ public abstract class StageObject
 
     public Backdrop GetSkyBox() { return _skyBox; }
 
+    public UUID GetId()
+    {
+        return _id;
+    }
+
     //Set Methods
 
     //Abstract Methods
@@ -49,6 +58,26 @@ public abstract class StageObject
     protected abstract Image GetFloorTexture();
     protected abstract int GetStageHeight();
     protected abstract int GetStageWidth();
+    public abstract Point GetViewLocation();
+
+    //Public Methods
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        StageObject that = (StageObject) o;
+
+        return _id.equals(that._id);
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return _id.hashCode();
+    }
 
     //Private Methods
     private void Init()
