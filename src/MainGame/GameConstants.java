@@ -29,7 +29,7 @@ public class GameConstants
 
     //Engine Run Constants
     public static final int ENGINE_FPS = 60;
-    public static final Point GAME_STARTING_POINT = new Point(128,128);
+    public static final Point GAME_STARTING_POINT = new Point(128,300);
 
     //Sector Constants
     public static final int DEFAULT_SECTOR_WIDTH = 3500;

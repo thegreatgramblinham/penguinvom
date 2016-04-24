@@ -33,8 +33,8 @@ public abstract class BattleStage extends StageObject
     public Point GetViewLocation()
     {
         return new Point(
-                (int)(GameConstants.GAME_STARTING_POINT.x*2.5),
-                GameConstants.GAME_STARTING_POINT.y);
+                (int)(GameConstants.GAME_STARTING_POINT.x + 170),
+                GameConstants.GAME_STARTING_POINT.y - 75);
     }
 
     public Point GetPlayerCharacterLocation()
