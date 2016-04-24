@@ -1,12 +1,15 @@
 package Stages;
 
 import GameObjectBase.enums.Side;
+import GameObjects.BattleCharacters.BattleCharacterGroup;
+import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.Triggers.RoomChangeTrigger;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
 import SectorBase.Sector;
 
 import SectorBase.enums.Direction;
+import Stages.Battle.BattleStage;
 import javafx.scene.image.Image;
 
 import java.awt.*;
@@ -74,6 +77,13 @@ public class MainCastleStage extends OverworldStage
         return null;
     }
 
+    @Override
+    public BattleStage CreateBattleStage(
+            BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
+    {
+        return null;
+    }
+
     //Private Methods
     @Override
     protected void InitProps()
@@ -98,6 +108,8 @@ public class MainCastleStage extends OverworldStage
         _sector.AddObject(leftExit, GameConstants.PROP_RENDER_GROUP_FORWARD,
                 GameConstants.TRIGGER_COLLISION_GROUP);
     }
+
+
 
 
 }

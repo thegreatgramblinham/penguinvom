@@ -1,14 +1,19 @@
 package Stages;
 
 import GameObjectBase.enums.Side;
+import GameObjects.BattleCharacters.BattleCharacterGroup;
+import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.Environmental.Props.Bush;
 import GameObjects.Environmental.Props.Fountain;
 import GameObjects.Triggers.RoomChangeTrigger;
 import MainGame.GameConstants;
+import MainGame.GameManager;
 import MainGame.Mapping.StageMap;
 import MainGame.ViewPort;
 import SectorBase.Sector;
 import SectorBase.enums.Direction;
+import Stages.Battle.BattleStage;
+import Stages.Battle.GardenBattleStage;
 import javafx.scene.image.Image;
 
 import java.awt.*;
@@ -82,6 +87,13 @@ public class CastleGardenStage extends OverworldStage
         return null;
     }
 
+    @Override
+    public BattleStage CreateBattleStage(
+            BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
+    {
+        return new GardenBattleStage(GameManager.CreateNewEngineSector());
+    }
+
     //Private Methods
     @Override
     protected void InitProps()
@@ -132,7 +144,4 @@ public class CastleGardenStage extends OverworldStage
         _sector.AddObject(rightExit, GameConstants.PROP_RENDER_GROUP_FORWARD,
                 GameConstants.TRIGGER_COLLISION_GROUP);
     }
-
-
-
 }
