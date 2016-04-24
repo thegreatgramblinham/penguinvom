@@ -98,6 +98,7 @@ public class GameManager
     }
 
     //Private Methods
+    //region Initialization Methods
     private void InitCollisionRules()
     {
         //Player projectiles can't collide with other player projectiles.
@@ -240,6 +241,8 @@ public class GameManager
                     }
                 });
     }
+    //endregion
+
 
     public KeyFrame Render(final GraphicsContext gc)
     {
@@ -251,80 +254,94 @@ public class GameManager
                     {
                         gc.clearRect(0, 0, _viewPort.GetWidth(), _viewPort.GetHeight());
 
-                        HandleSectorChange();
-
                         AddQueuedObjects();
+
+                        HandleSectorChange();
 
                         _engineInstance.CycleEngine();
 
-                        HandlePlayerAttack();
-                        HandlePlayerMovement();
-
-//                        if(_enemySpawner.ShouldSpawn())
-//                            _enemySpawner.SpawnRandom();
-
-                        for (int i = 0;
-                             i < _engineInstance.GetActiveSector().GetRenderGroupCount();
-                             i++)
+                        if(_isBattleMode)
                         {
-                            HashSet<GameWorldObject> renderGroup
-                                    = _engineInstance.GetActiveSector().GetRenderGroup(i);
-
-                            if(renderGroup == null) continue;
-
-                            for( GameWorldObject gameEngObj : renderGroup)
-                            {
-                                GameObject gObj = (GameObject)gameEngObj;
-
-                                if(_showPropertyDebugMode)
-                                {
-                                    gc.strokeRect(gObj.GetGameHitBoxDrawPoint().x,
-                                            gObj.GetGameHitBoxDrawPoint().y,
-                                            gObj.GetHitBox().width,
-                                            gObj.GetHitBox().height);
-
-                                    if(!gObj.GetIsImmobile())
-                                    {
-                                        gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
-                                        gc.fillText(
-                                                DebugHelper.BuildFormattedPropertyString(gObj),
-                                                ViewPort.DrawLocX(gObj.GetRight()),
-                                                ViewPort.DrawLocY(gObj.GetBottom()));
-                                    }
-                                }
-
-                                if(HandlePlayerAction(gObj, gc))
-                                {
-                                    //Player action handled.
-                                    _viewPort.ScrollIntoView(_player.GetCenterPoint());
-
-                                    Backdrop sky = _currentRoom.GetSkyBox();
-                                    sky.NSetLocation(new Point(
-                                            _viewPort.GetLocation().x,
-                                            sky.y));
-                                }
-                                else if(HandleEnemyAction(gObj, gc))
-                                {
-                                    //Ai controlled action handled.
-                                }
-                                else if(HandlePropAction(gObj, gc))
-                                {
-
-                                }
-                                else if(gObj.GetSprite() != null)
-                                {
-                                    gc.drawImage(gObj.GetSprite(),
-                                            gObj.GetGameDrawPoint().x,
-                                            gObj.GetGameDrawPoint().y,
-                                            gObj.GetSprite().getWidth(),
-                                            gObj.GetSprite().getHeight());
-                                }
-
-                                _engineInstance.CycleCollision();
-                            }
+                            BattleRenderLoop(gc);
                         }
+                        else
+                        {
+                            OverworldRenderLoop(gc);
+                        }
+
                     }
                 });
+    }
+
+    //region Overworld Rendering
+    private void OverworldRenderLoop(GraphicsContext gc)
+    {
+        HandlePlayerAttack();
+        HandlePlayerMovement();
+
+//      if(_enemySpawner.ShouldSpawn())
+//        _enemySpawner.SpawnRandom();
+
+        for (int i = 0;
+             i < _engineInstance.GetActiveSector().GetRenderGroupCount();
+             i++)
+        {
+            HashSet<GameWorldObject> renderGroup
+                    = _engineInstance.GetActiveSector().GetRenderGroup(i);
+
+            if(renderGroup == null) continue;
+
+            for( GameWorldObject gameEngObj : renderGroup)
+            {
+                GameObject gObj = (GameObject)gameEngObj;
+
+                if(_showPropertyDebugMode)
+                {
+                    gc.strokeRect(gObj.GetGameHitBoxDrawPoint().x,
+                            gObj.GetGameHitBoxDrawPoint().y,
+                            gObj.GetHitBox().width,
+                            gObj.GetHitBox().height);
+
+                    if(!gObj.GetIsImmobile())
+                    {
+                        gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
+                        gc.fillText(
+                                DebugHelper.BuildFormattedPropertyString(gObj),
+                                ViewPort.DrawLocX(gObj.GetRight()),
+                                ViewPort.DrawLocY(gObj.GetBottom()));
+                    }
+                }
+
+                if(HandlePlayerAction(gObj, gc))
+                {
+                    //Player action handled.
+                    _viewPort.ScrollIntoView(_player.GetCenterPoint());
+
+                    Backdrop sky = _currentRoom.GetSkyBox();
+                    sky.NSetLocation(new Point(
+                            _viewPort.GetLocation().x,
+                            sky.y));
+                }
+                else if(HandleEnemyAction(gObj, gc))
+                {
+                    //Ai controlled action handled.
+                }
+                else if(HandlePropAction(gObj, gc))
+                {
+
+                }
+                else if(gObj.GetSprite() != null)
+                {
+                    gc.drawImage(gObj.GetSprite(),
+                            gObj.GetGameDrawPoint().x,
+                            gObj.GetGameDrawPoint().y,
+                            gObj.GetSprite().getWidth(),
+                            gObj.GetSprite().getHeight());
+                }
+
+                _engineInstance.CycleCollision();
+            }
+        }
     }
 
     private void HandlePlayerMovement()
@@ -427,7 +444,32 @@ public class GameManager
 
         return true;
     }
+    //endregion
 
+    //region Battle Rendering
+    public void BattleRenderLoop(GraphicsContext gc)
+    {
+        for (int i = 0;
+             i < _engineInstance.GetActiveSector().GetRenderGroupCount();
+             i++)
+        {
+            HashSet<GameWorldObject> renderGroup
+                    = _engineInstance.GetActiveSector().GetRenderGroup(i);
+
+            if (renderGroup == null) continue;
+
+            for (GameWorldObject gameEngObj : renderGroup)
+            {
+                GameObject gObj = (GameObject) gameEngObj;
+
+
+            }
+        }
+    }
+
+    //endregion
+
+    //region Queued Event Handling
     private void AddQueuedObjects()
     {
         for( GameWorldObject gObj : _objectAdditionRenderGroupQueue.keySet())
@@ -465,6 +507,7 @@ public class GameManager
             _sectorTransitionQueue = null;
         }
     }
+    //endregion
 
     //Static Methods
     public static void QueueObjectForAddition(GameWorldObject obj, int renderGroup, String groupName)
@@ -473,10 +516,16 @@ public class GameManager
         _objectAdditionCollisionGroupQueue.put(obj, groupName);
     }
 
-    public static void QueueSectorTransition(StageObject changeTo, Side enteringFrom)
+    public static void QueueStageTransition(StageObject changeTo, Side enteringFrom)
     {
         if(_sectorTransitionQueue == null)
             _sectorTransitionQueue = new Tuple<>(changeTo, enteringFrom);
+    }
+
+    public static void QueueBattleTransition()
+    {
+        //todo take the player and enemy group that is battling and build
+        //the battle stage from the current overworld stage theme.
     }
 
     public static Sector CreateNewEngineSector()

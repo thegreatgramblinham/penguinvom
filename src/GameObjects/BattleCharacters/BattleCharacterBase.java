@@ -1,10 +1,11 @@
 package GameObjects.BattleCharacters;
 
 import GameObjects.Base.GameObject;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class BattleCharacterBase extends GameObject
+public abstract class BattleCharacterBase extends GameObject
 {
     //Variables
 
@@ -17,6 +18,9 @@ public class BattleCharacterBase extends GameObject
     //Get Methods
 
     //Set Methods
+
+    //Abstract Methods
+    public abstract void DrawRestingAnimation(GraphicsContext gc);
 
     //Public Methods
 

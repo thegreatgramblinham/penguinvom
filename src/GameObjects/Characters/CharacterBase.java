@@ -102,10 +102,20 @@ public abstract class CharacterBase extends GameObject
             }
         else if(_restCycle != null)
         {
-            _restCycle.DrawSpriteFrame(gc, this.GetGameDrawPoint(), _lastRenderedDirection);
+            DrawRestingAnimation(gc);
         }
         else
             _walkCycle.DrawFrameAtIndex(gc, this.GetGameDrawPoint(), 0, _lastRenderedDirection);
+    }
+
+    public void DrawRestingAnimation(GraphicsContext gc)
+    {
+        _restCycle.DrawSpriteFrame(gc, this.GetGameDrawPoint(), _lastRenderedDirection);
+    }
+
+    public void DrawRestingAnimation(GraphicsContext gc, Point drawPoint, AnimationOrientation orient)
+    {
+        _restCycle.DrawSpriteFrame(gc, drawPoint, orient);
     }
 
     public void OnDeath()

@@ -1,6 +1,7 @@
 package GameObjects.BattleCharacters;
 
 import GameObjects.Characters.Enemies.EnemyBase;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
@@ -19,6 +20,11 @@ public class EnemyBattleCharacter extends BattleCharacterBase
     //Set Methods
 
     //Public Methods
+    @Override
+    public void DrawRestingAnimation(GraphicsContext gc)
+    {
+
+    }
 
     //Private Methods
 
