@@ -1,10 +1,12 @@
 package Stages;
 
-import GameObjectBase.enums.Side;
+import GameObjects.BattleCharacters.BattleCharacterGroup;
+import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.Environmental.Backdrop;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
 import SectorBase.Sector;
+import Stages.Battle.BattleStage;
 
 import java.awt.*;
 
@@ -20,6 +22,8 @@ public abstract class OverworldStage extends StageObject
 
     //Abstract Methods
     protected abstract void InitExits();
+    public abstract BattleStage CreateBattleStage(
+            BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception;
 
     //Private Methods
     private void Init()

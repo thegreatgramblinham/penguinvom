@@ -4,6 +4,8 @@ import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjectBase.enums.Side;
 import GameObjects.Base.GameObject;
+import GameObjects.BattleCharacters.BattleCharacterGroup;
+import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
 import GameObjects.Characters.Enemies.Dagron;
 import GameObjects.Characters.Enemies.EnemyBase;
@@ -55,7 +57,8 @@ public class GameManager
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
-    private static Tuple<StageObject, Side> _sectorTransitionQueue = null;
+    private static Tuple<OverworldStage, Side> _sectorTransitionQueue = null;
+    private static BattleCharacterGroup<EnemyBattleCharacter> _battleStageTransitionQueue = null;
     private static GameEngine _engineInstance;
     private static boolean _isFullscreen = false;
     private static boolean _showPropertyDebugMode = false;
@@ -70,7 +73,7 @@ public class GameManager
     private PlayerObject _player;
     private EnemySpawner _enemySpawner;
     private StageMap _stageMap;
-    private StageObject _currentRoom;
+    private OverworldStage _currentRoom;
     private BattleStage _currentBattleStage;
     private double _lastPlayerDirection = 0;
     private boolean _isBattleMode = false;
@@ -256,7 +259,14 @@ public class GameManager
 
                         AddQueuedObjects();
 
-                        HandleSectorChange();
+                        try
+                        {
+                            HandleSectorChange();
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
 
                         _engineInstance.CycleEngine();
 
@@ -268,7 +278,6 @@ public class GameManager
                         {
                             OverworldRenderLoop(gc);
                         }
-
                     }
                 });
     }
@@ -483,9 +492,20 @@ public class GameManager
         _objectAdditionCollisionGroupQueue.clear();
     }
 
-    private void HandleSectorChange()
+    private void HandleSectorChange() throws Exception
     {
-        if(_sectorTransitionQueue != null)
+        if(_battleStageTransitionQueue != null)
+        {
+            _currentBattleStage = _currentRoom.CreateBattleStage(_battleStageTransitionQueue);
+
+            _engineInstance.SetActiveSector(_currentBattleStage.GetSector());
+
+            //todo adjust and lock viewport
+            
+            _battleStageTransitionQueue = null;
+
+        }
+        else if(_sectorTransitionQueue != null)
         {
             //Remove player from current sector.
             _engineInstance.GetActiveSector().RemoveObject(_player);
@@ -516,16 +536,17 @@ public class GameManager
         _objectAdditionCollisionGroupQueue.put(obj, groupName);
     }
 
-    public static void QueueStageTransition(StageObject changeTo, Side enteringFrom)
+    public static void QueueStageTransition(OverworldStage changeTo, Side enteringFrom)
     {
         if(_sectorTransitionQueue == null)
             _sectorTransitionQueue = new Tuple<>(changeTo, enteringFrom);
     }
 
-    public static void QueueBattleTransition()
+    public static void QueueBattleTransition(BattleCharacterGroup<EnemyBattleCharacter> enemies)
     {
         //todo take the player and enemy group that is battling and build
         //the battle stage from the current overworld stage theme.
+        _battleStageTransitionQueue = enemies;
     }
 
     public static Sector CreateNewEngineSector()
