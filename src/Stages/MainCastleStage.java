@@ -3,6 +3,7 @@ package Stages;
 import GameObjectBase.enums.Side;
 import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
+import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Triggers.RoomChangeTrigger;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
@@ -79,6 +80,7 @@ public class MainCastleStage extends OverworldStage
 
     @Override
     public BattleStage CreateBattleStage(
+            PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
         return null;

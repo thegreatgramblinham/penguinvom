@@ -6,6 +6,7 @@ import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.Characters.CharacterBase;
 import GameObjects.Characters.Enemies.EnemyBase;
+import MainGame.GameConstants;
 import MainGame.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -26,8 +27,10 @@ public class PlayerObject extends CharacterBase
                 false,
                 mass,
                 health,
-                new SpriteAnimation("src/ImageAssets/player/shuf0000.png", 64, 64, 5, 60, true),
-                null
+                new SpriteAnimation("src/ImageAssets/player/shuf0000.png",
+                        WIDTH, HEIGHT, 5, GameConstants.ENGINE_FPS, true),
+                new SpriteAnimation("src/ImageAssets/player/shufTempRest.png",
+                        WIDTH, HEIGHT, 1, GameConstants.ENGINE_FPS, true)
         );
 
         this.SetAlias("PlayerObject");

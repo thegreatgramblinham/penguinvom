@@ -2,6 +2,7 @@ package Stages;
 
 import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
+import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Environmental.Backdrop;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
@@ -23,6 +24,7 @@ public abstract class OverworldStage extends StageObject
     //Abstract Methods
     protected abstract void InitExits();
     public abstract BattleStage CreateBattleStage(
+            PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception;
 
     //Private Methods
