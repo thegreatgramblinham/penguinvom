@@ -3,6 +3,7 @@ package Stages;
 import GameObjectBase.enums.Side;
 import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
+import GameObjects.Characters.Enemies.Skilleatin;
 import GameObjects.Environmental.Props.Bush;
 import GameObjects.Environmental.Props.Fountain;
 import GameObjects.Triggers.RoomChangeTrigger;
@@ -124,6 +125,12 @@ public class CastleGardenStage extends OverworldStage
             _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP_FORWARD,
                     GameConstants.PROP_COLLISION_GROUP);
         }
+
+//        Skilleatin s = new Skilleatin(new Point(
+//                        ViewPort.SecLocX(900),
+//                        ViewPort.SecLocY(400)), 1.0F, 10);
+//        _sector.AddObject(s, GameConstants.ENEMY_RENDER_GROUP,
+//                GameConstants.ENEMY_COLLISION_GROUP);
     }
 
     @Override

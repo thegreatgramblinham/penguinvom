@@ -501,7 +501,7 @@ public class GameManager
             _engineInstance.SetActiveSector(_currentBattleStage.GetSector());
 
             //todo adjust and lock viewport
-            
+
             _battleStageTransitionQueue = null;
 
         }
