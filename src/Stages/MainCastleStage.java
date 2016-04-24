@@ -72,7 +72,7 @@ public class MainCastleStage extends OverworldStage
             case Right:
                 return new Point(
                         ViewPort.SecLocX(280),
-                        ViewPort.SecLocX(372));
+                        ViewPort.SecLocY(372));
         }
 
         return null;
