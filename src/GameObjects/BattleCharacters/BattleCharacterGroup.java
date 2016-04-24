@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class BattleCharacterGroup<T extends BattleCharacterBase> implements Collection
+public class BattleCharacterGroup<T extends BattleCharacterBase> implements Collection<T>
 {
     //Variables
     private ArrayList<T> _list;
@@ -47,7 +47,7 @@ public class BattleCharacterGroup<T extends BattleCharacterBase> implements Coll
     }
 
     @Override
-    public Iterator iterator()
+    public Iterator<T> iterator()
     {
         return _list.iterator();
     }
@@ -59,7 +59,7 @@ public class BattleCharacterGroup<T extends BattleCharacterBase> implements Coll
     }
 
     @Override
-    public boolean add(Object o)
+    public boolean add(T o)
     {
         return _list.add((T) o);
     }

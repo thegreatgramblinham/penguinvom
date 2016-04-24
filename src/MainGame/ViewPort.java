@@ -23,6 +23,8 @@ public class ViewPort
     //Private Fields
     private static Point _location;
 
+    private boolean _isLocked = false;
+
     private int _xRes;
     private int _yRes;
 
@@ -62,10 +64,19 @@ public class ViewPort
         return _yRes;
     }
 
+    //Set Methods
+    public void SetLocation(Point p)
+    {
+        if(_isLocked) return;
+
+        _location = p;
+    }
 
     //Public Methods
     public void ScrollIntoView(Point p)
     {
+        if(_isLocked) return;
+
         int xPos = GetViewRelativeX(p.x);
         int yPos = GetViewRelativeY(p.y);
         if( xPos < (_xRes * LEFT_SCROLL_PARTITION))
@@ -92,6 +103,8 @@ public class ViewPort
 
     public void JumpToPoint(Point p)
     {
+        if(_isLocked) return;
+
         int xPos = p.x - (int)(X_RES * LEFT_SCROLL_PARTITION);
         int yPos = p.y - (int)(Y_RES * TOP_SCROLL_PARTITION);
 
@@ -106,6 +119,16 @@ public class ViewPort
             yPos = _minTop;
 
         _location = new Point(xPos, yPos);
+    }
+
+    public void Lock()
+    {
+        _isLocked = true;
+    }
+
+    public void Unlock()
+    {
+        _isLocked = false;
     }
 
     //Private Methods

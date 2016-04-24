@@ -536,7 +536,8 @@ public class GameManager
             _engineInstance.SetActiveSector(_currentBattleStage.GetSector());
 
             //todo adjust and lock viewport
-            _viewPort.JumpToPoint(_currentBattleStage.GetPlayerStartingLocation(Side.Left));
+            _viewPort.SetLocation(_currentBattleStage.GetViewLocation());
+            _viewPort.Lock();
 
             _isBattleMode = true;
             _battleStageTransitionQueue = null;

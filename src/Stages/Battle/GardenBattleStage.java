@@ -1,14 +1,11 @@
 package Stages.Battle;
 
-import GameObjectBase.enums.Side;
-import GameObjects.BattleCharacters.BattleCharacterBase;
 import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import SectorBase.Sector;
 import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.io.File;
 
 public class GardenBattleStage extends BattleStage
@@ -38,11 +35,6 @@ public class GardenBattleStage extends BattleStage
     //Set Methods
 
     //Public Methods
-    @Override
-    public Point GetPlayerStartingLocation(Side s)
-    {
-        return new Point(800,800);
-    }
 
     //Private Methods
     @Override

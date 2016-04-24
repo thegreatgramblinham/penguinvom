@@ -57,8 +57,13 @@ public class PlayerObject extends CharacterBase
     @Override
     public void OnCollide(GameWorldObject other)
     {
+
         if(other instanceof EnemyBase)
-            GameManager.QueueBattleTransition(new BattleCharacterGroup<>());
+        {
+            BattleCharacterGroup<EnemyBattleCharacter> enemies = new BattleCharacterGroup<>();
+            enemies.add(new EnemyBattleCharacter((EnemyBase)other));
+            GameManager.QueueBattleTransition(enemies);
+        }
     }
 
     @Override
