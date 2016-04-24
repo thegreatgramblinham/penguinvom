@@ -535,25 +535,35 @@ public class GameManager
     {
         if(_battleStageTransitionQueue != null)
         {
+            //Create the a battle stage from the current room
             _currentBattleStage = _currentRoom.CreateBattleStage(
                     new PlayerBattleCharacter(_player),
                     _battleStageTransitionQueue);
 
+            //Set it to active
             _engineInstance.SetActiveSector(_currentBattleStage.GetSector());
 
+            //Position camera
             _viewPort.SetLocation(_currentBattleStage.GetViewLocation());
             _viewPort.Lock();
 
+            //Signal we are in battle
             _isBattleMode = true;
             _battleStageTransitionQueue = null;
-
         }
         else if(_sectorTransitionQueue != null)
         {
 
             if(_sectorTransitionQueue.GetItem1() == _currentRoom)
             {
+                //Go back to overworld
                 _engineInstance.SetActiveSector(_currentRoom.GetSector());
+
+                //Delete battle stage
+                _engineInstance.DeleteSector(_currentBattleStage.GetSector());
+                _currentBattleStage = null;
+
+                //Position camera
                 _viewPort.JumpToPoint(_player.GetCenterPoint());
                 _sectorTransitionQueue = null;
             }
