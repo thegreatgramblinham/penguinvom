@@ -1,6 +1,10 @@
 package Stages.Battle;
 
 import GameObjectBase.enums.Side;
+import GameObjects.BattleCharacters.BattleCharacterBase;
+import GameObjects.BattleCharacters.BattleCharacterGroup;
+import GameObjects.BattleCharacters.EnemyBattleCharacter;
+import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import SectorBase.Sector;
 import javafx.scene.image.Image;
 
@@ -12,9 +16,10 @@ public class GardenBattleStage extends BattleStage
     //Variables
 
     //Constructor
-    public GardenBattleStage(Sector sector) throws Exception
+    public GardenBattleStage(Sector sector, PlayerBattleCharacter player,
+                             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
-        super(sector);
+        super(sector, player, enemies);
     }
 
     //Get Methods
@@ -36,7 +41,7 @@ public class GardenBattleStage extends BattleStage
     @Override
     public Point GetPlayerStartingLocation(Side s)
     {
-        return new Point(500,500);
+        return new Point(800,800);
     }
 
     //Private Methods

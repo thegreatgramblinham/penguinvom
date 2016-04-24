@@ -4,8 +4,10 @@ import Engine.GameEngine;
 import GameObjectBase.GameWorldObject;
 import GameObjectBase.enums.Side;
 import GameObjects.Base.GameObject;
+import GameObjects.BattleCharacters.BattleCharacterBase;
 import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
+import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Characters.Enemies.AI.interfaces.IAiController;
 import GameObjects.Characters.Enemies.Dagron;
 import GameObjects.Characters.Enemies.EnemyBase;
@@ -246,7 +248,7 @@ public class GameManager
     }
     //endregion
 
-
+    //region Shared Rendering Methods
     public KeyFrame Render(final GraphicsContext gc)
     {
         return new KeyFrame(
@@ -282,6 +284,25 @@ public class GameManager
                 });
     }
 
+    private void ShowDebugInfo(GameObject gObj, GraphicsContext gc)
+    {
+        gc.strokeRect(gObj.GetGameHitBoxDrawPoint().x,
+                gObj.GetGameHitBoxDrawPoint().y,
+                gObj.GetHitBox().width,
+                gObj.GetHitBox().height);
+
+        if(!gObj.GetIsImmobile())
+        {
+            gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
+            gc.fillText(
+                    DebugHelper.BuildFormattedPropertyString(gObj),
+                    ViewPort.DrawLocX(gObj.GetRight()),
+                    ViewPort.DrawLocY(gObj.GetBottom()));
+        }
+    }
+
+    //endregion
+
     //region Overworld Rendering
     private void OverworldRenderLoop(GraphicsContext gc)
     {
@@ -305,21 +326,7 @@ public class GameManager
                 GameObject gObj = (GameObject)gameEngObj;
 
                 if(_showPropertyDebugMode)
-                {
-                    gc.strokeRect(gObj.GetGameHitBoxDrawPoint().x,
-                            gObj.GetGameHitBoxDrawPoint().y,
-                            gObj.GetHitBox().width,
-                            gObj.GetHitBox().height);
-
-                    if(!gObj.GetIsImmobile())
-                    {
-                        gc.setFill(javafx.scene.paint.Color.CHARTREUSE);
-                        gc.fillText(
-                                DebugHelper.BuildFormattedPropertyString(gObj),
-                                ViewPort.DrawLocX(gObj.GetRight()),
-                                ViewPort.DrawLocY(gObj.GetBottom()));
-                    }
-                }
+                    ShowDebugInfo(gObj, gc);
 
                 if(HandlePlayerAction(gObj, gc))
                 {
@@ -471,11 +478,37 @@ public class GameManager
             {
                 GameObject gObj = (GameObject) gameEngObj;
 
+                if(_showPropertyDebugMode)
+                    ShowDebugInfo(gObj, gc);
 
+                if(HandleCharacterAction(gObj, gc))
+                {
+                }
+                else if(gObj.GetSprite() != null)
+                {
+                    gc.drawImage(gObj.GetSprite(),
+                            gObj.GetGameDrawPoint().x,
+                            gObj.GetGameDrawPoint().y,
+                            gObj.GetSprite().getWidth(),
+                            gObj.GetSprite().getHeight());
+                }
             }
         }
     }
 
+    private boolean HandleCharacterAction(GameWorldObject gObj, GraphicsContext gc)
+    {
+        BattleCharacterBase charObj;
+
+        if(gObj instanceof BattleCharacterBase)
+            charObj = (BattleCharacterBase)gObj;
+        else
+            return false;
+
+        charObj.DrawRestingAnimation(gc);
+
+        return true;
+    }
     //endregion
 
     //region Queued Event Handling
@@ -496,12 +529,16 @@ public class GameManager
     {
         if(_battleStageTransitionQueue != null)
         {
-            _currentBattleStage = _currentRoom.CreateBattleStage(_battleStageTransitionQueue);
+            _currentBattleStage = _currentRoom.CreateBattleStage(
+                    new PlayerBattleCharacter(_player),
+                    _battleStageTransitionQueue);
 
             _engineInstance.SetActiveSector(_currentBattleStage.GetSector());
 
             //todo adjust and lock viewport
+            _viewPort.JumpToPoint(_currentBattleStage.GetPlayerStartingLocation(Side.Left));
 
+            _isBattleMode = true;
             _battleStageTransitionQueue = null;
 
         }
