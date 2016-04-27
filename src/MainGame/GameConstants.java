@@ -25,7 +25,9 @@ public class GameConstants
     public static final int ENEMY_RENDER_GROUP = 3;
     public static final int ENEMY_PROJECTILE_RENDER_GROUP = 3;
     public static final int PROP_RENDER_GROUP_BACK = 2;
-    public static final int PROP_RENDER_GROUP_FORWARD = 4;
+    public static final int PROP_RENDER_GROUP_MID = 4;
+    public static final int PROP_RENDER_GROUP_FORWARD = 5;
+
 
     //Engine Run Constants
     public static final int ENGINE_FPS = 60;

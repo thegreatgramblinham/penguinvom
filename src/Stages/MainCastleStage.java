@@ -107,7 +107,7 @@ public class MainCastleStage extends OverworldStage
                         Direction.Left,
                         Side.Right
                 );
-        _sector.AddObject(leftExit, GameConstants.PROP_RENDER_GROUP_FORWARD,
+        _sector.AddObject(leftExit, GameConstants.PROP_RENDER_GROUP_MID,
                 GameConstants.TRIGGER_COLLISION_GROUP);
     }
 
