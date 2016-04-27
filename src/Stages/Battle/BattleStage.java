@@ -67,16 +67,28 @@ public abstract class BattleStage extends StageObject
     @Override
     protected void InitProps()
     {
-        Backdrop b = new Backdrop(new Rectangle(
-                ViewPort.SecLocX(0),
-                ViewPort.SecLocY(-80),
-                (int) GetSkyTexture().getWidth(),
-                (int) GetSkyTexture().getHeight()),
-                false, false, "trimCurtain");
-        b.SetSprite(new Image(
+        Backdrop trimCurtain = new Backdrop(new Rectangle(
+            ViewPort.SecLocX(0),
+            ViewPort.SecLocY(-100),
+            (int) GetSkyTexture().getWidth(),
+            (int) GetSkyTexture().getHeight()),
+            false, false, "trimCurtain");
+        trimCurtain.SetSprite(new Image(
                 new File("src/ImageAssets/backgrounds/battleStage/stageTrim.png")
                         .toURI().toString()));
-        _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP_FORWARD,
+        _sector.AddObject(trimCurtain, GameConstants.PROP_RENDER_GROUP_FORWARD,
+                GameConstants.PROP_COLLISION_GROUP);
+
+        Backdrop mainCurtainLeft = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(30),
+                ViewPort.SecLocY(-760),
+                (int) GetSkyTexture().getWidth(),
+                (int) GetSkyTexture().getHeight()),
+                false, false, "mainCurtainLeft");
+        mainCurtainLeft.SetSprite(new Image(
+                new File("src/ImageAssets/backgrounds/battleStage/mainCurtainLeft.png")
+                        .toURI().toString()));
+        _sector.AddObject(mainCurtainLeft, GameConstants.PROP_RENDER_GROUP_MID,
                 GameConstants.PROP_COLLISION_GROUP);
 
     }
