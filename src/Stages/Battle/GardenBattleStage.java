@@ -57,11 +57,6 @@ public class GardenBattleStage extends BattleStage
                 "src/ImageAssets/backgrounds/battleStage/stageFloorPlaceHolder.png").toURI().toString());
     }
 
-    @Override
-    protected void InitProps()
-    {
-
-    }
 
 
 }
