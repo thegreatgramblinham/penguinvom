@@ -3,12 +3,15 @@ package Stages.Battle;
 import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.BattleCharacters.PlayerBattleCharacter;
+import GameObjects.Environmental.Backdrop;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
 import SectorBase.Sector;
 import Stages.StageObject;
+import javafx.scene.image.Image;
 
 import java.awt.*;
+import java.io.File;
 
 
 public abstract class BattleStage extends StageObject
@@ -61,6 +64,23 @@ public abstract class BattleStage extends StageObject
     //Public Methods
 
     //Private Methods
+    @Override
+    protected void InitProps()
+    {
+        Backdrop b = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(0),
+                ViewPort.SecLocY(-80),
+                (int) GetSkyTexture().getWidth(),
+                (int) GetSkyTexture().getHeight()),
+                false, false, "trimCurtain");
+        b.SetSprite(new Image(
+                new File("src/ImageAssets/backgrounds/battleStage/stageTrim.png")
+                        .toURI().toString()));
+        _sector.AddObject(b, GameConstants.PROP_RENDER_GROUP_FORWARD,
+                GameConstants.PROP_COLLISION_GROUP);
+
+    }
+
     private void InitCharacterPositions()
     {
         //Player
@@ -76,8 +96,6 @@ public abstract class BattleStage extends StageObject
                     GameConstants.PLAYER_COLLISION_GROUP);
             enemyCharacter.NSetLocation(enemyLocations[0]);
         }
-
-
     }
 
 }
