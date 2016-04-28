@@ -76,20 +76,47 @@ public abstract class BattleStage extends StageObject
         trimCurtain.SetSprite(new Image(
                 new File("src/ImageAssets/backgrounds/battleStage/stageTrim.png")
                         .toURI().toString()));
-        _sector.AddObject(trimCurtain, GameConstants.PROP_RENDER_GROUP_FORWARD,
-                GameConstants.PROP_COLLISION_GROUP);
+        _sector.AddObject(trimCurtain, GameConstants.CURTAIN_RENDER_GROUP_5,
+                GameConstants.NO_COLLISION_GROUP);
 
+
+        Image mainCurtain = new Image(
+                new File("src/ImageAssets/backgrounds/battleStage/mainCurtainLeft.png")
+                        .toURI().toString());
         Backdrop mainCurtainLeft = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(30),
-                ViewPort.SecLocY(-760),
-                (int) GetSkyTexture().getWidth(),
-                (int) GetSkyTexture().getHeight()),
+                ViewPort.SecLocY(-375),
+                (int) mainCurtain.getWidth(),
+                (int) mainCurtain.getHeight()),
                 false, false, "mainCurtainLeft");
-        mainCurtainLeft.SetSprite(new Image(
-                new File("src/ImageAssets/backgrounds/battleStage/mainCurtainLeft.png")
-                        .toURI().toString()));
-        _sector.AddObject(mainCurtainLeft, GameConstants.PROP_RENDER_GROUP_MID,
-                GameConstants.PROP_COLLISION_GROUP);
+        mainCurtainLeft.SetSprite(mainCurtain);
+        _sector.AddObject(mainCurtainLeft, GameConstants.CURTAIN_RENDER_GROUP_4,
+                GameConstants.NO_COLLISION_GROUP);
+
+        Image rearCurtain = new Image(
+                new File("src/ImageAssets/backgrounds/battleStage/rearCurtainLeft.png").toURI().toString());
+
+        //Left mid
+        Backdrop rearCurtainLeft = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(60),
+                ViewPort.SecLocY(-410),
+                (int) rearCurtain.getWidth(),
+                (int) rearCurtain.getHeight()),
+                false, false, "rearCurtainMidLeft");
+        rearCurtainLeft.SetSprite(rearCurtain);
+        _sector.AddObject(rearCurtainLeft, GameConstants.CURTAIN_RENDER_GROUP_3,
+                GameConstants.NO_COLLISION_GROUP);
+
+        //Upstage curtain
+        rearCurtainLeft = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(90),
+                ViewPort.SecLocY(-455),
+                (int) rearCurtain.getWidth(),
+                (int) rearCurtain.getHeight()),
+                false, false, "rearCurtainMidLeft");
+        rearCurtainLeft.SetSprite(rearCurtain);
+        _sector.AddObject(rearCurtainLeft, GameConstants.CURTAIN_RENDER_GROUP_2,
+                GameConstants.NO_COLLISION_GROUP);
 
     }
 
