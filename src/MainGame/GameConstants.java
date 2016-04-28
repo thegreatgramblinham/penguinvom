@@ -16,8 +16,10 @@ public class GameConstants
     public static final String PLAYER_GAMEBOUNDS_COLLISION_GROUP = "PlayerGameBoundsGroup";
     public static final String PROP_COLLISION_GROUP = "PropGroup";
     public static final String TRIGGER_COLLISION_GROUP = "TriggerGroup";
+    public static final String NO_COLLISION_GROUP = "NoCollision";
 
-    //Render Group Constants
+
+    //region Render Group Constants
     public static final int SKY_RENDER_GROUP = 0;
     public static final int ROOM_RENDER_GROUP = 1;
     public static final int PLAYER_RENDER_GROUP = 3;
@@ -26,7 +28,16 @@ public class GameConstants
     public static final int ENEMY_PROJECTILE_RENDER_GROUP = 3;
     public static final int PROP_RENDER_GROUP_BACK = 2;
     public static final int PROP_RENDER_GROUP_MID = 4;
-    public static final int PROP_RENDER_GROUP_FORWARD = 5;
+    public static final int PROP_RENDER_GROUP_MIDFORWARD = 5;
+    public static final int PROP_RENDER_GROUP_FORWARD = 6;
+
+    public static final int CURTAIN_RENDER_GROUP_1 = 3;
+    public static final int CURTAIN_RENDER_GROUP_2 = 4;
+    public static final int CURTAIN_RENDER_GROUP_3 = 5;
+    public static final int CURTAIN_RENDER_GROUP_4 = 6;
+    public static final int CURTAIN_RENDER_GROUP_5 = 7;
+
+    //endregion
 
 
     //Engine Run Constants
