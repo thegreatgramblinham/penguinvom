@@ -79,43 +79,83 @@ public abstract class BattleStage extends StageObject
         _sector.AddObject(trimCurtain, GameConstants.CURTAIN_RENDER_GROUP_5,
                 GameConstants.NO_COLLISION_GROUP);
 
-
-        Image mainCurtain = new Image(
+        //main traveller left
+        Image mainCurtainLeftImage = new Image(
                 new File("src/ImageAssets/backgrounds/battleStage/mainCurtainLeft.png")
                         .toURI().toString());
         Backdrop mainCurtainLeft = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(30),
                 ViewPort.SecLocY(-375),
-                (int) mainCurtain.getWidth(),
-                (int) mainCurtain.getHeight()),
+                (int) mainCurtainLeftImage.getWidth(),
+                (int) mainCurtainLeftImage.getHeight()),
                 false, false, "mainCurtainLeft");
-        mainCurtainLeft.SetSprite(mainCurtain);
+        mainCurtainLeft.SetSprite(mainCurtainLeftImage);
         _sector.AddObject(mainCurtainLeft, GameConstants.CURTAIN_RENDER_GROUP_4,
                 GameConstants.NO_COLLISION_GROUP);
 
-        Image rearCurtain = new Image(
+        Image rearCurtainLeftImage = new Image(
                 new File("src/ImageAssets/backgrounds/battleStage/rearCurtainLeft.png").toURI().toString());
 
-        //Left mid
+        //Left mid leg
         Backdrop rearCurtainLeft = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(60),
                 ViewPort.SecLocY(-410),
-                (int) rearCurtain.getWidth(),
-                (int) rearCurtain.getHeight()),
+                (int) rearCurtainLeftImage.getWidth(),
+                (int) rearCurtainLeftImage.getHeight()),
                 false, false, "rearCurtainMidLeft");
-        rearCurtainLeft.SetSprite(rearCurtain);
+        rearCurtainLeft.SetSprite(rearCurtainLeftImage);
         _sector.AddObject(rearCurtainLeft, GameConstants.CURTAIN_RENDER_GROUP_3,
                 GameConstants.NO_COLLISION_GROUP);
 
-        //Upstage curtain
+        //Upstage leg left
         rearCurtainLeft = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(90),
                 ViewPort.SecLocY(-455),
-                (int) rearCurtain.getWidth(),
-                (int) rearCurtain.getHeight()),
-                false, false, "rearCurtainMidLeft");
-        rearCurtainLeft.SetSprite(rearCurtain);
+                (int) rearCurtainLeftImage.getWidth(),
+                (int) rearCurtainLeftImage.getHeight()),
+                false, false, "rearCurtainUpstageLeft");
+        rearCurtainLeft.SetSprite(rearCurtainLeftImage);
         _sector.AddObject(rearCurtainLeft, GameConstants.CURTAIN_RENDER_GROUP_2,
+                GameConstants.NO_COLLISION_GROUP);
+
+
+        //main traveller Right
+        Image mainCurtainRightImage = new Image(
+                new File("src/ImageAssets/backgrounds/battleStage/mainCurtainRight.png")
+                        .toURI().toString());
+        Backdrop mainCurtainRight = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(1162),
+                ViewPort.SecLocY(-375),
+                (int) mainCurtainRightImage.getWidth(),
+                (int) mainCurtainRightImage.getHeight()),
+                false, false, "mainCurtainLeft");
+        mainCurtainRight.SetSprite(mainCurtainRightImage);
+        _sector.AddObject(mainCurtainRight, GameConstants.CURTAIN_RENDER_GROUP_4,
+                GameConstants.NO_COLLISION_GROUP);
+
+        Image rearCurtainRightImage = new Image(
+                new File("src/ImageAssets/backgrounds/battleStage/rearCurtainRight.png").toURI().toString());
+
+        //Right mid leg
+        Backdrop rearCurtainRight = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(1132),
+                ViewPort.SecLocY(-410),
+                (int) rearCurtainRightImage.getWidth(),
+                (int) rearCurtainRightImage.getHeight()),
+                false, false, "rearCurtainMidRight");
+        rearCurtainRight.SetSprite(rearCurtainRightImage);
+        _sector.AddObject(rearCurtainRight, GameConstants.CURTAIN_RENDER_GROUP_3,
+                GameConstants.NO_COLLISION_GROUP);
+
+        //Upstage leg Right
+        rearCurtainRight = new Backdrop(new Rectangle(
+                ViewPort.SecLocX(1102),
+                ViewPort.SecLocY(-455),
+                (int) rearCurtainRightImage.getWidth(),
+                (int) rearCurtainRightImage.getHeight()),
+                false, false, "rearCurtainUpstageRight");
+        rearCurtainRight.SetSprite(rearCurtainRightImage);
+        _sector.AddObject(rearCurtainRight, GameConstants.CURTAIN_RENDER_GROUP_2,
                 GameConstants.NO_COLLISION_GROUP);
 
     }
