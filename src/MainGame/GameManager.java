@@ -469,6 +469,8 @@ public class GameManager
     //region Battle Rendering
     public void BattleRenderLoop(GraphicsContext gc)
     {
+        _currentBattleManager.HandleKeyPress();
+
         //Draw all the engine managed objects
         for (int i = 0;
              i < _engineInstance.GetActiveSector().GetRenderGroupCount();

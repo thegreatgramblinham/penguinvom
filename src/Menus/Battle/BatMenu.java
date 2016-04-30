@@ -7,7 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public class BatMenu extends BattleMenu
+public class BatMenu extends BattleMenuBase
 {
     //Private Constants
     private final static int WIDTH = 179;
