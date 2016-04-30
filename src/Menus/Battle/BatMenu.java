@@ -39,7 +39,7 @@ public class BatMenu extends BattleMenuBase
     }
 
     @Override
-    public void DrawSelectedAnimation(GraphicsContext gc)
+    public void Draw(GraphicsContext gc)
     {
         _animation.DrawFrameAtIndex(gc, this.GetGameDrawPoint(), 4, AnimationOrientation.Default);
     }
