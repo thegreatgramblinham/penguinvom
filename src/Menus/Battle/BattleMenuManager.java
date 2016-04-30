@@ -46,7 +46,7 @@ public class BattleMenuManager extends MenuManager
         _battleCarousel = new BattleMenuCarousel(
                 new Point(
                         ViewPort.SecLocX(390),
-                        ViewPort.SecLocY(120)));
+                        ViewPort.SecLocY(70)));
         AddMenu(_battleCarousel);
     }
 
