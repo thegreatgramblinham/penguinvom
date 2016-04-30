@@ -1,4 +1,4 @@
-package Menus.Battle;
+package Menus.Battle.SelectionCarousel;
 
 import Animation.SpriteAnimation;
 import Animation.enums.AnimationOrientation;

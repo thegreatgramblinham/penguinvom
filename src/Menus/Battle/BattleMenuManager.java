@@ -2,6 +2,7 @@ package Menus.Battle;
 
 import MainGame.GameConstants;
 import MainGame.ViewPort;
+import Menus.Battle.SelectionCarousel.BattleMenuCarousel;
 import Menus.Battle.enums.BattleMenuType;
 import Menus.MenuManager;
 import javafx.scene.input.KeyCode;
