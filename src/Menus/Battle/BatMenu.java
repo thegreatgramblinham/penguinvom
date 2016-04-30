@@ -14,11 +14,11 @@ public class BatMenu extends BattleMenu
     private final static int HEIGHT = 176;
 
     //Constructor
-    public BatMenu(Rectangle rect)
+    public BatMenu(Point location)
     {
         super(
-                rect,
-                new SpriteAnimation("src/ImageAssets/menu/battle/cardMenuAnimation.png",
+                new Rectangle(location.x, location.y, WIDTH, HEIGHT),
+                new SpriteAnimation("src/ImageAssets/menus/battle/cardMenuAnimation.png",
                         WIDTH,
                         HEIGHT,
                         60,
