@@ -2,6 +2,7 @@ package Menus.Base;
 
 import MainGame.ViewPort;
 import Menus.MenuItem;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
@@ -22,4 +23,7 @@ public abstract class MenuBase extends MenuItem
 
         return new Point(ViewPort.DrawLocX(p.x), ViewPort.DrawLocY(p.y));
     }
+
+    //Abstract Methods
+    public abstract void DrawSelectedAnimation(GraphicsContext gc);
 }

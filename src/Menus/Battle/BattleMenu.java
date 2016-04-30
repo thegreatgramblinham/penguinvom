@@ -17,10 +17,11 @@ public abstract class BattleMenu extends MenuBase
     public BattleMenu(Rectangle rect, SpriteAnimation menuAnimation)
     {
         super(rect);
+        _animation = menuAnimation;
     }
 
     //Public Methods
     public abstract void DrawTransitionAnimation(GraphicsContext gc);
 
-    public abstract void DrawSelectedAnimation(GraphicsContext gc);
+
 }

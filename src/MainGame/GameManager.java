@@ -26,11 +26,8 @@ import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
-import Stages.Battle.BattleStage;
-import Stages.Battle.GardenBattleStage;
 import Stages.CastleGardenStage;
 import Stages.OverworldStage;
-import Stages.StageObject;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -77,7 +74,7 @@ public class GameManager
     private EnemySpawner _enemySpawner;
     private StageMap _stageMap;
     private OverworldStage _currentRoom;
-    private BattleManager _currentBattleStage;
+    private BattleManager _currentBattleManager;
     private double _lastPlayerDirection = 0;
     private boolean _isBattleMode = false;
 
@@ -472,6 +469,7 @@ public class GameManager
     //region Battle Rendering
     public void BattleRenderLoop(GraphicsContext gc)
     {
+        //Draw all the engine managed objects
         for (int i = 0;
              i < _engineInstance.GetActiveSector().GetRenderGroupCount();
              i++)
@@ -501,6 +499,9 @@ public class GameManager
                 }
             }
         }
+
+        //Draw all the windows/menus
+        _currentBattleManager.DrawMenus(gc);
     }
 
     private boolean HandleCharacterAction(GameWorldObject gObj, GraphicsContext gc)
@@ -537,15 +538,15 @@ public class GameManager
         if(_battleStageTransitionQueue != null)
         {
             //Create the a battle stage from the current room
-            _currentBattleStage = new BattleManager(_currentRoom.CreateBattleStage(
+            _currentBattleManager = new BattleManager(_currentRoom.CreateBattleStage(
                     new PlayerBattleCharacter(_player),
                     _battleStageTransitionQueue));
 
             //Set it to active
-            _engineInstance.SetActiveSector(_currentBattleStage.GetStage().GetSector());
+            _engineInstance.SetActiveSector(_currentBattleManager.GetStage().GetSector());
 
             //Position camera
-            _viewPort.SetLocation(_currentBattleStage.GetStage().GetViewLocation());
+            _viewPort.SetLocation(_currentBattleManager.GetStage().GetViewLocation());
             _viewPort.Lock();
 
             //Signal we are in battle
@@ -561,8 +562,8 @@ public class GameManager
                 _engineInstance.SetActiveSector(_currentRoom.GetSector());
 
                 //Delete battle stage
-                _engineInstance.DeleteSector(_currentBattleStage.GetStage().GetSector());
-                _currentBattleStage = null;
+                _engineInstance.DeleteSector(_currentBattleManager.GetStage().GetSector());
+                _currentBattleManager = null;
 
                 //Position camera
                 _viewPort.JumpToPoint(_player.GetCenterPoint());
