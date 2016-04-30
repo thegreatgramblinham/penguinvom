@@ -1,6 +1,7 @@
 package Menus.Battle;
 
 import Animation.SpriteAnimation;
+import Animation.enums.AnimationOrientation;
 import MainGame.GameConstants;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -34,13 +35,13 @@ public class BatMenu extends BattleMenu
     @Override
     public void DrawTransitionAnimation(GraphicsContext gc)
     {
-
+        _animation.DrawSpriteFrame(gc, this.GetGameDrawPoint(), AnimationOrientation.Default);
     }
 
     @Override
     public void DrawSelectedAnimation(GraphicsContext gc)
     {
-
+        _animation.DrawFrameAtIndex(gc, this.GetGameDrawPoint(), 4, AnimationOrientation.Default);
     }
 
     //Private Methods
