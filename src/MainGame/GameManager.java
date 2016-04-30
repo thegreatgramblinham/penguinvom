@@ -18,6 +18,7 @@ import GameObjects.Environmental.Backdrop;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Projectiles.Bullet;
 import Global.Tuple;
+import MainGame.Battle.BattleManager;
 import MainGame.Debugging.DebugHelper;
 import MainGame.Mapping.StageMap;
 import PhysicsBase.CollisionRules.CollisionGroupNamePair;
@@ -76,7 +77,7 @@ public class GameManager
     private EnemySpawner _enemySpawner;
     private StageMap _stageMap;
     private OverworldStage _currentRoom;
-    private BattleStage _currentBattleStage;
+    private BattleManager _currentBattleStage;
     private double _lastPlayerDirection = 0;
     private boolean _isBattleMode = false;
 
@@ -536,15 +537,15 @@ public class GameManager
         if(_battleStageTransitionQueue != null)
         {
             //Create the a battle stage from the current room
-            _currentBattleStage = _currentRoom.CreateBattleStage(
+            _currentBattleStage = new BattleManager(_currentRoom.CreateBattleStage(
                     new PlayerBattleCharacter(_player),
-                    _battleStageTransitionQueue);
+                    _battleStageTransitionQueue));
 
             //Set it to active
-            _engineInstance.SetActiveSector(_currentBattleStage.GetSector());
+            _engineInstance.SetActiveSector(_currentBattleStage.GetStage().GetSector());
 
             //Position camera
-            _viewPort.SetLocation(_currentBattleStage.GetViewLocation());
+            _viewPort.SetLocation(_currentBattleStage.GetStage().GetViewLocation());
             _viewPort.Lock();
 
             //Signal we are in battle
@@ -560,7 +561,7 @@ public class GameManager
                 _engineInstance.SetActiveSector(_currentRoom.GetSector());
 
                 //Delete battle stage
-                _engineInstance.DeleteSector(_currentBattleStage.GetSector());
+                _engineInstance.DeleteSector(_currentBattleStage.GetStage().GetSector());
                 _currentBattleStage = null;
 
                 //Position camera
