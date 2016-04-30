@@ -1,4 +1,4 @@
-package Menus.Battle;
+package Menus.Battle.SelectionCarousel;
 
 import Menus.Base.MenuBase;
 import Menus.Battle.enums.BattleMenuType;
