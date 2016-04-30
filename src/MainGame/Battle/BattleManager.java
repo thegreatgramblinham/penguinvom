@@ -2,7 +2,8 @@ package MainGame.Battle;
 
 import MainGame.Battle.enums.Turn;
 import MainGame.ViewPort;
-import Menus.Battle.BatMenu;
+import Menus.Battle.BattleMenuCarousel;
+import Menus.Battle.BattleMenuManager;
 import Menus.MenuManager;
 import Stages.Battle.BattleStage;
 import javafx.scene.canvas.GraphicsContext;
@@ -38,11 +39,18 @@ public class BattleManager
         _menuManager.DrawMenus(gc);
     }
 
+    public void HandleKeyPress()
+    {
+        //if in attack animation
+
+        //if in menu
+        _menuManager.HandleKeyPress();
+    }
+
     //Private Methods
     private void InitMenus()
     {
-        _menuManager = new MenuManager();
-        _menuManager.AddMenu(new BatMenu( new Point(ViewPort.SecLocX(390), ViewPort.SecLocY(120))));
+        _menuManager = new BattleMenuManager();
     }
 
 }

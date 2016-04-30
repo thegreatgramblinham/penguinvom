@@ -5,10 +5,10 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.HashSet;
 
-public class MenuManager
+public abstract class MenuManager
 {
     //Variables
-    private HashSet<MenuBase> _menus;
+    protected HashSet<MenuBase> _menus;
 
     //Constructor
     public MenuManager()
@@ -34,6 +34,7 @@ public class MenuManager
         }
     }
 
-    //Private Methods
+    //Abstract Methods
+    public abstract void HandleKeyPress();
 
 }
