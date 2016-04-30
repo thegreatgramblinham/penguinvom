@@ -1,6 +1,7 @@
 package Menus.Battle;
 
 import Menus.Base.MenuBase;
+import Menus.Battle.enums.BattleMenuType;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -9,8 +10,8 @@ import java.util.*;
 public class BattleMenuCarousel extends MenuBase
 {
     //Private Constants
-    private final static int WIDTH = 179;
-    private final static int HEIGHT = 177;
+    //private final static int WIDTH = 179;
+    //private final static int HEIGHT = 177;
 
     //Variables
     private ArrayList<BattleMenuBase> _menuList;
@@ -21,7 +22,7 @@ public class BattleMenuCarousel extends MenuBase
     //Constructor
     public BattleMenuCarousel(Point location)
     {
-        super(new Rectangle(location.x, location.y, WIDTH, HEIGHT));
+        super(new Rectangle(location.x, location.y, 0, 0));
         Init();
     }
 
@@ -66,6 +67,11 @@ public class BattleMenuCarousel extends MenuBase
 
         _menuList.get(listIndex)._animation.ResetAnimation();
         _animationQueue.add(listIndex);
+    }
+
+    public BattleMenuType GetSelection()
+    {
+        return _menuList.get(_selectedIndex).GetType();
     }
 
     //Private Methods
