@@ -1,8 +1,6 @@
 package MainGame.Battle;
 
 import MainGame.Battle.enums.Turn;
-import MainGame.ViewPort;
-import Menus.Battle.BattleMenuCarousel;
 import Menus.Battle.BattleMenuManager;
 import Menus.MenuManager;
 import Stages.Battle.BattleStage;

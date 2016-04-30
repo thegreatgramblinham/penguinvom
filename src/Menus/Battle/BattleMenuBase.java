@@ -28,5 +28,4 @@ public abstract class BattleMenuBase extends MenuBase
     //Abstract Methods
     public abstract void DrawTransitionAnimation(GraphicsContext gc);
 
-
 }

@@ -30,7 +30,7 @@ public abstract class MenuManager
     {
         for(MenuBase menu : _menus)
         {
-            menu.DrawSelectedAnimation(gc);
+            menu.Draw(gc);
         }
     }
 

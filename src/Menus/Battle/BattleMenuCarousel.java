@@ -31,7 +31,7 @@ public class BattleMenuCarousel extends MenuBase
 
     //Public Methods
     @Override
-    public void DrawSelectedAnimation(GraphicsContext gc)
+    public void Draw(GraphicsContext gc)
     {
         BattleMenuBase card = _menuList.get(_selectedIndex);
         boolean needToDrawSelected = true;
@@ -51,7 +51,7 @@ public class BattleMenuCarousel extends MenuBase
         if(needToDrawSelected)
         {
             card = _menuList.get(_selectedIndex);
-            card.DrawSelectedAnimation(gc);
+            card.Draw(gc);
         }
 
     }

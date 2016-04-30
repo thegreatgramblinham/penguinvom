@@ -60,7 +60,7 @@ public class GameManager
     private static Tuple<OverworldStage, Side> _sectorTransitionQueue = null;
     private static BattleCharacterGroup<EnemyBattleCharacter> _battleStageTransitionQueue = null;
     private static GameEngine _engineInstance;
-    private static boolean _isFullscreen = false;
+    private static boolean _isFullscreen = true;
     private static boolean _showPropertyDebugMode = false;
 
     //Private Variables - UI

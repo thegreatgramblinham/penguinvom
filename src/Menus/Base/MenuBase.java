@@ -25,5 +25,5 @@ public abstract class MenuBase extends MenuItem
     }
 
     //Abstract Methods
-    public abstract void DrawSelectedAnimation(GraphicsContext gc);
+    public abstract void Draw(GraphicsContext gc);
 }
