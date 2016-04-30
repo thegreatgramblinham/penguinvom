@@ -11,15 +11,15 @@ import java.awt.*;
 public class BatMenu extends BattleMenuBase
 {
     //Private Constants
-    private final static int WIDTH = 179;
-    private final static int HEIGHT = 177;
+    private final static int WIDTH = 268;
+    private final static int HEIGHT = 270;
 
     //Constructor
     public BatMenu(Point location)
     {
         super(
                 new Rectangle(location.x, location.y, WIDTH, HEIGHT),
-                new SpriteAnimation("src/ImageAssets/menus/battle/cardMenuAnimation.png",
+                new SpriteAnimation("src/ImageAssets/menus/battle/menuCardBlank.png",
                         WIDTH,
                         HEIGHT,
                         60,
