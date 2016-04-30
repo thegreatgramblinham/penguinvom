@@ -3,6 +3,7 @@ package Menus.Battle;
 import Animation.SpriteAnimation;
 import Animation.enums.AnimationOrientation;
 import MainGame.GameConstants;
+import Menus.Battle.enums.BattleMenuType;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -23,7 +24,8 @@ public class BatMenu extends BattleMenuBase
                         HEIGHT,
                         60,
                         GameConstants.ENGINE_FPS,
-                        false)
+                        false),
+                BattleMenuType.Bat
         );
     }
 

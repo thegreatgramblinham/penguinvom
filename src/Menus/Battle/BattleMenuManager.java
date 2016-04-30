@@ -2,6 +2,7 @@ package Menus.Battle;
 
 import MainGame.GameConstants;
 import MainGame.ViewPort;
+import Menus.Battle.enums.BattleMenuType;
 import Menus.MenuManager;
 import javafx.scene.input.KeyCode;
 
@@ -30,6 +31,11 @@ public class BattleMenuManager extends MenuManager
         if(GameConstants.IsKeyPressed(KeyCode.UP))
         {
             _battleCarousel.Advance();
+        }
+        else if(GameConstants.IsKeyPressed(KeyCode.ENTER))
+        {
+            BattleMenuType battleSelection = _battleCarousel.GetSelection();
+            //todo open the selection sub menu
         }
 
     }
