@@ -9,6 +9,7 @@ public class BattleManager
     private BattleStage _stage;
     private Turn _turn;
 
+
     //Constructor
     public BattleManager(BattleStage stage)
     {
@@ -26,5 +27,9 @@ public class BattleManager
     //Public Methods
 
     //Private Methods
+    private void InitMenus()
+    {
+
+    }
 
 }
