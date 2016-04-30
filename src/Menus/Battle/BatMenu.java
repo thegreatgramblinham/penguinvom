@@ -11,7 +11,7 @@ public class BatMenu extends BattleMenu
 {
     //Private Constants
     private final static int WIDTH = 179;
-    private final static int HEIGHT = 176;
+    private final static int HEIGHT = 177;
 
     //Constructor
     public BatMenu(Point location)
