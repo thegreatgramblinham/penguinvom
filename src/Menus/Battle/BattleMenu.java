@@ -1,15 +1,16 @@
 package Menus.Battle;
 
 import Animation.SpriteAnimation;
+import Menus.Base.MenuBase;
 import Menus.MenuItem;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
-public abstract class BattleMenu extends MenuItem
+public abstract class BattleMenu extends MenuBase
 {
     //Private variables
-    private SpriteAnimation _animation;
+    protected SpriteAnimation _animation;
     //todo visibility
 
     //Constructor

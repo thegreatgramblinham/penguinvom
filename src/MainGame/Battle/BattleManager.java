@@ -1,6 +1,7 @@
 package MainGame.Battle;
 
 import MainGame.Battle.enums.Turn;
+import Menus.WindowManager;
 import Stages.Battle.BattleStage;
 
 public class BattleManager
@@ -8,6 +9,7 @@ public class BattleManager
     //Variables
     private BattleStage _stage;
     private Turn _turn;
+    private WindowManager _windowManager;
 
 
     //Constructor
