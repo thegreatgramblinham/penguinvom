@@ -13,6 +13,7 @@ public class BatMenu extends BattleMenuBase
     //Private Constants
     private final static int WIDTH = 268;
     private final static int HEIGHT = 270;
+    private final static int SELECTED_FRAME_INDEX = 4;
 
     //Constructor
     public BatMenu(Point location)
@@ -43,7 +44,8 @@ public class BatMenu extends BattleMenuBase
     @Override
     public void Draw(GraphicsContext gc)
     {
-        _animation.DrawFrameAtIndex(gc, this.GetGameDrawPoint(), 4, AnimationOrientation.Default);
+        _animation.DrawFrameAtIndex(gc, this.GetGameDrawPoint(),
+                SELECTED_FRAME_INDEX, AnimationOrientation.Default);
     }
 
     //Private Methods
