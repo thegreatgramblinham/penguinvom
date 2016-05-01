@@ -15,7 +15,6 @@ public class BattleManager
     private Turn _turn;
     private MenuManager _menuManager;
 
-
     //Constructor
     public BattleManager(BattleStage stage)
     {
