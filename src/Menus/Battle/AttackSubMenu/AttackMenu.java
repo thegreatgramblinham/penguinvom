@@ -13,12 +13,14 @@ public class AttackMenu extends MenuBase
 
     //Variables
     private ArrayList<AttackMenuItem> _items;
+    private AttackMenuItemSelection _selectionGraphic;
+    private int _selectedIndex;
 
     //Constructor
     public AttackMenu(Point location)
     {
         super(new Rectangle(location.x, location.y, 0, 0));
-        Init();
+        InitItems();
     }
 
     //Get Methods
@@ -33,17 +35,57 @@ public class AttackMenu extends MenuBase
         {
             item.Draw(gc);
         }
+
+        _selectionGraphic.Draw(gc);
+    }
+
+    public void IncrementSelection()
+    {
+        if(_selectedIndex < _items.size() - 1)
+            _selectedIndex++;
+        else
+            _selectedIndex = 0;
+
+        InitSelection();
+    }
+
+    public void DecrementSelection()
+    {
+        if(_selectedIndex > 0)
+            _selectedIndex--;
+        else
+            _selectedIndex = _items.size() - 1;
+
+        InitSelection();
     }
 
     //Private Methods
-    private void Init()
+    private void InitItems()
     {
         _items = new ArrayList<>();
+        _selectedIndex = 0;
 
         for(int i = 0; i < 5; i++)
         {
             _items.add(new AttackMenuItem(new Point(this.x,
                     this.y + i * (AttackMenuItem.HEIGHT + ITEM_PADDING))));
         }
+
+        InitSelection();
+    }
+
+    private void InitSelection()
+    {
+        _selectionGraphic = new AttackMenuItemSelection
+                (
+                        new Point(
+                                this.x - ITEM_PADDING,
+                                this.y + (_selectedIndex *
+                                        (AttackMenuItemSelection.HEIGHT
+                                                - AttackMenuItemSelection.BORDER_PADDING)
+                                        - ITEM_PADDING)
+                        )
+
+                );
     }
 }
