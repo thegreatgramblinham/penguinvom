@@ -26,6 +26,11 @@ public abstract class MenuManager
         _menus.add(menu);
     }
 
+    public void RemoveMenu(MenuBase menu)
+    {
+        _menus.remove(menu);
+    }
+
     public void DrawMenus(GraphicsContext gc)
     {
         for(MenuBase menu : _menus)
