@@ -9,15 +9,10 @@ import java.util.*;
 
 public class BattleMenuCarousel extends MenuBase
 {
-    //Private Constants
-    //private final static int WIDTH = 179;
-    //private final static int HEIGHT = 177;
-
     //Variables
     private ArrayList<BattleMenuBase> _menuList;
     private int _selectedIndex;
     private LinkedList<Integer> _animationQueue;
-
 
     //Constructor
     public BattleMenuCarousel(Point location)
