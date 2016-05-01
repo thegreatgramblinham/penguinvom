@@ -5,16 +5,19 @@ import javafx.scene.image.Image;
 import java.awt.*;
 import java.io.File;
 
-public class AttackMenuItem extends AttackMenuItemBase
+public class AttackMenuItemSelection extends AttackMenuItemBase
 {
     //Public Constants
-    public final static int HEIGHT = 24;
+    public final static int HEIGHT = 32;
+    public final static int BORDER_PADDING = 4;
 
     //Private Constants
-    private final static int WIDTH = 400;
+    private final static int WIDTH = 408;
+
+    //Variables
 
     //Constructor
-    public AttackMenuItem(Point location) //todo text, icon
+    public AttackMenuItemSelection(Point location)
     {
         super(new Rectangle(location.x, location.y, WIDTH, HEIGHT));
         Init();
@@ -30,7 +33,7 @@ public class AttackMenuItem extends AttackMenuItemBase
     private void Init()
     {
         _sprite = new Image(
-                new File("src/ImageAssets/menus/battle/attackSubMenuItem.png")
+                new File("src/ImageAssets/menus/battle/attackSubMenuSelection.png")
                         .toURI().toString());
     }
 

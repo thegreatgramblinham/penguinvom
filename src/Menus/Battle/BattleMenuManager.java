@@ -42,6 +42,21 @@ public class BattleMenuManager extends MenuManager
                     _battleCarousel.Advance();
                     break;
                 case SubMenuSelection:
+                    _currentAttackMenu.IncrementSelection();
+                    break;
+                case EnemySelection:
+                    break;
+            }
+
+        }
+        if(GameConstants.IsKeyPressed(KeyCode.DOWN))
+        {
+            switch(_state)
+            {
+                case CarouselSelection:
+                    break;
+                case SubMenuSelection:
+                    _currentAttackMenu.DecrementSelection();
                     break;
                 case EnemySelection:
                     break;
