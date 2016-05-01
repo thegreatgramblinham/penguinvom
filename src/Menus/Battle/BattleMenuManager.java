@@ -13,10 +13,14 @@ import java.awt.*;
 
 public class BattleMenuManager extends MenuManager
 {
+    //Private Constants
+    private final int KEY_RESET_TIMER = 10;
+
     //Variables
     private BattleMenuCarousel _battleCarousel;
     private AttackMenu _currentAttackMenu;
     private BattleMenuState _state;
+    private int _keyCooldownTimer;
 
     //Constructor
     public BattleMenuManager()
@@ -34,6 +38,14 @@ public class BattleMenuManager extends MenuManager
     @Override
     public void HandleKeyPress()
     {
+        if(_keyCooldownTimer < KEY_RESET_TIMER)
+        {
+            _keyCooldownTimer++;
+            return;
+        }
+
+        boolean keyPressed = false;
+
         if(GameConstants.IsKeyPressed(KeyCode.UP))
         {
             switch(_state)
@@ -42,12 +54,13 @@ public class BattleMenuManager extends MenuManager
                     _battleCarousel.Advance();
                     break;
                 case SubMenuSelection:
-                    _currentAttackMenu.IncrementSelection();
+                    _currentAttackMenu.DecrementSelection();
                     break;
                 case EnemySelection:
                     break;
             }
 
+            keyPressed = true;
         }
         if(GameConstants.IsKeyPressed(KeyCode.DOWN))
         {
@@ -56,12 +69,13 @@ public class BattleMenuManager extends MenuManager
                 case CarouselSelection:
                     break;
                 case SubMenuSelection:
-                    _currentAttackMenu.DecrementSelection();
+                    _currentAttackMenu.IncrementSelection();
                     break;
                 case EnemySelection:
                     break;
             }
 
+            keyPressed = true;
         }
         else if(GameConstants.IsKeyPressed(KeyCode.ENTER))
         {
@@ -77,6 +91,8 @@ public class BattleMenuManager extends MenuManager
                 case EnemySelection:
                     break;
             }
+
+            keyPressed = true;
         }
         else if(GameConstants.IsKeyPressed(KeyCode.BACK_SPACE))
         {
@@ -92,8 +108,12 @@ public class BattleMenuManager extends MenuManager
                 case EnemySelection:
                     break;
             }
+
+            keyPressed = true;
         }
 
+        if(keyPressed)
+            _keyCooldownTimer = 0;
     }
 
     //Private Methods
