@@ -2,6 +2,7 @@ package Player.Moves;
 
 import Player.Moves.enums.MoveType;
 import XMLParsing.XMLParser;
+import XMLParsing.XPathConstants;
 import org.w3c.dom.Document;
 
 public final class MoveBuilder
@@ -13,11 +14,11 @@ public final class MoveBuilder
     public static Move BuildMove(String path) throws Exception
     {
         Document d = XMLParser.CreateDocument(path);
-        String id = XMLParser.ParseStringPathContents(d, "/Move/Id");
-        String alias = XMLParser.ParseStringPathContents(d, "/Move/Alias");
-        String typeStr = XMLParser.ParseStringPathContents(d, "/Move/MoveType");
-        int baseDamage = XMLParser.ParseIntPathContents(d, "/Move/BaseDamage");
-        String animationFile = XMLParser.ParseStringPathContents(d, "/Move/AnimationFile");
+        String id = XMLParser.ParseStringPathContents(d, XPathConstants.M_ID);
+        String alias = XMLParser.ParseStringPathContents(d, XPathConstants.M_ALIAS);
+        String typeStr = XMLParser.ParseStringPathContents(d, XPathConstants.M_TYPE);
+        int baseDamage = XMLParser.ParseIntPathContents(d, XPathConstants.M_BASEDMG);
+        String animationFile = XMLParser.ParseStringPathContents(d, XPathConstants.M_ANIMATION);
 
         MoveType type = null;
 
