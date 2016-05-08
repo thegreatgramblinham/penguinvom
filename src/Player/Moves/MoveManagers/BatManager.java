@@ -1,4 +1,4 @@
-package Player.MoveManagers;
+package Player.Moves.MoveManagers;
 
 public class BatManager
 {

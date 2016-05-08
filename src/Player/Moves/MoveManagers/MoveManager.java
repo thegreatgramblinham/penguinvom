@@ -1,4 +1,4 @@
-package Player.MoveManagers;
+package Player.Moves.MoveManagers;
 
 import Player.Moves.Move;
 
