@@ -1,6 +1,6 @@
-package XMLParsing;
+package Player.Moves;
 
-public final class XPathConstants
+public final class MoveXMLConstants
 {
     //Move xPaths
     public final static String M_ID = "/Move/Id";
