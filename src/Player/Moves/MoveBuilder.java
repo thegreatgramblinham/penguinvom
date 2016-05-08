@@ -13,11 +13,11 @@ public final class MoveBuilder
     public static Move BuildMove(String path) throws Exception
     {
         Document d = XMLParser.CreateDocument(path);
-        String id = XMLParser.ParseStringPathContents(d, MoveXMLConstants.M_ID);
-        String alias = XMLParser.ParseStringPathContents(d, MoveXMLConstants.M_ALIAS);
-        String typeStr = XMLParser.ParseStringPathContents(d, MoveXMLConstants.M_TYPE);
-        int baseDamage = XMLParser.ParseIntPathContents(d, MoveXMLConstants.M_BASEDMG);
-        String animationFile = XMLParser.ParseStringPathContents(d, MoveXMLConstants.M_ANIMATION);
+        String id = XMLParser.ParseStringPathContents(d, MoveConstants.M_ID);
+        String alias = XMLParser.ParseStringPathContents(d, MoveConstants.M_ALIAS);
+        String typeStr = XMLParser.ParseStringPathContents(d, MoveConstants.M_TYPE);
+        int baseDamage = XMLParser.ParseIntPathContents(d, MoveConstants.M_BASEDMG);
+        String animationFile = XMLParser.ParseStringPathContents(d, MoveConstants.M_ANIMATION);
 
         MoveType type = null;
 

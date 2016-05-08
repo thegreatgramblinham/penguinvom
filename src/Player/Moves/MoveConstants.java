@@ -1,6 +1,6 @@
 package Player.Moves;
 
-public final class MoveXMLConstants
+public final class MoveConstants
 {
     //Move xPaths
     public final static String M_ID = "/Move/Id";
@@ -9,4 +9,7 @@ public final class MoveXMLConstants
     public final static String M_BASEDMG = "/Move/BaseDamage";
     public final static String M_ANIMATION = "/Move/AnimationFile";
 
+    //Move File Paths
+    private final static String _PATHBASE = "src/config/moves/";
+    public final static String BASIC_JUMP = _PATHBASE + "BasicJump.xml";
 }
