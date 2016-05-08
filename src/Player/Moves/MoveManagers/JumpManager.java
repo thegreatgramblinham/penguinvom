@@ -18,14 +18,24 @@ public class JumpManager extends MoveManager
 
     //Public Methods
     @Override
-    public ArrayList<Move> GetMoveList() throws Exception
+    public ArrayList<Move> GetMoveList()
     {
-        ArrayList<Move> moveList = new ArrayList<>();
+        try
+        {
+            ArrayList<Move> moveList = new ArrayList<>();
 
-        Move m1 = MoveBuilder.BuildMove(MoveConstants.BASIC_JUMP);
-        moveList.add(m1);
+            Move m1 = MoveBuilder.BuildMove(MoveConstants.BASIC_JUMP);
+            moveList.add(m1);
 
-        return moveList;
+            return moveList;
+        }
+        catch(Exception e)
+        {
+            System.out.println("<FAILING TO LOAD MOVES> - "+e.getMessage());
+
+        }
+
+        return null;
     }
 
     //Private Methods
