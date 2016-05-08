@@ -11,5 +11,5 @@ public final class MoveConstants
 
     //Move File Paths
     private final static String _PATHBASE = "src/config/moves/";
-    public final static String BASIC_JUMP = _PATHBASE + "BasicJump.xml";
+    public final static String BASIC_JUMP = _PATHBASE + "basicJump.xml";
 }
