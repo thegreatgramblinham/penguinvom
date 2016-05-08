@@ -2,30 +2,25 @@ package XMLParsing;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.*;
 import java.io.File;
-import java.io.IOException;
 
 public final class XMLParser
 {
+    //TODO will need to be instanced if we do async loading here
+
     //Private Constants
-    private DocumentBuilderFactory _dFactory = DocumentBuilderFactory.newInstance();
-    private XPath _xPathParser = XPathFactory.newInstance().newXPath();
+    private static DocumentBuilderFactory _dFactory = DocumentBuilderFactory.newInstance();
+    private static XPath _xPathParser = XPathFactory.newInstance().newXPath();
 
     //Constructor
     private XMLParser() {}
 
-    //Get Methods
-
-    //Set Methods
-
     //Public Methods
-    public Document CreateDocument(String filePath) throws ParserConfigurationException, IOException, SAXException
+    public static Document CreateDocument(String filePath) throws Exception
     {
         File textFile = new File(filePath);
         DocumentBuilder dBuilder = _dFactory.newDocumentBuilder();
@@ -35,20 +30,20 @@ public final class XMLParser
         return d;
     }
 
-    public String ParseStringPathContents(Document d, String xPath) throws XPathExpressionException
+    public static String ParseStringPathContents(Document d, String xPath) throws Exception
     {
         NodeList node = EvaluateXPath(d, xPath);
         return node.item(0).getTextContent();
     }
 
-    public int ParseIntPathContents(Document d, String xPath) throws XPathExpressionException
+    public static int ParseIntPathContents(Document d, String xPath) throws Exception
     {
         NodeList node = EvaluateXPath(d, xPath);
         String text = node.item(0).getTextContent();
         return Integer.parseInt(text);
     }
 
-    public double ParseDoublePathContents(Document d, String xPath) throws XPathExpressionException
+    public static double ParseDoublePathContents(Document d, String xPath) throws Exception
     {
         NodeList node = EvaluateXPath(d, xPath);
         String text = node.item(0).getTextContent();
@@ -56,7 +51,7 @@ public final class XMLParser
     }
 
     //Private Methods
-    private NodeList EvaluateXPath(Document d, String xPath) throws XPathExpressionException
+    private static NodeList EvaluateXPath(Document d, String xPath) throws Exception
     {
         XPathExpression expr = _xPathParser.compile(xPath);
         NodeList node = (NodeList)expr.evaluate(d, XPathConstants.NODESET);
