@@ -13,7 +13,7 @@ public class BattleManager
     //Variables
     private BattleStage _stage;
     private Turn _turn;
-    private MenuManager _menuManager;
+    private BattleMenuManager _menuManager;
 
     //Constructor
     public BattleManager(BattleStage stage)
