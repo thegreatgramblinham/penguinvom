@@ -1,0 +1,7 @@
+<Move>
+    <Id>000001</Id>
+    <Alias>Jump</Alias>
+    <MoveType>Jump</MoveType>
+    <BaseDamage>1</BaseDamage>
+    <AnimationFile></AnimationFile>
+</Move>
