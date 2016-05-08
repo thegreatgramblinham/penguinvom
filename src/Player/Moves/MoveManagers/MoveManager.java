@@ -20,7 +20,7 @@ abstract class MoveManager
     //Set Methods
 
     //Abstract Methods
-    public abstract ArrayList<Move> GetMoveList() throws Exception;
+    public abstract ArrayList<Move> GetMoveList();
 
     //Public Methods
 

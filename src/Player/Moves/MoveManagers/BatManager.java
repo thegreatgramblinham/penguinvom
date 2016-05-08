@@ -1,8 +1,11 @@
 package Player.Moves.MoveManagers;
 
-public class BatManager
-{
+import Player.Moves.Move;
 
+import java.util.ArrayList;
+
+public class BatManager extends MoveManager
+{
     //Variables
 
     //Constructor
@@ -12,7 +15,11 @@ public class BatManager
     //Set Methods
 
     //Public Methods
+    @Override
+    public ArrayList<Move> GetMoveList()
+    {
+        return null;
+    }
 
     //Private Methods
-
 }
