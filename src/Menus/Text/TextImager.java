@@ -3,6 +3,7 @@ package Menus.Text;
 import XMLParsing.XMLParser;
 import javafx.scene.image.Image;
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import java.awt.*;
 import java.io.File;
@@ -42,18 +43,27 @@ public class TextImager
     private void Init()
     {
         _imageCoordinates = new HashMap<>();
-        Document d = XMLParser.CreateDocument(FONT_COORD_FILEPATH);
-
-        int nodeListLength = XMLParser.GetNodeListLength(d, "/Font/Symbol");
-
-        for(int i = 0; i < nodeListLength; i++)
+        try
         {
-            String character
-                    = XMLParser.ParseStringPathContents(d, i,"/Font/Symbol/Character");
-            int x = XMLParser.ParseIntPathContents(d, i, "/Font/Symbol/X");
-            int y = XMLParser.ParseIntPathContents(d, i, "/Font/Symbol/Y");
+            XMLParser parser = new XMLParser(FONT_COORD_FILEPATH);
+            NodeList characterList = parser.OpenNodeList("/Font/Symbol/Character");
+            NodeList xList = parser.OpenNodeList("/Font/Symbol/X");
+            NodeList yList = parser.OpenNodeList("/Font/Symbol/Y");
 
-            _imageCoordinates.put(character.charAt(0), new Point(x, y));
+
+            for (int i = 0; i < characterList.getLength(); i++)
+            {
+                String character
+                        = XMLParser.ParseStringPathContents(characterList, i);
+                int x = XMLParser.ParseIntPathContents(xList, i);
+                int y = XMLParser.ParseIntPathContents(yList, i);
+
+                _imageCoordinates.put(character.charAt(0), new Point(x, y));
+            }
+        }
+        catch(Exception e)
+        {
+
         }
     }
 

@@ -12,12 +12,18 @@ public final class MoveBuilder
     //Public Methods
     public static Move BuildMove(String path) throws Exception
     {
-        Document d = XMLParser.CreateDocument(path);
-        String id = XMLParser.ParseStringPathContents(d, MoveConstants.M_ID);
-        String alias = XMLParser.ParseStringPathContents(d, MoveConstants.M_ALIAS);
-        String typeStr = XMLParser.ParseStringPathContents(d, MoveConstants.M_TYPE);
-        int baseDamage = XMLParser.ParseIntPathContents(d, MoveConstants.M_BASEDMG);
-        String animationFile = XMLParser.ParseStringPathContents(d, MoveConstants.M_ANIMATION);
+        XMLParser parser = new XMLParser(path);
+
+        String id = XMLParser.ParseStringPathContents(
+                parser.OpenNodeList(MoveConstants.M_ID), 0);
+        String alias = XMLParser.ParseStringPathContents(
+                parser.OpenNodeList(MoveConstants.M_ALIAS), 0);
+        String typeStr = XMLParser.ParseStringPathContents(
+                parser.OpenNodeList(MoveConstants.M_TYPE), 0);
+        int baseDamage = XMLParser.ParseIntPathContents(
+                parser.OpenNodeList(MoveConstants.M_BASEDMG), 0);
+        String animationFile = XMLParser.ParseStringPathContents(
+                parser.OpenNodeList(MoveConstants.M_ANIMATION), 0);
 
         MoveType type = null;
 
