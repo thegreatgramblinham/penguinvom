@@ -1,327 +1,327 @@
 <Font>
-	<Letter>
+	<Symbol>
 		<Character>A</Character>
 		<X>0</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>B</Character>
 		<X>1</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>C</Character>
 		<X>2</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>D</Character>
 		<X>3</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>E</Character>
 		<X>4</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>F</Character>
 		<X>5</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>G</Character>
 		<X>6</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>H</Character>
 		<X>7</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>I</Character>
 		<X>8</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>J</Character>
 		<X>9</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>K</Character>
 		<X>10</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>L</Character>
 		<X>11</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>M</Character>
 		<X>12</X>
 		<Y>0</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>N</Character>
 		<X>0</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>O</Character>
 		<X>1</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>P</Character>
 		<X>2</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>Q</Character>
 		<X>3</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>R</Character>
 		<X>4</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>S</Character>
 		<X>5</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>T</Character>
 		<X>6</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>U</Character>
 		<X>7</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>V</Character>
 		<X>8</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>W</Character>
 		<X>9</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>X</Character>
 		<X>10</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>Y</Character>
 		<X>11</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>Z</Character>
 		<X>12</X>
 		<Y>1</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>a</Character>
 		<X>0</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>b</Character>
 		<X>1</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>c</Character>
 		<X>2</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>d</Character>
 		<X>3</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>e</Character>
 		<X>4</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>f</Character>
 		<X>5</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>g</Character>
 		<X>6</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>h</Character>
 		<X>7</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>i</Character>
 		<X>8</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>j</Character>
 		<X>9</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>k</Character>
 		<X>10</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>l</Character>
 		<X>11</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>m</Character>
 		<X>12</X>
 		<Y>2</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>n</Character>
 		<X>0</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>o</Character>
 		<X>1</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>p</Character>
 		<X>2</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>q</Character>
 		<X>3</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>r</Character>
 		<X>4</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>s</Character>
 		<X>5</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>t</Character>
 		<X>6</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>u</Character>
 		<X>7</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>v</Character>
 		<X>8</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>w</Character>
 		<X>9</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>x</Character>
 		<X>10</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>y</Character>
 		<X>11</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>z</Character>
 		<X>12</X>
 		<Y>3</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>0</Character>
 		<X>0</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>1</Character>
 		<X>1</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>2</Character>
 		<X>2</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>3</Character>
 		<X>3</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>4</Character>
 		<X>4</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>5</Character>
 		<X>5</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>6</Character>
 		<X>6</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>7</Character>
 		<X>7</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>8</Character>
 		<X>8</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>9</Character>
 		<X>9</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>!</Character>
 		<X>10</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>?</Character>
 		<X>11</X>
 		<Y>4</Y>
-	</Letter>
-	<Letter>
+	</Symbol>
+	<Symbol>
 		<Character>#</Character>
 		<X>12</X>
 		<Y>4</Y>
-	</Letter>
+	</Symbol>
 </Font>

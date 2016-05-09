@@ -74,8 +74,8 @@ function WriteNumericAndSymbols()
 
 function WriteToFile(character, x, y)
 {
-    //Open Letter
-    xmlFileString += "\t" + "<Letter>"+ "\n";
+    //Open Symbol
+    xmlFileString += "\t" + "<Symbol>"+ "\n";
     
     //Character
     xmlFileString += "\t\t" + "<Character>"                   
@@ -92,8 +92,8 @@ function WriteToFile(character, x, y)
     xmlFileString += y;              
     xmlFileString += "</Y>" + "\n"
     
-    //Close Letter
-    xmlFileString += "\t" + "</Letter>"+ "\n";
+    //Close Symbol
+    xmlFileString += "\t" + "</Symbol>"+ "\n";
 }
 
 function Completed(err)

@@ -7,6 +7,7 @@ import Menus.Battle.SelectionCarousel.BattleMenuCarousel;
 import Menus.Battle.enums.BattleMenuState;
 import Menus.Battle.enums.BattleMenuType;
 import Menus.MenuManager;
+import Menus.Text.TextImager;
 import javafx.scene.input.KeyCode;
 
 import java.awt.*;
@@ -28,6 +29,8 @@ public class BattleMenuManager extends MenuManager
         super();
         InitCarousel();
         _state = BattleMenuState.CarouselSelection;
+
+        TextImager test = new TextImager();
     }
 
     //Get Methods
