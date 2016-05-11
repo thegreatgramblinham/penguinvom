@@ -1,6 +1,7 @@
 package Menus.Battle.AttackSubMenu;
 
 import Menus.Base.MenuBase;
+import Menus.Text.TextImager;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -15,6 +16,7 @@ public class AttackMenu extends MenuBase
     private ArrayList<AttackMenuItem> _items;
     private AttackMenuItemSelection _selectionGraphic;
     private int _selectedIndex;
+    private TextImager _textImager = new TextImager();
 
     //Constructor
     public AttackMenu(Point location)
@@ -67,8 +69,9 @@ public class AttackMenu extends MenuBase
 
         for(int i = 0; i < 5; i++)
         {
-            _items.add(new AttackMenuItem(new Point(this.x,
-                    this.y + i * (AttackMenuItem.HEIGHT + ITEM_PADDING))));
+            _items.add(new AttackMenuItem(
+                    new Point(this.x, this.y + i * (AttackMenuItem.HEIGHT + ITEM_PADDING)),
+                    _textImager.TextToImage("This is a test sentence!")));
         }
 
         InitSelection();
