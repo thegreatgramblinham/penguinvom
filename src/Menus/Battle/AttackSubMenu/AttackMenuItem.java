@@ -1,5 +1,8 @@
 package Menus.Battle.AttackSubMenu;
 
+import MainGame.ViewPort;
+import Menus.Text.TextImager;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import java.awt.*;
@@ -13,11 +16,15 @@ public class AttackMenuItem extends AttackMenuItemBase
     //Private Constants
     private final static int WIDTH = 400;
 
+    //Private Variables
+    private Image[] _text;
+
     //Constructor
-    public AttackMenuItem(Point location) //todo text, icon
+    public AttackMenuItem(Point location, Image[] text) //todo text, icon
     {
         super(new Rectangle(location.x, location.y, WIDTH, HEIGHT));
         Init();
+        _text = text;
     }
 
     //Get Methods
@@ -25,6 +32,19 @@ public class AttackMenuItem extends AttackMenuItemBase
     //Set Methods
 
     //Public Methods
+    @Override
+    public void Draw(GraphicsContext gc)
+    {
+        super.Draw(gc);
+
+        for (int i = 0; i < _text.length; i++)
+        {
+            Image letter = _text[i];
+            gc.drawImage(letter,
+                    ViewPort.DrawLocX(this.x) + i* TextImager.LETTER_WIDTH,
+                    ViewPort.DrawLocY(this.y));
+        }
+    }
 
     //Private Methods
     private void Init()
