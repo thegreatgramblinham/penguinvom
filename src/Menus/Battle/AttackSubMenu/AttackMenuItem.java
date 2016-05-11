@@ -15,6 +15,8 @@ public class AttackMenuItem extends AttackMenuItemBase
 
     //Private Constants
     private final static int WIDTH = 400;
+    private final static int TEXT_MARGIN_TOP = 3;
+    private final static int TEXT_MARGIN_LEFT = 5;
 
     //Private Variables
     private Image[] _text;
@@ -41,8 +43,8 @@ public class AttackMenuItem extends AttackMenuItemBase
         {
             Image letter = _text[i];
             gc.drawImage(letter,
-                    ViewPort.DrawLocX(this.x) + i* TextImager.LETTER_WIDTH,
-                    ViewPort.DrawLocY(this.y));
+                    (ViewPort.DrawLocX(this.x) + i * TextImager.LETTER_WIDTH) + TEXT_MARGIN_LEFT,
+                    ViewPort.DrawLocY(this.y) + TEXT_MARGIN_TOP);
         }
     }
 

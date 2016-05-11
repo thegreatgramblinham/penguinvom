@@ -58,9 +58,9 @@ public class TextImager
             WritableImage letterImage = new WritableImage(
                     reader,
                     (TextImager.LETTER_WIDTH * loc.x),
-                    (TextImager.LETTER_HEIGHT * loc.y),
-                    LETTER_WIDTH,
-                    LETTER_HEIGHT);
+                    (TextImager.LETTER_HEIGHT * loc.y) + IMAGE_Y_START_INDEX,
+                    LETTER_WIDTH ,
+                    LETTER_HEIGHT - IMAGE_Y_START_INDEX);
 
             letterImages[i] = letterImage;
         }
