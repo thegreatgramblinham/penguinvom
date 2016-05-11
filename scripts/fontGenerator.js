@@ -18,12 +18,38 @@ function BuildFile()
     //Open Font tag
     xmlFileString += "<Font>" + "\n";
     
+    WriteGlobalData();
     WriteCapitals();
     WriteLowercase();
     WriteNumericAndSymbols();
         
     //Close Font tag
     xmlFileString += "</Font>";
+}
+
+function WriteGlobalData()
+{
+    //Open Global tag
+    xmlFileString += "\t<Global>" + "\n";
+    
+    xmlFileString += "\t\t" + "<XOffset>"                      
+    xmlFileString += 2;              
+    xmlFileString += "</XOffset>" + "\n"
+    
+    xmlFileString += "\t\t" + "<YOffset>"                      
+    xmlFileString += 2;              
+    xmlFileString += "</YOffset>" + "\n"
+    
+    xmlFileString += "\t\t" + "<CharacterSpacing>"                      
+    xmlFileString += 2;              
+    xmlFileString += "</CharacterSpacing>" + "\n"
+    
+    xmlFileString += "\t\t" + "<SpaceWidth>"                      
+    xmlFileString += 8;              
+    xmlFileString += "</SpaceWidth>" + "\n"
+    
+    //Close Global tag
+    xmlFileString += "\t</Global>" + "\n";
 }
 
 function WriteCapitals() 
@@ -92,8 +118,74 @@ function WriteToFile(character, x, y)
     xmlFileString += y;              
     xmlFileString += "</Y>" + "\n"
     
+    //Width
+    xmlFileString += "\t\t" + "<Width>"                      
+    xmlFileString += GetCharWidth(character);              
+    xmlFileString += "</Width>" + "\n"
+    
     //Close Symbol
     xmlFileString += "\t" + "</Symbol>"+ "\n";
+}
+
+function GetCharWidth(character) 
+{  
+    var c = character.toString().charCodeAt(0);
+    
+    if(c >= 65 && c <= 90)
+    {
+        switch(c)
+        {
+            case 67: //C
+            case 69: //E
+            case 70: //F
+                return 8;
+            case 73: //I
+                return 2;
+            default:
+                return 10;          
+        }
+    }
+    else if(c >= 97 && c <= 122)   
+    {
+        switch(c)
+        {
+            case 99: //c
+                return 6;
+            case 105: //i
+            case 106: //j
+            case 108: //l
+                return 2;
+            case 109: //m
+            case 118: //v
+            case 119: //w
+            case 120: //x
+            case 122: //z
+                return 10;
+            default:
+                return 8;          
+        }
+    }
+    else if(c >= 48 && c <= 57)   
+    {
+        switch(c)
+        {
+            case 49: //1
+                return 4;
+            default:
+                return 10;
+        }
+    }
+    
+    //Misc Symbols
+    switch(c)
+    {
+        case 33: //!
+            return 2;
+        case 63: //?
+            return 8;
+    }
+    
+    return -1;
 }
 
 function Completed(err)
