@@ -22,13 +22,16 @@ public class TextImager
     private final static String FONT_FILEPATH = "src/ImageAssets/menus/text/pixelFont.png";
     private final static String FONT_COORD_FILEPATH = "src/config/menus/font.xml";
 
-    private final static int IMAGE_Y_START_INDEX = 2;
-    private final static int IMAGE_X_START_INDEX = 0;
-
     private final Image _fontImage = new Image(new File(FONT_FILEPATH).toURI().toString());
 
     //Variables
-    private HashMap<Character, Point> _imageCoordinates;
+    private HashMap<Character, CharacterMetaDataNode> _imageCoordinates;
+
+    private int _xStartIndex;
+    private int _yStartIndex;
+
+    private int _charSpacing;
+    private int _spaceWidth;
 
     //Constructor
     public TextImager()
@@ -53,14 +56,14 @@ public class TextImager
 
             if(c == ' ') continue; //TODO SPACE HANDLING!!!!
 
-            Point loc = _imageCoordinates.get(c);
+            CharacterMetaDataNode node = _imageCoordinates.get(c);
 
             WritableImage letterImage = new WritableImage(
                     reader,
-                    (TextImager.LETTER_WIDTH * loc.x),
-                    (TextImager.LETTER_HEIGHT * loc.y) + IMAGE_Y_START_INDEX,
-                    LETTER_WIDTH ,
-                    LETTER_HEIGHT - IMAGE_Y_START_INDEX);
+                    (TextImager.LETTER_WIDTH * node.x) + _xStartIndex,
+                    (TextImager.LETTER_HEIGHT * node.y) + _yStartIndex,
+                    node.characterWidth ,
+                    LETTER_HEIGHT - _yStartIndex);
 
             letterImages[i] = letterImage;
         }
@@ -75,10 +78,23 @@ public class TextImager
         try
         {
             XMLParser parser = new XMLParser(FONT_COORD_FILEPATH);
+
+            //Global information
+            NodeList xOff = parser.OpenNodeList("/Font/Global/XOffset");
+            NodeList yOff = parser.OpenNodeList("/Font/Global/YOffset");
+            NodeList charSpacing = parser.OpenNodeList("/Font/Global/CharacterSpacing");
+            NodeList spaceWidth = parser.OpenNodeList("/Font/Global/SpaceWidth");
+
+            _xStartIndex = XMLParser.ParseIntPathContents(xOff, 0);
+            _yStartIndex = XMLParser.ParseIntPathContents(yOff, 0);
+            _charSpacing = XMLParser.ParseIntPathContents(charSpacing, 0);
+            _spaceWidth = XMLParser.ParseIntPathContents(spaceWidth, 0);
+
+            //Character information
             NodeList characterList = parser.OpenNodeList("/Font/Symbol/Character");
             NodeList xList = parser.OpenNodeList("/Font/Symbol/X");
             NodeList yList = parser.OpenNodeList("/Font/Symbol/Y");
-
+            NodeList cWidthList = parser.OpenNodeList("/Font/Symbol/Width");
 
             for (int i = 0; i < characterList.getLength(); i++)
             {
@@ -86,8 +102,10 @@ public class TextImager
                         = XMLParser.ParseStringPathContents(characterList, i);
                 int x = XMLParser.ParseIntPathContents(xList, i);
                 int y = XMLParser.ParseIntPathContents(yList, i);
+                int charWidth = XMLParser.ParseIntPathContents(cWidthList, i);
 
-                _imageCoordinates.put(character.charAt(0), new Point(x, y));
+                _imageCoordinates.put(character.charAt(0),
+                        new CharacterMetaDataNode(x, y, charWidth));
             }
         }
         catch(Exception e)
