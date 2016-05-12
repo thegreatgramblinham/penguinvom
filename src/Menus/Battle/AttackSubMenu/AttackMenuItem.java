@@ -1,6 +1,7 @@
 package Menus.Battle.AttackSubMenu;
 
 import MainGame.ViewPort;
+import Menus.Text.TextBlock;
 import Menus.Text.TextImager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -15,18 +16,19 @@ public class AttackMenuItem extends AttackMenuItemBase
 
     //Private Constants
     private final static int WIDTH = 400;
-    private final static int TEXT_MARGIN_TOP = 3;
-    private final static int TEXT_MARGIN_LEFT = 5;
+    private final static int TEXT_MARGIN_TOP = 5;
+    private final static int TEXT_MARGIN_LEFT = 6;
 
     //Private Variables
-    private Image[] _text;
+    private TextBlock _text;
 
     //Constructor
-    public AttackMenuItem(Point location, Image[] text) //todo text, icon
+    public AttackMenuItem(Point location, TextBlock text) //todo text, icon
     {
         super(new Rectangle(location.x, location.y, WIDTH, HEIGHT));
         Init();
         _text = text;
+        _text.NSetLocation(new Point(this.x + TEXT_MARGIN_LEFT, this.y + TEXT_MARGIN_TOP));
     }
 
     //Get Methods
@@ -39,13 +41,7 @@ public class AttackMenuItem extends AttackMenuItemBase
     {
         super.Draw(gc);
 
-        for (int i = 0; i < _text.length; i++)
-        {
-            Image letter = _text[i];
-            gc.drawImage(letter,
-                    (ViewPort.DrawLocX(this.x) + i * TextImager.LETTER_WIDTH) + TEXT_MARGIN_LEFT,
-                    ViewPort.DrawLocY(this.y) + TEXT_MARGIN_TOP);
-        }
+        _text.Draw(gc);
     }
 
     //Private Methods

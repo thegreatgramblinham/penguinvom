@@ -44,9 +44,9 @@ public class TextImager
     //Set Methods
 
     //Public Methods
-    public Image[] TextToImage(String text) //todo wrap?
+    public TextBlock TextToImage(String text) //todo wrap?
     {
-        Image[] letterImages = new Image[text.length()];
+        TextBlock textBlock = new TextBlock(_charSpacing, _spaceWidth);
         char[] charArray = text.toCharArray();
         PixelReader reader = _fontImage.getPixelReader();
 
@@ -54,7 +54,11 @@ public class TextImager
         {
             char c = charArray[i];
 
-            if(c == ' ') continue; //TODO SPACE HANDLING!!!!
+            if(c == ' ')
+            {
+                textBlock.AppendSpace();
+                continue; //TODO SPACE HANDLING!!!!
+            }
 
             CharacterMetaDataNode node = _imageCoordinates.get(c);
 
@@ -65,10 +69,10 @@ public class TextImager
                     node.characterWidth ,
                     LETTER_HEIGHT - _yStartIndex);
 
-            letterImages[i] = letterImage;
+            textBlock.AppendLetter(new Letter(letterImage));
         }
 
-        return letterImages;
+        return textBlock;
     }
 
     //Private Methods
