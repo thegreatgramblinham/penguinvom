@@ -54,7 +54,7 @@ public class GardenBattleStage extends BattleStage
     protected Image GetFloorTexture()
     {
         return new Image(new File(
-                "src/ImageAssets/backgrounds/battleStage/stageFloorPlaceHolder.png").toURI().toString());
+                "src/ImageAssets/backgrounds/battleStage/stageFloorPlaceholder.png").toURI().toString());
     }
 
 
