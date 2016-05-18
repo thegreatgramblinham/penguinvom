@@ -33,6 +33,8 @@ public class AttackMenu extends MenuBase
     @Override
     public void Draw(GraphicsContext gc)
     {
+        if(!GetIsVisible()) return;
+
         for(AttackMenuItem item : _items)
         {
             item.Draw(gc);
@@ -53,7 +55,7 @@ public class AttackMenu extends MenuBase
 
     public void DecrementSelection()
     {
-        if(_selectedIndex > 0)
+        if (_selectedIndex > 0)
             _selectedIndex--;
         else
             _selectedIndex = _items.size() - 1;

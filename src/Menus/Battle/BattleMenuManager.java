@@ -29,8 +29,6 @@ public class BattleMenuManager extends MenuManager
         super();
         InitCarousel();
         _state = BattleMenuState.CarouselSelection;
-
-        TextImager test = new TextImager();
     }
 
     //Get Methods
