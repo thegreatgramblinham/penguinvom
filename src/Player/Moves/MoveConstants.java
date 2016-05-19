@@ -3,11 +3,12 @@ package Player.Moves;
 public final class MoveConstants
 {
     //Move xPaths
-    public final static String M_ID = "/Move/Id";
-    public final static String M_ALIAS = "/Move/Alias";
-    public final static String M_TYPE = "/Move/MoveType";
-    public final static String M_BASEDMG = "/Move/BaseDamage";
-    public final static String M_ANIMATION = "/Move/AnimationFile";
+    private final static String _M_ROOT = "/Move";
+    public final static String M_ID = _M_ROOT + "/Id";
+    public final static String M_ALIAS = _M_ROOT + "/Alias";
+    public final static String M_TYPE = _M_ROOT + "/MoveType";
+    public final static String M_BASEDMG = _M_ROOT + "/BaseDamage";
+    public final static String M_ANIMATION = _M_ROOT + "/AnimationFile";
 
     //Move File Paths
     private final static String _PATHBASE = "src/config/moves/";
