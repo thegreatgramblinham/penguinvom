@@ -32,6 +32,6 @@ public class MoveExecutionEvent
 
     private CharacterBase GetDefender()
     {
-        return GetDefender();
+        return _defender;
     }
 }
