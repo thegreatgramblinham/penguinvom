@@ -29,7 +29,7 @@ public class SkilleatinAi extends EnemyAiBase
     @Override
     public void Advance()
     {
-        super.AdvanceForward();
+        super.AdvanceTowardPlayer();
     }
 
     @Override

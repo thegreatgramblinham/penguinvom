@@ -13,6 +13,7 @@ public class MiniSlim extends EnemyBase
     //Private Constants
     private final static int WIDTH = 32;
     private final static int HEIGHT = 32;
+    private final static float INITIAL_MOVEMENT_SPEED = 1.0F;
 
     //Constructor
     public MiniSlim(Point location, float mass, int health)
@@ -23,6 +24,7 @@ public class MiniSlim extends EnemyBase
                 false,
                 mass,
                 health,
+                INITIAL_MOVEMENT_SPEED,
                 new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",
                         WIDTH, HEIGHT, 10, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",

@@ -13,6 +13,7 @@ public class Slim extends EnemyBase
     //Private Constants
     private final static int WIDTH = 64;
     private final static int HEIGHT = 64;
+    private final static float INITIAL_MOVEMENT_SPEED = 1.0F;
 
     //Constructor
     public Slim(Point location, float mass, int health)
@@ -23,6 +24,7 @@ public class Slim extends EnemyBase
                 false,
                 mass,
                 health,
+                INITIAL_MOVEMENT_SPEED,
                 new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png",
                         WIDTH, HEIGHT, 10, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/blobSheet.png",

@@ -23,15 +23,18 @@ public abstract class CharacterBase extends GameObject
 
     //Properties
     private int _health;
+    private float _movementSpeed;
     protected SpriteAnimation _walkCycle;
     protected SpriteAnimation _restCycle;
 
     //Constructor
-    public CharacterBase(Rectangle size, Rectangle hitBox, boolean isImmobile, float mass, int health,
+    public CharacterBase(Rectangle size, Rectangle hitBox, boolean isImmobile, float mass,
+                         int health, float movementSpeed,
                          SpriteAnimation walkCycle, SpriteAnimation restCycle)
     {
         super(size, hitBox, isImmobile, mass);
         this.SetHealth(health);
+        _movementSpeed = movementSpeed;
         _walkCycle = walkCycle;
         _restCycle = restCycle;
         _lastRenderedDirection = AnimationOrientation.Default;
@@ -59,6 +62,11 @@ public abstract class CharacterBase extends GameObject
     public ProjectileDirection GetProjectileDirection()
     {
         return _projectileDirection;
+    }
+
+    public float GetMovementSpeed()
+    {
+        return _movementSpeed;
     }
 
     //Public Methods
