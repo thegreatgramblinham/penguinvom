@@ -13,7 +13,7 @@ public class MiniSlim extends EnemyBase
     //Private Constants
     private final static int WIDTH = 32;
     private final static int HEIGHT = 32;
-    private final static float INITIAL_MOVEMENT_SPEED = 1.0F;
+    private final static float INITIAL_MOVEMENT_SPEED = 0.5F;
 
     //Constructor
     public MiniSlim(Point location, float mass, int health)
