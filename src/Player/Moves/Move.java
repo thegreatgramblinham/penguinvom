@@ -4,13 +4,14 @@ import Player.Moves.enums.MoveType;
 
 public class Move
 {
+    //TODO find a better place for this, this is not a player specific class.
+
     //Variables
     private String _id;
     private String _alias;
     private MoveType _type;
     private int _baseDamage;
     private String _animation;
-
 
     //Constructor
     public Move(String id, String alias, MoveType type,
