@@ -1,5 +1,7 @@
-package MainGame.Battle;
+package MainGame.Battle.MoveScripting;
 
+import MainGame.Battle.MoveExecutionEvent;
+import MainGame.Battle.MoveScripting.Steps.BattleScriptStep;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
@@ -37,6 +39,5 @@ public class BattleAnimationScript
         //stage defender(s) recoil animation
 
         //stage attacker return animation
-
     }
 }
