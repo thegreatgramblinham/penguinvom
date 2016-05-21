@@ -10,6 +10,7 @@ var xmlFileString = "";
 
 //Main
 WriteMove("basicJump", "000001", "Jump", "Jump", 1, "");
+WriteMove("basicBat", "000002", "Bat", "Bat", 2, "");
 
 
 //Methods
