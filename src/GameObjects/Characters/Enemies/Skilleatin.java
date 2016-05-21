@@ -12,6 +12,7 @@ public class Skilleatin extends EnemyBase
     //Private Constants
     private final static int WIDTH = 64;
     private final static int HEIGHT = 64;
+    private final static float INITIAL_MOVEMENT_SPEED = 1.0F;
 
     //Constructor
     public Skilleatin(Point location, float mass, int health)
@@ -22,6 +23,7 @@ public class Skilleatin extends EnemyBase
                 false,
                 mass,
                 health,
+                INITIAL_MOVEMENT_SPEED,
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png",
                         WIDTH, HEIGHT, 5, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/skilleatin0000.png",

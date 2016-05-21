@@ -54,6 +54,9 @@ public class GameManager
        **NOTE: This class has static dependencies, only one instance is allowed.**
     */
 
+    //Public Static Fields
+    public static PlayerObject PLAYER_OBJECT;
+
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
@@ -70,7 +73,6 @@ public class GameManager
     private ViewPort _viewPort;
 
     //Private Variables - Engine
-    private PlayerObject _player;
     private EnemySpawner _enemySpawner;
     private StageMap _stageMap;
     private OverworldStage _currentRoom;
@@ -205,11 +207,11 @@ public class GameManager
 
     private void InitPlayer()
     {
-        _player = new PlayerObject(
+        PLAYER_OBJECT = new PlayerObject(
                 _currentRoom.GetPlayerStartingLocation(Side.Left),
                 0.1F, 20);
 
-        _engineInstance.GetActiveSector().AddObject(_player,
+        _engineInstance.GetActiveSector().AddObject(PLAYER_OBJECT,
                 GameConstants.PLAYER_RENDER_GROUP,
                 GameConstants.PLAYER_COLLISION_GROUP);
     }
@@ -335,7 +337,7 @@ public class GameManager
                 if(HandlePlayerAction(gObj, gc))
                 {
                     //Player action handled.
-                    _viewPort.ScrollIntoView(_player.GetCenterPoint());
+                    _viewPort.ScrollIntoView(PLAYER_OBJECT.GetCenterPoint());
 
                     Backdrop sky = _currentRoom.GetSkyBox();
                     sky.NSetLocation(new Point(
@@ -395,7 +397,7 @@ public class GameManager
 
         if(isKeyPressed)
         {
-            _player.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
+            PLAYER_OBJECT.SetVelocity(new VelocityVector(_lastPlayerDirection, 2));
         }
     }
 
@@ -404,16 +406,16 @@ public class GameManager
         if(!GameConstants.IsKeyPressed(KeyCode.SPACE)) return;
 
         Bullet b = null;
-        switch(_player.GetProjectileDirection())
+        switch(PLAYER_OBJECT.GetProjectileDirection())
         {
             case Left:
-                b = new Bullet(new Point(_player.GetLeft() - Bullet.WIDTH - 1 ,
-                        _player.GetCenterPoint().y), _player);
+                b = new Bullet(new Point(PLAYER_OBJECT.GetLeft() - Bullet.WIDTH - 1 ,
+                        PLAYER_OBJECT.GetCenterPoint().y), PLAYER_OBJECT);
                 b.SetVelocity(new VelocityVector(Math.PI, 7));
                 break;
             case Right:
-                b = new Bullet(new Point(_player.GetRight() + 1,
-                        _player.GetCenterPoint().y), _player);
+                b = new Bullet(new Point(PLAYER_OBJECT.GetRight() + 1,
+                        PLAYER_OBJECT.GetCenterPoint().y), PLAYER_OBJECT);
                 b.SetVelocity(new VelocityVector(0, 7));
                 break;
         }
@@ -541,7 +543,7 @@ public class GameManager
         {
             //Create the a battle stage from the current room
             _currentBattleManager = new BattleManager(_currentRoom.CreateBattleStage(
-                    new PlayerBattleCharacter(_player),
+                    new PlayerBattleCharacter(PLAYER_OBJECT),
                     _battleStageTransitionQueue));
 
             //Set it to active
@@ -568,13 +570,13 @@ public class GameManager
                 _currentBattleManager = null;
 
                 //Position camera
-                _viewPort.JumpToPoint(_player.GetCenterPoint());
+                _viewPort.JumpToPoint(PLAYER_OBJECT.GetCenterPoint());
                 _sectorTransitionQueue = null;
             }
             else
             {
                 //Remove player from current sector.
-                _engineInstance.GetActiveSector().RemoveObject(_player);
+                _engineInstance.GetActiveSector().RemoveObject(PLAYER_OBJECT);
 
                 //Change sector.
                 _currentRoom = _sectorTransitionQueue.GetItem1();
@@ -584,11 +586,11 @@ public class GameManager
                 Point p = _currentRoom.GetPlayerStartingLocation(
                         _sectorTransitionQueue.GetItem2());
 
-                _player.NSetLocation(p);
-                _engineInstance.GetActiveSector().AddObject(_player,
+                PLAYER_OBJECT.NSetLocation(p);
+                _engineInstance.GetActiveSector().AddObject(PLAYER_OBJECT,
                         GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_COLLISION_GROUP);
 
-                _viewPort.JumpToPoint(_player.GetCenterPoint());
+                _viewPort.JumpToPoint(PLAYER_OBJECT.GetCenterPoint());
 
                 _sectorTransitionQueue = null;
             }

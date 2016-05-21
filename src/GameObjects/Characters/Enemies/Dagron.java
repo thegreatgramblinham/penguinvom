@@ -13,6 +13,7 @@ public class Dagron extends EnemyBase
     //Private Constants
     private final static int WIDTH = 64;
     private final static int HEIGHT = 64;
+    private final static float INITIAL_MOVEMENT_SPEED = 1.0F;
 
     //Constructor
     public Dagron(Point location, float mass, int health)
@@ -23,6 +24,7 @@ public class Dagron extends EnemyBase
                 false,
                 mass,
                 health,
+                INITIAL_MOVEMENT_SPEED,
                 new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png",
                         WIDTH, HEIGHT, 7, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/enemies/dagron0000.png",

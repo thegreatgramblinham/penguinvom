@@ -2,7 +2,10 @@ package GameObjects.Characters.Enemies.AI;
 
 import GameObjects.Characters.Enemies.AI.enums.AiAction;
 import GameObjects.Characters.Enemies.EnemyBase;
+import MainGame.GameManager;
 import PhysicsBase.Vectors.VelocityVector;
+
+import java.awt.*;
 
 public abstract class EnemyAiBase
 {
@@ -63,7 +66,16 @@ public abstract class EnemyAiBase
 
     protected void AdvanceTowardPlayer()
     {
+        Point playerLocation = GameManager.PLAYER_OBJECT.GetCenterPoint();
 
+        if(_body.GetCenterPoint().y > playerLocation.y)
+        _body.SetVelocity(new VelocityVector((3*Math.PI)/2, _body.GetMovementSpeed()));
+        else if(_body.GetCenterPoint().y < playerLocation.y)
+            _body.SetVelocity(new VelocityVector(Math.PI/2, _body.GetMovementSpeed()));
+        else if(_body.GetCenterPoint().x > playerLocation.x)
+            _body.SetVelocity(new VelocityVector(Math.PI, _body.GetMovementSpeed()));
+        else if(_body.GetCenterPoint().x < playerLocation.x)
+            _body.SetVelocity(new VelocityVector(0, _body.GetMovementSpeed()));
     }
 
     protected void AdvanceForward()

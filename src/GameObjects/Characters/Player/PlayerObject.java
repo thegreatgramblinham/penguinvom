@@ -17,6 +17,7 @@ public class PlayerObject extends CharacterBase
     //Private Constants
     private final static int WIDTH = 64;
     private final static int HEIGHT = 64;
+    private final static float INITIAIL_MOVEMENT_SPEED = 1.0F;
 
     //Constructor
     public PlayerObject(Point location, float mass, int health)
@@ -27,6 +28,7 @@ public class PlayerObject extends CharacterBase
                 false,
                 mass,
                 health,
+                INITIAIL_MOVEMENT_SPEED,
                 new SpriteAnimation("src/ImageAssets/player/shuf0000.png",
                         WIDTH, HEIGHT, 5, GameConstants.ENGINE_FPS, true),
                 new SpriteAnimation("src/ImageAssets/player/shufTempRest.png",
