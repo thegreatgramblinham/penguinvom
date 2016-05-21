@@ -1,0 +1,7 @@
+<Move>
+	<Id>000002</Id>
+	<Title>Bat</Title>
+	<MoveType>Bat</MoveType>
+	<BaseDamage>2</BaseDamage>
+	<AnimationFile></AnimationFile>
+</Move>
