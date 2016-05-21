@@ -3,20 +3,22 @@ package MainGame.Battle;
 import GameObjects.Characters.CharacterBase;
 import Player.Moves.Move;
 
+import java.util.Collection;
+
 public class MoveExecutionEvent
 {
     //Properties
     private Move _moveToPerform;
     private CharacterBase _attacker;
-    private CharacterBase _defender;
+    private Collection<CharacterBase> _defenders;
 
     //Constructor
     public MoveExecutionEvent(Move move, CharacterBase attacker,
-                              CharacterBase defender)
+                              Collection<CharacterBase> defenders)
     {
         _moveToPerform = move;
         _attacker = attacker;
-        _defender = defender;
+        _defenders = defenders;
     }
 
     //Get Methods
@@ -30,8 +32,8 @@ public class MoveExecutionEvent
         return _attacker;
     }
 
-    private CharacterBase GetDefender()
+    private Collection<CharacterBase> GetDefenders()
     {
-        return _defender;
+        return _defenders;
     }
 }
