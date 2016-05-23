@@ -8,6 +8,7 @@ import Menus.Battle.enums.BattleMenuState;
 import Menus.Battle.enums.BattleMenuType;
 import Menus.MenuManager;
 import Menus.Text.TextImager;
+import Stages.Battle.BattleStage;
 import javafx.scene.input.KeyCode;
 
 import java.awt.*;
@@ -17,18 +18,20 @@ public class BattleMenuManager extends MenuManager
     //Private Constants
     private final int KEY_RESET_TIMER = 10;
 
-    //Variables
+    //Private Variables
     private BattleMenuCarousel _battleCarousel;
     private AttackMenu _currentAttackMenu;
+    private BattleStage _stage;
     private BattleMenuState _state;
     private int _keyCooldownTimer;
 
     //Constructor
-    public BattleMenuManager()
+    public BattleMenuManager(BattleStage stage)
     {
         super();
         InitCarousel();
         _state = BattleMenuState.CarouselSelection;
+        _stage = stage;
     }
 
     //Get Methods

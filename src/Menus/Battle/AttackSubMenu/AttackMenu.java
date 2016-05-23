@@ -90,7 +90,6 @@ public class AttackMenu extends MenuBase
                                                 - AttackMenuItemSelection.BORDER_PADDING)
                                         - ITEM_PADDING)
                         )
-
                 );
     }
 }
