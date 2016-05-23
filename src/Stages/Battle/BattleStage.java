@@ -50,9 +50,9 @@ public abstract class BattleStage extends StageObject
         return null;
     }
 
-    public Point[] GetEnemyCharacterLocation(int enemyCount)
+    public Point[] GetEnemyCharacterLocation()
     {
-        Point[] pointArr = new Point[enemyCount];
+        Point[] pointArr = new Point[_enemyCharacters.size()];
 
         pointArr[0] = new Point(ViewPort.SecLocX(1025), ViewPort.SecLocY(300));
 
@@ -168,7 +168,7 @@ public abstract class BattleStage extends StageObject
         _playerCharacter.NSetLocation(GetPlayerCharacterLocation());
 
         //Enemies
-        Point[] enemyLocations = GetEnemyCharacterLocation(_enemyCharacters.size());
+        Point[] enemyLocations = GetEnemyCharacterLocation();
         for(EnemyBattleCharacter enemyCharacter : _enemyCharacters)
         {
             _sector.AddObject(enemyCharacter, GameConstants.PLAYER_RENDER_GROUP,
