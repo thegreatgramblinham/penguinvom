@@ -29,6 +29,8 @@ public class BattleMenuCarousel extends MenuBase
     @Override
     public void Draw(GraphicsContext gc)
     {
+        if(!GetIsVisible()) return;
+
         BattleMenuBase card = _menuList.get(_selectedIndex);
         boolean needToDrawSelected = true;
 

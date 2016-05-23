@@ -3,6 +3,7 @@ package Menus.Battle;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
 import Menus.Battle.AttackSubMenu.AttackMenu;
+import Menus.Battle.EnemySelection.EnemySelectionCursor;
 import Menus.Battle.SelectionCarousel.BattleMenuCarousel;
 import Menus.Battle.enums.BattleMenuState;
 import Menus.Battle.enums.BattleMenuType;
@@ -21,6 +22,7 @@ public class BattleMenuManager extends MenuManager
     //Private Variables
     private BattleMenuCarousel _battleCarousel;
     private AttackMenu _currentAttackMenu;
+    private EnemySelectionCursor _currentEnemyCursor;
     private BattleStage _stage;
     private BattleMenuState _state;
     private int _keyCooldownTimer;
@@ -61,6 +63,7 @@ public class BattleMenuManager extends MenuManager
                     _currentAttackMenu.DecrementSelection();
                     break;
                 case EnemySelection:
+                    _currentEnemyCursor.IncrementSelection();
                     break;
             }
 
@@ -76,6 +79,7 @@ public class BattleMenuManager extends MenuManager
                     _currentAttackMenu.IncrementSelection();
                     break;
                 case EnemySelection:
+                    _currentEnemyCursor.DecrementSelection();
                     break;
             }
 
@@ -91,6 +95,10 @@ public class BattleMenuManager extends MenuManager
                     _state = BattleMenuState.SubMenuSelection;
                     break;
                 case SubMenuSelection:
+                    _currentAttackMenu.SetIsVisible(false);
+                    _battleCarousel.SetIsVisible(false);
+                    InitEnemyCursor();
+                    _state = BattleMenuState.EnemySelection;
                     break;
                 case EnemySelection:
                     break;
@@ -105,11 +113,14 @@ public class BattleMenuManager extends MenuManager
                 case CarouselSelection:
                     break;
                 case SubMenuSelection:
-                    RemoveMenu(_currentAttackMenu);
-                    _currentAttackMenu = null;
+                    DisposeSubMenu();
                     _state = BattleMenuState.CarouselSelection;
                     break;
                 case EnemySelection:
+                    _battleCarousel.SetIsVisible(true);
+                    _currentAttackMenu.SetIsVisible(true);
+                    DisposeEnemyCursor();
+                    _state = BattleMenuState.SubMenuSelection;
                     break;
             }
 
@@ -137,6 +148,25 @@ public class BattleMenuManager extends MenuManager
                         ViewPort.SecLocX(680),
                         ViewPort.SecLocY(100)));
         AddMenu(_currentAttackMenu);
+    }
+
+    private void InitEnemyCursor()
+    {
+        _currentEnemyCursor
+                = new EnemySelectionCursor(_stage.GetEnemyCharacterLocation());
+        AddMenu(_currentEnemyCursor);
+    }
+
+    private void DisposeEnemyCursor()
+    {
+        RemoveMenu(_currentEnemyCursor);
+        _currentEnemyCursor = null;
+    }
+
+    private void DisposeSubMenu()
+    {
+        RemoveMenu(_currentAttackMenu);
+        _currentAttackMenu = null;
     }
 
 }

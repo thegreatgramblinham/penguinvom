@@ -13,8 +13,11 @@ public class EnemySelectionCursor extends MenuBase
     private final static int WIDTH = 34;
     private final static int HEIGHT = 34;
 
+    private final static int VERTICAL_RENDER_PADDING = HEIGHT + 4;
+
     private final static Image SPRITE //this can be replaced by an animation if need be.
-            = new Image(new File("src/ImageAssets/menus/battle").toURI().toString());
+            = new Image(new File("src/ImageAssets/menus/battle/enemySelectionArrow.png")
+                .toURI().toString());
 
     //Private Variables
     private Point[] _positions;
@@ -36,7 +39,7 @@ public class EnemySelectionCursor extends MenuBase
     public void Draw(GraphicsContext gc)
     {
         Point drawPoint = this.GetGameDrawPoint();
-        gc.drawImage(SPRITE, drawPoint.x, drawPoint.y);
+        gc.drawImage(SPRITE, drawPoint.x, drawPoint.y - VERTICAL_RENDER_PADDING);
     }
 
     public void IncrementSelection()
