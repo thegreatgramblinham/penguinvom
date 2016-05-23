@@ -47,7 +47,7 @@ public class BattleManager
     //Private Methods
     private void InitMenus()
     {
-        _menuManager = new BattleMenuManager();
+        _menuManager = new BattleMenuManager(_stage);
     }
 
 }
