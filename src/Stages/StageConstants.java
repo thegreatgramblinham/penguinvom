@@ -2,6 +2,8 @@ package Stages;
 
 public final class StageConstants
 {
+    private final static String _STAGE_FILE_EXT = "pld";
+
     //Stage xPaths
     private final static String _S_ROOT = "/Stage";
     private final static String _GLOBAL_ROOT = _S_ROOT + "/Global";
@@ -23,5 +25,5 @@ public final class StageConstants
 
     //Stage File Paths
     private final static String _PATHBASE = "src/config/stages/";
-    public final static String CastleGarden = "castleGarden.xml";
+    public final static String CastleGarden = _PATHBASE + "castleGarden."+_STAGE_FILE_EXT;
 }

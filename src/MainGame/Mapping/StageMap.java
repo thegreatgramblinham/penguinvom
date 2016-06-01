@@ -2,9 +2,7 @@ package MainGame.Mapping;
 
 import MainGame.GameManager;
 import SectorBase.enums.Direction;
-import Stages.CastleGardenStage;
-import Stages.MainCastleStage;
-import Stages.OverworldStage;
+import Stages.*;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -48,6 +46,8 @@ public class StageMap
     //Private Methods
     private void LoadStageGroup1() throws Exception
     {
+        StageBuilder.BuildStage(StageConstants.CastleGarden);
+
         MapNode garden = new MapNode(
                 new CastleGardenStage(GameManager.CreateNewEngineSector()));
         MapNode castle = new MapNode(
