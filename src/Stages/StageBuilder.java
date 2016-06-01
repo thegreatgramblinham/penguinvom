@@ -1,6 +1,7 @@
 package Stages;
 
 import XMLParsing.XMLParser;
+import org.w3c.dom.NodeList;
 
 public final class StageBuilder
 {
@@ -15,8 +16,12 @@ public final class StageBuilder
     {
         XMLParser parser = new XMLParser(filePath);
 
-        String id = XMLParser.ParseStringPathContents(
-                parser.OpenNodeList(StageConstants.S_ID), 0);
+        int lvlWidth = XMLParser.ParseIntPathContents(
+            parser.OpenNodeList(StageConstants.S_LEVEL_WIDTH), 0);
+        int lvlHeight = XMLParser.ParseIntPathContents(
+                parser.OpenNodeList(StageConstants.S_LEVEL_HEIGHT), 0);
+
+        NodeList test = parser.OpenNodeList(StageConstants.S_ENEMY);
 
     }
 
