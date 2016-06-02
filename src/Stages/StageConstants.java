@@ -9,6 +9,7 @@ public final class StageConstants
     private final static String _GLOBAL_ROOT = _S_ROOT + "/Global";
     private final static String _TRIGGER_ROOT = _S_ROOT + "/Triggers";
     private final static String _OBJECT_ROOT = _S_ROOT + "/Objects";
+    private final static String _INDEX_PREFIX = "/I";
 
     public final static String S_LEVEL_WIDTH = _GLOBAL_ROOT + "/LevelSize/Width";
     public final static String S_LEVEL_HEIGHT = _GLOBAL_ROOT + "/LevelSize/Height";
@@ -22,8 +23,22 @@ public final class StageConstants
     public final static String S_PROP = _OBJECT_ROOT + "/Prop";
     public final static String S_ENEMY = _OBJECT_ROOT + "/Enemy";
 
+    public final static String S_NAME= "/Name";
+    public final static String S_TYPE = "/Type";
+    public final static String S_X = "/X";
+    public final static String S_Y = "/Y";
+    public final static String S_WIDTH = "/Width";
+    public final static String S_HEIGHT = "/Height";
+    public final static String S_RENDER_LAYER = "/RenderLayer";
 
     //Stage File Paths
     private final static String _PATHBASE = "src/config/stages/";
     public final static String CastleGarden = _PATHBASE + "castleGarden."+_STAGE_FILE_EXT;
+
+
+    //Public Methods
+    public static String GetEnemyXPathAtIndex(int i)
+    {
+        return S_ENEMY +_INDEX_PREFIX + i;
+    }
 }
