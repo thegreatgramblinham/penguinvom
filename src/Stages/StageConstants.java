@@ -44,32 +44,68 @@ public final class StageConstants
         return S_EXIT + _INDEX_PREFIX + i;
     }
 
-    public static String GetEntracePathAtIndex(int i)
+    public static String GetEntraceXPathAtIndex(int i)
     {
         return S_ENTRANCE + _INDEX_PREFIX + i;
     }
 
-    public static String GetBackdropPathAtIndex(int i)
+    public static String GetBackdropXPathAtIndex(int i)
     {
         return S_BACKDROP + _INDEX_PREFIX + i;
     }
 
-    public static String GetFloorPathAtIndex(int i)
+    public static String GetFloorXPathAtIndex(int i)
     {
         return S_FLOOR + _INDEX_PREFIX + i;
     }
 
-    public static String GetWallPathAtIndex(int i)
+    public static String GetWallXPathAtIndex(int i)
     {
         return S_WALL + _INDEX_PREFIX + i;
     }
 
-    public static String GetPropPathAtIndex(int i)
+    public static String GetPropXPathAtIndex(int i)
     {
         return S_PROP + _INDEX_PREFIX + i;
     }
+
     public static String GetEnemyXPathAtIndex(int i)
     {
         return S_ENEMY + _INDEX_PREFIX + i;
+    }
+
+    public static String GetExitIndexFormatXPath()
+    {
+        return S_EXIT + _INDEX_PREFIX + "%s";
+    }
+
+    public static String GetEntranceIndexFormatXPath()
+    {
+        return S_ENTRANCE + _INDEX_PREFIX + "%s";
+    }
+
+    public static String GetBackdropIndexFormatXPath()
+    {
+        return S_BACKDROP + _INDEX_PREFIX + "%s";
+    }
+
+    public static String GetFloorIndexFormatXPath()
+    {
+        return S_FLOOR + _INDEX_PREFIX + "%s";
+    }
+
+    public static String GetWallIndexFormatXPath()
+    {
+        return S_WALL + _INDEX_PREFIX + "%s";
+    }
+
+    public static String GetPropIndexFormatXPath()
+    {
+        return S_PROP + _INDEX_PREFIX + "%s";
+    }
+
+    public static String GetEnemyIndexFormatXPath()
+    {
+        return S_ENEMY + _INDEX_PREFIX + "%s";
     }
 }
