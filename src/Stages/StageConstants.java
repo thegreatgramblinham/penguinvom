@@ -33,12 +33,43 @@ public final class StageConstants
 
     //Stage File Paths
     private final static String _PATHBASE = "src/config/stages/";
-    public final static String CastleGarden = _PATHBASE + "castleGarden."+_STAGE_FILE_EXT;
+    private final static String _OVERWORLD_ROOT = _PATHBASE + "/overworld";
+    private final static String _BATTLE_ROOT = _PATHBASE + "/battle";
+    public final static String CastleGarden = _OVERWORLD_ROOT + "castleGarden."+_STAGE_FILE_EXT;
 
 
     //Public Methods
+    public static String GetExitPathAtIndex(int i)
+    {
+        return S_EXIT + _INDEX_PREFIX + i;
+    }
+
+    public static String GetEntracePathAtIndex(int i)
+    {
+        return S_ENTRANCE + _INDEX_PREFIX + i;
+    }
+
+    public static String GetBackdropPathAtIndex(int i)
+    {
+        return S_BACKDROP + _INDEX_PREFIX + i;
+    }
+
+    public static String GetFloorPathAtIndex(int i)
+    {
+        return S_FLOOR + _INDEX_PREFIX + i;
+    }
+
+    public static String GetWallPathAtIndex(int i)
+    {
+        return S_WALL + _INDEX_PREFIX + i;
+    }
+
+    public static String GetPropPathAtIndex(int i)
+    {
+        return S_PROP + _INDEX_PREFIX + i;
+    }
     public static String GetEnemyXPathAtIndex(int i)
     {
-        return S_ENEMY +_INDEX_PREFIX + i;
+        return S_ENEMY + _INDEX_PREFIX + i;
     }
 }
