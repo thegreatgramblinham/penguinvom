@@ -15,15 +15,15 @@ public final class MoveBuilder
         XMLParser parser = new XMLParser(path);
 
         String id = XMLParser.ParseStringPathContents(
-                parser.OpenNodeList(MoveConstants.M_ID), 0);
+                parser.OpenNodeList(MoveConstants.M_ID));
         String alias = XMLParser.ParseStringPathContents(
-                parser.OpenNodeList(MoveConstants.M_ALIAS), 0);
+                parser.OpenNodeList(MoveConstants.M_ALIAS));
         String typeStr = XMLParser.ParseStringPathContents(
-                parser.OpenNodeList(MoveConstants.M_TYPE), 0);
+                parser.OpenNodeList(MoveConstants.M_TYPE));
         int baseDamage = XMLParser.ParseIntPathContents(
-                parser.OpenNodeList(MoveConstants.M_BASEDMG), 0);
+                parser.OpenNodeList(MoveConstants.M_BASEDMG));
         String animationFile = XMLParser.ParseStringPathContents(
-                parser.OpenNodeList(MoveConstants.M_ANIMATION), 0);
+                parser.OpenNodeList(MoveConstants.M_ANIMATION));
 
         MoveType type = null;
 

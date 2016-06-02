@@ -3,125 +3,130 @@
 	<Global>
 		<LevelSize>
 			<Width>5000</Width>
-			<Height>3000</Height>
+			<Height>5000</Height>
 		</LevelSize>
 	</Global>
 	<Triggers>
 		<Exit>
-			<RIGHT>
+			<I0>
+				<Name>Right</Name>
 				<Type>NamedRectangle</Type>
-				<X>1442</X>
-				<Y>359</Y>
-				<Width>94</Width>
-				<Height>230</Height>
+				<X>1644</X>
+				<Y>534</Y>
+				<Width>72</Width>
+				<Height>207</Height>
 				<RenderLayer>6</RenderLayer>
-			</RIGHT>
+			</I0>
 		</Exit>
 		<Entrance>
-			<RIGHT>
+			<I0>
+				<Name>Right</Name>
 				<Type>NamedRectangle</Type>
-				<X>1339</X>
-				<Y>443</Y>
-				<Width>75</Width>
-				<Height>72</Height>
+				<X>1576</X>
+				<Y>605</Y>
+				<Width>64</Width>
+				<Height>64</Height>
 				<RenderLayer>6</RenderLayer>
-			</RIGHT>
+			</I0>
 		</Entrance>
 	</Triggers>
 	<Objects>
 		<Backdrop>
-			<Rectangle0>
-				<Type>NamedRectangle</Type>
-				<X>133</X>
-				<Y>60</Y>
-				<Width>851</Width>
-				<Height>397</Height>
+			<I0>
+				<Name>brightSky0000</Name>
+				<Type>ImageRectangle</Type>
+				<X>374</X>
+				<Y>217</Y>
+				<Width>2000</Width>
+				<Height>400</Height>
 				<RenderLayer>0</RenderLayer>
-			</Rectangle0>
+			</I0>
 		</Backdrop>
 		<Floor>
-			<Rectangle1>
-				<Type>NamedRectangle</Type>
-				<X>37</X>
-				<Y>479</Y>
-				<Width>1089</Width>
-				<Height>447</Height>
-				<RenderLayer>0</RenderLayer>
-			</Rectangle1>
+			<I0>
+				<Name>gardenGrassSector0000</Name>
+				<Type>ImageRectangle</Type>
+				<X>410</X>
+				<Y>515</Y>
+				<Width>1400</Width>
+				<Height>400</Height>
+				<RenderLayer>1</RenderLayer>
+			</I0>
 		</Floor>
-		<Wall>
-			<WallRect>
-				<Type>NamedRectangle</Type>
-				<X>180</X>
-				<Y>977</Y>
-				<Width>172</Width>
-				<Height>130</Height>
-				<RenderLayer>4</RenderLayer>
-			</WallRect>
-		</Wall>
 		<Prop>
-			<GrandmaIconC>
+			<I0>
+				<Name>bush0000</Name>
 				<Type>ImageRectangle</Type>
-				<X>772</X>
-				<Y>577</Y>
-				<Width>64</Width>
-				<Height>64</Height>
-				<RenderLayer>2</RenderLayer>
-			</GrandmaIconC>
-			<GrandmaIconC>
+				<X>733</X>
+				<Y>729</Y>
+				<Width>128</Width>
+				<Height>128</Height>
+				<RenderLayer>4</RenderLayer>
+			</I0>
+			<I1>
+				<Name>bush0000</Name>
 				<Type>ImageRectangle</Type>
-				<X>909</X>
-				<Y>602</Y>
-				<Width>64</Width>
-				<Height>64</Height>
-				<RenderLayer>2</RenderLayer>
-			</GrandmaIconC>
-			<GrandmaIconC>
+				<X>972</X>
+				<Y>729</Y>
+				<Width>128</Width>
+				<Height>128</Height>
+				<RenderLayer>4</RenderLayer>
+			</I1>
+			<I2>
+				<Name>bush0000</Name>
 				<Type>ImageRectangle</Type>
-				<X>856</X>
-				<Y>686</Y>
-				<Width>64</Width>
-				<Height>64</Height>
-				<RenderLayer>2</RenderLayer>
-			</GrandmaIconC>
-			<meetsweet>
-				<Type>ImageRectangle</Type>
-				<X>655</X>
-				<Y>847</Y>
-				<Width>623</Width>
-				<Height>286</Height>
-				<RenderLayer>3</RenderLayer>
-			</meetsweet>
-			<RandomPropRect>
-				<Type>NamedRectangle</Type>
-				<X>411</X>
-				<Y>983</Y>
-				<Width>202</Width>
-				<Height>210</Height>
-				<RenderLayer>5</RenderLayer>
-			</RandomPropRect>
+				<X>1217</X>
+				<Y>730</Y>
+				<Width>128</Width>
+				<Height>128</Height>
+				<RenderLayer>4</RenderLayer>
+			</I2>
 		</Prop>
 		<Enemy>
-			<GrandmaIconD>
+			<I0>
 				<Group>
 				</Group>
+				<Name>enemyBullet0000</Name>
 				<Type>ImageRectangle</Type>
-				<X>285</X>
-				<Y>585</Y>
-				<Width>64</Width>
-				<Height>64</Height>
-				<RenderLayer>1</RenderLayer>
-			</GrandmaIconD>
-			<GrandmaIconD>
+				<X>886</X>
+				<Y>597</Y>
+				<Width>16</Width>
+				<Height>16</Height>
+				<RenderLayer>5</RenderLayer>
+			</I0>
+			<I1>
 				<Group>
 				</Group>
+				<Name>enemyBullet0000</Name>
 				<Type>ImageRectangle</Type>
-				<X>192</X>
-				<Y>633</Y>
-				<Width>64</Width>
-				<Height>64</Height>
-				<RenderLayer>1</RenderLayer>
-			</GrandmaIconD>
+				<X>1119</X>
+				<Y>592</Y>
+				<Width>16</Width>
+				<Height>16</Height>
+				<RenderLayer>5</RenderLayer>
+			</I1>
+			<I2>
+				<Group>
+				</Group>
+				<Name>enemyBullet0000</Name>
+				<Type>ImageRectangle</Type>
+				<X>908</X>
+				<Y>716</Y>
+				<Width>16</Width>
+				<Height>16</Height>
+				<RenderLayer>5</RenderLayer>
+			</I2>
+			<I3>
+				<Group>
+				</Group>
+				<Name>enemyBullet0000</Name>
+				<Type>ImageRectangle</Type>
+				<X>1125</X>
+				<Y>723</Y>
+				<Width>16</Width>
+				<Height>16</Height>
+				<RenderLayer>5</RenderLayer>
+			</I3>
 		</Enemy>
 	</Objects>
 </Stage>
