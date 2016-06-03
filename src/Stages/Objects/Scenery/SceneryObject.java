@@ -1,4 +1,4 @@
-package Stages.Objects;
+package Stages.Objects.Scenery;
 
 import GameObjects.Base.GameObject;
 import javafx.scene.canvas.GraphicsContext;
