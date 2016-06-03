@@ -3,6 +3,7 @@ package GameObjects.Base;
 import GameObjectBase.GameWorldObject;
 import MainGame.GameManager;
 import MainGame.ViewPort;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
 
@@ -26,4 +27,6 @@ public abstract class GameObject extends GameWorldObject
 
         return new Point(ViewPort.DrawLocX(p.x), ViewPort.DrawLocY(p.y));
     }
+
+    //public abstract void Draw(GraphicsContext gc);
 }
