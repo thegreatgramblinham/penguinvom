@@ -1,13 +1,13 @@
-package Stages.Objects;
+package Stages.Objects.Scenery;
 
 import javafx.scene.image.Image;
 
 import java.awt.*;
 
-public class Backdrop extends SceneryObject
+public class Wall extends SceneryObject
 {
     //Constructor
-    public Backdrop(Image sprite, Point location)
+    public Wall(Image sprite, Point location)
     {
         super(
                 new Rectangle(location.x, location.y, (int)sprite.getWidth(), (int)sprite.getHeight()),
@@ -15,6 +15,6 @@ public class Backdrop extends SceneryObject
                 false
         );
 
-        this.SetCanCollide(false);
+        this.SetCanCollide(true);
     }
 }
