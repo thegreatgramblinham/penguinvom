@@ -1,5 +1,10 @@
 package Stages;
 
+import Stages.Objects.Prop;
+import Stages.Objects.Scenery.Backdrop;
+import Stages.Objects.Scenery.Floor;
+import Stages.Objects.Scenery.Wall;
+
 public class XmlBuiltStage
 {
     //Private Variables
@@ -7,7 +12,8 @@ public class XmlBuiltStage
     private int _stageHeight;
 
     //Constructor
-    public XmlBuiltStage(int stageWidth, int stageHeight)
+    public XmlBuiltStage(int stageWidth, int stageHeight, Backdrop backdrop,
+            Floor floor, Wall wall)
     {
 
     }
