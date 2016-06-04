@@ -29,9 +29,9 @@ public class PlayerObject extends CharacterBase
                 mass,
                 health,
                 INITIAIL_MOVEMENT_SPEED,
-                new SpriteAnimation("src/ImageAssets/player/shuf0000.png",
+                new SpriteAnimation("src/imageAssets/player/shuf0000.png",
                         WIDTH, HEIGHT, 5, GameConstants.ENGINE_FPS, true),
-                new SpriteAnimation("src/ImageAssets/player/shufTempRest.png",
+                new SpriteAnimation("src/imageAssets/player/shufTempRest.png",
                         WIDTH, HEIGHT, 1, GameConstants.ENGINE_FPS, true)
         );
 
