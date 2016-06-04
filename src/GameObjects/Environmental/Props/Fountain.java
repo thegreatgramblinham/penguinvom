@@ -21,7 +21,7 @@ public class Fountain extends PropBase
                 new Rectangle(location.x+30, location.y+50, WIDTH-60, HEIGHT-50),
                 true,
                 1.0F,
-                new SpriteAnimation("src/imageAssets/props/fountain0000.png", WIDTH, HEIGHT, 5,
+                new SpriteAnimation("src/imageAssets/props/fountain1RestingCycle.png", WIDTH, HEIGHT, 5,
                         GameConstants.ENGINE_FPS, true)
         );
 
