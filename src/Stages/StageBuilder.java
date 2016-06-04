@@ -1,5 +1,7 @@
 package Stages;
 
+import GameObjects.Characters.Enemies.EnemyBase;
+import GameObjects.Environmental.Props.PropBase;
 import GameObjects.GameObjectConstants;
 import GameObjects.enums.ObjectCategory;
 import Stages.Objects.Scenery.Backdrop;
@@ -37,8 +39,8 @@ public final class StageBuilder
         ArrayList<Backdrop> backdrops = ParseBackdrops(parser);
         ArrayList<Floor> floors = ParseFloor(parser);
         ArrayList<Wall> walls = ParseWall(parser);
-        ParseProps(parser);
-        ParseEnemies(parser);
+        ArrayList<PropBase> props = ParseProps(parser);
+        ArrayList<EnemyBase> enemies = ParseEnemies(parser);
     }
 
     //Private Methods
@@ -119,18 +121,40 @@ public final class StageBuilder
         return walls;
     }
 
-    private static void ParseProps(XMLParser parser) throws Exception
+    private static ArrayList<PropBase> ParseProps(XMLParser parser) throws Exception
     {
-        ArrayList<StageObjectRectProperties> props
+        ArrayList<PropBase> propInstances = new ArrayList<>();
+
+        ArrayList<StageObjectRectProperties> propProps
                 = ParseChildRectProperties(parser, StageConstants.GetPropIndexFormatXPath());
-        //todo make prop objects
+
+        for(StageObjectRectProperties props : propProps)
+        {
+            PropBase p = GameObjectConstants.GetPropInstanceFromId(props.GetName(), props);
+
+            if(p != null)
+                propInstances.add(p);
+        }
+
+        return propInstances;
     }
 
-    private static void ParseEnemies(XMLParser parser) throws Exception
+    private static ArrayList<EnemyBase> ParseEnemies(XMLParser parser) throws Exception
     {
-        ArrayList<StageObjectRectProperties> enemies
+        ArrayList<EnemyBase> enemies = new ArrayList<>();
+
+        ArrayList<StageObjectRectProperties> enemyProperties
                 = ParseChildRectProperties(parser, StageConstants.GetEnemyIndexFormatXPath());
-        //todo make enemy objects
+
+        for(StageObjectRectProperties props : enemyProperties)
+        {
+            EnemyBase e = GameObjectConstants.GetEnemyInstanceFromId(props.GetName(), props);
+
+            if(e != null)
+                enemies.add(e);
+        }
+
+        return enemies;
     }
 
     private static ArrayList<StageObjectRectProperties> ParseChildRectProperties(

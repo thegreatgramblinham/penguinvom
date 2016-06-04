@@ -1,13 +1,11 @@
 package GameObjects;
 
 import GameObjects.Characters.Enemies.*;
-import GameObjects.Environmental.Backdrop;
 import GameObjects.Environmental.Props.Bush;
 import GameObjects.Environmental.Props.Fountain;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.enums.ObjectCategory;
 import Stages.StageObjectRectProperties;
-import javafx.scene.image.Image;
 
 import java.awt.*;
 import java.io.File;
