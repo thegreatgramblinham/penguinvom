@@ -24,9 +24,9 @@ public class Skilleatin extends EnemyBase
                 mass,
                 health,
                 INITIAL_MOVEMENT_SPEED,
-                new SpriteAnimation("src/imageAssets/enemies/skilleatin1WalkCycle.png",
+                new SpriteAnimation("src/ImageAssets/enemies/skilleatin1WalkCycle.png",
                         WIDTH, HEIGHT, 5, GameConstants.ENGINE_FPS, true),
-                new SpriteAnimation("src/imageAssets/enemies/skilleatin1WalkCycle.png",
+                new SpriteAnimation("src/ImageAssets/enemies/skilleatin1WalkCycle.png",
                         WIDTH, HEIGHT, 1, GameConstants.ENGINE_FPS, true)
         );
 

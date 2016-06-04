@@ -41,7 +41,7 @@ public class GardenBattleStage extends BattleStage
     protected Image GetSkyTexture()
     {
         return new Image(new File(
-                "src/imageAssets/backgrounds/brightSky1.png").toURI().toString());
+                "src/ImageAssets/backgrounds/brightSky1.png").toURI().toString());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class GardenBattleStage extends BattleStage
     protected Image GetFloorTexture()
     {
         return new Image(new File(
-                "src/imageAssets/backgrounds/stageFloorPlaceholder.png").toURI().toString());
+                "src/ImageAssets/backgrounds/stageFloorPlaceholder.png").toURI().toString());
     }
 
 

@@ -20,7 +20,7 @@ public class BatMenu extends BattleMenuBase
     {
         super(
                 new Rectangle(location.x, location.y, WIDTH, HEIGHT),
-                new SpriteAnimation("src/imageAssets/menus/battle/menuCardBlank.png",
+                new SpriteAnimation("src/ImageAssets/menus/battle/menuCardBlank.png",
                         WIDTH,
                         HEIGHT,
                         60,

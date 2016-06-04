@@ -35,14 +35,14 @@ public class CastleGardenStage extends OverworldStage
     protected Image GetSkyTexture()
     {
         return new Image(new File(
-                "src/imageAssets/backgrounds/brightSky1.png").toURI().toString());
+                "src/ImageAssets/backgrounds/brightSky1.png").toURI().toString());
 }
 
     @Override
     protected Image GetWallTexture()
     {
 //        return new Image(new File(
-//                "src/imageAssets/backgrounds/castleWallSector1.png").toURI().toString());
+//                "src/ImageAssets/backgrounds/castleWallSector1.png").toURI().toString());
         return null;
     }
 
@@ -50,7 +50,7 @@ public class CastleGardenStage extends OverworldStage
     protected Image GetFloorTexture()
     {
         return new Image(new File(
-                "src/imageAssets/backgrounds/gardenGrassSector1.png").toURI().toString());
+                "src/ImageAssets/backgrounds/gardenGrassSector1.png").toURI().toString());
     }
 
     @Override

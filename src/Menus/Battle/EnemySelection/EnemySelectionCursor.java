@@ -16,7 +16,7 @@ public class EnemySelectionCursor extends MenuBase
     private final static int VERTICAL_RENDER_PADDING = HEIGHT + 4;
 
     private final static Image SPRITE //this can be replaced by an animation if need be.
-            = new Image(new File("src/imageAssets/menus/battle/enemySelectionArrow.png")
+            = new Image(new File("src/ImageAssets/menus/battle/enemySelectionArrow.png")
                 .toURI().toString());
 
     //Private Variables
