@@ -25,9 +25,9 @@ public class Dagron extends EnemyBase
                 mass,
                 health,
                 INITIAL_MOVEMENT_SPEED,
-                new SpriteAnimation("src/imageAssets/enemies/dagron1WalkCycle.png",
+                new SpriteAnimation("src/ImageAssets/enemies/dagron1WalkCycle.png",
                         WIDTH, HEIGHT, 7, GameConstants.ENGINE_FPS, true),
-                new SpriteAnimation("src/imageAssets/enemies/dagron1WalkCycle.png",
+                new SpriteAnimation("src/ImageAssets/enemies/dagron1WalkCycle.png",
                         WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
         );
 

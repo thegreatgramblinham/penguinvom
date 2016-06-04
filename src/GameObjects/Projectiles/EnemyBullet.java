@@ -24,7 +24,7 @@ public class EnemyBullet extends ProjectileBase
         );
 
         this.SetSprite(new javafx.scene.image.Image(
-                new File("src/imageAssets/projectiles/enemyBullet0000.png")
+                new File("src/ImageAssets/projectiles/enemyBullet0000.png")
                         .toURI().toString()));
 
         this.SetAlias("EnemyBullet");

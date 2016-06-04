@@ -14,11 +14,11 @@ public final class GameObjectConstants
     private GameObjectConstants() {}
     //Public Static Constants
     public static String IMAGE_FILE_TYPE = ".png";
-    public static String SCENERY_ROOT = "src/imageAssets/backgrounds/";
-    public static String ENEMY_ROOT = "src/imageAssets/enemies/";
-    public static String PLAYER_ROOT = "src/imageAssets/player/";
-    public static String PROP_ROOT = "src/imageAssets/props/";
-    public static String PROJECTILE_ROOT = "src/imageAssets/projectiles/";
+    public static String SCENERY_ROOT = "src/ImageAssets/backgrounds/";
+    public static String ENEMY_ROOT = "src/ImageAssets/enemies/";
+    public static String PLAYER_ROOT = "src/ImageAssets/player/";
+    public static String PROP_ROOT = "src/ImageAssets/props/";
+    public static String PROJECTILE_ROOT = "src/ImageAssets/projectiles/";
 
     //Public Methods
     public static String GetImageFilePathFromId(String id, ObjectCategory category)

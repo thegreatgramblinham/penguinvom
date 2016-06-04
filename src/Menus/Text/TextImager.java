@@ -19,7 +19,7 @@ public class TextImager
     public final static int LETTER_WIDTH = 16;
 
     //Private Constants
-    private final static String FONT_FILEPATH = "src/imageAssets/menus/text/pixelFont.png";
+    private final static String FONT_FILEPATH = "src/ImageAssets/menus/text/pixelFont.png";
     private final static String FONT_COORD_FILEPATH = "src/config/menus/font.xml";
 
     private final Image _fontImage = new Image(new File(FONT_FILEPATH).toURI().toString());

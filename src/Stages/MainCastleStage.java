@@ -31,21 +31,21 @@ public class MainCastleStage extends OverworldStage
     protected Image GetSkyTexture()
     {
         return new Image(new File(
-                "src/imageAssets/backgrounds/brightSky1.png").toURI().toString());
+                "src/ImageAssets/backgrounds/brightSky1.png").toURI().toString());
     }
 
     @Override
     protected Image GetWallTexture()
     {
         return new Image(new File(
-                "src/imageAssets/backgrounds/castleWallSector1.png").toURI().toString());
+                "src/ImageAssets/backgrounds/castleWallSector1.png").toURI().toString());
     }
 
     @Override
     protected Image GetFloorTexture()
     {
         return new Image(new File(
-                "src/imageAssets/backgrounds/castleFloorSector1.png").toURI().toString());
+                "src/ImageAssets/backgrounds/castleFloorSector1.png").toURI().toString());
     }
 
     @Override

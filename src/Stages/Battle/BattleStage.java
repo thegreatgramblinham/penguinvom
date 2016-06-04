@@ -74,14 +74,14 @@ public abstract class BattleStage extends StageObject
             (int) GetSkyTexture().getHeight()),
             false, false, "trimCurtain");
         trimCurtain.SetSprite(new Image(
-                new File("src/imageAssets/backgrounds/stageTrim1.png")
+                new File("src/ImageAssets/backgrounds/stageTrim1.png")
                         .toURI().toString()));
         _sector.AddObject(trimCurtain, GameConstants.CURTAIN_RENDER_GROUP_5,
                 GameConstants.NO_COLLISION_GROUP);
 
         //main traveller left
         Image mainCurtainLeftImage = new Image(
-                new File("src/imageAssets/backgrounds/mainCurtainLeft1.png")
+                new File("src/ImageAssets/backgrounds/mainCurtainLeft1.png")
                         .toURI().toString());
         Backdrop mainCurtainLeft = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(30),
@@ -94,7 +94,7 @@ public abstract class BattleStage extends StageObject
                 GameConstants.NO_COLLISION_GROUP);
 
         Image rearCurtainLeftImage = new Image(
-                new File("src/imageAssets/backgrounds/rearCurtainLeft1.png").toURI().toString());
+                new File("src/ImageAssets/backgrounds/rearCurtainLeft1.png").toURI().toString());
 
         //Left mid leg
         Backdrop rearCurtainLeft = new Backdrop(new Rectangle(
@@ -121,7 +121,7 @@ public abstract class BattleStage extends StageObject
 
         //main traveller Right
         Image mainCurtainRightImage = new Image(
-                new File("src/imageAssets/backgrounds/mainCurtainRight1.png")
+                new File("src/ImageAssets/backgrounds/mainCurtainRight1.png")
                         .toURI().toString());
         Backdrop mainCurtainRight = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(1162),
@@ -134,7 +134,7 @@ public abstract class BattleStage extends StageObject
                 GameConstants.NO_COLLISION_GROUP);
 
         Image rearCurtainRightImage = new Image(
-                new File("src/imageAssets/backgrounds/rearCurtainRight1.png").toURI().toString());
+                new File("src/ImageAssets/backgrounds/rearCurtainRight1.png").toURI().toString());
 
         //Right mid leg
         Backdrop rearCurtainRight = new Backdrop(new Rectangle(
