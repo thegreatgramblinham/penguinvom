@@ -1,8 +1,16 @@
 package Stages;
 
+import GameObjects.ImageConstants;
+import GameObjects.enums.ObjectCategory;
+import Stages.Objects.Scenery.Backdrop;
+import Stages.Objects.Scenery.Floor;
+import Stages.Objects.Scenery.Wall;
 import XMLParsing.XMLParser;
+import javafx.scene.image.Image;
 import org.w3c.dom.NodeList;
 
+import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -27,9 +35,9 @@ public final class StageBuilder
         ParseExits(parser);
         ParseEntrances(parser);
 
-        ParseBackdrops(parser);
-        ParseFloor(parser);
-        ParseWall(parser);
+        ArrayList<Backdrop> backdrops = ParseBackdrops(parser);
+        ArrayList<Floor> floors = ParseFloor(parser);
+        ArrayList<Wall> walls = ParseWall(parser);
         ParseProps(parser);
         ParseEnemies(parser);
     }
@@ -49,25 +57,67 @@ public final class StageBuilder
         //todo make entrance objects
     }
 
-    private static void ParseBackdrops(XMLParser parser) throws Exception
+    private static ArrayList<Backdrop> ParseBackdrops(XMLParser parser) throws Exception
     {
-        ArrayList<StageObjectRectProperties> backdrops
+        ArrayList<Backdrop> backdrops = new ArrayList<>();
+
+        ArrayList<StageObjectRectProperties> backdropProperties
                 = ParseChildRectProperties(parser, StageConstants.GetBackdropIndexFormatXPath());
-        //todo make backdrop objects
+
+        for(StageObjectRectProperties props : backdropProperties)
+        {
+            String filePath = ImageConstants.GetImageFilePathFromId(props.getName(), ObjectCategory.Backdrop);
+
+            Image img = new Image(new File(filePath).toURI().toString());
+
+            Backdrop b = new Backdrop(img, new Point(props.getXLoc(), props.getYLoc()));
+
+            backdrops.add(b);
+        }
+
+        return backdrops;
     }
 
-    private static void ParseFloor(XMLParser parser) throws Exception
+    private static ArrayList<Floor> ParseFloor(XMLParser parser) throws Exception
     {
-        ArrayList<StageObjectRectProperties> floor
+        ArrayList<Floor> floors = new ArrayList<>();
+
+        ArrayList<StageObjectRectProperties> floorProperties
                 = ParseChildRectProperties(parser, StageConstants.GetFloorIndexFormatXPath());
-        //todo make floor object
+
+        for(StageObjectRectProperties props : floorProperties)
+        {
+            String filePath = ImageConstants.GetImageFilePathFromId(props.getName(), ObjectCategory.Floor);
+
+            Image img = new Image(new File(filePath).toURI().toString());
+
+            Floor f = new Floor(img, new Point(props.getXLoc(), props.getYLoc()));
+
+            floors.add(f);
+        }
+
+        return floors;
     }
 
-    private static void ParseWall(XMLParser parser) throws Exception
+    private static ArrayList<Wall> ParseWall(XMLParser parser) throws Exception
     {
-        ArrayList<StageObjectRectProperties> wall
+        ArrayList<Wall> walls = new ArrayList<>();
+
+        ArrayList<StageObjectRectProperties> wallProperties
                 = ParseChildRectProperties(parser, StageConstants.GetWallIndexFormatXPath());
-        //todo make wall object
+
+        for(StageObjectRectProperties props : wallProperties)
+        {
+            String filePath = ImageConstants.GetImageFilePathFromId(props.getName(), ObjectCategory.Wall);
+
+            Image img = new Image(new File(filePath).toURI().toString());
+
+            Wall w = new Wall(img, new Point(props.getXLoc(), props.getYLoc()));
+
+            walls.add(w);
+        }
+
+        return walls;
     }
 
     private static void ParseProps(XMLParser parser) throws Exception
