@@ -1,6 +1,6 @@
 package Stages;
 
-import GameObjects.ImageConstants;
+import GameObjects.GameObjectConstants;
 import GameObjects.enums.ObjectCategory;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
@@ -65,7 +65,7 @@ public final class StageBuilder
 
         for(StageObjectRectProperties props : backdropProperties)
         {
-            String filePath = ImageConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Backdrop);
+            String filePath = GameObjectConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Backdrop);
 
             Image img = new Image(new File(filePath).toURI().toString());
 
@@ -86,7 +86,7 @@ public final class StageBuilder
 
         for(StageObjectRectProperties props : floorProperties)
         {
-            String filePath = ImageConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Floor);
+            String filePath = GameObjectConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Floor);
 
             Image img = new Image(new File(filePath).toURI().toString());
 
@@ -107,7 +107,7 @@ public final class StageBuilder
 
         for(StageObjectRectProperties props : wallProperties)
         {
-            String filePath = ImageConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Wall);
+            String filePath = GameObjectConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Wall);
 
             Image img = new Image(new File(filePath).toURI().toString());
 
