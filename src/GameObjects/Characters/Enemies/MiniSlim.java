@@ -25,9 +25,9 @@ public class MiniSlim extends EnemyBase
                 mass,
                 health,
                 INITIAL_MOVEMENT_SPEED,
-                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",
+                new SpriteAnimation("src/imageAssets/enemies/miniblob.png",
                         WIDTH, HEIGHT, 10, GameConstants.ENGINE_FPS, true),
-                new SpriteAnimation("src/ImageAssets/enemies/miniblob.png",
+                new SpriteAnimation("src/imageAssets/enemies/miniblob.png",
                         WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
         );
 

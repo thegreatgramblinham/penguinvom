@@ -19,7 +19,7 @@ public class TextImager
     public final static int LETTER_WIDTH = 16;
 
     //Private Constants
-    private final static String FONT_FILEPATH = "src/ImageAssets/menus/text/pixelFont.png";
+    private final static String FONT_FILEPATH = "src/imageAssets/menus/text/pixelFont.png";
     private final static String FONT_COORD_FILEPATH = "src/config/menus/font.xml";
 
     private final Image _fontImage = new Image(new File(FONT_FILEPATH).toURI().toString());
@@ -89,10 +89,10 @@ public class TextImager
             NodeList charSpacing = parser.OpenNodeList("/Font/Global/CharacterSpacing");
             NodeList spaceWidth = parser.OpenNodeList("/Font/Global/SpaceWidth");
 
-            _xStartIndex = XMLParser.ParseIntPathContents(xOff, 0);
-            _yStartIndex = XMLParser.ParseIntPathContents(yOff, 0);
-            _charSpacing = XMLParser.ParseIntPathContents(charSpacing, 0);
-            _spaceWidth = XMLParser.ParseIntPathContents(spaceWidth, 0);
+            _xStartIndex = XMLParser.ParseIntPathContents(xOff);
+            _yStartIndex = XMLParser.ParseIntPathContents(yOff);
+            _charSpacing = XMLParser.ParseIntPathContents(charSpacing);
+            _spaceWidth = XMLParser.ParseIntPathContents(spaceWidth);
 
             //Character information
             NodeList characterList = parser.OpenNodeList("/Font/Symbol/Character");

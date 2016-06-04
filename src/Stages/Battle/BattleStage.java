@@ -74,27 +74,27 @@ public abstract class BattleStage extends StageObject
             (int) GetSkyTexture().getHeight()),
             false, false, "trimCurtain");
         trimCurtain.SetSprite(new Image(
-                new File("src/ImageAssets/backgrounds/battleStage/stageTrim.png")
+                new File("src/imageAssets/backgrounds/stageTrim1.png")
                         .toURI().toString()));
         _sector.AddObject(trimCurtain, GameConstants.CURTAIN_RENDER_GROUP_5,
                 GameConstants.NO_COLLISION_GROUP);
 
         //main traveller left
         Image mainCurtainLeftImage = new Image(
-                new File("src/ImageAssets/backgrounds/battleStage/mainCurtainLeft.png")
+                new File("src/imageAssets/backgrounds/mainCurtainLeft1.png")
                         .toURI().toString());
         Backdrop mainCurtainLeft = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(30),
                 ViewPort.SecLocY(-375),
                 (int) mainCurtainLeftImage.getWidth(),
                 (int) mainCurtainLeftImage.getHeight()),
-                false, false, "mainCurtainLeft");
+                false, false, "mainCurtainLeft1");
         mainCurtainLeft.SetSprite(mainCurtainLeftImage);
         _sector.AddObject(mainCurtainLeft, GameConstants.CURTAIN_RENDER_GROUP_4,
                 GameConstants.NO_COLLISION_GROUP);
 
         Image rearCurtainLeftImage = new Image(
-                new File("src/ImageAssets/backgrounds/battleStage/rearCurtainLeft.png").toURI().toString());
+                new File("src/imageAssets/backgrounds/rearCurtainLeft1.png").toURI().toString());
 
         //Left mid leg
         Backdrop rearCurtainLeft = new Backdrop(new Rectangle(
@@ -121,20 +121,20 @@ public abstract class BattleStage extends StageObject
 
         //main traveller Right
         Image mainCurtainRightImage = new Image(
-                new File("src/ImageAssets/backgrounds/battleStage/mainCurtainRight.png")
+                new File("src/imageAssets/backgrounds/mainCurtainRight1.png")
                         .toURI().toString());
         Backdrop mainCurtainRight = new Backdrop(new Rectangle(
                 ViewPort.SecLocX(1162),
                 ViewPort.SecLocY(-375),
                 (int) mainCurtainRightImage.getWidth(),
                 (int) mainCurtainRightImage.getHeight()),
-                false, false, "mainCurtainLeft");
+                false, false, "mainCurtainRight1");
         mainCurtainRight.SetSprite(mainCurtainRightImage);
         _sector.AddObject(mainCurtainRight, GameConstants.CURTAIN_RENDER_GROUP_4,
                 GameConstants.NO_COLLISION_GROUP);
 
         Image rearCurtainRightImage = new Image(
-                new File("src/ImageAssets/backgrounds/battleStage/rearCurtainRight.png").toURI().toString());
+                new File("src/imageAssets/backgrounds/rearCurtainRight1.png").toURI().toString());
 
         //Right mid leg
         Backdrop rearCurtainRight = new Backdrop(new Rectangle(

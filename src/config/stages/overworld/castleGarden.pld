@@ -33,7 +33,7 @@
 	<Objects>
 		<Backdrop>
 			<I0>
-				<Name>brightSky0000</Name>
+				<Name>brightSky1</Name>
 				<Type>ImageRectangle</Type>
 				<X>374</X>
 				<Y>217</Y>
@@ -44,7 +44,7 @@
 		</Backdrop>
 		<Floor>
 			<I0>
-				<Name>gardenGrassSector0000</Name>
+				<Name>gardenGrassSector1</Name>
 				<Type>ImageRectangle</Type>
 				<X>410</X>
 				<Y>515</Y>

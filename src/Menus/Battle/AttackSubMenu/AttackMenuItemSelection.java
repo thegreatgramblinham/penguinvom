@@ -33,7 +33,7 @@ public class AttackMenuItemSelection extends AttackMenuItemBase
     private void Init()
     {
         _sprite = new Image(
-                new File("src/ImageAssets/menus/battle/attackSubMenuSelection.png")
+                new File("src/imageAssets/menus/battle/attackSubMenuSelection.png")
                         .toURI().toString());
     }
 
