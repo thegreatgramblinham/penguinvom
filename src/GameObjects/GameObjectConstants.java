@@ -8,7 +8,6 @@ import GameObjects.enums.ObjectCategory;
 import Stages.StageObjectRectProperties;
 
 import java.awt.*;
-import java.io.File;
 
 public final class GameObjectConstants
 {

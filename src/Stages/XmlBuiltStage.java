@@ -1,6 +1,5 @@
 package Stages;
 
-import Stages.Objects.Prop;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
 import Stages.Objects.Scenery.Wall;
