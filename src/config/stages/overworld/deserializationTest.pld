@@ -53,5 +53,29 @@
 				<RenderLayer>3</RenderLayer>
 			</I0>
 		</Wall>
+		<Prop>
+			<I0>
+				<Name>bush1</Name>
+				<Type>ImageRectangle</Type>
+				<X>930</X>
+				<Y>866</Y>
+				<Width>128</Width>
+				<Height>128</Height>
+				<RenderLayer>4</RenderLayer>
+			</I0>
+		</Prop>
+		<Enemy>
+			<I0>
+				<Group>
+				</Group>
+				<Name>dagron1</Name>
+				<Type>ImageRectangle</Type>
+				<X>1673</X>
+				<Y>876</Y>
+				<Width>64</Width>
+				<Height>64</Height>
+				<RenderLayer>4</RenderLayer>
+			</I0>
+		</Enemy>
 	</Objects>
 </Stage>
