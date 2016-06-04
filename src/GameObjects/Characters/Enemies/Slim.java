@@ -25,9 +25,9 @@ public class Slim extends EnemyBase
                 mass,
                 health,
                 INITIAL_MOVEMENT_SPEED,
-                new SpriteAnimation("src/imageAssets/enemies/blobSheet.png",
+                new SpriteAnimation("src/imageAssets/enemies/blob1WalkCycle.png",
                         WIDTH, HEIGHT, 10, GameConstants.ENGINE_FPS, true),
-                new SpriteAnimation("src/imageAssets/enemies/blobSheet.png",
+                new SpriteAnimation("src/imageAssets/enemies/blob1WalkCycle.png",
                         WIDTH, HEIGHT, 2, GameConstants.ENGINE_FPS, true)
         );
 
