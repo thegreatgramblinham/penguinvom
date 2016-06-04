@@ -8,12 +8,23 @@ import java.awt.*;
 
 public class SceneryObject extends GameObject
 {
+    //Properties
+    private int _renderLayer;
+
     //Constructor
-    public SceneryObject(Rectangle bounds, Image sprite, boolean isImmobile)
+    public SceneryObject(Rectangle bounds, Image sprite, boolean isImmobile,
+            int renderLayer)
     {
         super(bounds, bounds, isImmobile, 1.0F);
 
         this.SetSprite(sprite);
+        _renderLayer = renderLayer;
+    }
+
+    //Get Methods
+    public int GetRenderLayer()
+    {
+        return _renderLayer;
     }
 
     //Public Methods

@@ -7,12 +7,13 @@ import java.awt.*;
 public class Floor extends SceneryObject
 {
     //Constructor
-    public Floor(Image sprite, Point location)
+    public Floor(Image sprite, Point location, int renderLayer)
     {
         super(
                 new Rectangle(location.x, location.y, (int)sprite.getWidth(), (int)sprite.getHeight()),
                 sprite,
-                false
+                false,
+                renderLayer
         );
 
         this.SetCanCollide(false);

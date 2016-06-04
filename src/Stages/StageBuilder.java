@@ -12,7 +12,6 @@ import org.w3c.dom.NodeList;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public final class StageBuilder
 {
@@ -66,11 +65,11 @@ public final class StageBuilder
 
         for(StageObjectRectProperties props : backdropProperties)
         {
-            String filePath = ImageConstants.GetImageFilePathFromId(props.getName(), ObjectCategory.Backdrop);
+            String filePath = ImageConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Backdrop);
 
             Image img = new Image(new File(filePath).toURI().toString());
 
-            Backdrop b = new Backdrop(img, new Point(props.getXLoc(), props.getYLoc()));
+            Backdrop b = new Backdrop(img, new Point(props.GetXLoc(), props.GetYLoc()), props.GetRenderLayer());
 
             backdrops.add(b);
         }
@@ -87,11 +86,11 @@ public final class StageBuilder
 
         for(StageObjectRectProperties props : floorProperties)
         {
-            String filePath = ImageConstants.GetImageFilePathFromId(props.getName(), ObjectCategory.Floor);
+            String filePath = ImageConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Floor);
 
             Image img = new Image(new File(filePath).toURI().toString());
 
-            Floor f = new Floor(img, new Point(props.getXLoc(), props.getYLoc()));
+            Floor f = new Floor(img, new Point(props.GetXLoc(), props.GetYLoc()), props.GetRenderLayer());
 
             floors.add(f);
         }
@@ -108,11 +107,11 @@ public final class StageBuilder
 
         for(StageObjectRectProperties props : wallProperties)
         {
-            String filePath = ImageConstants.GetImageFilePathFromId(props.getName(), ObjectCategory.Wall);
+            String filePath = ImageConstants.GetImageFilePathFromId(props.GetName(), ObjectCategory.Wall);
 
             Image img = new Image(new File(filePath).toURI().toString());
 
-            Wall w = new Wall(img, new Point(props.getXLoc(), props.getYLoc()));
+            Wall w = new Wall(img, new Point(props.GetXLoc(), props.GetYLoc()), props.GetRenderLayer());
 
             walls.add(w);
         }

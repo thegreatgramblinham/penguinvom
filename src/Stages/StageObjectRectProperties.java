@@ -23,32 +23,32 @@ public class StageObjectRectProperties
     }
 
     //Get Methods
-    public int getRenderLayer()
+    public int GetRenderLayer()
     {
         return _renderLayer;
     }
 
-    public String getName()
+    public String GetName()
     {
         return _name;
     }
 
-    public int getXLoc()
+    public int GetXLoc()
     {
         return _xLoc;
     }
 
-    public int getYLoc()
+    public int GetYLoc()
     {
         return _yLoc;
     }
 
-    public int getWidth()
+    public int GetWidth()
     {
         return _width;
     }
 
-    public int getHeight()
+    public int GetHeight()
     {
         return _height;
     }
