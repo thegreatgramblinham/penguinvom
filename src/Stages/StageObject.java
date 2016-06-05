@@ -18,7 +18,7 @@ public abstract class StageObject
 
     //Protected Variables
     protected Sector _sector;
-    protected Backdrop _skyBox;
+    protected Backdrop _backdrop;
 
     //Private Variables
     private UUID _id;
@@ -42,7 +42,7 @@ public abstract class StageObject
         return _sector;
     }
 
-    public Backdrop GetSkyBox() { return _skyBox; }
+    public Backdrop GetBackdrop() { return _backdrop; }
 
     public UUID GetId()
     {
@@ -53,7 +53,7 @@ public abstract class StageObject
 
     //Abstract Methods
     protected abstract void InitProps();
-    protected abstract Image GetSkyTexture();
+    protected abstract Image GetBackgroundTexture();
     protected abstract Image GetWallTexture();
     protected abstract Image GetFloorTexture();
     protected abstract int GetStageHeight();
@@ -89,17 +89,17 @@ public abstract class StageObject
     private void InitBackdrop()
     {
         //Sky Texture
-        Image skyImage = GetSkyTexture();
+        Image skyImage = GetBackgroundTexture();
         if(skyImage != null)
         {
-            _skyBox = new Backdrop(new Rectangle(
+            _backdrop = new Backdrop(new Rectangle(
                     ViewPort.SecLocX(0),
                     ViewPort.SecLocY(-18),
-                    (int) GetSkyTexture().getWidth(),
-                    (int) GetSkyTexture().getHeight()),
+                    (int) GetBackgroundTexture().getWidth(),
+                    (int) GetBackgroundTexture().getHeight()),
                     false, false, "BackSky");
-            _skyBox.SetSprite(skyImage);
-            _sector.AddObject(_skyBox, GameConstants.SKY_RENDER_GROUP,
+            _backdrop.SetSprite(skyImage);
+            _sector.AddObject(_backdrop, GameConstants.SKY_RENDER_GROUP,
                     GameConstants.BACKGROUND_COLLISION_GROUP);
         }
 

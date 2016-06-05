@@ -38,7 +38,7 @@ public class GardenBattleStage extends BattleStage
 
     //Private Methods
     @Override
-    protected Image GetSkyTexture()
+    protected Image GetBackgroundTexture()
     {
         return new Image(new File(
                 "src/ImageAssets/backgrounds/brightSky1.png").toURI().toString());

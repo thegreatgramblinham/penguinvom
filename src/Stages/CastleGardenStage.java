@@ -32,7 +32,7 @@ public class CastleGardenStage extends OverworldStage
 
     //Get Methods
     @Override
-    protected Image GetSkyTexture()
+    protected Image GetBackgroundTexture()
     {
         return new Image(new File(
                 "src/ImageAssets/backgrounds/brightSky1.png").toURI().toString());
