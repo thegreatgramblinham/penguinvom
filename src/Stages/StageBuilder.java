@@ -1,9 +1,12 @@
 package Stages;
 
+import GameObjectBase.enums.Side;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.GameObjectConstants;
+import GameObjects.Triggers.RoomChangeTrigger;
 import GameObjects.enums.ObjectCategory;
+import GeneralHelpers.ConversionHelper;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
 import Stages.Objects.Scenery.Wall;
@@ -14,6 +17,7 @@ import org.w3c.dom.NodeList;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public final class StageBuilder
 {
@@ -24,7 +28,7 @@ public final class StageBuilder
     private StageBuilder() {}
 
     //Public Methods
-    public static void BuildStage(String filePath) throws Exception
+    public static XmlBuiltStage BuildStage(String filePath) throws Exception
     {
         XMLParser parser = new XMLParser(filePath);
 
@@ -33,29 +37,58 @@ public final class StageBuilder
         int lvlHeight = XMLParser.ParseIntPathContents(
                 parser.OpenNodeList(StageConstants.S_LEVEL_HEIGHT));
 
-        ParseExits(parser);
-        ParseEntrances(parser);
+        HashMap<Side, Rectangle> exits = ParseExits(parser);
+        HashMap<Side, Rectangle> entrances = ParseEntrances(parser);
 
         ArrayList<Backdrop> backdrops = ParseBackdrops(parser);
         ArrayList<Floor> floors = ParseFloor(parser);
         ArrayList<Wall> walls = ParseWall(parser);
         ArrayList<PropBase> props = ParseProps(parser);
         ArrayList<EnemyBase> enemies = ParseEnemies(parser);
+
+        return new XmlBuiltStage(lvlWidth, lvlHeight, exits, entrances, backdrops,
+                floors, walls, props, enemies);
     }
 
     //Private Methods
-    private static void ParseExits(XMLParser parser) throws Exception
+    private static HashMap<Side, Rectangle> ParseExits(XMLParser parser) throws Exception
     {
+        HashMap<Side, Rectangle> roomChangeTriggers = new HashMap<>();
+
         ArrayList<StageObjectRectProperties> exits
                 = ParseChildRectProperties(parser, StageConstants.GetExitIndexFormatXPath());
-        //todo make exit objects
+
+        for(StageObjectRectProperties props : exits)
+        {
+            Side exitSide = ConversionHelper.StringToSide(props.GetName());
+
+            if(exitSide == null) continue;
+
+            roomChangeTriggers.put(exitSide, new Rectangle(props.GetXLoc(), props.GetYLoc(),
+                    props.GetWidth(), props.GetHeight()));
+        }
+
+        return roomChangeTriggers;
     }
 
-    private static void ParseEntrances(XMLParser parser) throws Exception
+    private static HashMap<Side, Rectangle> ParseEntrances(XMLParser parser) throws Exception
     {
+        HashMap<Side, Rectangle> roomEntrances = new HashMap<>();
+
         ArrayList<StageObjectRectProperties> entrances
                 = ParseChildRectProperties(parser, StageConstants.GetEntranceIndexFormatXPath());
-        //todo make entrance objects
+
+        for(StageObjectRectProperties props : entrances)
+        {
+            Side entranceSide = ConversionHelper.StringToSide(props.GetName());
+
+            if(entranceSide == null) continue;
+
+            roomEntrances.put(entranceSide, new Rectangle(props.GetXLoc(), props.GetYLoc(),
+                    props.GetWidth(), props.GetHeight()));
+        }
+
+        return roomEntrances;
     }
 
     private static ArrayList<Backdrop> ParseBackdrops(XMLParser parser) throws Exception
