@@ -30,6 +30,12 @@ public class CastleGardenStage extends OverworldStage
         super(sector);
     }
 
+    @Override
+    protected void InitObjects()
+    {
+
+    }
+
     //Get Methods
     @Override
     protected Image GetBackgroundTexture()
@@ -131,6 +137,24 @@ public class CastleGardenStage extends OverworldStage
                         ViewPort.SecLocY(400)), 1.0F, 10);
         _sector.AddObject(s, GameConstants.ENEMY_RENDER_GROUP,
                 GameConstants.ENEMY_COLLISION_GROUP);
+    }
+
+    @Override
+    protected void InitBackdrop()
+    {
+
+    }
+
+    @Override
+    protected void InitWall()
+    {
+
+    }
+
+    @Override
+    protected void InitFloor()
+    {
+
     }
 
     @Override
