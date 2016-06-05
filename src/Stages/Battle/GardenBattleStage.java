@@ -36,6 +36,30 @@ public class GardenBattleStage extends BattleStage
 
     //Public Methods
 
+    @Override
+    protected void InitObjects()
+    {
+
+    }
+
+    @Override
+    protected void InitBackdrop()
+    {
+
+    }
+
+    @Override
+    protected void InitWall()
+    {
+
+    }
+
+    @Override
+    protected void InitFloor()
+    {
+
+    }
+
     //Private Methods
     @Override
     protected Image GetBackgroundTexture()

@@ -18,7 +18,7 @@ public abstract class StageObject
 
     //Protected Variables
     protected Sector _sector;
-    protected Backdrop _backdrop;
+    //protected Backdrop _backdrop;
 
     //Private Variables
     private UUID _id;
@@ -33,7 +33,7 @@ public abstract class StageObject
 
         _id = UUID.randomUUID();
 
-        Init();
+        //Init();
     }
 
     //Get Methods
@@ -42,7 +42,7 @@ public abstract class StageObject
         return _sector;
     }
 
-    public Backdrop GetBackdrop() { return _backdrop; }
+    //public Backdrop GetBackdrop() { return _backdrop; }
 
     public UUID GetId()
     {
@@ -52,7 +52,11 @@ public abstract class StageObject
     //Set Methods
 
     //Abstract Methods
+    protected abstract void InitObjects();
     protected abstract void InitProps();
+    protected abstract void InitBackdrop();
+    protected abstract void InitWall();
+    protected abstract void InitFloor();
     protected abstract Image GetBackgroundTexture();
     protected abstract Image GetWallTexture();
     protected abstract Image GetFloorTexture();
@@ -80,58 +84,58 @@ public abstract class StageObject
     }
 
     //Private Methods
-    private void Init()
-    {
-        InitBackdrop();
-        InitProps();
-    }
+//    private void Init()
+//    {
+//        InitBackdrop();
+//        InitProps();
+//    }
 
-    private void InitBackdrop()
-    {
-        //Sky Texture
-        Image skyImage = GetBackgroundTexture();
-        if(skyImage != null)
-        {
-            _backdrop = new Backdrop(new Rectangle(
-                    ViewPort.SecLocX(0),
-                    ViewPort.SecLocY(-18),
-                    (int) GetBackgroundTexture().getWidth(),
-                    (int) GetBackgroundTexture().getHeight()),
-                    false, false, "BackSky");
-            _backdrop.SetSprite(skyImage);
-            _sector.AddObject(_backdrop, GameConstants.SKY_RENDER_GROUP,
-                    GameConstants.BACKGROUND_COLLISION_GROUP);
-        }
-
-        //Rendered Walls
-        Image wallImage = GetWallTexture();
-        if(wallImage != null)
-        {
-            Backdrop wall = new Backdrop(new Rectangle(
-                    ViewPort.SecLocX(418),
-                    ViewPort.SecLocY(0),
-                    (int) GetWallTexture().getWidth(),
-                    (int) GetWallTexture().getHeight()),
-                    true, true, "BackWall");
-            wall.SetSprite(wallImage);
-            _sector.AddObject(wall, GameConstants.ROOM_RENDER_GROUP,
-                    GameConstants.BACKGROUND_COLLISION_GROUP);
-        }
-
-        Image floorImage = GetFloorTexture();
-        if(floorImage != null)
-        {
-            Backdrop floor = new Backdrop(new Rectangle(
-                    ViewPort.SecLocX(0),
-                    ViewPort.SecLocY(280),
-                    (int) GetFloorTexture().getWidth(),
-                    (int) GetFloorTexture().getHeight()),
-                    true, false, "Floor");
-            floor.SetSprite(floorImage);
-            _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
-                    GameConstants.BACKGROUND_COLLISION_GROUP);
-        }
-    }
+//    private void InitBackdrop()
+//    {
+//        //Sky Texture
+//        Image skyImage = GetBackgroundTexture();
+//        if(skyImage != null)
+//        {
+//            _backdrop = new Backdrop(new Rectangle(
+//                    ViewPort.SecLocX(0),
+//                    ViewPort.SecLocY(-18),
+//                    (int) GetBackgroundTexture().getWidth(),
+//                    (int) GetBackgroundTexture().getHeight()),
+//                    false, false, "BackSky");
+//            _backdrop.SetSprite(skyImage);
+//            _sector.AddObject(_backdrop, GameConstants.SKY_RENDER_GROUP,
+//                    GameConstants.BACKGROUND_COLLISION_GROUP);
+//        }
+//
+//        //Rendered Walls
+//        Image wallImage = GetWallTexture();
+//        if(wallImage != null)
+//        {
+//            Backdrop wall = new Backdrop(new Rectangle(
+//                    ViewPort.SecLocX(418),
+//                    ViewPort.SecLocY(0),
+//                    (int) GetWallTexture().getWidth(),
+//                    (int) GetWallTexture().getHeight()),
+//                    true, true, "BackWall");
+//            wall.SetSprite(wallImage);
+//            _sector.AddObject(wall, GameConstants.ROOM_RENDER_GROUP,
+//                    GameConstants.BACKGROUND_COLLISION_GROUP);
+//        }
+//
+//        Image floorImage = GetFloorTexture();
+//        if(floorImage != null)
+//        {
+//            Backdrop floor = new Backdrop(new Rectangle(
+//                    ViewPort.SecLocX(0),
+//                    ViewPort.SecLocY(280),
+//                    (int) GetFloorTexture().getWidth(),
+//                    (int) GetFloorTexture().getHeight()),
+//                    true, false, "Floor");
+//            floor.SetSprite(floorImage);
+//            _sector.AddObject(floor, GameConstants.ROOM_RENDER_GROUP,
+//                    GameConstants.BACKGROUND_COLLISION_GROUP);
+//        }
+//    }
 
 
 }

@@ -26,6 +26,12 @@ public class MainCastleStage extends OverworldStage
         super(sector);
     }
 
+    @Override
+    protected void InitObjects()
+    {
+
+    }
+
     //Get Methods
     @Override
     protected Image GetBackgroundTexture()
@@ -89,6 +95,24 @@ public class MainCastleStage extends OverworldStage
     //Private Methods
     @Override
     protected void InitProps()
+    {
+
+    }
+
+    @Override
+    protected void InitBackdrop()
+    {
+
+    }
+
+    @Override
+    protected void InitWall()
+    {
+
+    }
+
+    @Override
+    protected void InitFloor()
     {
 
     }

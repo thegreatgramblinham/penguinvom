@@ -46,7 +46,8 @@ public class StageMap
     //Private Methods
     private void LoadStageGroup1() throws Exception
     {
-        StageBuilder.BuildStage(StageConstants.CastleGarden);
+        MapNode serialTest =
+                new MapNode(StageBuilder.BuildStage(StageConstants.CastleGarden));
 
         MapNode garden = new MapNode(
                 new CastleGardenStage(GameManager.CreateNewEngineSector()));
@@ -56,7 +57,7 @@ public class StageMap
         garden.LinkDirection(castle, Direction.Right);
         castle.LinkDirection(garden, Direction.Left);
 
-        _loadedStageGroup.put(CastleGardenStage.class, garden);
+        _loadedStageGroup.put(CastleGardenStage.class, serialTest);
         _loadedStageGroup.put(MainCastleStage.class, castle);
 ;    }
 

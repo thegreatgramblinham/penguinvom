@@ -41,7 +41,6 @@ public abstract class OverworldStage extends StageObject
     private void Init()
     {
         InitStageBounds();
-        InitExits();
     }
 
     private void InitStageBounds()

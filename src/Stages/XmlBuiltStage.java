@@ -50,6 +50,8 @@ public class XmlBuiltStage extends OverworldStage
         _walls = walls;
         _props = props;
         _enemies = enemies;
+
+        InitObjects();
     }
 
     //Get Methods
@@ -105,9 +107,66 @@ public class XmlBuiltStage extends OverworldStage
 
     //Private Methods
     @Override
+    protected void InitObjects()
+    {
+        InitExits();
+
+        InitBackdrop();
+        InitFloor();
+        InitWall();
+        InitProps();
+    }
+
+    @Override
     protected void InitExits()
     {
 
+    }
+
+    @Override
+    protected void InitBackdrop()
+    {
+        if(_backdrops == null) return;
+
+        for (Backdrop backdrop : _backdrops)
+        {
+            this.GetSector().AddObject(
+                    backdrop,
+                    GameConstants.SKY_RENDER_GROUP,
+                    GameConstants.NO_COLLISION_GROUP
+            );
+        }
+    }
+
+    @Override
+    protected void InitFloor()
+    {
+        if(_floors == null) return;
+
+        for (Floor floor : _floors)
+        {
+            this.GetSector().AddObject(
+                    floor,
+                    GameConstants.ROOM_RENDER_GROUP,
+                    GameConstants.NO_COLLISION_GROUP
+            );
+        }
+    }
+
+
+    @Override
+    protected void InitWall()
+    {
+        if(_walls == null) return;
+
+        for (Wall wall : _walls)
+        {
+            this.GetSector().AddObject(
+                    wall,
+                    GameConstants.ROOM_RENDER_GROUP,
+                    GameConstants.BACKGROUND_COLLISION_GROUP
+            );
+        }
     }
 
     @Override
@@ -123,5 +182,7 @@ public class XmlBuiltStage extends OverworldStage
                     GameConstants.PROP_COLLISION_GROUP);
         }
     }
+
+
 
 }

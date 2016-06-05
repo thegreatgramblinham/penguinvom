@@ -339,10 +339,10 @@ public class GameManager
                     //Player action handled.
                     _viewPort.ScrollIntoView(PLAYER_OBJECT.GetCenterPoint());
 
-                    Backdrop sky = _currentRoom.GetBackdrop();
-                    sky.NSetLocation(new Point(
-                            _viewPort.GetLocation().x,
-                            sky.y));
+//                    Backdrop sky = _currentRoom.GetBackdrop();
+//                    sky.NSetLocation(new Point(
+//                            _viewPort.GetLocation().x,
+//                            sky.y));
                 }
                 else if(HandleEnemyAction(gObj, gc))
                 {
