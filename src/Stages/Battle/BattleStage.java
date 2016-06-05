@@ -70,8 +70,8 @@ public abstract class BattleStage extends StageObject
         Backdrop trimCurtain = new Backdrop(new Rectangle(
             ViewPort.SecLocX(0),
             ViewPort.SecLocY(-100),
-            (int) GetSkyTexture().getWidth(),
-            (int) GetSkyTexture().getHeight()),
+            (int) GetBackgroundTexture().getWidth(),
+            (int) GetBackgroundTexture().getHeight()),
             false, false, "trimCurtain");
         trimCurtain.SetSprite(new Image(
                 new File("src/ImageAssets/backgrounds/stageTrim1.png")
