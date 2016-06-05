@@ -14,20 +14,20 @@ import java.lang.reflect.Type;
 public class RoomChangeTrigger extends GameObject
 {
     //Variables
-    private Type _roomType;
+    private String _roomId;
     private Side _enteringFrom;
     private Direction _mapLinkDirection;
 
     //Constructor
     public RoomChangeTrigger(Rectangle size, //StageObject changeTo,
-                             Type roomType,
+                             String roomId,
                              Direction mapLinkDirection,
                              Side enteringFrom)
     {
         super(size, size, true, 0.0F);
         this.SetAlias("Room Change Trigger");
 
-        _roomType = roomType;
+        _roomId = roomId;
         _mapLinkDirection = mapLinkDirection;
         _enteringFrom = enteringFrom;
     }
@@ -42,7 +42,7 @@ public class RoomChangeTrigger extends GameObject
     {
         if(obj instanceof PlayerObject)
             GameManager.QueueStageTransition(
-                    StageMap.Query(_roomType, _mapLinkDirection),
+                    StageMap.Query(_roomId, _mapLinkDirection),
                     _enteringFrom);
     }
 

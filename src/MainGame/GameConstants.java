@@ -30,6 +30,7 @@ public class GameConstants
     public static final int PROP_RENDER_GROUP_MID = 4;
     public static final int PROP_RENDER_GROUP_MIDFORWARD = 5;
     public static final int PROP_RENDER_GROUP_FORWARD = 6;
+    public static final int TRIGGER_RENDER_GROUP = 10; //needs to be the highest.
 
     public static final int CURTAIN_RENDER_GROUP_1 = 3;
     public static final int CURTAIN_RENDER_GROUP_2 = 4;
