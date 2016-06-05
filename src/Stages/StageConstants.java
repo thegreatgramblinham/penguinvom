@@ -36,6 +36,7 @@ public final class StageConstants
     private final static String _OVERWORLD_ROOT = _PATHBASE + "/overworld";
     private final static String _BATTLE_ROOT = _PATHBASE + "/battle";
     public final static String CastleGarden = _OVERWORLD_ROOT + "/deserializationTest."+_STAGE_FILE_EXT;
+    public final static String MainCastle = _OVERWORLD_ROOT + "/mainCastle." + _STAGE_FILE_EXT;
 
 
     //Public Methods

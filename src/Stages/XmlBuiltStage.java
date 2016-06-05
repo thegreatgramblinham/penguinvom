@@ -6,8 +6,10 @@ import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Environmental.Props.PropBase;
+import GameObjects.Triggers.RoomChangeTrigger;
 import MainGame.GameConstants;
 import MainGame.GameManager;
+import SectorBase.enums.Direction;
 import Stages.Battle.BattleStage;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
@@ -120,7 +122,23 @@ public class XmlBuiltStage extends OverworldStage
     @Override
     protected void InitExits()
     {
+        for(Side s : _exits.keySet())
+        {
+            Rectangle rect = _exits.get(s);
 
+            RoomChangeTrigger rightExit = new RoomChangeTrigger
+                    (
+                            rect,
+                            StageConstants.CastleGarden,
+                            Direction.Right, //TODO need to make this dynamic, this is just for testing
+                            s
+                    );
+
+            this.GetSector().AddObject(
+                    rightExit,
+                    GameConstants.TRIGGER_RENDER_GROUP,
+                    GameConstants.TRIGGER_COLLISION_GROUP);
+        }
     }
 
     @Override
@@ -182,7 +200,4 @@ public class XmlBuiltStage extends OverworldStage
                     GameConstants.PROP_COLLISION_GROUP);
         }
     }
-
-
-
 }

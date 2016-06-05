@@ -26,8 +26,8 @@ import PhysicsBase.CollisionRules.enums.CollisionRule;
 import PhysicsBase.Vectors.VelocityVector;
 import SectorBase.Sector;
 import SectorBase.enums.GravityApplication;
-import Stages.CastleGardenStage;
 import Stages.OverworldStage;
+import Stages.StageConstants;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -178,7 +178,7 @@ public class GameManager
     {
         _stageMap = new StageMap();
 
-        _currentRoom = StageMap.Query(CastleGardenStage.class);
+        _currentRoom = StageMap.Query(StageConstants.CastleGarden);
 
         _engineInstance.SetActiveSector(_currentRoom.GetSector());
     }

@@ -1,5 +1,6 @@
 package MainGame.Mapping;
 
+import MainGame.GameConstants;
 import MainGame.GameManager;
 import SectorBase.enums.Direction;
 import Stages.*;
@@ -15,7 +16,7 @@ public class StageMap
     */
 
     //Private Variables
-    private static HashMap<Type, MapNode> _loadedStageGroup;
+    private static HashMap<String, MapNode> _loadedStageGroup;
 
     //Constructor
     public StageMap() throws Exception
@@ -25,40 +26,38 @@ public class StageMap
     }
 
     //Public Static Methods
-    public static OverworldStage Query(Type t, Direction d)
+    public static OverworldStage Query(String id, Direction d)
     {
-        if(!_loadedStageGroup.containsKey(t)) return null;
+        if(!_loadedStageGroup.containsKey(id)) return null;
 
-        MapNode n = _loadedStageGroup.get(t).GetLink(d);
+        MapNode n = _loadedStageGroup.get(id).GetLink(d);
 
         return n != null
                 ? n.GetStage()
                 : null;
     }
 
-    public static OverworldStage Query(Type t)
+    public static OverworldStage Query(String id)
     {
-        if(!_loadedStageGroup.containsKey(t)) return null;
+        if(!_loadedStageGroup.containsKey(id)) return null;
 
-        return _loadedStageGroup.get(t).GetStage();
+        return _loadedStageGroup.get(id).GetStage();
     }
 
     //Private Methods
     private void LoadStageGroup1() throws Exception
     {
-        MapNode serialTest =
+        MapNode garden =
                 new MapNode(StageBuilder.BuildStage(StageConstants.CastleGarden));
 
-        MapNode garden = new MapNode(
-                new CastleGardenStage(GameManager.CreateNewEngineSector()));
-        MapNode castle = new MapNode(
-                new MainCastleStage(GameManager.CreateNewEngineSector()));
+        MapNode castle =
+                new MapNode(StageBuilder.BuildStage(StageConstants.CastleGarden));
 
         garden.LinkDirection(castle, Direction.Right);
         castle.LinkDirection(garden, Direction.Left);
 
-        _loadedStageGroup.put(CastleGardenStage.class, serialTest);
-        _loadedStageGroup.put(MainCastleStage.class, castle);
+        _loadedStageGroup.put(StageConstants.CastleGarden, garden);
+        _loadedStageGroup.put(StageConstants.MainCastle, castle);
 ;    }
 
 }
