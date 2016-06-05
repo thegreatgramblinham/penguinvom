@@ -620,9 +620,16 @@ public class GameManager
 
     public static Sector CreateNewEngineSector()
     {
-        return _engineInstance.CreateSector(
+        return CreateNewEngineSector(
                 GameConstants.DEFAULT_SECTOR_WIDTH,
-                GameConstants.DEFAULT_SECTOR_HEIGHT,
+                GameConstants.DEFAULT_SECTOR_HEIGHT);
+    }
+
+    public static Sector CreateNewEngineSector(int width, int height)
+    {
+        return _engineInstance.CreateSector(
+                width,
+                height,
                 GameConstants.DEFAULT_SECTOR_GRID_UNIT_SIZE,
                 GameConstants.GRAVITY,
                 GravityApplication.Area);
