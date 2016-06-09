@@ -25,6 +25,7 @@ public class XmlBuiltStage extends OverworldStage
     //Private Variables
     private int _stageWidth;
     private int _stageHeight;
+    private Point _viewPortStart;
     private HashMap<Side, Rectangle> _exits;
     private HashMap<Side, Rectangle> _entrances;
     private ArrayList<Backdrop> _backdrops;
@@ -34,15 +35,16 @@ public class XmlBuiltStage extends OverworldStage
     private ArrayList<EnemyBase> _enemies;
 
     //Constructor
-    public XmlBuiltStage(int stageWidth, int stageHeight, HashMap<Side, Rectangle> exits,
-            HashMap<Side, Rectangle> entrances, ArrayList<Backdrop> backdrops,
-            ArrayList<Floor> floors, ArrayList<Wall> walls, ArrayList<PropBase> props,
-            ArrayList<EnemyBase> enemies) throws Exception
+    public XmlBuiltStage(int stageWidth, int stageHeight, Point viewPortStart,
+            HashMap<Side, Rectangle> exits, HashMap<Side, Rectangle> entrances,
+            ArrayList<Backdrop> backdrops, ArrayList<Floor> floors, ArrayList<Wall> walls,
+            ArrayList<PropBase> props, ArrayList<EnemyBase> enemies) throws Exception
     {
         super(GameManager.CreateNewEngineSector(stageWidth, stageHeight));
 
         _stageWidth = stageWidth;
         _stageHeight = stageHeight;
+        _viewPortStart = viewPortStart;
 
         _exits = exits;
         _entrances = entrances;
@@ -67,6 +69,12 @@ public class XmlBuiltStage extends OverworldStage
     protected int GetStageWidth()
     {
         return _stageWidth;
+    }
+
+    @Override
+    public Point GetViewLocation()
+    {
+        return _viewPortStart;
     }
 
     @Override

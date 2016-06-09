@@ -29,14 +29,6 @@ public abstract class OverworldStage extends StageObject
             PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception;
 
-    //Public Methods
-    public Point GetViewLocation()
-    {
-        return new Point(
-                (int)(GameConstants.GAME_STARTING_POINT.x),
-                GameConstants.GAME_STARTING_POINT.y);
-    }
-
     //Private Methods
     private void Init()
     {

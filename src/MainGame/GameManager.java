@@ -181,6 +181,7 @@ public class GameManager
         _currentRoom = StageMap.Query(StageConstants.CastleGarden);
 
         _engineInstance.SetActiveSector(_currentRoom.GetSector());
+        _viewPort.SetLocation(_currentRoom.GetViewLocation());
     }
 
     private void InitEnemySpawner()
