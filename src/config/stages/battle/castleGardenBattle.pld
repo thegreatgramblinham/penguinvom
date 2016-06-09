@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Stage>
+	<Global>
+		<LevelSize>
+			<Width>2400</Width>
+			<Height>1300</Height>
+		</LevelSize>
+		<ViewPort>
+			<Name>view</Name>
+			<Type>NamedRectangle</Type>
+			<X>305</X>
+			<Y>550</Y>
+			<Width>1067</Width>
+			<Height>600</Height>
+			<RenderLayer>2</RenderLayer>
+		</ViewPort>
+	</Global>
+	<Triggers>
+	</Triggers>
+	<Objects>
+		<Backdrop>
+			<I0>
+				<Name>brightSky1</Name>
+				<Type>ImageRectangle</Type>
+				<X>138</X>
+				<Y>562</Y>
+				<Width>2000</Width>
+				<Height>400</Height>
+				<RenderLayer>0</RenderLayer>
+			</I0>
+		</Backdrop>
+		<Floor>
+			<I0>
+				<Name>completeStageFrame1</Name>
+				<Type>ImageRectangle</Type>
+				<X>130</X>
+				<Y>76</Y>
+				<Width>1400</Width>
+				<Height>1000</Height>
+				<RenderLayer>1</RenderLayer>
+			</I0>
+		</Floor>
+	</Objects>
+</Stage>
