@@ -7,6 +7,7 @@ import GameObjects.GameObjectConstants;
 import GameObjects.Triggers.RoomChangeTrigger;
 import GameObjects.enums.ObjectCategory;
 import GeneralHelpers.ConversionHelper;
+import MainGame.GameConstants;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
 import Stages.Objects.Scenery.Wall;
@@ -37,6 +38,8 @@ public final class StageBuilder
         int lvlHeight = XMLParser.ParseIntPathContents(
                 parser.OpenNodeList(StageConstants.S_LEVEL_HEIGHT));
 
+        Point viewPortStart = ParseViewPortStart(parser);
+
         HashMap<Side, Rectangle> exits = ParseExits(parser);
         HashMap<Side, Rectangle> entrances = ParseEntrances(parser);
 
@@ -46,11 +49,22 @@ public final class StageBuilder
         ArrayList<PropBase> props = ParseProps(parser);
         ArrayList<EnemyBase> enemies = ParseEnemies(parser);
 
-        return new XmlBuiltStage(lvlWidth, lvlHeight, exits, entrances, backdrops,
+        return new XmlBuiltStage(lvlWidth, lvlHeight, viewPortStart, exits, entrances, backdrops,
                 floors, walls, props, enemies);
     }
 
     //Private Methods
+    private static Point ParseViewPortStart(XMLParser parser) throws Exception
+    {
+        NodeList viewTag = parser.OpenNodeList(StageConstants.S_VIEWPORT);
+        if(viewTag.getLength() == 0)
+            return GameConstants.GAME_STARTING_POINT;
+
+        StageObjectRectProperties props = ParseRectContents(parser, StageConstants.S_VIEWPORT);
+
+        return new Point(props.GetXLoc(),props.GetYLoc());
+    }
+
     private static HashMap<Side, Rectangle> ParseExits(XMLParser parser) throws Exception
     {
         HashMap<Side, Rectangle> roomChangeTriggers = new HashMap<>();

@@ -5,6 +5,15 @@
 			<Width>4000</Width>
 			<Height>4000</Height>
 		</LevelSize>
+		<ViewPort>
+			<Name>Rectangle 1</Name>
+			<Type>NamedRectangle</Type>
+			<X>497</X>
+			<Y>535</Y>
+			<Width>1067</Width>
+			<Height>600</Height>
+			<RenderLayer>6</RenderLayer>
+		</ViewPort>
 	</Global>
 	<Triggers>
 	<Entrance>
