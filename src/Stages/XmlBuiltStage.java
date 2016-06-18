@@ -7,6 +7,7 @@ import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Triggers.RoomChangeTrigger;
+import GeneralHelpers.ConversionHelper;
 import MainGame.GameConstants;
 import MainGame.GameManager;
 import SectorBase.enums.Direction;
@@ -35,12 +36,12 @@ public class XmlBuiltStage extends OverworldStage
     private ArrayList<EnemyBase> _enemies;
 
     //Constructor
-    public XmlBuiltStage(int stageWidth, int stageHeight, Point viewPortStart,
+    public XmlBuiltStage(String roomId, int stageWidth, int stageHeight, Point viewPortStart,
             HashMap<Side, Rectangle> exits, HashMap<Side, Rectangle> entrances,
             ArrayList<Backdrop> backdrops, ArrayList<Floor> floors, ArrayList<Wall> walls,
             ArrayList<PropBase> props, ArrayList<EnemyBase> enemies) throws Exception
     {
-        super(GameManager.CreateNewEngineSector(stageWidth, stageHeight));
+        super(roomId, GameManager.CreateNewEngineSector(stageWidth, stageHeight));
 
         _stageWidth = stageWidth;
         _stageHeight = stageHeight;
@@ -134,16 +135,16 @@ public class XmlBuiltStage extends OverworldStage
         {
             Rectangle rect = _exits.get(s);
 
-            RoomChangeTrigger rightExit = new RoomChangeTrigger
+            RoomChangeTrigger exit = new RoomChangeTrigger
                     (
                             rect,
-                            StageConstants.CastleGarden,
-                            Direction.Right, //TODO need to make this dynamic, this is just for testing
-                            s
+                            GetRoomId(),
+                            ConversionHelper.GetDirectionFromSide(s),
+                            ConversionHelper.GetOppositeSide(s)
                     );
 
             this.GetSector().AddObject(
-                    rightExit,
+                    exit,
                     GameConstants.TRIGGER_RENDER_GROUP,
                     GameConstants.TRIGGER_COLLISION_GROUP);
         }

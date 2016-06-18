@@ -51,7 +51,7 @@ public class StageMap
                 new MapNode(StageBuilder.BuildStage(StageConstants.CastleGarden));
 
         MapNode castle =
-                new MapNode(StageBuilder.BuildStage(StageConstants.CastleGarden));
+                new MapNode(StageBuilder.BuildStage(StageConstants.MainCastle));
 
         garden.LinkDirection(castle, Direction.Right);
         castle.LinkDirection(garden, Direction.Left);

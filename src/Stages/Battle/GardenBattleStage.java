@@ -16,7 +16,7 @@ public class GardenBattleStage extends BattleStage
     public GardenBattleStage(Sector sector, PlayerBattleCharacter player,
                              BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
-        super(sector, player, enemies);
+        super("", sector, player, enemies);
     }
 
     //Get Methods

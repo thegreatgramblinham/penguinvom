@@ -22,14 +22,16 @@ public abstract class StageObject
 
     //Private Variables
     private UUID _id;
+    private String _roomId;
 
     //Constructor
-    public StageObject(Sector sector) throws Exception
+    public StageObject(String roomId, Sector sector) throws Exception
     {
         if(sector.width < _sectorRequiredWidth || sector.height < _sectorRequiredHeight)
             throw new InvalidObjectException("Provided sector not large enough.");
 
         _sector = sector;
+        _roomId = roomId;
 
         _id = UUID.randomUUID();
 
@@ -48,6 +50,8 @@ public abstract class StageObject
     {
         return _id;
     }
+
+    public String GetRoomId() { return _roomId; }
 
     //Set Methods
 
