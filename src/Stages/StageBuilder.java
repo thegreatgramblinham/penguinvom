@@ -29,9 +29,9 @@ public final class StageBuilder
     private StageBuilder() {}
 
     //Public Methods
-    public static XmlBuiltStage BuildStage(String filePath) throws Exception
+    public static XmlBuiltStage BuildStage(String roomId) throws Exception
     {
-        XMLParser parser = new XMLParser(filePath);
+        XMLParser parser = new XMLParser(roomId);
 
         int lvlWidth = XMLParser.ParseIntPathContents(
                 parser.OpenNodeList(StageConstants.S_LEVEL_WIDTH));
@@ -49,7 +49,7 @@ public final class StageBuilder
         ArrayList<PropBase> props = ParseProps(parser);
         ArrayList<EnemyBase> enemies = ParseEnemies(parser);
 
-        return new XmlBuiltStage(lvlWidth, lvlHeight, viewPortStart, exits, entrances, backdrops,
+        return new XmlBuiltStage(roomId, lvlWidth, lvlHeight, viewPortStart, exits, entrances, backdrops,
                 floors, walls, props, enemies);
     }
 

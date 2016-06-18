@@ -22,10 +22,10 @@ public abstract class BattleStage extends StageObject
     protected BattleCharacterGroup<EnemyBattleCharacter> _enemyCharacters;
 
     //Constructor
-    public BattleStage(Sector sector, PlayerBattleCharacter player,
+    public BattleStage(String roomId, Sector sector, PlayerBattleCharacter player,
                        BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
-        super(sector);
+        super(roomId, sector);
         _playerCharacter = player;
         _enemyCharacters = enemies;
 

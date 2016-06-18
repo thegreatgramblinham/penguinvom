@@ -14,10 +14,11 @@ import java.awt.*;
 
 public abstract class OverworldStage extends StageObject
 {
+
     //Constructor
-    public OverworldStage(Sector sector) throws Exception
+    public OverworldStage(String roomId, Sector sector) throws Exception
     {
-        super(sector);
+        super(roomId, sector);
 
         Init();
     }
