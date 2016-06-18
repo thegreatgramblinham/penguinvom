@@ -7,6 +7,7 @@ import GameObjects.GameObjectConstants;
 import GameObjects.Triggers.RoomChangeTrigger;
 import GameObjects.enums.ObjectCategory;
 import GeneralHelpers.ConversionHelper;
+import Global.Tuple;
 import MainGame.GameConstants;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
@@ -41,7 +42,7 @@ public final class StageBuilder
         Point viewPortStart = ParseViewPortStart(parser);
 
         HashMap<Side, Rectangle> exits = ParseExits(parser);
-        HashMap<Side, Rectangle> entrances = ParseEntrances(parser);
+        HashMap<Side, Tuple<Integer, Rectangle>> entrances = ParseEntrances(parser);
 
         ArrayList<Backdrop> backdrops = ParseBackdrops(parser);
         ArrayList<Floor> floors = ParseFloor(parser);
@@ -85,9 +86,9 @@ public final class StageBuilder
         return roomChangeTriggers;
     }
 
-    private static HashMap<Side, Rectangle> ParseEntrances(XMLParser parser) throws Exception
+    private static HashMap<Side, Tuple<Integer, Rectangle>> ParseEntrances(XMLParser parser) throws Exception
     {
-        HashMap<Side, Rectangle> roomEntrances = new HashMap<>();
+        HashMap<Side, Tuple<Integer, Rectangle>> roomEntrances = new HashMap<>();
 
         ArrayList<StageObjectRectProperties> entrances
                 = ParseChildRectProperties(parser, StageConstants.GetEntranceIndexFormatXPath());
@@ -98,8 +99,10 @@ public final class StageBuilder
 
             if(entranceSide == null) continue;
 
-            roomEntrances.put(entranceSide, new Rectangle(props.GetXLoc(), props.GetYLoc(),
-                    props.GetWidth(), props.GetHeight()));
+            roomEntrances.put(entranceSide, new Tuple<>(
+                    props.GetRenderLayer(),
+                    new Rectangle(props.GetXLoc(), props.GetYLoc(),
+                            props.GetWidth(), props.GetHeight())));
         }
 
         return roomEntrances;

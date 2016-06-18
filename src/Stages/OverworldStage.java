@@ -5,6 +5,7 @@ import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Environmental.Backdrop;
+import Global.Tuple;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
 import SectorBase.Sector;
@@ -25,7 +26,7 @@ public abstract class OverworldStage extends StageObject
 
     //Abstract Methods
     protected abstract void InitExits();
-    public abstract Point GetPlayerStartingLocation(Side s);
+    public abstract Tuple<Integer, Point> GetPlayerStartingLocation(Side s);
     public abstract BattleStage CreateBattleStage(
             PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception;
