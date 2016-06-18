@@ -81,7 +81,11 @@ public class XmlBuiltStage extends OverworldStage
     @Override
     public Point GetPlayerStartingLocation(Side s)
     {
-        return new Point(900, 750);
+        return _entrances.containsKey(s)
+                ? _entrances.get(s).getLocation()
+                : null;
+
+        //return new Point(900, 750);
     }
 
     @Override
