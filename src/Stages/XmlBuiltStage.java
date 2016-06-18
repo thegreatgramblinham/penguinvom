@@ -8,9 +8,9 @@ import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Triggers.RoomChangeTrigger;
 import GeneralHelpers.ConversionHelper;
+import Global.Tuple;
 import MainGame.GameConstants;
 import MainGame.GameManager;
-import SectorBase.enums.Direction;
 import Stages.Battle.BattleStage;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
@@ -28,7 +28,7 @@ public class XmlBuiltStage extends OverworldStage
     private int _stageHeight;
     private Point _viewPortStart;
     private HashMap<Side, Rectangle> _exits;
-    private HashMap<Side, Rectangle> _entrances;
+    private HashMap<Side, Tuple<Integer, Rectangle>> _entrances;
     private ArrayList<Backdrop> _backdrops;
     private ArrayList<Floor> _floors;
     private ArrayList<Wall> _walls;
@@ -37,7 +37,7 @@ public class XmlBuiltStage extends OverworldStage
 
     //Constructor
     public XmlBuiltStage(String roomId, int stageWidth, int stageHeight, Point viewPortStart,
-            HashMap<Side, Rectangle> exits, HashMap<Side, Rectangle> entrances,
+            HashMap<Side, Rectangle> exits, HashMap<Side, Tuple<Integer, Rectangle>> entrances,
             ArrayList<Backdrop> backdrops, ArrayList<Floor> floors, ArrayList<Wall> walls,
             ArrayList<PropBase> props, ArrayList<EnemyBase> enemies) throws Exception
     {
@@ -79,13 +79,12 @@ public class XmlBuiltStage extends OverworldStage
     }
 
     @Override
-    public Point GetPlayerStartingLocation(Side s)
+    public Tuple<Integer, Point> GetPlayerStartingLocation(Side s)
     {
         return _entrances.containsKey(s)
-                ? _entrances.get(s).getLocation()
+                ? new Tuple<>( _entrances.get(s).GetItem1(),
+                    _entrances.get(s).GetItem2().getLocation())
                 : null;
-
-        //return new Point(900, 750);
     }
 
     @Override

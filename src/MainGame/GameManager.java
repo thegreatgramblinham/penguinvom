@@ -17,6 +17,7 @@ import GameObjects.Characters.Player.PlayerObject;
 import GameObjects.Environmental.Backdrop;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.Projectiles.Bullet;
+import GameObjects.Triggers.Events.PlayerSectorTransitionEvent;
 import Global.Tuple;
 import MainGame.Battle.BattleManager;
 import MainGame.Debugging.DebugHelper;
@@ -60,7 +61,7 @@ public class GameManager
     //Private Static Fields
     private static HashMap<GameWorldObject, Integer> _objectAdditionRenderGroupQueue = new HashMap<>();
     private static HashMap<GameWorldObject, String> _objectAdditionCollisionGroupQueue = new HashMap<>();
-    private static Tuple<OverworldStage, Side> _sectorTransitionQueue = null;
+    private static PlayerSectorTransitionEvent _sectorTransitionQueue = null;
     private static BattleCharacterGroup<EnemyBattleCharacter> _battleStageTransitionQueue = null;
     private static GameEngine _engineInstance;
     private static boolean _isFullscreen = false;
@@ -209,7 +210,7 @@ public class GameManager
     private void InitPlayer()
     {
         PLAYER_OBJECT = new PlayerObject(
-                _currentRoom.GetPlayerStartingLocation(Side.Left),
+                _currentRoom.GetPlayerStartingLocation(Side.Left).GetItem2(),
                 0.1F, 20);
 
         _engineInstance.GetActiveSector().AddObject(PLAYER_OBJECT,
@@ -238,7 +239,7 @@ public class GameManager
                         {
                             _isBattleMode = false;
                             _viewPort.Unlock();
-                            QueueStageTransition(_currentRoom, Side.Bottom);
+                            QueueStageTransitionBackToCurrentRoom(_currentRoom);
                         }
                     }
                 });
@@ -561,7 +562,7 @@ public class GameManager
         else if(_sectorTransitionQueue != null)
         {
 
-            if(_sectorTransitionQueue.GetItem1() == _currentRoom)
+            if(_sectorTransitionQueue.GetChangeTo() == _currentRoom)
             {
                 //Go back to overworld
                 _engineInstance.SetActiveSector(_currentRoom.GetSector());
@@ -580,16 +581,17 @@ public class GameManager
                 _engineInstance.GetActiveSector().RemoveObject(PLAYER_OBJECT);
 
                 //Change sector.
-                _currentRoom = _sectorTransitionQueue.GetItem1();
+                _currentRoom = _sectorTransitionQueue.GetChangeTo();
                 _engineInstance.SetActiveSector(_currentRoom.GetSector());
 
                 //Add player to new sector.
-                Point p = _currentRoom.GetPlayerStartingLocation(
-                        _sectorTransitionQueue.GetItem2());
+                Tuple<Integer, Point> p = _currentRoom.GetPlayerStartingLocation(
+                        _sectorTransitionQueue.GetEnteringFrom());
 
-                PLAYER_OBJECT.NSetLocation(p);
+                PLAYER_OBJECT.NSetLocation(p.GetItem2());
                 _engineInstance.GetActiveSector().AddObject(PLAYER_OBJECT,
-                        GameConstants.PLAYER_RENDER_GROUP, GameConstants.PLAYER_COLLISION_GROUP);
+                        p.GetItem1(),
+                        GameConstants.PLAYER_COLLISION_GROUP);
 
                 _viewPort.JumpToPoint(PLAYER_OBJECT.GetCenterPoint());
 
@@ -609,7 +611,13 @@ public class GameManager
     public static void QueueStageTransition(OverworldStage changeTo, Side enteringFrom)
     {
         if(_sectorTransitionQueue == null)
-            _sectorTransitionQueue = new Tuple<>(changeTo, enteringFrom);
+            _sectorTransitionQueue = new PlayerSectorTransitionEvent(changeTo, enteringFrom);
+    }
+
+    public static void QueueStageTransitionBackToCurrentRoom(OverworldStage currentRoom)
+    {
+        if(_sectorTransitionQueue == null)
+            _sectorTransitionQueue = new PlayerSectorTransitionEvent(currentRoom, null);
     }
 
     public static void QueueBattleTransition(BattleCharacterGroup<EnemyBattleCharacter> enemies)
