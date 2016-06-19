@@ -1,6 +1,9 @@
 package Stages;
 
 import GameObjectBase.enums.Side;
+import GameObjects.BattleCharacters.BattleCharacterGroup;
+import GameObjects.BattleCharacters.EnemyBattleCharacter;
+import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.GameObjectConstants;
@@ -33,9 +36,9 @@ public final class StageBuilder
     {
         XMLParser parser = new XMLParser(roomId);
 
-        int lvlWidth = XMLParser.ParseIntPathContents(
+        int sectorWidth = XMLParser.ParseIntPathContents(
                 parser.OpenNodeList(StageConstants.S_LEVEL_WIDTH));
-        int lvlHeight = XMLParser.ParseIntPathContents(
+        int sectorHeight = XMLParser.ParseIntPathContents(
                 parser.OpenNodeList(StageConstants.S_LEVEL_HEIGHT));
 
         Point viewPortStart = ParseViewPortStart(parser);
@@ -49,13 +52,30 @@ public final class StageBuilder
         ArrayList<PropBase> props = ParseProps(parser);
         ArrayList<EnemyBase> enemies = ParseEnemies(parser);
 
-        return new XmlBuiltOverworldStage(roomId, lvlWidth, lvlHeight, viewPortStart, exits,
+        return new XmlBuiltOverworldStage(roomId, sectorWidth, sectorHeight, viewPortStart, exits,
                 entrances, backdrops, floors, walls, props, enemies);
     }
 
-    public static XmlBuiltBattleStage BuildBattleStage(String roomId) throws Exception
+    public static XmlBuiltBattleStage BuildBattleStage(String roomId, PlayerBattleCharacter player,
+            BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
-        return null;
+        XMLParser parser = new XMLParser(roomId);
+
+        int sectorWidth = XMLParser.ParseIntPathContents(
+                parser.OpenNodeList(StageConstants.S_LEVEL_WIDTH));
+        int sectorHeight = XMLParser.ParseIntPathContents(
+                parser.OpenNodeList(StageConstants.S_LEVEL_HEIGHT));
+
+        Point viewPortStart = ParseViewPortStart(parser);
+        //todo player and enemy start locations
+
+        ArrayList<Backdrop> backdrops = ParseBackdrops(parser);
+        ArrayList<Floor> floors = ParseFloor(parser);
+        ArrayList<Wall> walls = ParseWall(parser);
+        ArrayList<PropBase> props = ParseProps(parser);
+
+        return new XmlBuiltBattleStage(roomId, sectorWidth, sectorHeight, viewPortStart,
+                backdrops, floors, walls, props, player, enemies);
     }
 
     //Private Methods

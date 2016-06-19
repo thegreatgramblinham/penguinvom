@@ -119,8 +119,7 @@ public class XmlBuiltOverworldStage extends OverworldStage
 
         if(id == null) return null;
 
-        return StageBuilder.BuildBattleStage(id);
-
+        return StageBuilder.BuildBattleStage(id, player, enemies);
     }
 
     //Private Methods
