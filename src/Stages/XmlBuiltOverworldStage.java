@@ -11,7 +11,6 @@ import GeneralHelpers.ConversionHelper;
 import Global.Tuple;
 import MainGame.GameConstants;
 import MainGame.GameManager;
-import Stages.Battle.BattleStage;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
 import Stages.Objects.Scenery.Wall;
@@ -21,7 +20,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class XmlBuiltStage extends OverworldStage
+public class XmlBuiltOverworldStage extends OverworldStage
 {
     //Private Variables
     private int _stageWidth;
@@ -36,7 +35,7 @@ public class XmlBuiltStage extends OverworldStage
     private ArrayList<EnemyBase> _enemies;
 
     //Constructor
-    public XmlBuiltStage(String roomId, int stageWidth, int stageHeight, Point viewPortStart,
+    public XmlBuiltOverworldStage(String roomId, int stageWidth, int stageHeight, Point viewPortStart,
             HashMap<Side, Rectangle> exits, HashMap<Side, Tuple<Integer, Rectangle>> entrances,
             ArrayList<Backdrop> backdrops, ArrayList<Floor> floors, ArrayList<Wall> walls,
             ArrayList<PropBase> props, ArrayList<EnemyBase> enemies) throws Exception
@@ -116,7 +115,12 @@ public class XmlBuiltStage extends OverworldStage
     public BattleStage CreateBattleStage(PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
-        return null;
+        String id = StageConstants.GetBattleStageId(this.GetRoomId());
+
+        if(id == null) return null;
+
+        return StageBuilder.BuildBattleStage(id);
+
     }
 
     //Private Methods
