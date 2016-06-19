@@ -1,5 +1,7 @@
 package Stages;
 
+import java.util.HashMap;
+
 public final class StageConstants
 {
     private final static String _STAGE_FILE_EXT = "pld";
@@ -36,9 +38,13 @@ public final class StageConstants
     //Stage File Paths
     private final static String _PATHBASE = "src/config/stages";
     private final static String _OVERWORLD_ROOT = _PATHBASE + "/overworld";
-    private final static String _BATTLE_ROOT = _PATHBASE + "/battle";
     public final static String CastleGarden = _OVERWORLD_ROOT + "/castleGarden."+_STAGE_FILE_EXT;
     public final static String MainCastle = _OVERWORLD_ROOT + "/mainCastle." + _STAGE_FILE_EXT;
+
+    //Battle Stage Constants
+    private static HashMap<String, String> _overworldToBattleStageMap;
+    private final static String _BATTLE_ROOT = _PATHBASE + "/battle";
+    public final static String CastleGardenBattle = _BATTLE_ROOT + "/castleGardenBattle."+_STAGE_FILE_EXT;
 
 
     //Public Methods
@@ -110,5 +116,24 @@ public final class StageConstants
     public static String GetEnemyIndexFormatXPath()
     {
         return S_ENEMY + _INDEX_PREFIX + "%s";
+    }
+
+    public static String GetBattleStageId(String overworldStageId)
+    {
+        if(_overworldToBattleStageMap == null)
+            InitBattleStageMapping();
+
+        return _overworldToBattleStageMap.containsKey(overworldStageId)
+                ? _overworldToBattleStageMap.get(overworldStageId)
+                : null;
+    }
+
+    //Private Methods
+    private static void InitBattleStageMapping()
+    {
+        _overworldToBattleStageMap = new HashMap<>();
+
+        //Put new battle stage pairing beneath this line.
+        _overworldToBattleStageMap.put(CastleGarden, CastleGardenBattle);
     }
 }

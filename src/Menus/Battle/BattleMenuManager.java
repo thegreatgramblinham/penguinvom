@@ -8,8 +8,7 @@ import Menus.Battle.SelectionCarousel.BattleMenuCarousel;
 import Menus.Battle.enums.BattleMenuState;
 import Menus.Battle.enums.BattleMenuType;
 import Menus.MenuManager;
-import Menus.Text.TextImager;
-import Stages.Battle.BattleStage;
+import Stages.BattleStage;
 import javafx.scene.input.KeyCode;
 
 import java.awt.*;

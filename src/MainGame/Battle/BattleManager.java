@@ -2,11 +2,8 @@ package MainGame.Battle;
 
 import MainGame.Battle.enums.Turn;
 import Menus.Battle.BattleMenuManager;
-import Menus.MenuManager;
-import Stages.Battle.BattleStage;
+import Stages.BattleStage;
 import javafx.scene.canvas.GraphicsContext;
-
-import java.awt.*;
 
 public class BattleManager
 {

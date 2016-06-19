@@ -4,7 +4,6 @@ import GameObjectBase.enums.Side;
 import GameObjects.Characters.Enemies.EnemyBase;
 import GameObjects.Environmental.Props.PropBase;
 import GameObjects.GameObjectConstants;
-import GameObjects.Triggers.RoomChangeTrigger;
 import GameObjects.enums.ObjectCategory;
 import GeneralHelpers.ConversionHelper;
 import Global.Tuple;
@@ -30,7 +29,7 @@ public final class StageBuilder
     private StageBuilder() {}
 
     //Public Methods
-    public static XmlBuiltStage BuildStage(String roomId) throws Exception
+    public static XmlBuiltOverworldStage BuildOverworldStage(String roomId) throws Exception
     {
         XMLParser parser = new XMLParser(roomId);
 
@@ -50,8 +49,13 @@ public final class StageBuilder
         ArrayList<PropBase> props = ParseProps(parser);
         ArrayList<EnemyBase> enemies = ParseEnemies(parser);
 
-        return new XmlBuiltStage(roomId, lvlWidth, lvlHeight, viewPortStart, exits, entrances, backdrops,
-                floors, walls, props, enemies);
+        return new XmlBuiltOverworldStage(roomId, lvlWidth, lvlHeight, viewPortStart, exits,
+                entrances, backdrops, floors, walls, props, enemies);
+    }
+
+    public static XmlBuiltBattleStage BuildBattleStage(String roomId) throws Exception
+    {
+        return null;
     }
 
     //Private Methods

@@ -1,11 +1,8 @@
 package MainGame.Mapping;
 
-import MainGame.GameConstants;
-import MainGame.GameManager;
 import SectorBase.enums.Direction;
 import Stages.*;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class StageMap
@@ -48,10 +45,10 @@ public class StageMap
     private void LoadStageGroup1() throws Exception
     {
         MapNode garden =
-                new MapNode(StageBuilder.BuildStage(StageConstants.CastleGarden));
+                new MapNode(StageBuilder.BuildOverworldStage(StageConstants.CastleGarden));
 
         MapNode castle =
-                new MapNode(StageBuilder.BuildStage(StageConstants.MainCastle));
+                new MapNode(StageBuilder.BuildOverworldStage(StageConstants.MainCastle));
 
         garden.LinkDirection(castle, Direction.Right);
         castle.LinkDirection(garden, Direction.Left);
