@@ -127,6 +127,7 @@ public class XmlBuiltOverworldStage extends OverworldStage
     protected void InitObjects()
     {
         InitExits();
+        InitEnemies();
 
         InitBackdrop();
         InitFloor();
@@ -153,6 +154,21 @@ public class XmlBuiltOverworldStage extends OverworldStage
                     exit,
                     GameConstants.TRIGGER_RENDER_GROUP,
                     GameConstants.TRIGGER_COLLISION_GROUP);
+        }
+    }
+
+    @Override
+    protected void InitEnemies()
+    {
+        if(_enemies == null) return;
+
+        for(EnemyBase enemy : _enemies)
+        {
+            this.GetSector().AddObject(
+                    enemy,
+                    GameConstants.ENEMY_RENDER_GROUP,
+                    GameConstants.ENEMY_COLLISION_GROUP
+            );
         }
     }
 

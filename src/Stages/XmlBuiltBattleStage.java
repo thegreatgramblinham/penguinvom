@@ -4,6 +4,7 @@ import GameObjects.BattleCharacters.BattleCharacterGroup;
 import GameObjects.BattleCharacters.EnemyBattleCharacter;
 import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Environmental.Props.PropBase;
+import MainGame.GameConstants;
 import MainGame.GameManager;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
@@ -42,6 +43,8 @@ public class XmlBuiltBattleStage extends BattleStage
         _floors = floors;
         _walls = walls;
         _props = props;
+
+        InitObjects();
     }
 
     //Get Methods
@@ -90,19 +93,22 @@ public class XmlBuiltBattleStage extends BattleStage
     @Override
     public Point GetPlayerCharacterLocation()
     {
-        return null;
+        return new Point(0,0);
     }
 
     @Override
     public Point GetPartnerCharacterLocation()
     {
-        return null;
+        return new Point(0,0);
     }
 
     @Override
     public Point[] GetEnemyCharacterLocation()
     {
-        return new Point[0];
+        Point[] pts = new Point[1];
+        pts[0] = new Point(0,0);
+
+        return pts;
     }
 
     //Private Methods
@@ -116,27 +122,61 @@ public class XmlBuiltBattleStage extends BattleStage
     }
 
     @Override
-    protected void InitProps()
-    {
-
-    }
-
-    @Override
     protected void InitBackdrop()
     {
+        if(_backdrops == null) return;
 
-    }
-
-    @Override
-    protected void InitWall()
-    {
-
+        for (Backdrop backdrop : _backdrops)
+        {
+            this.GetSector().AddObject(
+                    backdrop,
+                    GameConstants.SKY_RENDER_GROUP,
+                    GameConstants.NO_COLLISION_GROUP
+            );
+        }
     }
 
     @Override
     protected void InitFloor()
     {
+        if(_floors == null) return;
 
+        for (Floor floor : _floors)
+        {
+            this.GetSector().AddObject(
+                    floor,
+                    GameConstants.ROOM_RENDER_GROUP,
+                    GameConstants.NO_COLLISION_GROUP
+            );
+        }
     }
 
+    @Override
+    protected void InitWall()
+    {
+        if(_walls == null) return;
+
+        for (Wall wall : _walls)
+        {
+            this.GetSector().AddObject(
+                    wall,
+                    GameConstants.ROOM_RENDER_GROUP,
+                    GameConstants.BACKGROUND_COLLISION_GROUP
+            );
+        }
+    }
+
+    @Override
+    protected void InitProps()
+    {
+        if(_props == null) return;
+
+        for(PropBase prop : _props)
+        {
+            this.GetSector().AddObject(
+                    prop,
+                    GameConstants.PROP_RENDER_GROUP_BACK,
+                    GameConstants.PROP_COLLISION_GROUP);
+        }
+    }
 }

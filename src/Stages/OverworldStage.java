@@ -25,6 +25,7 @@ public abstract class OverworldStage extends StageObject
 
     //Abstract Methods
     protected abstract void InitExits();
+    protected abstract void InitEnemies();
     public abstract Tuple<Integer, Point> GetPlayerStartingLocation(Side s);
     public abstract BattleStage CreateBattleStage(
             PlayerBattleCharacter player,

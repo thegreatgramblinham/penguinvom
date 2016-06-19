@@ -118,5 +118,18 @@
 				<RenderLayer>5</RenderLayer>
 			</I4>
 		</Prop>
+		<Enemy>
+			<I0>
+				<Group>
+				</Group>
+				<Name>skilleatin1</Name>
+				<Type>ImageRectangle</Type>
+				<X>1478</X>
+				<Y>985</Y>
+				<Width>64</Width>
+				<Height>64</Height>
+				<RenderLayer>4</RenderLayer>
+			</I0>
+		</Enemy>
 	</Objects>
 </Stage>
