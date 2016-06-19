@@ -13,8 +13,6 @@ import java.util.UUID;
 public abstract class StageObject
 {
     //Private Constants
-    private static final int _sectorRequiredWidth = 3500;
-    private static final int _sectorRequiredHeight = 900;
 
     //Protected Variables
     protected Sector _sector;
@@ -27,9 +25,6 @@ public abstract class StageObject
     //Constructor
     public StageObject(String roomId, Sector sector) throws Exception
     {
-        if(sector.width < _sectorRequiredWidth || sector.height < _sectorRequiredHeight)
-            throw new InvalidObjectException("Provided sector not large enough.");
-
         _sector = sector;
         _roomId = roomId;
 
