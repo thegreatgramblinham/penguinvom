@@ -67,7 +67,7 @@ public final class StageBuilder
                 parser.OpenNodeList(StageConstants.S_LEVEL_HEIGHT));
 
         Point viewPortStart = ParseViewPortStart(parser);
-        //todo player and enemy start locations
+        Point battleUIRoot = ParseBattleUIRoot(parser);
 
         ArrayList<Backdrop> backdrops = ParseBackdrops(parser);
         ArrayList<Floor> floors = ParseFloor(parser);
@@ -75,7 +75,7 @@ public final class StageBuilder
         ArrayList<PropBase> props = ParseProps(parser);
 
         return new XmlBuiltBattleStage(roomId, sectorWidth, sectorHeight, viewPortStart,
-                backdrops, floors, walls, props, player, enemies);
+                battleUIRoot, backdrops, floors, walls, props, player, enemies);
     }
 
     //Private Methods
@@ -86,6 +86,17 @@ public final class StageBuilder
             return GameConstants.GAME_STARTING_POINT;
 
         StageObjectRectProperties props = ParseRectContents(parser, StageConstants.S_VIEWPORT);
+
+        return new Point(props.GetXLoc(),props.GetYLoc());
+    }
+
+    private static Point ParseBattleUIRoot(XMLParser parser) throws Exception
+    {
+        NodeList rootTag = parser.OpenNodeList(StageConstants.S_BATTLE_UI_ROOT);
+        if(rootTag.getLength() == 0)
+            throw new IllegalArgumentException("Missing Battle UI Root");
+
+        StageObjectRectProperties props = ParseRectContents(parser, StageConstants.S_BATTLE_UI_ROOT);
 
         return new Point(props.GetXLoc(),props.GetYLoc());
     }

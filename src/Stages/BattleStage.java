@@ -23,8 +23,6 @@ public abstract class BattleStage extends StageObject
         super(roomId, sector);
         _playerCharacter = player;
         _enemyCharacters = enemies;
-
-        InitCharacterPositions();
     }
 
     //Abstract Methods
@@ -56,7 +54,7 @@ public abstract class BattleStage extends StageObject
     //Public Methods
 
     //Private Methods
-    private void InitCharacterPositions()
+    protected void InitCharacterPositions()
     {
         //Player
         _sector.AddObject(_playerCharacter, GameConstants.PLAYER_RENDER_GROUP,
