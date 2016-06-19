@@ -14,6 +14,15 @@
 			<Height>600</Height>
 			<RenderLayer>2</RenderLayer>
 		</ViewPort>
+		<BattleUIRoot>
+			<Name>battleRoot</Name>
+			<Type>NamedRectangle</Type>
+			<X>305</X>
+			<Y>550</Y>
+			<Width>32</Width>
+			<Height>32</Height>
+			<RenderLayer>2</RenderLayer>
+		</BattleUIRoot>
 	</Global>
 	<Triggers>
 	</Triggers>

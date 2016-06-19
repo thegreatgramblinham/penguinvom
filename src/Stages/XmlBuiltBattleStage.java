@@ -6,6 +6,7 @@ import GameObjects.BattleCharacters.PlayerBattleCharacter;
 import GameObjects.Environmental.Props.PropBase;
 import MainGame.GameConstants;
 import MainGame.GameManager;
+import MainGame.ViewPort;
 import Stages.Objects.Scenery.Backdrop;
 import Stages.Objects.Scenery.Floor;
 import Stages.Objects.Scenery.Wall;
@@ -20,6 +21,7 @@ public class XmlBuiltBattleStage extends BattleStage
     private int _stageWidth;
     private int _stageHeight;
     private Point _viewPortStart;
+    private Point _battleUIRoot;
 
     private ArrayList<Backdrop> _backdrops;
     private ArrayList<Floor> _floors;
@@ -28,8 +30,8 @@ public class XmlBuiltBattleStage extends BattleStage
 
     //Constructor
     public XmlBuiltBattleStage(String roomId, int stageWidth, int stageHeight, Point viewPortStart,
-            ArrayList<Backdrop> backdrops, ArrayList<Floor> floors, ArrayList<Wall> walls,
-            ArrayList<PropBase> props, PlayerBattleCharacter player,
+            Point battleUIRoot, ArrayList<Backdrop> backdrops, ArrayList<Floor> floors,
+            ArrayList<Wall> walls, ArrayList<PropBase> props, PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
         super(roomId, GameManager.CreateNewEngineSector(stageWidth, stageHeight), player, enemies);
@@ -38,6 +40,7 @@ public class XmlBuiltBattleStage extends BattleStage
         _stageHeight = stageHeight;
 
         _viewPortStart = viewPortStart;
+        _battleUIRoot = battleUIRoot;
 
         _backdrops = backdrops;
         _floors = floors;
@@ -45,6 +48,7 @@ public class XmlBuiltBattleStage extends BattleStage
         _props = props;
 
         InitObjects();
+        InitCharacterPositions();
     }
 
     //Get Methods
@@ -93,7 +97,7 @@ public class XmlBuiltBattleStage extends BattleStage
     @Override
     public Point GetPlayerCharacterLocation()
     {
-        return new Point(0,0);
+        return new Point(_battleUIRoot.x + 250, _battleUIRoot.y + 300);
     }
 
     @Override

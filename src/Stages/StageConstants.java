@@ -17,6 +17,7 @@ public final class StageConstants
     public final static String S_LEVEL_HEIGHT = _GLOBAL_ROOT + "/LevelSize/Height";
 
     public final static String S_VIEWPORT = _GLOBAL_ROOT + "/ViewPort";
+    public final static String S_BATTLE_UI_ROOT = _GLOBAL_ROOT + "/BattleUIRoot";
 
     public final static String S_ENTRANCE = _TRIGGER_ROOT + "/Entrance";
     public final static String S_EXIT = _TRIGGER_ROOT + "/Exit";

@@ -156,18 +156,17 @@ public class ViewPort
                 _location.y + SCROLL_SPEED);
     }
 
-    //Private Static Methods
-    private static int GetViewRelativeX(int x)
+    //Public Static Methods
+    public static int GetViewRelativeX(int x)
     {
         return x -_location.x;
     }
 
-    private static int GetViewRelativeY(int y)
+    public static int GetViewRelativeY(int y)
     {
         return y -_location.y;
     }
 
-    //Public Static Methods
     public static int SecLocX(int offset)
     {
         return GameConstants.GAME_STARTING_POINT.x + offset;
