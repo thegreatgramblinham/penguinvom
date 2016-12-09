@@ -1,14 +1,14 @@
-package MainGame.Battle.MoveScripting.Steps;
+package MainGame.Animation.Steps;
 
 import GameObjects.Characters.CharacterBase;
 import GeneralHelpers.PointHelper;
-import MainGame.Battle.MoveScripting.Steps.enums.CameraAction;
 import PhysicsBase.Vectors.VelocityVector;
 import javafx.scene.canvas.GraphicsContext;
+import MainGame.Animation.enums.CameraAction;
 
 import java.awt.*;
 
-public class CharacterMoveStep extends BattleScriptStep
+public class CharacterMoveStep extends ScriptStep
 {
     //Private Variables
     private CharacterBase _character;
