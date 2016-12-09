@@ -21,7 +21,6 @@ public class XmlBuiltBattleStage extends BattleStage
     private int _stageWidth;
     private int _stageHeight;
     private Point _viewPortStart;
-    private Point _battleUIRoot;
 
     private ArrayList<Backdrop> _backdrops;
     private ArrayList<Floor> _floors;
@@ -34,13 +33,13 @@ public class XmlBuiltBattleStage extends BattleStage
             ArrayList<Wall> walls, ArrayList<PropBase> props, PlayerBattleCharacter player,
             BattleCharacterGroup<EnemyBattleCharacter> enemies) throws Exception
     {
-        super(roomId, GameManager.CreateNewEngineSector(stageWidth, stageHeight), player, enemies);
+        super(roomId, GameManager.CreateNewEngineSector(stageWidth, stageHeight),
+                battleUIRoot, player, enemies);
 
         _stageWidth = stageWidth;
         _stageHeight = stageHeight;
 
         _viewPortStart = viewPortStart;
-        _battleUIRoot = battleUIRoot;
 
         _backdrops = backdrops;
         _floors = floors;
@@ -48,7 +47,7 @@ public class XmlBuiltBattleStage extends BattleStage
         _props = props;
 
         InitObjects();
-        InitCharacterPositions();
+        //InitCharacterPositions();
     }
 
     //Get Methods
@@ -97,7 +96,7 @@ public class XmlBuiltBattleStage extends BattleStage
     @Override
     public Point GetPlayerCharacterLocation()
     {
-        return new Point(_battleUIRoot.x + 250, _battleUIRoot.y + 300);
+        return new Point(GetUIRoot().x + 220, GetVisualStageFloor());
     }
 
     @Override
@@ -110,12 +109,17 @@ public class XmlBuiltBattleStage extends BattleStage
     public Point[] GetEnemyCharacterLocation()
     {
         Point[] pts = new Point[1];
-        pts[0] = new Point(0,0);
+        pts[0] = new Point(GetUIRoot().x + 750, GetVisualStageFloor());
 
         return pts;
     }
 
     //Private Methods
+    private int GetVisualStageFloor()
+    {
+        return GetUIRoot().y + 320;
+    }
+
     @Override
     protected void InitObjects()
     {
