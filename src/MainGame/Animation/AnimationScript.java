@@ -23,17 +23,14 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     //Public Methods
     public void Execute(T e, GraphicsContext gc)
     {
-        _event = e;
+        for(ScriptStep step : _steps)
+        {
+            step.Execute(gc);
+        }
     }
 
     //Abstract Methods
     protected abstract ArrayList<ScriptStep> GenerateScript();
 
-    //In here we are going to calculate a move distance
-    //stage attacker move animation
-    //stage user input animation
-    //stage attacker attack animation
-    //stage defender(s) recoil animation
-    //stage attacker return animation
 
 }

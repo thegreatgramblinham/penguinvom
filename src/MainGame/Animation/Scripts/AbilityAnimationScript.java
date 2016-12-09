@@ -4,6 +4,7 @@ import CharacterFunctions.Abilities.Ability;
 import MainGame.Animation.AnimationScript;
 import MainGame.Animation.Events.AbilityExecutionEvent;
 import MainGame.Animation.Steps.ScriptStep;
+import javafx.scene.canvas.GraphicsContext;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ import java.util.ArrayList;
 /**
  * Controls an animation for the given ability object.
  */
-public class AbilityAnimationScript extends AnimationScript<AbilityExecutionEvent>
+public class AbilityAnimationScript<T extends Ability> extends AnimationScript<AbilityExecutionEvent<T>>
 {
     //Private Variables
-    private Ability _ability;
+    private T _ability;
 
     //Constructor
-    public AbilityAnimationScript(Ability ability)
+    public AbilityAnimationScript(T ability)
     {
         _ability = ability;
     }

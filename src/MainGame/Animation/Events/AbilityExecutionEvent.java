@@ -6,15 +6,15 @@ import MainGame.Animation.AnimationExecutionEvent;
 
 import java.util.Collection;
 
-public class AbilityExecutionEvent extends AnimationExecutionEvent
+public class AbilityExecutionEvent<T extends Ability> extends AnimationExecutionEvent
 {
     //Properties
-    private Ability _moveToPerform;
+    private T _moveToPerform;
     private CharacterBase _attacker;
     private Collection<CharacterBase> _defenders;
 
     //Constructor
-    public AbilityExecutionEvent(Ability move, CharacterBase attacker,
+    public AbilityExecutionEvent(T move, CharacterBase attacker,
                                  Collection<CharacterBase> defenders)
     {
         _moveToPerform = move;
@@ -23,7 +23,7 @@ public class AbilityExecutionEvent extends AnimationExecutionEvent
     }
 
     //Get Methods
-    private Ability GetMove()
+    private T GetAbility()
     {
         return _moveToPerform;
     }
@@ -37,4 +37,11 @@ public class AbilityExecutionEvent extends AnimationExecutionEvent
     {
         return _defenders;
     }
+
+    //In here we are going to calculate a move distance
+    //stage attacker move animation
+    //stage user input animation
+    //stage attacker attack animation
+    //stage defender(s) recoil animation
+    //stage attacker return animation
 }
