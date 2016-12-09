@@ -1,20 +1,20 @@
 package MainGame.Animation.Events;
 
+import CharacterFunctions.Abilities.Ability;
 import GameObjects.Characters.CharacterBase;
 import MainGame.Animation.AnimationExecutionEvent;
-import Player.Moves.Move;
 
 import java.util.Collection;
 
 public class AbilityExecutionEvent extends AnimationExecutionEvent
 {
     //Properties
-    private Move _moveToPerform;
+    private Ability _moveToPerform;
     private CharacterBase _attacker;
     private Collection<CharacterBase> _defenders;
 
     //Constructor
-    public AbilityExecutionEvent(Move move, CharacterBase attacker,
+    public AbilityExecutionEvent(Ability move, CharacterBase attacker,
                                  Collection<CharacterBase> defenders)
     {
         _moveToPerform = move;
@@ -23,7 +23,7 @@ public class AbilityExecutionEvent extends AnimationExecutionEvent
     }
 
     //Get Methods
-    private Move GetMove()
+    private Ability GetMove()
     {
         return _moveToPerform;
     }

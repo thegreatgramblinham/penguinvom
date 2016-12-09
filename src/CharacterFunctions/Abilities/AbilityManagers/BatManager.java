@@ -1,10 +1,10 @@
-package Player.Moves.MoveManagers;
+package CharacterFunctions.Abilities.AbilityManagers;
 
-import Player.Moves.Move;
+import CharacterFunctions.Abilities.Ability;
 
 import java.util.ArrayList;
 
-public class BatManager extends MoveManager
+public class BatManager extends AbilityManager
 {
     //Variables
 
@@ -16,7 +16,7 @@ public class BatManager extends MoveManager
 
     //Public Methods
     @Override
-    public ArrayList<Move> GetMoveList()
+    public ArrayList<Ability> GetAbilityList()
     {
         return null;
     }

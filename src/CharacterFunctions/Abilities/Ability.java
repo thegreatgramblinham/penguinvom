@@ -1,21 +1,19 @@
-package Player.Moves;
+package CharacterFunctions.Abilities;
 
-import Player.Moves.enums.MoveType;
+import CharacterFunctions.Abilities.enums.AbilityType;
 
-public class Move
+public class Ability
 {
-    //TODO find a better place for this, this is not a player specific class.
-
     //Variables
     private String _id;
     private String _alias;
-    private MoveType _type;
+    private AbilityType _type;
     private int _baseDamage;
     private String _animation;
 
     //Constructor
-    public Move(String id, String alias, MoveType type,
-                int baseDamage, String animation)
+    public Ability(String id, String alias, AbilityType type,
+                   int baseDamage, String animation)
     {
         _id = id;
         _alias = alias;
@@ -35,7 +33,7 @@ public class Move
         return _alias;
     }
 
-    public MoveType GetMoveType()
+    public AbilityType GetAbilityType()
     {
         return _type;
     }
@@ -53,5 +51,4 @@ public class Move
     //Public Methods
 
     //Private Methods
-
 }

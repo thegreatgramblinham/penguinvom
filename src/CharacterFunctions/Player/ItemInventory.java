@@ -1,6 +1,6 @@
-package Player;
+package CharacterFunctions.Player;
 
-public class PinInventory
+public class ItemInventory
 {
 
     //Variables
