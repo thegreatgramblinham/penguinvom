@@ -1,4 +1,4 @@
-package MainGame.Battle.MoveScripting.Steps.enums;
+package MainGame.Animation.enums;
 
 public enum CameraAction
 {

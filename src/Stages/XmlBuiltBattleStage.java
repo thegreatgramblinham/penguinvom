@@ -47,7 +47,6 @@ public class XmlBuiltBattleStage extends BattleStage
         _props = props;
 
         InitObjects();
-        //InitCharacterPositions();
     }
 
     //Get Methods

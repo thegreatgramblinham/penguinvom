@@ -1,14 +1,15 @@
-package MainGame.Battle.MoveScripting.Steps;
+package MainGame.Animation.Steps;
 
-import MainGame.Battle.MoveScripting.Steps.enums.CameraAction;
+import MainGame.Animation.enums.CameraAction;
 import javafx.scene.canvas.GraphicsContext;
 
-public abstract class BattleScriptStep
+/**
+ * Serves as a container for each phase of an object animation
+ * e.g. character move, tree shake, etc. that would be part of something
+ * like a cutscene.
+ */
+public abstract class ScriptStep
 {
-    //TODO will serve as a container for each phase of a move animation
-    //eg
-    //attacker walk => attacker hit => defender recoil => attack return position
-
     //Protected Variables
     protected int _framesAlloted;
     protected int _frameCounter;
@@ -17,7 +18,7 @@ public abstract class BattleScriptStep
     private CameraAction _camAction;
 
     //Constructor
-    public BattleScriptStep(CameraAction camAction, int framesAlloted)
+    public ScriptStep(CameraAction camAction, int framesAlloted)
     {
         _camAction = camAction;
         _framesAlloted = framesAlloted;

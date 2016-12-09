@@ -1,11 +1,12 @@
-package MainGame.Battle;
+package MainGame.Animation.Events;
 
 import GameObjects.Characters.CharacterBase;
+import MainGame.Animation.AnimationExecutionEvent;
 import Player.Moves.Move;
 
 import java.util.Collection;
 
-public class MoveExecutionEvent
+public class AbilityExecutionEvent extends AnimationExecutionEvent
 {
     //Properties
     private Move _moveToPerform;
@@ -13,8 +14,8 @@ public class MoveExecutionEvent
     private Collection<CharacterBase> _defenders;
 
     //Constructor
-    public MoveExecutionEvent(Move move, CharacterBase attacker,
-                              Collection<CharacterBase> defenders)
+    public AbilityExecutionEvent(Move move, CharacterBase attacker,
+                                 Collection<CharacterBase> defenders)
     {
         _moveToPerform = move;
         _attacker = attacker;
