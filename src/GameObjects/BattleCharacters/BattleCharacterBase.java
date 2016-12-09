@@ -1,9 +1,9 @@
 package GameObjects.BattleCharacters;
 
 import GameObjects.Base.GameObject;
-import Player.Moves.Move;
-import Player.Moves.MoveManagers.BatManager;
-import Player.Moves.MoveManagers.JumpManager;
+import CharacterFunctions.Abilities.Ability;
+import CharacterFunctions.Abilities.AbilityManagers.BatManager;
+import CharacterFunctions.Abilities.AbilityManagers.JumpManager;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -30,14 +30,14 @@ public abstract class BattleCharacterBase extends GameObject
     public abstract void DrawRestingAnimation(GraphicsContext gc);
 
     //Public Methods
-    public ArrayList<Move> GetJumpMoves()
+    public ArrayList<Ability> GetJumpMoves()
     {
-        return _jumpManager.GetMoveList();
+        return _jumpManager.GetAbilityList();
     }
 
-    public ArrayList<Move> GetBatMoves()
+    public ArrayList<Ability> GetBatMoves()
     {
-        return _batManager.GetMoveList();
+        return _batManager.GetAbilityList();
     }
 
     //Private Methods
