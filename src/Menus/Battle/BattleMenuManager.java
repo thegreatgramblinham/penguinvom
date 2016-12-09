@@ -25,11 +25,13 @@ public class BattleMenuManager extends MenuManager
     private BattleStage _stage;
     private BattleMenuState _state;
     private int _keyCooldownTimer;
+    private Point _uiRoot;
 
     //Constructor
     public BattleMenuManager(BattleStage stage)
     {
         super();
+        _uiRoot = stage.GetUIRoot();
         InitCarousel();
         _state = BattleMenuState.CarouselSelection;
         _stage = stage;
@@ -133,26 +135,19 @@ public class BattleMenuManager extends MenuManager
     //Private Methods
     private void InitCarousel()
     {
-        _battleCarousel = new BattleMenuCarousel(
-                new Point(
-                        ViewPort.SecLocX(390),
-                        ViewPort.SecLocY(70)));
+        _battleCarousel = new BattleMenuCarousel(new Point(_uiRoot.x + 290, _uiRoot.y + 70));
         AddMenu(_battleCarousel);
     }
 
     private void InitSubMenu(BattleMenuType type)
     {
-        _currentAttackMenu = new AttackMenu(
-                new Point(
-                        ViewPort.SecLocX(680),
-                        ViewPort.SecLocY(100)));
+        _currentAttackMenu = new AttackMenu(new Point(_uiRoot.x + 580, _uiRoot.y + 100));
         AddMenu(_currentAttackMenu);
     }
 
     private void InitEnemyCursor()
     {
-        _currentEnemyCursor
-                = new EnemySelectionCursor(_stage.GetEnemyCharacterLocation());
+        _currentEnemyCursor = new EnemySelectionCursor(_stage.GetEnemyCharacterLocation());
         AddMenu(_currentEnemyCursor);
     }
 
