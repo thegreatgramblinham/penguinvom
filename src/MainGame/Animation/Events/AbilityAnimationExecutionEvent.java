@@ -5,16 +5,17 @@ import GameObjects.Characters.CharacterBase;
 import MainGame.Animation.AnimationExecutionEvent;
 
 import java.util.Collection;
+import java.util.List;
 
 public abstract class AbilityAnimationExecutionEvent extends AnimationExecutionEvent
 {
     //Properties
     private Ability _ability;
     private CharacterBase _user;
-    private Collection<CharacterBase> _targets;
+    private List<CharacterBase> _targets;
 
     //Constructor
-    public AbilityAnimationExecutionEvent(Ability ability, CharacterBase user, Collection<CharacterBase> targets)
+    public AbilityAnimationExecutionEvent(Ability ability, CharacterBase user, List<CharacterBase> targets)
     {
         _ability = ability;
         _user = user;
@@ -22,17 +23,17 @@ public abstract class AbilityAnimationExecutionEvent extends AnimationExecutionE
     }
 
     //Get Methods
-    private Ability GetAbility()
+    public Ability GetAbility()
     {
         return _ability;
     }
 
-    private CharacterBase GetUser()
+    public CharacterBase GetUser()
     {
         return _user;
     }
 
-    private Collection<CharacterBase> GetTargets()
+    public List<CharacterBase> GetTargets()
     {
         return _targets;
     }

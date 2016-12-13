@@ -28,7 +28,6 @@ public abstract class ScriptStep<T extends AnimationExecutionEvent>
 
     //Abstract Methods
     public abstract void Execute(T event, GraphicsContext gc);
-    protected abstract void InitMove();
 
     //Public Methods
     public void ExcuteCameraActionFrame()
