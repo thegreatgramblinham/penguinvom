@@ -1,7 +1,10 @@
 package CharacterFunctions.Abilities;
 
+import CharacterFunctions.Abilities.enums.AbilityId;
 import CharacterFunctions.Abilities.enums.AbilityType;
 import XMLParsing.XMLParser;
+
+import java.util.Enumeration;
 
 public final class AbilityBuilder
 {
@@ -13,8 +16,8 @@ public final class AbilityBuilder
     {
         XMLParser parser = new XMLParser(path);
 
-        String id = XMLParser.ParseStringPathContents(
-                parser.OpenNodeList(AbilityConstants.M_ID));
+        AbilityId id = AbilityId.valueOf(XMLParser.ParseStringPathContents(
+                parser.OpenNodeList(AbilityConstants.M_ID)));
         String alias = XMLParser.ParseStringPathContents(
                 parser.OpenNodeList(AbilityConstants.M_ALIAS));
         String typeStr = XMLParser.ParseStringPathContents(

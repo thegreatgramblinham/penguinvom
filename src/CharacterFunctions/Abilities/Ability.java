@@ -1,18 +1,19 @@
 package CharacterFunctions.Abilities;
 
+import CharacterFunctions.Abilities.enums.AbilityId;
 import CharacterFunctions.Abilities.enums.AbilityType;
 
 public class Ability
 {
     //Variables
-    private String _id;
+    private AbilityId _id;
     private String _alias;
     private AbilityType _type;
     private int _baseDamage;
     private String _animation;
 
     //Constructor
-    public Ability(String id, String alias, AbilityType type,
+    public Ability(AbilityId id, String alias, AbilityType type,
                    int baseDamage, String animation)
     {
         _id = id;
@@ -23,7 +24,7 @@ public class Ability
     }
 
     //Get Methods
-    public String GetId()
+    public AbilityId GetId()
     {
         return _id;
     }

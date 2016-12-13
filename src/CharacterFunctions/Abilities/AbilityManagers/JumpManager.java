@@ -24,7 +24,7 @@ public class JumpManager extends AbilityManager
         {
             ArrayList<Ability> abliList = new ArrayList<>();
 
-            Ability m1 = AbilityBuilder.BuildMove(AbilityConstants.BASIC_JUMP);
+            Ability m1 = AbilityBuilder.BuildAbility(AbilityConstants.BASIC_JUMP);
             abliList.add(m1);
 
             return abliList;
@@ -32,7 +32,6 @@ public class JumpManager extends AbilityManager
         catch(Exception e)
         {
             System.out.println("<FAILING TO LOAD MOVES> - "+e.getMessage());
-
         }
 
         return null;
