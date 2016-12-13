@@ -12,12 +12,20 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
 {
     //Private Variables
     private T _event;
+    private int _totalFramesAllotted;
     private ArrayList<ScriptStep> _steps;
 
     //Constructor
-    public AnimationScript()
+    public AnimationScript(int totalFramesAllotted)
     {
+        _totalFramesAllotted = totalFramesAllotted;
         _steps = GenerateScript();
+    }
+
+    //Get Methods
+    public int GetTotalFramesAllotted()
+    {
+        return _totalFramesAllotted;
     }
 
     //Public Methods

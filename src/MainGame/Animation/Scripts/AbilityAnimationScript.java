@@ -13,8 +13,10 @@ public abstract class AbilityAnimationScript<T extends AbilityAnimationExecution
     private Ability _ability;
 
     //Constructor
-    public AbilityAnimationScript(Ability ability)
+    protected AbilityAnimationScript(Ability ability, int totalFramesAllotted)
     {
+        super(totalFramesAllotted);
+
         _ability = ability;
     }
 
