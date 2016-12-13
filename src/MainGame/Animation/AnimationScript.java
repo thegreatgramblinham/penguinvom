@@ -25,7 +25,7 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     {
         for(ScriptStep step : _steps)
         {
-            step.Execute(gc);
+            step.Execute(e, gc);
         }
     }
 

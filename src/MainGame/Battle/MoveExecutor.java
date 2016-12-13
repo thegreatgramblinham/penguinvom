@@ -1,6 +1,6 @@
 package MainGame.Battle;
 
-import MainGame.Animation.Events.AbilityExecutionEvent;
+import MainGame.Animation.Events.AbilityAnimationExecutionEvent;
 import javafx.scene.canvas.GraphicsContext;
 
 public final class MoveExecutor
@@ -9,7 +9,7 @@ public final class MoveExecutor
     private MoveExecutor() {}
 
     //Public Methods
-    private static void ExcuteMove(AbilityExecutionEvent e, GraphicsContext gc)
+    private static void ExcuteMove(AbilityAnimationExecutionEvent e, GraphicsContext gc)
     {
         // Check for halt conditions (e.g. touch attack on fire enemy)
 

@@ -1,5 +1,6 @@
 package MainGame.Animation.Steps;
 
+import MainGame.Animation.AnimationExecutionEvent;
 import MainGame.Animation.enums.CameraAction;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -8,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
  * e.g. character move, tree shake, etc. that would be part of something
  * like a cutscene.
  */
-public abstract class ScriptStep
+public abstract class ScriptStep<T extends AnimationExecutionEvent>
 {
     //Protected Variables
     protected int _framesAlloted;
@@ -18,7 +19,7 @@ public abstract class ScriptStep
     private CameraAction _camAction;
 
     //Constructor
-    public ScriptStep(CameraAction camAction, int framesAlloted)
+    protected ScriptStep(CameraAction camAction, int framesAlloted)
     {
         _camAction = camAction;
         _framesAlloted = framesAlloted;
@@ -26,7 +27,7 @@ public abstract class ScriptStep
     }
 
     //Abstract Methods
-    public abstract void Execute(GraphicsContext gc);
+    public abstract void Execute(T event, GraphicsContext gc);
     protected abstract void InitMove();
 
     //Public Methods
@@ -35,7 +36,7 @@ public abstract class ScriptStep
         //Todo mess with the viewport here.
     }
 
-    public boolean MoveComplete()
+    public boolean Complete()
     {
         return _frameCounter >= _framesAlloted;
     }

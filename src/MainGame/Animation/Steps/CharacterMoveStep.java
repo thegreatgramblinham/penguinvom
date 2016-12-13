@@ -2,13 +2,14 @@ package MainGame.Animation.Steps;
 
 import GameObjects.Characters.CharacterBase;
 import GeneralHelpers.PointHelper;
+import MainGame.Animation.Events.AbilityAnimationExecutionEvent;
 import PhysicsBase.Vectors.VelocityVector;
 import javafx.scene.canvas.GraphicsContext;
 import MainGame.Animation.enums.CameraAction;
 
 import java.awt.*;
 
-public class CharacterMoveStep extends ScriptStep
+public class CharacterMoveStep extends ScriptStep<AbilityAnimationExecutionEvent>
 {
     //Private Variables
     private CharacterBase _character;
@@ -27,7 +28,7 @@ public class CharacterMoveStep extends ScriptStep
 
     //Public Methods
     @Override
-    public void Execute(GraphicsContext gc)
+    public void Execute(AbilityAnimationExecutionEvent event, GraphicsContext gc)
     {
         //todo make sure the character maintains their calculated velocity until
         //the move is complete.
