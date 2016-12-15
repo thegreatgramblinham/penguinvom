@@ -1,21 +1,20 @@
 package MainGame.Animation.Events;
 
 import CharacterFunctions.Abilities.Ability;
-import GameObjects.Characters.CharacterBase;
+import GameObjects.BattleCharacters.BattleCharacterBase;
 import MainGame.Animation.AnimationExecutionEvent;
 
-import java.util.Collection;
 import java.util.List;
 
 public abstract class AbilityAnimationExecutionEvent extends AnimationExecutionEvent
 {
     //Properties
     private Ability _ability;
-    private CharacterBase _user;
-    private List<CharacterBase> _targets;
+    private BattleCharacterBase _user;
+    private List<BattleCharacterBase> _targets;
 
     //Constructor
-    public AbilityAnimationExecutionEvent(Ability ability, CharacterBase user, List<CharacterBase> targets)
+    public AbilityAnimationExecutionEvent(Ability ability, BattleCharacterBase user, List<BattleCharacterBase> targets)
     {
         _ability = ability;
         _user = user;
@@ -28,12 +27,12 @@ public abstract class AbilityAnimationExecutionEvent extends AnimationExecutionE
         return _ability;
     }
 
-    public CharacterBase GetUser()
+    public BattleCharacterBase GetUser()
     {
         return _user;
     }
 
-    public List<CharacterBase> GetTargets()
+    public List<BattleCharacterBase> GetTargets()
     {
         return _targets;
     }
