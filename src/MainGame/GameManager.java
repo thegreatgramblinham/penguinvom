@@ -508,6 +508,7 @@ public class GameManager
 
         //Draw all the windows/menus
         _currentBattleManager.DrawMenus(gc);
+        _currentBattleManager.DrawBattleAnimationFrame(gc);
     }
 
     private boolean HandleCharacterAction(GameWorldObject gObj, GraphicsContext gc)

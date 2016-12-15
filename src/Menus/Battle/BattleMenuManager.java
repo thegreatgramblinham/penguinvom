@@ -114,10 +114,10 @@ public class BattleMenuManager extends MenuManager implements IBattleSelectionEv
                 case EnemySelection:
                     CharacterLocationContainer selection = _currentEnemyCursor.ReturnSelection();
                     FireAbilitySelectionEvent(null, selection);
-                    _battleCarousel.SetIsVisible(true);
-                    _currentAttackMenu.SetIsVisible(false);
-                    _currentEnemyCursor.SetIsVisible(false);
+                    _battleCarousel.SetIsVisible(false);
                     _state = BattleMenuState.CarouselSelection;
+                    DisposeSubMenu();
+                    DisposeEnemyCursor();
                     break;
             }
 

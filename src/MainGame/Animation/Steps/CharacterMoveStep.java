@@ -1,6 +1,6 @@
 package MainGame.Animation.Steps;
 
-import GameObjects.Characters.CharacterBase;
+import GameObjects.Base.GameObject;
 import GeneralHelpers.ConversionHelper;
 import GeneralHelpers.PointHelper;
 import MainGame.Animation.Events.AbilityAnimationExecutionEvent;
@@ -30,16 +30,13 @@ public class CharacterMoveStep extends ScriptStep<AbilityAnimationExecutionEvent
         //the move is complete.
         //todo adjust character animation fps as necessary.
 
-        for(int i = 0; i < GetFramesAllotted(); i++)
-        {
-            DistanceVector moveVector = CalculateMoveDistance(event.GetUser(), event.GetTargets().get(0).getLocation());
-            Point p = PointHelper.NTranslateNewPoint(event.GetUser().NGetLocation(), moveVector);
-            event.GetUser().NSetLocation(p);
-        }
+        DistanceVector moveVector = CalculateMoveDistance(event.GetUser(), event.GetTargets().get(0).getLocation());
+        Point p = PointHelper.NTranslateNewPoint(event.GetUser().NGetLocation(), moveVector);
+        event.GetUser().NSetLocation(p);
     }
 
     //Private Methods
-    private DistanceVector CalculateMoveDistance(CharacterBase character, Point moveTo)
+    private DistanceVector CalculateMoveDistance(GameObject character, Point moveTo)
     {
         Point characterPoint = character.NGetLocation();
         double distToTravel = PointHelper.DistanceTo(characterPoint, moveTo);

@@ -1,7 +1,7 @@
 package MainGame.Animation.Events;
 
 import CharacterFunctions.Abilities.Ability;
-import GameObjects.Characters.CharacterBase;
+import GameObjects.BattleCharacters.BattleCharacterBase;
 
 import java.util.List;
 
@@ -11,10 +11,8 @@ import java.util.List;
 public class BasicJumpAbilityAnimationExecutionEvent extends AbilityAnimationExecutionEvent
 {
 
-    public BasicJumpAbilityAnimationExecutionEvent(Ability ability, CharacterBase user, List<CharacterBase> targets)
+    public BasicJumpAbilityAnimationExecutionEvent(Ability ability, BattleCharacterBase user, List<BattleCharacterBase> targets)
     {
         super(ability, user, targets);
-
-
     }
 }
