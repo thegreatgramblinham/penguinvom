@@ -35,6 +35,11 @@ public abstract class ScriptStep<T extends AnimationExecutionEvent>
         //Todo mess with the viewport here.
     }
 
+    public int GetFramesAllotted()
+    {
+        return _framesAlloted;
+    }
+
     public boolean Complete()
     {
         return _frameCounter >= _framesAlloted;

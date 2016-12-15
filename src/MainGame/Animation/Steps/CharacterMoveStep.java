@@ -30,7 +30,12 @@ public class CharacterMoveStep extends ScriptStep<AbilityAnimationExecutionEvent
         //the move is complete.
         //todo adjust character animation fps as necessary.
 
-        CalculateMoveDistance(event.GetUser(), event.GetTargets().get(0).getLocation());
+        for(int i = 0; i < GetFramesAllotted(); i++)
+        {
+            DistanceVector moveVector = CalculateMoveDistance(event.GetUser(), event.GetTargets().get(0).getLocation());
+            Point p = PointHelper.NTranslateNewPoint(event.GetUser().NGetLocation(), moveVector);
+            event.GetUser().NSetLocation(p);
+        }
     }
 
     //Private Methods
@@ -44,6 +49,6 @@ public class CharacterMoveStep extends ScriptStep<AbilityAnimationExecutionEvent
         double slope = PointHelper.SlopeOf(characterPoint, moveTo);
 
         //From here we can build a vector
-        return new DistanceVector(ConversionHelper.SlopeToRadians(slope), distToTravel);
+        return new DistanceVector(ConversionHelper.SlopeToRadians(slope), distToCoverPerFrame);
     }
 }
