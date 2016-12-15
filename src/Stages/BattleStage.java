@@ -32,9 +32,9 @@ public abstract class BattleStage extends StageObject
 
     //Abstract Methods
     public abstract Point GetViewLocation();
-    public abstract Point GetPlayerCharacterLocation();
-    public abstract Point GetPartnerCharacterLocation();
-    public abstract Point[] GetEnemyCharacterLocation();
+    public abstract CharacterLocationContainer GetPlayerCharacterLocation();
+    public abstract CharacterLocationContainer GetPartnerCharacterLocation();
+    public abstract CharacterLocationContainer[] GetEnemyCharacterLocation();
 
     //Set Methods
 
@@ -50,15 +50,17 @@ public abstract class BattleStage extends StageObject
         //Player
         _sector.AddObject(_playerCharacter, GameConstants.PLAYER_RENDER_GROUP,
                 GameConstants.PLAYER_COLLISION_GROUP);
-        _playerCharacter.NSetLocation(GetPlayerCharacterLocation());
+        _playerCharacter.NSetLocation(GetPlayerCharacterLocation().GetLocation());
 
         //Enemies
-        Point[] enemyLocations = GetEnemyCharacterLocation();
-        for(EnemyBattleCharacter enemyCharacter : _enemyCharacters)
+        CharacterLocationContainer[] enemyContainers = GetEnemyCharacterLocation();
+
+        for(CharacterLocationContainer enemyCharacterLocation : enemyContainers)
         {
-            _sector.AddObject(enemyCharacter, GameConstants.PLAYER_RENDER_GROUP,
+            _sector.AddObject(enemyCharacterLocation.GetCharacter(),
+                    GameConstants.PLAYER_RENDER_GROUP,
                     GameConstants.PLAYER_COLLISION_GROUP);
-            enemyCharacter.NSetLocation(enemyLocations[0]);
+            enemyCharacterLocation.GetCharacter().NSetLocation(enemyCharacterLocation.GetLocation());
         }
     }
 }

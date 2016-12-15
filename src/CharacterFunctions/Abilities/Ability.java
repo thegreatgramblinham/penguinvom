@@ -10,17 +10,15 @@ public class Ability
     private String _alias;
     private AbilityType _type;
     private int _baseDamage;
-    private String _animation;
 
     //Constructor
     public Ability(AbilityId id, String alias, AbilityType type,
-                   int baseDamage, String animation)
+                   int baseDamage)
     {
         _id = id;
         _alias = alias;
         _type = type;
         _baseDamage = baseDamage;
-        _animation = animation;
     }
 
     //Get Methods
@@ -44,10 +42,6 @@ public class Ability
         return _baseDamage;
     }
 
-    public String GetAnimation()
-    {
-        return _animation;
-    }
 
     //Public Methods
 

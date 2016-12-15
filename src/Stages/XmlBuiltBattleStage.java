@@ -93,22 +93,27 @@ public class XmlBuiltBattleStage extends BattleStage
     }
 
     @Override
-    public Point GetPlayerCharacterLocation()
+    public CharacterLocationContainer GetPlayerCharacterLocation()
     {
-        return new Point(GetUIRoot().x + 220, GetVisualStageFloor());
+        return new CharacterLocationContainer(_playerCharacter, new Point(GetUIRoot().x + 220, GetVisualStageFloor()));
     }
 
     @Override
-    public Point GetPartnerCharacterLocation()
+    public CharacterLocationContainer GetPartnerCharacterLocation()
     {
-        return new Point(0,0);
+        return new CharacterLocationContainer(null, new Point(0,0));
     }
 
     @Override
-    public Point[] GetEnemyCharacterLocation()
+    public CharacterLocationContainer[] GetEnemyCharacterLocation()
     {
-        Point[] pts = new Point[1];
-        pts[0] = new Point(GetUIRoot().x + 750, GetVisualStageFloor());
+        CharacterLocationContainer[] pts = new CharacterLocationContainer[_enemyCharacters.size()];
+
+        for (int i = 0; i < _enemyCharacters.size(); i++)
+        {
+            pts[i] = new CharacterLocationContainer(_enemyCharacters.get(i),
+                    new Point(GetUIRoot().x + 750, GetVisualStageFloor()));
+        }
 
         return pts;
     }

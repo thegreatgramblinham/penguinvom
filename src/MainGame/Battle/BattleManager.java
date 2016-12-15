@@ -1,11 +1,14 @@
 package MainGame.Battle;
 
+import MainGame.Animation.Scripts.BasicJumpAbilityAnimationScript;
 import MainGame.Battle.enums.Turn;
 import Menus.Battle.BattleMenuManager;
+import Menus.Battle.EnemySelection.AbilitySelectionEvent;
+import Menus.Battle.Interfaces.IBattleSelectionEventConsumer;
 import Stages.BattleStage;
 import javafx.scene.canvas.GraphicsContext;
 
-public class BattleManager
+public class BattleManager implements IBattleSelectionEventConsumer
 {
     //Variables
     private BattleStage _stage;
@@ -41,10 +44,20 @@ public class BattleManager
         _menuManager.HandleKeyPress();
     }
 
+    @Override
+    public void OnAbilitySelection(AbilitySelectionEvent e)
+    {
+        System.out.println("Selection Fired!");
+
+        //BasicJumpAbilityAnimationScript script = new BasicJumpAbilityAnimationScript();
+    }
+
     //Private Methods
     private void InitMenus()
     {
         _menuManager = new BattleMenuManager(_stage);
+        _menuManager.Subscribe(this);
     }
+
 
 }

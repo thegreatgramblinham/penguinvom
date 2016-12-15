@@ -1,19 +1,28 @@
 package Menus.Battle;
 
+import CharacterFunctions.Abilities.Ability;
+import CharacterFunctions.Abilities.enums.AbilityId;
+import CharacterFunctions.Abilities.enums.AbilityType;
+import GameObjects.BattleCharacters.BattleCharacterBase;
 import MainGame.GameConstants;
 import MainGame.ViewPort;
 import Menus.Battle.AttackSubMenu.AttackMenu;
+import Menus.Battle.EnemySelection.AbilitySelectionEvent;
 import Menus.Battle.EnemySelection.EnemySelectionCursor;
+import Menus.Battle.Interfaces.IBattleSelectionEventConsumer;
+import Menus.Battle.Interfaces.IBattleSelectionEventProducer;
 import Menus.Battle.SelectionCarousel.BattleMenuCarousel;
 import Menus.Battle.enums.BattleMenuState;
 import Menus.Battle.enums.BattleMenuType;
 import Menus.MenuManager;
 import Stages.BattleStage;
+import Stages.CharacterLocationContainer;
 import javafx.scene.input.KeyCode;
 
 import java.awt.*;
+import java.util.ArrayList;
 
-public class BattleMenuManager extends MenuManager
+public class BattleMenuManager extends MenuManager implements IBattleSelectionEventProducer
 {
     //Private Constants
     private final int KEY_RESET_TIMER = 10;
@@ -26,6 +35,7 @@ public class BattleMenuManager extends MenuManager
     private BattleMenuState _state;
     private int _keyCooldownTimer;
     private Point _uiRoot;
+    private ArrayList<IBattleSelectionEventConsumer> _consumers;
 
     //Constructor
     public BattleMenuManager(BattleStage stage)
@@ -102,6 +112,12 @@ public class BattleMenuManager extends MenuManager
                     _state = BattleMenuState.EnemySelection;
                     break;
                 case EnemySelection:
+                    CharacterLocationContainer selection = _currentEnemyCursor.ReturnSelection();
+                    FireAbilitySelectionEvent(null, selection);
+                    _battleCarousel.SetIsVisible(true);
+                    _currentAttackMenu.SetIsVisible(false);
+                    _currentEnemyCursor.SetIsVisible(false);
+                    _state = BattleMenuState.CarouselSelection;
                     break;
             }
 
@@ -130,6 +146,26 @@ public class BattleMenuManager extends MenuManager
 
         if(keyPressed)
             _keyCooldownTimer = 0;
+    }
+
+    @Override
+    public void Subscribe(IBattleSelectionEventConsumer consumer)
+    {
+        if(_consumers == null)
+            _consumers = new ArrayList<>();
+
+        if(!_consumers.contains(consumer))
+            _consumers.add(consumer);
+    }
+
+    @Override
+    public void Unsubscribe(IBattleSelectionEventConsumer consumer)
+    {
+        if(_consumers == null)
+            _consumers = new ArrayList<>();
+
+        if(_consumers.contains(consumer))
+            _consumers.remove(consumer);
     }
 
     //Private Methods
@@ -163,4 +199,20 @@ public class BattleMenuManager extends MenuManager
         _currentAttackMenu = null;
     }
 
+    private void FireAbilitySelectionEvent(Ability ability, CharacterLocationContainer target)
+    {
+        //Create
+        AbilitySelectionEvent event = new AbilitySelectionEvent(
+                new Ability(AbilityId.Jump_Basic, "Jump", AbilityType.Jump, 1),
+                _stage.GetPlayerCharacterLocation().GetCharacter(),
+                new ArrayList<BattleCharacterBase>(){{add(target.GetCharacter());}});
+
+        //Fire
+        if(_consumers == null || _consumers.size() == 0) return;
+
+        for(IBattleSelectionEventConsumer consumer : _consumers)
+        {
+            consumer.OnAbilitySelection(event);
+        }
+    }
 }

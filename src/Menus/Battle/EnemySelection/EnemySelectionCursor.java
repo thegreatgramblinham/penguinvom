@@ -1,6 +1,7 @@
 package Menus.Battle.EnemySelection;
 
 import Menus.Base.MenuBase;
+import Stages.CharacterLocationContainer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -20,13 +21,13 @@ public class EnemySelectionCursor extends MenuBase
                 .toURI().toString());
 
     //Private Variables
-    private Point[] _positions;
+    private CharacterLocationContainer[] _positions;
     private int _selectionIndex = 0;
 
     //Constructor
-    public EnemySelectionCursor(Point[] positions)
+    public EnemySelectionCursor(CharacterLocationContainer[] positions)
     {
-        super(new Rectangle(positions[0].x, positions[0].y, WIDTH, HEIGHT));
+        super(new Rectangle(positions[0].GetLocation().x, positions[0].GetLocation().y, WIDTH, HEIGHT));
         _positions = positions;
     }
 
@@ -49,7 +50,7 @@ public class EnemySelectionCursor extends MenuBase
         else
             _selectionIndex = 0;
 
-        this.NSetLocation(_positions[_selectionIndex]);
+        this.NSetLocation(_positions[_selectionIndex].GetLocation());
     }
 
     public void DecrementSelection()
@@ -59,12 +60,12 @@ public class EnemySelectionCursor extends MenuBase
         else
             _selectionIndex = _positions.length - 1;
 
-        this.NSetLocation(_positions[_selectionIndex]);
+        this.NSetLocation(_positions[_selectionIndex].GetLocation());
     }
 
-    public int ReturnSelection()
+    public CharacterLocationContainer ReturnSelection()
     {
-        return _selectionIndex;
+        return _positions[_selectionIndex];
     }
 
 }

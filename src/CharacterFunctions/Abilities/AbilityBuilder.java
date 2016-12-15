@@ -24,8 +24,6 @@ public final class AbilityBuilder
                 parser.OpenNodeList(AbilityConstants.M_TYPE));
         int baseDamage = XMLParser.ParseIntPathContents(
                 parser.OpenNodeList(AbilityConstants.M_BASEDMG));
-        String animationFile = XMLParser.ParseStringPathContents(
-                parser.OpenNodeList(AbilityConstants.M_ANIMATION));
 
         AbilityType type = null;
 
@@ -44,7 +42,7 @@ public final class AbilityBuilder
                 throw new Exception("< AbilityType not found >");
         }
 
-        return new Ability(id, alias, type, baseDamage, animationFile);
+        return new Ability(id, alias, type, baseDamage);
     }
 
     //Private Methods

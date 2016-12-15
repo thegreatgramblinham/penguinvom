@@ -1,10 +1,8 @@
 package GameObjects.BattleCharacters;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
-public class BattleCharacterGroup<T extends BattleCharacterBase> implements Collection<T>
+public class BattleCharacterGroup<T extends BattleCharacterBase> implements List<T>
 {
     //Variables
     private ArrayList<T> _list;
@@ -65,9 +63,69 @@ public class BattleCharacterGroup<T extends BattleCharacterBase> implements Coll
     }
 
     @Override
+    public T get(int i)
+    {
+        return _list.get(i);
+    }
+
+    @Override
+    public T set(int index, T element)
+    {
+        return _list.set(index, element);
+    }
+
+    @Override
+    public void add(int index, T element)
+    {
+        _list.add(index, element);
+    }
+
+    @Override
+    public T remove(int index)
+    {
+        return _list.remove(index);
+    }
+
+    @Override
+    public int indexOf(Object o)
+    {
+        return _list.indexOf(o);
+    }
+
+    @Override
+    public int lastIndexOf(Object o)
+    {
+        return _list.lastIndexOf(o);
+    }
+
+    @Override
+    public ListIterator<T> listIterator()
+    {
+        return _list.listIterator();
+    }
+
+    @Override
+    public ListIterator<T> listIterator(int index)
+    {
+        return _list.listIterator(index);
+    }
+
+    @Override
+    public List<T> subList(int fromIndex, int toIndex)
+    {
+        return _list.subList(fromIndex, toIndex);
+    }
+
+    @Override
     public boolean remove(Object o)
     {
         return _list.remove((T) o);
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends T> c)
+    {
+        return false;
     }
 
     @Override
