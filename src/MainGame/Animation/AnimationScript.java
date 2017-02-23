@@ -3,6 +3,8 @@ package MainGame.Animation;
 import MainGame.Animation.Steps.ScriptStep;
 import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.UUID;
 
 /**
@@ -12,10 +14,13 @@ import java.util.UUID;
 public abstract class AnimationScript<T extends AnimationExecutionEvent>
 {
     //Private Variables
-    private T _event;
     private int _totalFramesAllotted;
+
     private int _frameCounter;
+    private int _currentFrameCounter;
+
     private ArrayList<ScriptStep> _steps;
+    private LinkedHashMap<ScriptStep, Integer> _stepToFrameMap;
 
     private UUID _instanceId;
 
@@ -23,9 +28,9 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     public AnimationScript(int totalFramesAllotted)
     {
         _totalFramesAllotted = totalFramesAllotted;
-        _steps = GenerateScript();
         _frameCounter = 0;
         _instanceId = UUID.randomUUID();
+        GenerateScriptFrameMap();
     }
 
     //Get Methods
@@ -38,11 +43,15 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     public void Execute(T e, GraphicsContext gc)
     {
         //todo instead of foreach, determine which execute to call based on frame counter.
-        for(ScriptStep step : _steps)
-        {
-            step.Execute(e, gc);
-        }
-        _frameCounter++;
+
+
+
+
+//        for(ScriptStep step : _steps)
+//        {
+//            step.Execute(e, gc);
+//        }
+//        _frameCounter++;
     }
 
     public boolean IsCompleted()
@@ -69,6 +78,18 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
 
     //Abstract Methods
     protected abstract ArrayList<ScriptStep> GenerateScript();
+
+    //Private Methods
+    private void GenerateScriptFrameMap()
+    {
+        ArrayList<ScriptStep> steps = GenerateScript();
+        _stepToFrameMap = new LinkedHashMap<>();
+
+        for(ScriptStep step : steps)
+        {
+            _stepToFrameMap.put(step, step.GetFramesAllotted());
+        }
+    }
 
 
 }
