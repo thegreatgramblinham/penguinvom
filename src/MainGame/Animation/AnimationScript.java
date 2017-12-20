@@ -3,7 +3,6 @@ package MainGame.Animation;
 import MainGame.Animation.Steps.ScriptStep;
 import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
@@ -16,7 +15,8 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     //Private Variables
     private int _totalFramesAllotted;
 
-    private int _frameCounter;
+    private int _currentScriptIndex;
+    private int _totalFrameCounter;
     private int _currentFrameCounter;
 
     private ArrayList<ScriptStep> _steps;
@@ -28,7 +28,9 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     public AnimationScript(int totalFramesAllotted)
     {
         _totalFramesAllotted = totalFramesAllotted;
-        _frameCounter = 0;
+        _totalFrameCounter = 0;
+        _currentFrameCounter = 0;
+        _currentScriptIndex = 0;
         _instanceId = UUID.randomUUID();
         GenerateScriptFrameMap();
     }
@@ -42,18 +44,34 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     //Public Methods
     public void Execute(T e, GraphicsContext gc)
     {
-        //todo instead of foreach, determine which execute to call based on frame counter.
+        if(this,IsCompleted()) return;
 
-        for(ScriptStep step : _steps)
+        ScriptStep currStep = _steps.get(_currentScriptIndex);
+
+        currStep.Execute(e, gc);
+        if(currStep.Complete())
         {
-            step.Execute(e, gc);
+            _currentScriptIndex++;
+            _currentFrameCounter = 0;
         }
-        _frameCounter++;
+        else
+        {
+            _currentFrameCounter++;
+        }
+
+        _totalFrameCounter++;
     }
 
     public boolean IsCompleted()
     {
-        return _frameCounter >= _totalFramesAllotted;
+        return _totalFrameCounter >= _totalFramesAllotted;
+    }
+
+    public void Reset()
+    {
+        _totalFrameCounter = 0;
+        _currentFrameCounter = 0;
+        _currentScriptIndex = 0;
     }
 
     @Override
