@@ -44,7 +44,7 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     //Public Methods
     public void Execute(T e, GraphicsContext gc)
     {
-        if(this,IsCompleted()) return;
+        if(this.IsCompleted()) return;
 
         ScriptStep currStep = _steps.get(_currentScriptIndex);
 
