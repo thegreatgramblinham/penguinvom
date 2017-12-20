@@ -44,14 +44,11 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     {
         //todo instead of foreach, determine which execute to call based on frame counter.
 
-
-
-
-//        for(ScriptStep step : _steps)
-//        {
-//            step.Execute(e, gc);
-//        }
-//        _frameCounter++;
+        for(ScriptStep step : _steps)
+        {
+            step.Execute(e, gc);
+        }
+        _frameCounter++;
     }
 
     public boolean IsCompleted()
@@ -82,10 +79,10 @@ public abstract class AnimationScript<T extends AnimationExecutionEvent>
     //Private Methods
     private void GenerateScriptFrameMap()
     {
-        ArrayList<ScriptStep> steps = GenerateScript();
+        _steps = GenerateScript();
         _stepToFrameMap = new LinkedHashMap<>();
 
-        for(ScriptStep step : steps)
+        for(ScriptStep step : _steps)
         {
             _stepToFrameMap.put(step, step.GetFramesAllotted());
         }
