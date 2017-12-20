@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 
 import java.awt.*;
 
+
 public abstract class AttackMenuItemBase extends MenuBase
 {
     //Variables
